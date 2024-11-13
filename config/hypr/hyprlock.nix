@@ -1,8 +1,12 @@
 {
+  config,
   ...
 }:
+  let
+    currentime = builtins.currenTime;
+  in
 {
-  services = {
+  programs = {
     hyprlock = {
       enable = true;
       settings = {
@@ -14,36 +18,34 @@
         };
         background = [
           {
-            path = "~/Pictures/Wallpapers/abstract-swirls.jpg";
-            blur_passes = 3;
-            blur_size = 8;
+            path = "$HOME/Pictures/wallpapers/abstract-swirls.jpg";          
           }
         ];
-        /* image = [
-          {
-            path = "~/.config/face.jpg";
-            size = 150;
-            border_size = 4;
-            border_color = "rgb(0C96F9)";
-            rounding = -1; # Negative means circle
-            position = "0, 200";
-            halign = "center";
-            valign = "center";
-          }
-        ]; */
         input-field = [
           {
-            size = "200, 50";
-            position = "0, -80";
+            size = "200, 60";
+            position = "0, -120";
             monitor = "";
             dots_center = true;
             fade_on_empty = false;
-            font_color = "rgb(CFE6F4)";
-            inner_color = "rgb(657DC2)";
-            outer_color = "rgb(0D0E15)";
-            outline_thickness = 5;
-            placeholder_text = "Password...";
-            shadow_passes = 2;
+            font_color = "rgb(${config.stylix.base16Scheme.base01})";
+            font_family = "JetBrainsMono Nerd Font Mono";
+            inner_color = "rgb(${config.stylix.base16Scheme.base0E})";
+            outer_color = "rgb(${config.stylix.base16Scheme.base0A})";
+            outline_thickness = 0;
+            placeholder_text = "";
+          }
+        ];
+        label = [
+          {
+            monitor = "";
+            text = "cmd[update:1000] echo -e \"\$(date +\"%H:%M\")\"";
+            color = "rgb(${config.stylix.base16Scheme.base07})";
+            font_size = 120;
+            font_family = "JetBrains Mono Nerd Font Mono ExtraBold";
+            position = "200, -200";
+            halign = "left";
+            valign = "top";
           }
         ];
       };

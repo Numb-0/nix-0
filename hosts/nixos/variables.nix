@@ -6,7 +6,7 @@
   # Hyprland Monitors Settings
   extraMonitorSettings = "";
 
-  # Program Options
+  # Programs Options
   browser = "firefox"; # Set Default Browser
   terminal = "kitty"; # Set Default System Terminal
   keyboardLayout = "us";

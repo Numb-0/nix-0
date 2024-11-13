@@ -57,7 +57,7 @@ with lib;
             layout = dwindle
             resize_on_border = true
             col.active_border = rgb(${config.stylix.base16Scheme.base0E}) # rgb(${config.stylix.base16Scheme.base0C}) 45deg
-            col.inactive_border = rgb(${config.stylix.base16Scheme.base01})
+            col.inactive_border = rgb(${config.stylix.base16Scheme.base00})
           }
 
           input {
@@ -77,7 +77,7 @@ with lib;
           windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
 
           cursor {
-            #no_hardware_cursors = true
+            no_hardware_cursors = true
           }
 
           gestures {
@@ -142,8 +142,8 @@ with lib;
           bind = $mainMod, R, exec, $menu
           bind = $mainMod, P, pseudo, # dwindle
           bind = $mainMod, J, togglesplit, # dwindle
-          bind = $mainMod, A, exec, ags -t Applauncher
-          bind = $mainMod, D, exec, ags -m dashboard
+          #bind = $mainMod, A, exec, ags -t Applauncher
+          #bind = $mainMod, D, exec, ags -m dashboard
 
           # Move focus with mainMod + arrow keys
           bind = $mainMod, left, movefocus, l

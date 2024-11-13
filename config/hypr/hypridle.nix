@@ -13,7 +13,7 @@
           };
         listener = [
           {
-            timeout = 900;
+            timeout = 300; # 5 mins
             on-timeout = "hyprlock";
           }
           {
