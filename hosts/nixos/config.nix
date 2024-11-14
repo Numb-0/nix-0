@@ -25,7 +25,7 @@ in
     # This is for OBS Virtual Cam Support
     #kernelModules = [ "v4l2loopback" ];
     # Needed for Razer
-    kernelParams = [ "intremap=off" "splash" "nvidia_drm.modeset=1" ];
+    kernelParams = [ "button.lid_init_state=open" "intremap=off" "quiet" "splash" "nvidia_drm.modeset=1" ];
     #extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     # Needed For Some Steam Games
     #kernel.sysctl = {
@@ -38,9 +38,6 @@ in
   # Styling Options
   stylix = {
     enable = true;
-    targets = {
-      fish.enable = false;
-    };
     image = ../../config/wallpapers/squares.png;
     # Macchiato
     base16Scheme = {
@@ -80,10 +77,10 @@ in
         name = "Roboto-serif";
       };
       sizes = {
-        applications = 12;
-        terminal = 12;
-        desktop = 12;
-        popups = 12;
+        applications = 11;
+        terminal = 11;
+        desktop = 11;
+        popups = 11;
       };
     };
   };
@@ -134,7 +131,7 @@ in
     #virt-manager.enable = false;
     steam = {
       enable = true;
-      #gamescopeSession.enable = true;
+      gamescopeSession.enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
@@ -148,7 +145,15 @@ in
 
   # Here add program without configurations
   environment.systemPackages = with pkgs; [
+    gcc
+    python3
+    typescript
+    nodejs
+    nodePackages.npm
+    gnumake
     vim
+    neovim
+    fzf
     vscode
     nixd
     krabby
@@ -164,6 +169,8 @@ in
     libnotify
     ripgrep
     brightnessctl
+    upower
+    bluez
   ];
 
   fonts = {
@@ -189,13 +196,33 @@ in
       pkgs.xdg-desktop-portal
     ];
   };
+
+  console.keyMap = "${keyboardLayout}";
+
+  security.rtkit.enable = true;
+
   # Services to start
   services = {
-    xserver = {
-      enable = false;
-      xkb = {
-        layout = "${keyboardLayout}";
-        variant = "";
+    upower = {
+      enable = true;
+    };
+    keyd = {
+      enable = true;
+      keyboards = {
+        default = {
+          ids = [ "*" ]; 
+          settings = {
+            main = {  
+              capslock = "layer(control)"; 
+            };
+            otherlayer = {};
+          };
+          extraConfig = ''
+            [main]
+            y = z
+            z = y
+          '';
+        };
       };
     };
     printing = {
@@ -209,17 +236,24 @@ in
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      wireplumber.extraConfig.bluetoothEnhancements = {
+        "monitor.bluez.properties" = {
+          "bluez5.enable-sbc-xq" = true;
+          "bluez5.enable-msbc" = true;
+          "bluez5.enable-hw-volume" = true;
+          "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
+        };
+      };
     };
     getty.autologinUser = username;
   };
 
   # Bluetooth Support
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
-
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = { General = { Enable = "Source,Sink,Media,Socket"; }; };
+  };
 
   # Optimization settings and garbage collection automation
   nix = {
@@ -239,8 +273,6 @@ in
       options = "--delete-older-than 7d";
     };
   };
-
-  console.keyMap = "${keyboardLayout}";
 
   system.stateVersion = "24.05"; 
 }

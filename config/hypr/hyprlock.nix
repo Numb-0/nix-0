@@ -2,9 +2,6 @@
   config,
   ...
 }:
-  let
-    currentime = builtins.currenTime;
-  in
 {
   programs = {
     hyprlock = {

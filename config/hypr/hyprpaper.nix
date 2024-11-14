@@ -1,7 +1,4 @@
 {
-  ...
-}:
-{
   services = {
     hyprpaper = {
       enable = true;

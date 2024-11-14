@@ -142,8 +142,8 @@ with lib;
           bind = $mainMod, R, exec, $menu
           bind = $mainMod, P, pseudo, # dwindle
           bind = $mainMod, J, togglesplit, # dwindle
-          #bind = $mainMod, A, exec, ags -t Applauncher
-          #bind = $mainMod, D, exec, ags -m dashboard
+          bind = $mainMod, A, exec, ags toggle Applauncher
+          bind = $mainMod, D, exec, ags request dashboard
 
           # Move focus with mainMod + arrow keys
           bind = $mainMod, left, movefocus, l
