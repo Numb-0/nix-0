@@ -4,6 +4,7 @@
   host,
   username,
   options,
+  config,
   ...
 }:
 let
@@ -23,14 +24,14 @@ in
   # Bootloader
   boot = {
     # This is for OBS Virtual Cam Support
-    #kernelModules = [ "v4l2loopback" ];
+    kernelModules = [ "v4l2loopback" ];
     # Needed for Razer
     kernelParams = [ "button.lid_init_state=open" "intremap=off" "quiet" "splash" "nvidia_drm.modeset=1" ];
-    #extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+    extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     # Needed For Some Steam Games
-    #kernel.sysctl = {
-    #  "vm.max_map_count" = 2147483642;
-    #};
+    kernel.sysctl = {
+      "vm.max_map_count" = 2147483642;
+    };
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
@@ -129,6 +130,16 @@ in
       enableSSHSupport = true;
     };
     #virt-manager.enable = false;
+    gamemode = {
+      enable = true;
+      enableRenice = true;
+      settings = {
+        general = {
+          softrealtime = "auto";
+          renice = 10;
+        };
+      };
+    };
     steam = {
       enable = true;
       gamescopeSession.enable = true;
