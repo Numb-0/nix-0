@@ -17,8 +17,8 @@ in
   };
 
   # Import Program Configurations
-  imports = [
-    inputs.ags.homeManagerModules.default 
+  imports = [ 
+    inputs.ags.homeManagerModules.default
     ../../config/hypr
     ../../config/kitty
     ../../config/fish 
@@ -39,8 +39,9 @@ in
 
   programs.ags = {
     enable = true;
-    # Default path ~/.config/ags
-    configDir = null;
+
+    # Symlink to ~/.config/ags
+    configDir = ../../config/ags;
 
     # Additional packages to add to gjs's runtime
     extraPackages = [
