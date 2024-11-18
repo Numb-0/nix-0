@@ -19,6 +19,7 @@ in
         "libvirtd"
         "scanner"
         "lp"
+        "adbusers"
       ];
       shell = pkgs.fish;
       ignoreShellProgramCheck = true;

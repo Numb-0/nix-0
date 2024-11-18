@@ -120,7 +120,18 @@ in
     LC_TIME = "it_IT.UTF-8";
   };
 
+  programs.nix-ld.enable = true;
+
+  programs.nix-ld.libraries = with pkgs; [
+    # Add any missing dynamic libraries for unpackaged programs
+    # here, NOT in environment.systemPackages
+
+    # Needed for android godot build
+    aapt
+  ];
+
   programs = {
+    adb.enable = true;
     firefox.enable = true;
     dconf.enable = true;
     fuse.userAllowOther = true;
@@ -167,6 +178,10 @@ in
     fzf
     vscode
     nixd
+    godot_4
+    sdkmanager
+    jdk17
+    spotify
     krabby
     wget
     killall

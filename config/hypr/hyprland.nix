@@ -3,6 +3,7 @@
   #username,
   host,
   config,
+  pkgs,
   ...
 }:
 
@@ -24,11 +25,14 @@ with lib;
     extraConfig =
       concatStrings [
         ''
+          env = ANDROID_HOME,/home/cosix/Android
+
           env = LIBVA_DRIVER_NAME, i965
           env = GBM_BACKEND, nvidia-drm
           env = __GLX_VENDOR_LIBRARY_NAME, nvidia
           env = NVD_BACKEND, direct
-
+          env = JAVA_17_HOME, ${pkgs.jdk17}
+          
           env = NIXOS_OZONE_WL, 1
           env = NIXPKGS_ALLOW_UNFREE, 1
           env = XDG_CURRENT_DESKTOP, Hyprland
@@ -57,7 +61,7 @@ with lib;
             border_size = 2
             layout = dwindle
             resize_on_border = true
-            col.active_border = rgb(${config.stylix.base16Scheme.base0E}) # rgb(${config.stylix.base16Scheme.base0C}) 45deg
+            col.active_border = rgb(${config.stylix.base16Scheme.base07}) # rgb(${config.stylix.base16Scheme.base0C}) 45deg
             col.inactive_border = rgb(${config.stylix.base16Scheme.base00})
           }
 
@@ -108,7 +112,7 @@ with lib;
           }
 
           decoration {
-            rounding = 0
+            rounding = 8
             drop_shadow = true
             shadow_range = 4
             shadow_render_power = 3

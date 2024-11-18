@@ -3,8 +3,8 @@
     fish = {
       enable = true;
       interactiveShellInit = ''
-        set -x PATH "$HOME/.local/bin:$PATH"
-        set -e ANDROID_SDK_ROOT
+        #set -x PATH "$HOME/.local/bin:$PATH"
+        #set -e ANDROID_SDK_ROOT
 
         # Lauches Hyprland on startup
         if test (tty) = "/dev/tty1"
@@ -30,6 +30,8 @@
           set -g __fish_git_prompt_color blue
           set -g __fish_git_prompt_color_cleanstate green
           set -g __fish_git_prompt_color_merging red 
+          set -g fish_color_param white
+          set -g fish_color_autosuggestion yellow
           
           set -l last_status $status
           set -l arrow ' ➤ '
@@ -40,7 +42,7 @@
               set show_status (set_color red) "[$last_status]" (set_color normal)
           end
 
-          string join "" -- (set_color yellow) (prompt_pwd --full-length-dirs 2) (set_color normal) (fish_git_prompt) $show_status (set_color purple) $arrow
+          string join "" -- (set_color yellow) (prompt_pwd --full-length-dirs 2) (set_color normal) (fish_git_prompt) $show_status (set_color purple) $arrow (set_color normal)
         '';
         fish_right_prompt = ''
           set -l time_counter "$CMD_DURATION ms" 

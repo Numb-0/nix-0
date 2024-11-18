@@ -39,9 +39,10 @@ in
 
   programs.ags = {
     enable = true;
+    # Default path ~/.config/ags
     configDir = null;
 
-    # additional packages to add to gjs's runtime
+    # Additional packages to add to gjs's runtime
     extraPackages = [
       inputs.ags.packages.${pkgs.system}.io 
       inputs.ags.packages.${pkgs.system}.apps
@@ -70,7 +71,7 @@ in
     };
   };
 
-  #stylix.targets.hyprland.enable = false;  
+  stylix.targets.hyprland.enable = false;  
 
   # Gtk
   gtk = {
