@@ -1,0 +1,17 @@
+@use "colors" as *;
+@use "presets" as *;
+
+.Bar {
+    .container {
+        min-height: 4px;
+        padding: 5px;
+        .logo {
+            font-size: 20px;
+            color: $base0D;
+        }
+    
+        .clock {
+            color: $base0E;
+        }
+    }
+}

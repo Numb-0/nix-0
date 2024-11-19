@@ -253,5 +253,13 @@ in
     };
   };
 
-  system.stateVersion = "24.05"; 
+  system.stateVersion = "24.05";
+  /* system.activationScripts = { stdio.text =
+    ''
+    dirpath="$HOME/nix-0/config/ags/ags/scss"
+    filepath="$dirpath/col.scss"
+    mkdir -p "$dirpath"
+    echo "\$base00: #${config.stylix.base16Scheme.base00};" > "$filepath"
+    '';
+  };  */
 }

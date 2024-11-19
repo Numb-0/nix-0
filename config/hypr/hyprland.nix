@@ -11,7 +11,6 @@ let
   inherit (import ../../hosts/${host}/variables.nix)
     browser
     terminal
-    extraMonitorSettings
     keyboardLayout
     ;
 in
@@ -40,16 +39,18 @@ with lib;
           env = XDG_SESSION_DESKTOP, Hyprland
           env = GDK_BACKEND, wayland,x11
           env = CLUTTER_BACKEND, wayland
-          env = QT_QPA_PLATFORM=wayland;xcb
+          env = QT_QPA_PLATFORM, wayland;xcb
           env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
           env = QT_AUTO_SCREEN_SCALE_FACTOR, 1
           env = SDL_VIDEODRIVER, wayland,x11
           env = MOZ_ENABLE_WAYLAND, 1
-          exec-once = dbus-update-activation-environment --systemd --all
+
+          #exec-once = dbus-update-activation-environment --systemd --all
           exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
           exec-once = lxqt-policykit-agent
-          monitor = eDP-1,1920x1080@120.00Hz,auto,1.5
-          ${extraMonitorSettings}
+
+          monitor = eDP-1,1920x1080@120.00Hz,auto,auto
+          monitor = DP-3,preferred,auto,auto
 
           xwayland {
             force_zero_scaling = true
@@ -61,7 +62,8 @@ with lib;
             border_size = 2
             layout = dwindle
             resize_on_border = true
-            col.active_border = rgb(${config.stylix.base16Scheme.base07}) # rgb(${config.stylix.base16Scheme.base0C}) 45deg
+            allow_tearing = true
+            col.active_border = rgb(${config.stylix.base16Scheme.base07})
             col.inactive_border = rgb(${config.stylix.base16Scheme.base00})
           }
 
