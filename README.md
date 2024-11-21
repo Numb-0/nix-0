@@ -12,3 +12,14 @@ nix-collect-garbage
 ```nix
 find /nix/store -name "libSDL2-2.0.so*" 
 ```
+### Cleaning generations
+```
+sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
+nix-collect-garbage  --delete-old
+nix-collect-garbage  --delete-generations 1 2 3
+sudo nix-collect-garbage -d
+```
+### Cleaning boot
+```
+sudo /run/current-system/bin/switch-to-configuration boot
+```

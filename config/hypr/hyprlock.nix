@@ -15,7 +15,7 @@
         };
         background = [
           {
-            path = "$HOME/Pictures/wallpapers/abstract-swirls.jpg";          
+            path = "${config.stylix.image}";      
           }
         ];
         input-field = [

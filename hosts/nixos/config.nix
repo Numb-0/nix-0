@@ -15,11 +15,14 @@ in
     ./hardware.nix
     ./users.nix
     ./stylix.nix
+    ./packages.nix
     ../../modules/amd-drivers.nix
     ../../modules/nvidia-drivers.nix
     ../../modules/nvidia-prime-drivers.nix
     ../../modules/intel-drivers.nix
   ];
+
+  hardware.graphics.enable = true;
 
   # Bootloader
   boot = {
@@ -34,6 +37,16 @@ in
     };
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
+    extraModprobeConfig = ''
+      options hid_apple fnmode=0
+    '';
+  };
+
+  # Enable stylix and select theme
+  style = {
+    enable = true;
+    theme = "Macchiato";
+    background = ../../config/wallpapers/abstractswirls.jpg;
   };
 
   # Extra Module Options
@@ -46,7 +59,6 @@ in
   };
   drivers.intel.enable = true;
 
-  style.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -71,15 +83,16 @@ in
     LC_TIME = "it_IT.UTF-8";
   };
 
-  programs.nix-ld.enable = true;
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      # Add any missing dynamic libraries for unpackaged programs
+      # here, NOT in environment.systemPackages
 
-  programs.nix-ld.libraries = with pkgs; [
-    # Add any missing dynamic libraries for unpackaged programs
-    # here, NOT in environment.systemPackages
-
-    # Needed for android godot build
-    aapt
-  ];
+      # Needed for android godot build
+      aapt
+    ];
+  };
 
   programs = {
     adb.enable = true;
@@ -115,42 +128,6 @@ in
   users = {
     mutableUsers = true;
   };
-
-  # Here add program without configurations
-  environment.systemPackages = with pkgs; [
-    gcc
-    python3
-    typescript
-    nodejs
-    nodePackages.npm
-    gnumake
-    ranger
-    vim
-    neovim
-    fzf
-    vscode
-    nixd
-    godot_4
-    sdkmanager
-    jdk17
-    vesktop
-    spotify
-    krabby
-    wget
-    killall
-    eza
-    git
-    htop
-    lxqt.lxqt-policykit
-    lm_sensors
-    unzip
-    unrar
-    libnotify
-    ripgrep
-    brightnessctl
-    upower
-    bluez
-  ];
 
   fonts = {
     packages = with pkgs; [
@@ -230,7 +207,7 @@ in
   # Bluetooth Support
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = true;
+    powerOnBoot = false;
     settings = { General = { Enable = "Source,Sink,Media,Socket"; }; };
   };
 
@@ -254,12 +231,4 @@ in
   };
 
   system.stateVersion = "24.05";
-  /* system.activationScripts = { stdio.text =
-    ''
-    dirpath="$HOME/nix-0/config/ags/ags/scss"
-    filepath="$dirpath/col.scss"
-    mkdir -p "$dirpath"
-    echo "\$base00: #${config.stylix.base16Scheme.base00};" > "$filepath"
-    '';
-  };  */
 }

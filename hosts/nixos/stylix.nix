@@ -17,13 +17,19 @@ in
       default = "Macchiato";
       description = "Select theme for Stylix";
     };
+    background = mkOption {
+      type = types.path;
+      default = ../../config/wallpapers/abstractswirls.jpg;
+      description = "Select background image for System";
+    };
   };
 
   config = mkIf cfg.enable {
     # Styling Options
     stylix = {
       enable = true;
-      image = ../../config/wallpapers/squares.png;
+      # Default wallpaper and theme generator
+      image = cfg.background;
       base16Scheme = lib.mkMerge [
         (mkIf (cfg.theme == "Macchiato") {
           base00 = "24273a"; # base
@@ -43,23 +49,23 @@ in
           base0E = "c6a0f6"; # mauve
           base0F = "f0c6c6"; # flamingo
         })
-        (mkIf (cfg.theme == "RoseDawn") {
-          base00 = "faf4ed";
-          base01 = "fffaf3";
-          base02 = "f2e9de";
-          base03 = "9893a5";
-          base04 = "797593";
-          base05 = "575279";
-          base06 = "575279";
-          base07 = "cecacd";
-          base08 = "b4637a";
-          base09 = "ea9d34";
-          base0A = "d7827e";
-          base0B = "286983";
-          base0C = "56949f";
-          base0D = "907aa9";
-          base0E = "ea9d34";
-          base0F = "cecacd";
+        (mkIf (cfg.theme == "Material") {
+          base00 = "263238";
+          base01 = "2E3C43";
+          base02 = "314549";
+          base03 = "546E7A";
+          base04 = "B2CCD6";
+          base05 = "EEFFFF";
+          base06 = "EEFFFF";
+          base07 = "FFFFFF";
+          base08 = "F07178";
+          base09 = "F78C6C";
+          base0A = "FFCB6B";
+          base0B = "C3E88D";
+          base0C = "89DDFF";
+          base0D = "82AAFF";
+          base0E = "C792EA";
+          base0F = "FF5370";
         })
       ];
 
@@ -72,15 +78,15 @@ in
       fonts = {
         monospace = {
           package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-          name = "JetBrainsMono Nerd Font";
+          name = "JetBrainsMono Nerd Font Mono";
         };
         sansSerif = {
           package = pkgs.roboto;
           name = "Roboto";
         };
         serif = {
-          package = pkgs.roboto-serif;
-          name = "Roboto-serif";
+          package = pkgs.noto-fonts;
+          name = "Noto";
         };
         sizes = {
           applications = fontsize;

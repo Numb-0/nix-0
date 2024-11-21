@@ -1,6 +1,6 @@
 {
   lib,
-  #username,
+  username,
   host,
   config,
   pkgs,
@@ -11,8 +11,7 @@ let
   inherit (import ../../hosts/${host}/variables.nix)
     browser
     terminal
-    keyboardLayout
-    ;
+    keyboardLayout;
 in
 with lib;
 {
@@ -24,7 +23,8 @@ with lib;
     extraConfig =
       concatStrings [
         ''
-          env = ANDROID_HOME,/home/cosix/Android
+          # Installed sdks path
+          env = ANDROID_HOME,/home/${username}/Android
 
           env = LIBVA_DRIVER_NAME, i965
           env = GBM_BACKEND, nvidia-drm
@@ -49,8 +49,7 @@ with lib;
           exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
           exec-once = lxqt-policykit-agent
 
-          monitor = eDP-1,1920x1080@120.00Hz,auto,auto
-          monitor = DP-3,preferred,auto,auto
+          monitor = ,preferred,auto,auto
 
           xwayland {
             force_zero_scaling = true
@@ -146,11 +145,9 @@ with lib;
           bind = $mainMod, M, exit,
           bind = $mainMod, E, exec, ${browser}
           bind = $mainMod, W, togglefloating,
-          bind = $mainMod, R, exec, $menu
           bind = $mainMod, P, pseudo, # dwindle
           bind = $mainMod, J, togglesplit, # dwindle
           bind = $mainMod, A, exec, ags toggle Applauncher
-          bind = $mainMod, D, exec, ags request dashboard
 
           # Move focus with mainMod + arrow keys
           bind = $mainMod, left, movefocus, l

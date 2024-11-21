@@ -2,8 +2,6 @@
   pkgs,
   username,
   config,
-  lib,
-  system,
   ...
 }:
 let
@@ -32,13 +30,6 @@ in
     recursive = true;
   };
 
-  # Place Files Inside Home Directory
-  # TODO make a an array of string containing wallpapers file names and pass them to hyprpaper
-  home.file."Pictures/wallpapers" = {
-    source = ../../config/wallpapers;
-    recursive = true;
-  };
-
   # Install & Configure Git
   programs.git = {
     enable = true;
@@ -52,10 +43,8 @@ in
       enable = true;
       createDirectories = true;
     };
-  };
-
-  stylix.targets.hyprland.enable = false;  
-
+  };  
+  
   # Gtk
   gtk = {
     iconTheme = {

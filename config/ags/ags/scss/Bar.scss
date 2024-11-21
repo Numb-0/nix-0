@@ -3,15 +3,29 @@
 
 .Bar {
     .container {
-        min-height: 4px;
-        padding: 5px;
-        .logo {
-            font-size: 20px;
-            color: $base0D;
-        }
-    
-        .clock {
-            color: $base0E;
+        padding: 2px 4px 0;
+    }
+    .logo {
+        font-size: $bar-icon-size;
+        color: $base0D;
+    }
+
+    .clock {
+        padding: 0;
+        color: $base07;
+    }
+    .workspaces {
+        padding-left: 10px;
+        padding-right: 10px;
+        .workspace {
+            color: $base07;
+            padding: 4px 2px 2px;
+            &.occupied {
+                color: $base0D;
+            }
+            &.active {
+                color: $base0A;
+            }
         }
     }
 }

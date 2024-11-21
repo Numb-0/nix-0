@@ -1,0 +1,52 @@
+@use "colors" as *;
+@use "presets" as *;
+
+.Applauncher {
+    background-color: $base00;
+    border-radius: $radius;
+    box {
+        padding: 5px;
+    }
+
+    entry {
+        font-family: "JetBrainsMono Nerd Font Mono";
+        font-size: 1rem;
+        font-weight: bold;
+        color: $base05;
+
+        background-color: $base01;
+        border: solid 2px $base07;
+        border-radius: $radius;
+        
+        margin-bottom: 5px;
+
+        &:focus {
+            // No focus outline
+            box-shadow: none;
+        }
+    }
+
+    scrollbar {
+        // Remove scrollbar
+        &.overlay-indicator {
+            opacity: 0;
+        }
+    }
+    
+    scrollable {
+        // 56 + 2 = 58
+        min-height: 58px;
+        * {
+            border-color: transparent;
+        }
+    }
+
+    .appbutton {
+        outline: none;
+        border-radius: $radius;
+        icon {
+            // Size 56x56
+            font-size: 50px;
+        }
+    }
+}

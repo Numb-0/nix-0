@@ -10,7 +10,8 @@
     enable = true;
 
     # Symlink to ~/.config/ags
-    configDir = null; #./ags;
+    # I'm using setup-ags until i finish my configuration
+    configDir = null;
 
     # Additional packages to add to gjs's runtime
     extraPackages = [
