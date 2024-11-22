@@ -9,9 +9,8 @@
       settings = {
         general = {
           disable_loading_bar = true;
-          grace = 10;
+          grace = 2;
           hide_cursor = true;
-          no_fade_in = false;
         };
         background = [
           {
@@ -23,14 +22,14 @@
             size = "200, 60";
             position = "0, -120";
             monitor = "";
-            dots_center = true;
-            fade_on_empty = false;
             font_color = "rgb(${config.stylix.base16Scheme.base01})";
             font_family = "JetBrainsMono Nerd Font Mono";
             inner_color = "rgb(${config.stylix.base16Scheme.base0E})";
             outer_color = "rgb(${config.stylix.base16Scheme.base0A})";
             outline_thickness = 0;
             placeholder_text = "";
+            fail_color = "rgb(${config.stylix.base16Scheme.base08})";
+            check_color = "rgb(${config.stylix.base16Scheme.base0B})";
           }
         ];
         label = [

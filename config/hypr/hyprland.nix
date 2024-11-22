@@ -56,14 +56,14 @@ with lib;
           }
 
           general {
-            gaps_in = 2
-            gaps_out = 4
-            border_size = 2
+            gaps_in = 5
+            gaps_out = 10
+            border_size = 0
             layout = dwindle
             resize_on_border = true
             allow_tearing = true
-            col.active_border = rgb(${config.stylix.base16Scheme.base07})
-            col.inactive_border = rgb(${config.stylix.base16Scheme.base00})
+            #col.active_border = rgb(${config.stylix.base16Scheme.base07})
+            #col.inactive_border = rgb(${config.stylix.base16Scheme.base00})
           }
 
           input {
@@ -99,31 +99,34 @@ with lib;
 
           animations {
             enabled = yes
-            bezier = wind, 0.05, 0.9, 0.1, 1.05
-            bezier = winIn, 0.1, 1.1, 0.1, 1.1
-            bezier = winOut, 0.3, -0.3, 0, 1
-            bezier = liner, 1, 1, 1, 1
-            animation = windows, 1, 6, wind, slide
-            animation = windowsIn, 1, 6, winIn, slide
-            animation = windowsOut, 1, 5, winOut, slide
-            animation = windowsMove, 1, 5, wind, slide
-            animation = border, 1, 1, liner
+            bezier = liner, 1, 1, 1, 1 
+            bezier = circ, 0.85, 0, 0.15, 1
+
+            animation = windows, 1, 6, circ, popin
+            animation = windowsIn, 1, 3, circ, popin
+            animation = windowsOut, 1, 6, circ, popin
+            animation = windowsMove, 1, 5, circ, popin
+            animation = border, 0, 1, circ
             animation = fade, 1, 10, default
-            animation = workspaces, 1, 5, wind
+            animation = workspaces, 1, 5, circ
           }
 
           decoration {
-            rounding = 8
+            rounding = 0
+            active_opacity = 0.95
+            inactive_opacity = 0.95
+
             drop_shadow = true
-            shadow_range = 4
-            shadow_render_power = 3
-            col.shadow = rgba(1a1a1aee)
+            shadow_range = 6
+            shadow_render_power = 6
+            col.shadow = rgba(${config.stylix.base16Scheme.base01}ee)
+            
             blur {
                 enabled = true
-                size = 5
-                passes = 3
+                size = 4
+                passes = 2
                 new_optimizations = on
-                ignore_opacity = off
+                ignore_opacity = true
             }
           }
 
@@ -139,6 +142,7 @@ with lib;
           bind = , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
           bind = , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
+          # General keybindings
           bind = SHIFT, Return, fullscreen
           bind = $mainMod, T, exec, ${terminal}
           bind = $mainMod, Q, killactive,

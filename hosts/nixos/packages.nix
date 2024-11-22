@@ -18,6 +18,7 @@
     fzf
 
     vscode
+    # nix language server
     nixd
 
     godot_4
@@ -28,6 +29,7 @@
     spotify
 
     krabby
+    tree
     wget
     killall
     eza

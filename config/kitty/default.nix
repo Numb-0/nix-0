@@ -18,6 +18,7 @@
     window_border_width 0
     window_margin_width 0
     window_padding_width 0
+    background_opacity 0.8
 
     # Preferences
     confirm_os_window_close 0
