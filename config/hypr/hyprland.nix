@@ -25,12 +25,17 @@ with lib;
         ''
           # Installed sdks path
           env = ANDROID_HOME,/home/${username}/Android
+          
+          # Java path for android build graydle
+          env = JAVA_17_HOME, ${pkgs.jdk17}
+
+          # Needed by steam
+          env = SDL_DYNAMIC_API, ${pkgs.SDL2}/lib/libSDL2-2.0.so.0
 
           env = LIBVA_DRIVER_NAME, i965
           env = GBM_BACKEND, nvidia-drm
           env = __GLX_VENDOR_LIBRARY_NAME, nvidia
           env = NVD_BACKEND, direct
-          env = JAVA_17_HOME, ${pkgs.jdk17}
           
           env = NIXOS_OZONE_WL, 1
           env = NIXPKGS_ALLOW_UNFREE, 1
@@ -105,8 +110,8 @@ with lib;
             animation = windows, 1, 6, circ, popin
             animation = windowsIn, 1, 3, circ, popin
             animation = windowsOut, 1, 6, circ, popin
-            animation = windowsMove, 1, 5, circ, popin
-            animation = border, 0, 1, circ
+            animation = windowsMove, 1, 3, circ, popin
+            animation = border, 0, 5, circ
             animation = fade, 1, 10, default
             animation = workspaces, 1, 5, circ
           }

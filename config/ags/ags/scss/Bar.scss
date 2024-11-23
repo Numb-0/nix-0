@@ -3,11 +3,22 @@
 
 .Bar {
     .container {
-        padding: 2px 4px 0;
+        padding: 4px 6px 0;
     }
+
     .logo {
         font-size: $bar-icon-size;
         color: $base0D;
+    }
+
+    @keyframes bounce {
+        70% { -gtk-icon-transform:translateY(0); }
+        80% { -gtk-icon-transform:translateY(-8px); }
+        90% { -gtk-icon-transform:translateY(0); }
+        95% { -gtk-icon-transform:translateY(-5px); }
+        97% { -gtk-icon-transform:translateY(0); }
+        99% { -gtk-icon-transform:translateY(-2px); }
+        100% { -gtk-icon-transform:translateY(0); }
     }
 
     .clock {
@@ -21,10 +32,16 @@
             color: $base07;
             padding: 4px 2px 2px;
             &.occupied {
-                color: $base0D;
+                icon {
+                    color: $base0D;
+                }
             }
             &.active {
-                color: $base0A;
+                icon {
+                    transition: color 1s;
+                    animation: bounce 1s;
+                    color: $base0A;
+                }
             }
         }
     }

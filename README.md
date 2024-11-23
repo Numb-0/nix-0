@@ -34,3 +34,22 @@ sudo nixos-rebuild switch --flake .#nixos --update
 sudo nix-channel --list 
 
 ```
+
+### Installing flakes
+Here we take stylix as example
+What you have to do is adding the flake in the inputs and add the entry in the modules
+```
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    stylix.url = "github:danth/stylix";
+  };
+
+  outputs = { nixpkgs, stylix, ... }: {
+    nixosConfigurations."«hostname»" = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [ stylix.nixosModules.stylix ./configuration.nix ];
+    };
+  };
+}
+```

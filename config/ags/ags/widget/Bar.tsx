@@ -3,7 +3,7 @@ import GLib  from "gi://GLib"
 import { Variable } from "astal"
 
 import Workspaces from "./components/bar/workspaces"
-import HexDraw from "./components/bar/hexdraw"
+import BrightnessStatus from "./components/bar/brightnessStatus"
 
 const time = Variable<string>("").poll(1000, () => GLib.DateTime.new_now_local().format("%H:%M")!)
 
@@ -15,14 +15,16 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
         anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.RIGHT}
         application={App}>
         <centerbox className={"container"}>
-            <box valign={Gtk.Align.CENTER} spacing={8}>
+            <box spacing={8}>
                 <icon className={"logo"} icon={"Nixos-symbolic"}/>
                 <Workspaces/>
             </box>
-            <box valign={Gtk.Align.CENTER}>
-                <HexDraw hexheight={30} hexwidth={80} widget={<label className={"clock"} label={time()}/>}/>
+            <box>
+                <label className={"clock"} label={time()}/>
             </box>
-            <box/>
+            <box halign={Gtk.Align.END}>
+                <BrightnessStatus/>
+            </box>
         </centerbox>
     </window>
 }

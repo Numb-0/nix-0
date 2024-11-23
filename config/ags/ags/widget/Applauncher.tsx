@@ -14,7 +14,6 @@ const apps = new Apps.Apps({
 
 export default function Applauncher() {
     
-    // Get all apps infos
     const appList = apps.fuzzy_query("");
 
     function AppButton({app}: {app: Apps.Application}): JSX.Element {
@@ -22,10 +21,9 @@ export default function Applauncher() {
                     onActivate={() => {
                         app.launch();
                         App.toggle_window("Applauncher");
-                    }}
-                >
+                    }}>
                     <icon icon={app.get_icon_name() || ""}/>
-                </FlowBoxChild>
+        </FlowBoxChild>
     }
 
     const appButtons = appList.map((app) => (
@@ -57,13 +55,6 @@ export default function Applauncher() {
         }}>
         <box vertical={true}>
             <entry  
-                onChanged={(self) => {
-                    filterList(self.get_text());
-                }}
-                onActivate={() => {
-                    const selectedApp  = appButtons.find((appButton) => appButton.visible);
-                    selectedApp?.activate();
-                }}
                 setup={(self) => {
                     self.hook(App, "window-toggled", (self) => {
                         // Retakes focus when lauching app for next search
@@ -71,6 +62,13 @@ export default function Applauncher() {
                         // reset text
                         self.text = "";  
                     })
+                }}
+                onChanged={(self) => {
+                    filterList(self.get_text());
+                }}
+                onActivate={() => {
+                    const selectedApp  = appButtons.find((appButton) => appButton.visible);
+                    selectedApp?.activate();
                 }}/>
             <scrollable hscroll={Gtk.PolicyType.NEVER}>
                 <FlowBox setup={(self) => self.hook(App, "window-toggled", (self) => {self.unselect_all()})} homogeneous={true} min_children_per_line={4}>
