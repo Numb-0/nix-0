@@ -3,7 +3,14 @@
 
 .Bar {
     .container {
-        padding: 4px 6px 0;
+        padding: 2px 5px 0;
+        // Color transparence
+        background-color: rgba($base00, 0.8);
+    }
+
+    // Override the default styling for labels
+    label {
+        padding-top: 2px;
     }
 
     .logo {
@@ -11,38 +18,48 @@
         color: $base0D;
     }
 
-    @keyframes bounce {
-        70% { -gtk-icon-transform:translateY(0); }
-        80% { -gtk-icon-transform:translateY(-8px); }
-        90% { -gtk-icon-transform:translateY(0); }
-        95% { -gtk-icon-transform:translateY(-5px); }
-        97% { -gtk-icon-transform:translateY(0); }
-        99% { -gtk-icon-transform:translateY(-2px); }
-        100% { -gtk-icon-transform:translateY(0); }
+    .workspaces {
+        .workspace {
+            padding: 0;
+            color: $base04;
+            &.occupied {
+                icon {
+                    color: $base07;
+                }
+            }
+            &.active {
+                icon {
+                    transition: color 1s;
+                    animation: icon-fade-in 1s ease;
+                    color: $base0A;
+                }
+            }
+        }
     }
 
     .clock {
         padding: 0;
         color: $base07;
     }
-    .workspaces {
-        padding-left: 10px;
-        padding-right: 10px;
-        .workspace {
-            color: $base07;
-            padding: 4px 2px 2px;
-            &.occupied {
-                icon {
-                    color: $base0D;
-                }
-            }
-            &.active {
-                icon {
-                    transition: color 1s;
-                    animation: bounce 1s;
-                    color: $base0A;
-                }
-            }
-        }
+
+    .network {
+        color: $base0C;
     }
+
+    .bluetooth {
+        color: $base0D;
+    }
+
+    .volume {
+        color: $base0B;
+    }
+
+    .brightness {
+        color: $base09;
+    }
+
+    .battery {
+        color: $base0A;
+    }
+
 }

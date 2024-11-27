@@ -9,13 +9,13 @@ return {
     local wk = require("which-key")
 
     wk.add({
-      {"<leader>e", group = "Nvim-Tree", icon = {icon=" ", color = "green"} },
+      {"<leader>e", group = "NvimTree", icon = {icon=" ", color = "green"} },
       {"<leader>f", group = "Telescope", icon = {icon=" ", color = "blue"} },
       {"<leader>w", group = "Session", icon = {icon = " ", color = "azure"} },
       {"<leader>t", group = "Terminal", icon = {icon = " ", color = "red"} },
-      {"<leader>tt", icon = {icon = " ", color = "red"} },
+      {"<leader>p", icon = {icon = " ", color = "yellow"} },
+      {"<leader>n", group = "Commands", icon = {icon = " ", color = "yellow"} },
+      {"<leader>r", group = "Lsp", icon = {icon = " ", color = "blu "} },
     })
   end,
-  opts = {
-  },
 }

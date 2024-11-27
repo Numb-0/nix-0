@@ -79,5 +79,13 @@ Shortcut | Description
 `t` | tag a file with an *
 `t"<any>` | tag a file with your desired mark
 
-_thx to the comments section for additional shortcuts! post your suggestions there!_
+## Workflow
+---|---
+1. use space to mark files i.e "toggle=true"
+2. use yt to yank files flagged as "toggle=true"
+3. enter the directory you want
+4. use pp to paste toggled files
+5. use dt instead of yt to cut instead of copy
+
+
 

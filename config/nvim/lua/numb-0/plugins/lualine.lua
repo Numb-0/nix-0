@@ -55,16 +55,17 @@ return {
         c = { bg = colors.crust, fg = colors.text },
       }
     }
+
     lualine.setup({
       options = {
-        theme = custom_theme,
+        theme = "catppuccin",
       },
       sections = {
         lualine_x = {
           {
             lazy_status.updates,
             cond = lazy_status.has_updates,
-            color = { fg = colors.mauve },
+            --color = { fg = colors.mauve },
           },
           { "encoding" },
           { "filetype" },

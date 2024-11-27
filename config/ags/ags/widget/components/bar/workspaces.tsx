@@ -4,8 +4,7 @@ import { bind } from "astal"
 
 export default function Workspaces() {
     const hyperland = Hyprland.get_default();
-    const ws = 6;
-    const workspaces = Array.from({ length: ws }, (_, i) => i + 1);
+    const workspaces = Array.from({ length: 6 }, (_, i) => i + 1);
 
     function WorkspaceButton({workspace}: {workspace: number}) : JSX.Element {
         return <button
@@ -16,6 +15,6 @@ export default function Workspaces() {
     }
 
     return  <box>
-        <box halign={Gtk.Align.CENTER} className={"workspaces"}>{workspaces.map(workspace => <WorkspaceButton workspace={workspace}/>)}</box>
+        <box spacing={2} className={"workspaces"}>{workspaces.map(workspace => <WorkspaceButton workspace={workspace}/>)}</box>
     </box>
 }

@@ -12,10 +12,10 @@
     nodePackages.npm
     gnumake
 
-    ranger
-    vim
     neovim
+    ranger
     fzf
+    fd
 
     vscode
     # nix language server
@@ -27,6 +27,8 @@
 
     vesktop
     spotify
+    obs-studio
+    prismlauncher
 
     krabby
     tree
@@ -49,5 +51,16 @@
     bluez
 
     hyprshot
+    wl-clipboard
   ];
+
+  fonts = {
+    packages = with pkgs; [
+      noto-fonts-emoji
+      noto-fonts-cjk-sans
+      font-awesome
+      material-icons
+      monocraft
+    ];
+  };
 }

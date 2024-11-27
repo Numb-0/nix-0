@@ -2,7 +2,7 @@
 @use "presets" as *;
 
 .Applauncher {
-    background-color: $base00;
+    background-color: rgba($base00, 0.9);
     border-radius: $radius;
     box {
         padding: 5px;
@@ -14,8 +14,8 @@
         font-weight: bold;
         color: $base05;
 
-        background-color: $base01;
-        border: solid 2px $base07;
+        background-color: rgba($base00, 0.9);
+        border: solid 1px $base05;
         border-radius: $radius;
         
         margin-bottom: 5px;

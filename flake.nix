@@ -6,11 +6,13 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
-    ags.url = "github:aylur/ags"; 
+    #nixvim.url = "github:nix-community/nixvim/nixos-24.05";
+    #nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    ags.url = "github:aylur/ags";
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }@inputs:
+    { nixpkgs, home-manager, stylix,  ... }@inputs:
     let
       system = "x86_64-linux";
       host = "nixos";
@@ -27,7 +29,7 @@
           };
           modules = [
             ./hosts/${host}/config.nix
-            inputs.stylix.nixosModules.stylix
+            stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
             {
               home-manager.extraSpecialArgs = {

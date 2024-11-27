@@ -42,13 +42,6 @@ in
     '';
   };
 
-  # Enable stylix and select theme
-  style = {
-    enable = true;
-    theme = "Macchiato";
-    background = ../../config/wallpapers/abstractswirls.jpg;
-  };
-
   # Extra Module Options
   drivers.amdgpu.enable = false;
   drivers.nvidia.enable = true;
@@ -126,15 +119,6 @@ in
 
   users = {
     mutableUsers = true;
-  };
-
-  fonts = {
-    packages = with pkgs; [
-      noto-fonts-emoji
-      noto-fonts-cjk-sans
-      font-awesome
-      material-icons
-    ];
   };
 
   # Extra Portal Configuration

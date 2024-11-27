@@ -24,12 +24,6 @@ in
     ../../config/fish 
   ];
 
-  # Nvim dotfiles
-  home.file.".config/nvim" = {
-    source = ../../config/nvim;
-    recursive = true;
-  };
-
   # Install & Configure Git
   programs.git = {
     enable = true;
@@ -68,5 +62,6 @@ in
 
   home.packages = [
     (import ../../scripts/setup_ags.nix { inherit pkgs config; })
+    (import ../../scripts/setup_nvim.nix { inherit pkgs config; })
   ];
 }
