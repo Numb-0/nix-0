@@ -1,0 +1,88 @@
+@use "colors" as *;
+@use "presets" as *;
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.Dashboard {
+    icon {
+        font-size: 16px;
+    }
+    .container {
+        background-color: rgba($base01, 0.9);
+        padding: 10px;
+        border-radius: $radius;
+    }
+
+    .bluetooth {
+        margin-top: -4px;
+        * {
+            outline: none;
+            color: $base0D;
+            font-size: 16px;
+        }
+        .buttonbox {
+            padding:0 4px 0;
+        }
+        .connected {
+            * {
+                color: $base0A;
+            }
+        }
+        .connecting {
+            * {
+                color: $base0E;
+            }
+        }
+    }
+
+    .volume_slider {
+        color: $base0B;
+        scale {
+            min-height: 100px;
+            trough {
+                outline: none;
+                border-radius: $radius;
+                slider {
+                    background: none;
+                    box-shadow: none;
+                    min-width: 3px;
+                    min-height: 3px;
+                    margin: -6px;
+                }
+                highlight {
+                    border-radius: $radius;
+                    background-color: $base0B;
+                }
+            }
+        }
+    }
+    .brightness_slider {
+        color: $base09;
+        //animation: fade 1s ease;
+        scale {
+            min-height: 100px;
+            trough {
+                outline: none;
+                border-radius: $radius;
+                slider {
+                    background: none;
+                    box-shadow: none;
+                    min-width: 3px;
+                    min-height: 3px;
+                    margin: -6px;
+                }
+                highlight {
+                    border-radius: $radius;
+                    background-color: $base09;
+                }
+            }
+        }
+    }
+}

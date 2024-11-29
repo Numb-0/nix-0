@@ -5,7 +5,7 @@
     .container {
         padding: 2px 5px 0;
         // Color transparence
-        background-color: rgba($base00, 0.8);
+        background-color: rgba($base01, 0.9);
     }
 
     // Override the default styling for labels
@@ -14,16 +14,18 @@
     }
 
     .logo {
-        font-size: $bar-icon-size;
+        font-size: 20px;
         color: $base0D;
     }
 
     .workspaces {
         .workspace {
             padding: 0;
+            transition: color 1s;
             color: $base04;
             &.occupied {
                 icon {
+                    transition: color 1s;
                     color: $base07;
                 }
             }

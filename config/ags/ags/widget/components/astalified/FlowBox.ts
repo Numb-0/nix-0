@@ -11,9 +11,9 @@ export class FlowBox extends astalify(Gtk.FlowBox) {
             onSelectedChildrenChanged: [],
             onActivateCursorChild: [],
             onToggleCursorChild: [],
-            onMoveCursor: [],
+            onMoveCursor: [step: Gtk.MovementStep, count: number, extend: boolean, modify: boolean],
             onSelectAll: [],
-            onDeselectAll: [],  
+            onUnselectAll: [],  
         } // signals TODO: Add signals if needed
     >) {
         super(props as any)

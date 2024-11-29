@@ -25,7 +25,7 @@ export default function Corners(gdkmonitor: Gdk.Monitor) {
                     drawed = true;
                 });
                 self.connect('draw', (_, cr: Cairo.Context) => {
-                    const [r,g,b] = hexToRgb("#24273a");
+                    const [r,g,b] = hexToRgb("#1e2030");
                     cr.setSourceRGBA(r/255, g/255, b/255, 1);
                     cr.moveTo(0, 0);
                     cr.lineTo(0, corner_radius);

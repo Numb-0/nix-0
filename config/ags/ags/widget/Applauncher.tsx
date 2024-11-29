@@ -3,6 +3,8 @@ import Hyprland from "gi://AstalHyprland"
 import { App, Astal, Gtk } from "astal/gtk3"
 import { FlowBox } from "./components/astalified/FlowBox";
 import { FlowBoxChild } from "./components/astalified/FlowBoxChild";
+import { bind, timeout, Variable } from "astal";
+import { dashboard_visible } from "./Dashboard";
 
 const hyprland = Hyprland.get_default()
 
@@ -12,7 +14,18 @@ const apps = new Apps.Apps({
     executableMultiplier: 2,
 });
 
+export const applauncher_visible = new Variable(true)
+
+applauncher_visible.observe(App, "window-toggled", (_, window) => {
+    if (window.name == "Applauncher") {
+        if (window.visible) return true
+        return false
+    }
+    return applauncher_visible.get()
+})
+
 export default function Applauncher() {
+    
     
     const appList = apps.fuzzy_query("");
 
@@ -44,15 +57,9 @@ export default function Applauncher() {
         name={"Applauncher"} 
         application={App} 
         className={"Applauncher"} 
-        monitor={hyprland.get_focused_monitor().id}
-        onKeyPressEvent={(window, event) => 
-            // Closes applauncher when Esc is pressed
-            event.get_keycode()[1] === 9 && window.hide()
-        }
-        setup={(self) => {
-            // Moves to focused screen
-            self.hook(hyprland, "notify::focused-workspace", (self) => {self.monitor = hyprland.get_focused_monitor().id;});
-        }}>
+        monitor={bind(hyprland, "focused_monitor").as((monitor) => monitor.id)}
+        onKeyPressEvent={(window, event) => event.get_keycode()[1] === 9 && window.hide()}>
+        <revealer revealChild={applauncher_visible()} transition_duration={1000} transitionType={Gtk.RevealerTransitionType.SLIDE_UP}>
         <box vertical={true}>
             <entry  
                 setup={(self) => {
@@ -71,10 +78,14 @@ export default function Applauncher() {
                     selectedApp?.activate();
                 }}/>
             <scrollable hscroll={Gtk.PolicyType.NEVER}>
-                <FlowBox setup={(self) => self.hook(App, "window-toggled", (self) => {self.unselect_all()})} homogeneous={true} min_children_per_line={4}>
+                <FlowBox homogeneous={true} min_children_per_line={4} setup={(self) => {
+                    self.hook(App, "window-toggled", (self) => {self.unselect_all()})
+
+                }}>
                     {appButtons}
                 </FlowBox>
             </scrollable>
         </box>
+        </revealer>
     </window>
 }
