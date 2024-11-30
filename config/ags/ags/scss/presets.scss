@@ -15,6 +15,24 @@ button {
     text-shadow: none;
 }
 
+@keyframes icon-wiggle {
+  16% {
+      -gtk-icon-transform: rotate(-60deg)
+  }
+  32% {
+        -gtk-icon-transform: rotate(-30deg)
+  }
+  48% {
+      -gtk-icon-transform: rotate(-45deg)
+  }
+  64% {
+      -gtk-icon-transform: rotate(-15deg)
+  }
+  100% {
+      -gtk-icon-transform: rotate(0deg)
+  }
+}
+
 @keyframes icon-fade-in {
     0% { 
         opacity: 0;

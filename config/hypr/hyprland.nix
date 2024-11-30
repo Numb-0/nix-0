@@ -108,10 +108,10 @@ with lib;
           bezier = circ, 0.85, 0, 0.15, 1
 
           animation = windows, 1, 6, circ, popin
-          animation = windowsIn, 1, 3, circ, popin
+          animation = windowsIn, 1, 6, circ, popin
           animation = windowsOut, 1, 6, circ, popin
-          animation = windowsMove, 1, 3, circ, popin
-          animation = border, 0, 5, circ
+          animation = windowsMove, 1, 6, circ, slide
+          animation = border, 0, 6, circ
           animation = fade, 1, 10, default
           animation = workspaces, 1, 5, circ
         }
@@ -156,8 +156,8 @@ with lib;
         bind = $mainMod, W, togglefloating,
         bind = $mainMod, P, pseudo, # dwindle
         bind = $mainMod, J, togglesplit, # dwindle
-        bind = $mainMod, A, exec, ags toggle Applauncher
-        bind = $mainMod, D, exec, ags toggle Dashboard
+        bind = $mainMod, A, exec, ags request applauncher
+        bind = $mainMod, D, exec, ags request dashboard
 
         # Move focus with mainMod + arrow keys
         bind = $mainMod, left, movefocus, l

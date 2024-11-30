@@ -1,26 +1,20 @@
 @use "colors" as *;
 @use "presets" as *;
 
-.Bar {
-    .container {
-        padding: 2px 5px 0;
-        // Color transparence
-        background-color: rgba($base01, 0.9);
+window.Bar {
+
+    centerbox.container {
+        padding: .2rem .6rem .2rem;
+        background-color: $base01
     }
 
-    // Override the default styling for labels
-    label {
-        padding-top: 2px;
-    }
-
-    .logo {
-        font-size: 20px;
+    icon.logo {
+        font-size: 1.4rem;
         color: $base0D;
     }
 
-    .workspaces {
-        .workspace {
-            padding: 0;
+    box.workspaces {
+        button.workspace {
             transition: color 1s;
             color: $base04;
             &.occupied {
@@ -32,35 +26,36 @@
             &.active {
                 icon {
                     transition: color 1s;
-                    animation: icon-fade-in 1s ease;
+                    animation: icon-wiggle 1s ease-in-out;
                     color: $base0A;
                 }
             }
         }
     }
 
-    .clock {
-        padding: 0;
+    box.clock {
         color: $base07;
     }
 
-    .network {
+    box.network {
         color: $base0C;
     }
 
-    .bluetooth {
-        color: $base0D;
+    box.bluetooth {
+        button {
+            color: $base0D;
+        }
     }
 
-    .volume {
+    box.volume {
         color: $base0B;
     }
 
-    .brightness {
+    box.brightness {
         color: $base09;
     }
 
-    .battery {
+    box.battery {
         color: $base0A;
     }
 

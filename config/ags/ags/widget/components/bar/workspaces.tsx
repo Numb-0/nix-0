@@ -10,7 +10,7 @@ export default function Workspaces() {
         return <button
             className={bind(hyperland, "focused_workspace").as((ws) => ws.id == workspace ? "workspace active" : (hyperland.get_workspace(workspace)?.get_clients().length > 0 ? "workspace occupied" : "workspace"))}
             onClicked={() => hyperland.get_focused_workspace().get_id() != workspace ? hyperland.dispatch("workspace", workspace.toString()) : null}>
-            <icon icon={"Pent-symbolic"} />
+            <icon icon={"Hexagon-symbolic"} />
         </button>;
     }
 

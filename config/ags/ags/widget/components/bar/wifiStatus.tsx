@@ -7,6 +7,6 @@ export default function WifiStatus() {
 
     return    <box className={"network"} spacing={4}>
                   <icon icon={bind(wifi, "iconName")}/>
-                  {/* <label label={bind(wifi, "ssid").as(String)}/> */}
+                  <label label={bind(wifi, "ssid").as(String)}/>
               </box>
 }

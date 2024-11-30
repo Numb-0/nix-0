@@ -26,10 +26,10 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
                     <icon className={"logo"} icon={"Nixos-symbolic"}/>
                     <Workspaces/>
                 </box>
-                <box>
-                    <label className={"clock"} label={time()}/>
+                <box className={"clock"}>
+                    <label label={time()}/>
                 </box>
-                <box spacing={8} halign={Gtk.Align.END}>
+                <box spacing={6} halign={Gtk.Align.END}>
                     <WifiStatus/>
                     <BluetoothStatus/>
                     <VolumeStatus/>

@@ -29,6 +29,7 @@
     spotify
     obs-studio
     prismlauncher
+    aseprite
 
     krabby
     tree

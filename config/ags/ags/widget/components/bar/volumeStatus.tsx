@@ -1,5 +1,6 @@
 import Wp from "gi://AstalWp";
 import { bind } from "astal"
+import Gtk from "gi://Gtk?version=3.0";
 
 export default function VolumeStatus() {
     const speaker = Wp.get_default()?.audio.defaultSpeaker!

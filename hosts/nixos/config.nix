@@ -197,6 +197,7 @@ in
       pulse.enable = true;
     };
     getty.autologinUser = username;
+    gvfs.enable=true;
   };
 
   # Bluetooth Support

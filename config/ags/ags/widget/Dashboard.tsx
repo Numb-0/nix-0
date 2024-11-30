@@ -1,20 +1,29 @@
 import { App, Astal, Gtk} from "astal/gtk3"
 import Hyprland from "gi://AstalHyprland"
-import { bind, Variable } from "astal"
+import { bind, Variable, timeout } from "astal"
 import BrightnessSlider from "./components/dashboard/brightnessSlider"
 import VolumeSlider from "./components/dashboard/volumeSlider"
-import BluetoothController from "./components/dashboard/bluetoothController"
+import MprisPlayers from "./components/dashboard/mprisPlayers"
 
 const hyprland = Hyprland.get_default()
 
-export const dashboard_visible = new Variable(true)
+export const dashboard_visible = Variable(true)
+export const dashboard_toggling = Variable(false)
+export const dashboard_toggler = Variable(true)
+const dashboard_animation_cooldown = 200
 
-dashboard_visible.observe(App, "window-toggled", (_, window) => {
-    if (window.name == "Dashboard") {
-        if (window.visible) return true
-        return false
+dashboard_toggler.subscribe((toggling)=>{
+    if(toggling) {
+        dashboard_toggling.set(true)
+        App.toggle_window("Dashboard")
+        dashboard_visible.set(true)
+        timeout(dashboard_animation_cooldown, ()=>dashboard_toggling.set(false))
+    } else {
+        dashboard_toggling.set(true)
+        dashboard_visible.set(false)
+        timeout(dashboard_animation_cooldown,()=>App.toggle_window("Dashboard"))
+        timeout(dashboard_animation_cooldown,()=>dashboard_toggling.set(false))
     }
-    return dashboard_visible.get()
 })
 
 export default function Dashboard() {
@@ -27,14 +36,16 @@ export default function Dashboard() {
             className={"Dashboard"}
             application={App}
             monitor={bind(hyprland, "focusedMonitor").as((monitor) => monitor.id)}
-            onKeyPressEvent={(window, e) => e.get_keycode()[1] === 9 && window.hide()}
+            onKeyPressEvent={(_, e) => e.get_keycode()[1] === 9 && dashboard_toggler.set(false)}
             margin={10}>
             <box className={"container"} halign={Gtk.Align.END} valign={Gtk.Align.START}>
-                <revealer revealChild={dashboard_visible()} transitionDuration={1000} transition_type={Gtk.RevealerTransitionType.SLIDE_DOWN}>
+                <revealer revealChild={dashboard_visible()} transitionDuration={dashboard_animation_cooldown + 50} transition_type={Gtk.RevealerTransitionType.SLIDE_DOWN}>
                     <box>
-                    <BluetoothController/>
-                    <VolumeSlider/>
-                    <BrightnessSlider/>
+                        <MprisPlayers/>
+                        <box className={"slider_container"}>
+                            <VolumeSlider/>
+                            <BrightnessSlider/>
+                        </box>
                     </box>
                 </revealer>
             </box>

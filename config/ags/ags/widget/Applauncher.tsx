@@ -6,34 +6,41 @@ import { FlowBoxChild } from "./components/astalified/FlowBoxChild";
 import { bind, timeout, Variable } from "astal";
 import { dashboard_visible } from "./Dashboard";
 
-const hyprland = Hyprland.get_default()
+export const applauncher_visible = Variable(true)
+export const applauncher_toggling = Variable(false)
+export const applauncher_toggler = Variable(true)
+const applauncher_animation_cooldown = 200
 
-const apps = new Apps.Apps({
-    nameMultiplier: 2,
-    entryMultiplier: 0,
-    executableMultiplier: 2,
-});
-
-export const applauncher_visible = new Variable(true)
-
-applauncher_visible.observe(App, "window-toggled", (_, window) => {
-    if (window.name == "Applauncher") {
-        if (window.visible) return true
-        return false
+applauncher_toggler.subscribe((toggling)=>{
+    if(toggling) {
+        applauncher_toggling.set(true)
+        App.toggle_window("Applauncher")
+        applauncher_visible.set(true)
+        timeout(applauncher_animation_cooldown,()=>applauncher_toggling.set(false))
+    } else {
+        applauncher_toggling.set(true)
+        applauncher_visible.set(false)
+        timeout(applauncher_animation_cooldown,()=>App.toggle_window("Applauncher"))
+        timeout(applauncher_animation_cooldown,()=>applauncher_toggling.set(false))
     }
-    return applauncher_visible.get()
 })
 
+
 export default function Applauncher() {
-    
+    const hyprland = Hyprland.get_default()
+    const apps = new Apps.Apps({
+        nameMultiplier: 2,
+        entryMultiplier: 0,
+        executableMultiplier: 2,
+    });
     
     const appList = apps.fuzzy_query("");
 
     function AppButton({app}: {app: Apps.Application}): JSX.Element {
         return  <FlowBoxChild tooltipText={app.name} className={"appbutton"} name={app.name}
                     onActivate={() => {
+                        dashboard_visible.set(false);
                         app.launch();
-                        App.toggle_window("Applauncher");
                     }}>
                     <icon icon={app.get_icon_name() || ""}/>
         </FlowBoxChild>
@@ -58,8 +65,8 @@ export default function Applauncher() {
         application={App} 
         className={"Applauncher"} 
         monitor={bind(hyprland, "focused_monitor").as((monitor) => monitor.id)}
-        onKeyPressEvent={(window, event) => event.get_keycode()[1] === 9 && window.hide()}>
-        <revealer revealChild={applauncher_visible()} transition_duration={1000} transitionType={Gtk.RevealerTransitionType.SLIDE_UP}>
+        onKeyPressEvent={(_, event) => event.get_keycode()[1] === 9 && applauncher_toggler.set(false)}>
+        <revealer revealChild={applauncher_visible()} transition_duration={applauncher_animation_cooldown + 50} transitionType={Gtk.RevealerTransitionType.SLIDE_LEFT}>
         <box vertical={true}>
             <entry  
                 setup={(self) => {
@@ -79,9 +86,7 @@ export default function Applauncher() {
                 }}/>
             <scrollable hscroll={Gtk.PolicyType.NEVER}>
                 <FlowBox homogeneous={true} min_children_per_line={4} setup={(self) => {
-                    self.hook(App, "window-toggled", (self) => {self.unselect_all()})
-
-                }}>
+                    self.hook(App, "window-toggled", (self) => {self.unselect_all()})}}>
                     {appButtons}
                 </FlowBox>
             </scrollable>

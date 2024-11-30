@@ -1,11 +1,21 @@
 @use "colors" as *;
 @use "presets" as *;
 
-.Applauncher {
-    background-color: rgba($base00, 0.9);
+
+tooltip {
+    background-color: $base01;
+    label {
+        color: $base05;
+    }
+    border-color: $base07;
+    box-shadow: none;
+}
+
+window.Applauncher {
+    background-color: $base00;
     border-radius: $radius;
     box {
-        padding: 5px;
+        padding: .4rem;
     }
 
     entry {
@@ -14,11 +24,11 @@
         font-weight: bold;
         color: $base05;
 
-        background-color: rgba($base00, 0.9);
-        border: solid 1px $base05;
+        background-color: $base01;
+        border: solid .1rem $base07;
         border-radius: $radius;
         
-        margin-bottom: 5px;
+        margin-bottom: .4rem;
 
         &:focus {
             // No focus outline
@@ -33,6 +43,7 @@
         }
     }
     
+    // Pixel perfect
     scrollable {
         // 56 + 2 = 58
         min-height: 58px;
@@ -41,7 +52,7 @@
         }
     }
 
-    .appbutton {
+    flowboxchild.appbutton {
         outline: none;
         border-radius: $radius;
         icon {

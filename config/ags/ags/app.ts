@@ -1,10 +1,10 @@
+import { timeout } from "astal"
 import { App } from "astal/gtk3"
 import style from "./scss/style.scss"
 import Bar from "./widget/Bar"
 import Corners from "./widget/Corners"
-import Applauncher, { applauncher_visible } from "./widget/Applauncher"
-import Dashboard, { dashboard_visible } from "./widget/Dashboard"
-import app from "../../../../.local/share/ags/gtk3/app"
+import Applauncher, { applauncher_toggler, applauncher_toggling } from "./widget/Applauncher"
+import Dashboard, { dashboard_toggler, dashboard_toggling } from "./widget/Dashboard"
 
 App.start({
     icons: `${SRC}/assets`,
@@ -17,14 +17,22 @@ App.start({
     },
     requestHandler(request: string, res: (response: any) => void) {
         if (request == "applauncher") {
-            if (App.get_window("Dashboard")) {
-                res("yoyo");
-                applauncher_visible.set(!applauncher_visible.get());
-                print(applauncher_visible.get());
-                return;
+            if (App.get_window("Applauncher")?.visible && !applauncher_toggling.get()) {
+                applauncher_toggler.set(false);
+                res("toggled applauncher off");
+            } else if (!applauncher_toggling.get()) {
+                applauncher_toggler.set(true);
+                res("toggled applauncher on");
             }
         }
-        // Only reach here if no valid command is handled
-        res("wrong command");
+        if (request == "dashboard") {
+            if (App.get_window("Dashboard")?.visible && !dashboard_toggling.get()) {
+                dashboard_toggler.set(false);
+                res("toggled dashboard off");
+            } else if (!dashboard_toggling.get()) {
+                dashboard_toggler.set(true);
+                res("toggled dashboard on");
+            }
+        }
     }
 })

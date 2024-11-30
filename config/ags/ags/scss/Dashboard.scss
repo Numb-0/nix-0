@@ -1,87 +1,113 @@
 @use "colors" as *;
 @use "presets" as *;
 
-@keyframes fade {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.Dashboard {
-    icon {
-        font-size: 16px;
-    }
-    .container {
-        background-color: rgba($base01, 0.9);
-        padding: 10px;
+window.Dashboard {
+    box.container {
+        background-color: $base01;
+        padding: .4rem;
         border-radius: $radius;
     }
 
-    .bluetooth {
-        margin-top: -4px;
-        * {
-            outline: none;
-            color: $base0D;
-            font-size: 16px;
-        }
-        .buttonbox {
-            padding:0 4px 0;
-        }
-        .connected {
-            * {
-                color: $base0A;
-            }
-        }
-        .connecting {
-            * {
-                color: $base0E;
-            }
-        }
+    box.slider_container {
+        padding: .6rem;
+        border-radius: $radius;
+        background-color: $base00;
     }
 
-    .volume_slider {
+    box.volume_slider {
         color: $base0B;
+        icon {
+            font-size: 1.2rem;
+        }
         scale {
             min-height: 100px;
             trough {
                 outline: none;
-                border-radius: $radius;
+                min-width: 6px;
                 slider {
-                    background: none;
-                    box-shadow: none;
-                    min-width: 3px;
-                    min-height: 3px;
-                    margin: -6px;
+                    all: unset;
                 }
                 highlight {
-                    border-radius: $radius;
                     background-color: $base0B;
                 }
             }
         }
     }
-    .brightness_slider {
+
+    box.brightness_slider {
         color: $base09;
-        //animation: fade 1s ease;
+        icon {
+            font-size: 1.2rem;
+        }
         scale {
             min-height: 100px;
             trough {
                 outline: none;
-                border-radius: $radius;
+                min-width: 6px;
                 slider {
-                    background: none;
-                    box-shadow: none;
-                    min-width: 3px;
-                    min-height: 3px;
-                    margin: -6px;
+                    all: unset;
                 }
                 highlight {
-                    border-radius: $radius;
                     background-color: $base09;
                 }
+            }
+        }
+    }
+
+    box.MediaPlayer {
+        border-radius: $radius;
+        padding: .6rem;
+        background-color: $base00;
+        // Margin for slider box
+        margin-right: .4rem;
+
+        box.cover-art {
+            min-width: 120px;
+            min-height: 120px;
+            border-radius: $radius;
+            margin-right: .6rem;
+            background-size: contain;
+            background-position: center;
+        }
+
+        box.title {
+            label {
+                font-weight: bold;
+                font-size: 1.1rem;
+            }
+            icon {
+                font-size: 1.2rem;
+            }
+        }
+
+        scale {
+            padding: 0;
+            margin: .4rem 0;
+
+            trough {
+                min-height: 8px;
+            }
+
+            highlight {
+                background-color: $base05;
+            }
+
+            slider {
+                all: unset;
+            }
+        }
+
+        centerbox.actions {
+            min-width: 220px;
+
+            button {
+                icon {
+                    font-size: 1.2rem;
+                }
+                min-width: 0;
+                min-height: 0;
+                padding: .4rem;
+                margin: 0 .2rem;
             }
         }
     }
