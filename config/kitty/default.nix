@@ -5,10 +5,10 @@
     extraConfig = 
     ''
     # Font
-    #font_family      auto
-    #bold_font        auto
-    #italic_font      auto
-    #bold_italic_font auto
+    font_family      auto
+    bold_font        auto
+    italic_font      auto
+    bold_italic_font auto
 
     # General
     background_opacity 0.8
