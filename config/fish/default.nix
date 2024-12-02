@@ -28,7 +28,7 @@
         fish_prompt = ''
         set -g __fish_git_prompt_show_informative_status true
         set -g __fish_git_prompt_showcolorhints true
-        # set -g __fish_git_prompt_char_stateseparator |
+        set -g __fish_git_prompt_char_stateseparator |
         set -g __fish_git_prompt_color_branch blue
 
         set -g fish_color_param white
