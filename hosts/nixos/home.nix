@@ -60,6 +60,7 @@ in
     platformTheme.name = "gtk3";
   };
 
+  # Scripts
   home.packages = [
     (import ../../scripts/setup_ags.nix { inherit pkgs config; })
     (import ../../scripts/setup_nvim.nix { inherit pkgs config; })

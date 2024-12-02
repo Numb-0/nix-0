@@ -2,9 +2,6 @@
   pkgs,
   ...
 }: 
-let
-  fontsize = 11;
-in
 {
   # Styling Options
   stylix = {
@@ -36,10 +33,11 @@ in
     cursor.name = "Bibata-Modern-Ice";
     cursor.size = 24;
 
-    fonts = {
+    /* fonts = {
+      enable = false;
       monospace = {
         package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-        name = "JetBrainsMono Nerd Font Mono";
+        name = "JetBrainsMono";
       };
       sansSerif = {
         package = pkgs.roboto;
@@ -55,6 +53,6 @@ in
         desktop = fontsize;
         popups = fontsize;
       };
-    };
+    }; */
   };
 }

@@ -16,7 +16,6 @@
     allow_remote_control yes
     confirm_os_window_close 0
     placement_strategy top
-    text_composition_strategy legacy
 
     # Keybindings
     map ctrl+c copy_to_clipboard

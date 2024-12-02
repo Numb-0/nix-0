@@ -58,11 +58,15 @@
 
   fonts = {
     packages = with pkgs; [
+      noto-fonts
       noto-fonts-emoji
       noto-fonts-cjk-sans
       font-awesome
       material-icons
       monocraft
+
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      roboto
     ];
   };
 }

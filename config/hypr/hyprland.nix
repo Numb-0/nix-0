@@ -31,12 +31,11 @@ with lib;
 
         # Needed by steam
         env = SDL_DYNAMIC_API, ${pkgs.SDL2}/lib/libSDL2-2.0.so.0
-
+        
         env = LIBVA_DRIVER_NAME, i965
         env = GBM_BACKEND, nvidia-drm
         env = __GLX_VENDOR_LIBRARY_NAME, nvidia
         env = NVD_BACKEND, direct
-        env = GDK_SCALE, 2
         
         env = NIXOS_OZONE_WL, 1
         env = NIXPKGS_ALLOW_UNFREE, 1
@@ -45,7 +44,8 @@ with lib;
         env = XDG_SESSION_DESKTOP, Hyprland
         env = GDK_BACKEND, wayland,x11
         env = CLUTTER_BACKEND, wayland
-        env = QT_QPA_PLATFORM, wayland;xcb
+        env = QT_QPA_PLATFORMTHEME,qt6ct
+        env = QT_QPA_PLATFORM, wayland
         env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
         env = QT_AUTO_SCREEN_SCALE_FACTOR, 1
         env = SDL_VIDEODRIVER, wayland,x11
@@ -55,7 +55,8 @@ with lib;
         exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
         exec-once = lxqt-policykit-agent
 
-        monitor = ,highres,auto,auto
+        monitor = eDP-1,highres,auto,auto
+        monitor = DP-3,highres,auto,auto
 
         xwayland {
           force_zero_scaling = true

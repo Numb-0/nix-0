@@ -37,6 +37,7 @@ in
     };
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
+    # This is for the keyboard
     extraModprobeConfig = ''
       options hid_apple fnmode=0
     '';
@@ -131,8 +132,8 @@ in
     ];
     configPackages = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal
+      pkgs.xdg-desktop-portal-hyprland
     ];
   };
 
