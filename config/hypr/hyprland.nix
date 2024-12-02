@@ -69,8 +69,6 @@ with lib;
           layout = dwindle
           resize_on_border = true
           allow_tearing = true
-          #col.active_border = rgb(${config.stylix.base16Scheme.base07})
-          #col.inactive_border = rgb(${config.stylix.base16Scheme.base00})
         }
 
         input {

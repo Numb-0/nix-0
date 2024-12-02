@@ -1,7 +1,10 @@
 {
   pkgs,
   ...
-}: 
+}:
+let
+  fontsize = 11;
+in
 {
   # Styling Options
   stylix = {
@@ -27,17 +30,16 @@
       base0E = "c6a0f6"; # mauve
       base0F = "f0c6c6"; # flamingo
     };
-    
+
     polarity = "dark";
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
     cursor.size = 24;
 
-    /* fonts = {
-      enable = false;
+    fonts = {
       monospace = {
         package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-        name = "JetBrainsMono";
+        name = "JetBrainsMono Nerd Font Mono";
       };
       sansSerif = {
         package = pkgs.roboto;
@@ -53,6 +55,6 @@
         desktop = fontsize;
         popups = fontsize;
       };
-    }; */
+    };
   };
 }

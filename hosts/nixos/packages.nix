@@ -42,7 +42,7 @@
     lm_sensors
 
     lxqt.lxqt-policykit
-    
+
     unzip
     unrar
 
@@ -58,15 +58,21 @@
 
   fonts = {
     packages = with pkgs; [
-      noto-fonts
       noto-fonts-emoji
       noto-fonts-cjk-sans
-      font-awesome
-      material-icons
+      symbola
       monocraft
-
+      noto-fonts
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       roboto
     ];
+    fontconfig = {
+      defaultFonts = {
+        serif = [ "Noto Serif" ];
+        sansSerif = [ "Roboto" ];
+        monospace = [ "JetBrainsMono Nerd Font Mono" ];
+        emoji = [ "Noto Color Emoji" ];
+      };
+    };
   };
 }

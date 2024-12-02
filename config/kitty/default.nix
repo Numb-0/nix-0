@@ -5,7 +5,7 @@
     extraConfig = 
     ''
     # Font
-    font_family      auto
+    font_family      JetBrainsMono Nerd Font Mono
     bold_font        auto
     italic_font      auto
     bold_italic_font auto
