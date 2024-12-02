@@ -1,17 +1,18 @@
 {
   programs.kitty = {
     enable = true;
+    shellIntegration.enableFishIntegration = true;
     extraConfig = 
     ''
     # Font
-    font_family      auto
-    bold_font        auto
-    italic_font      auto
-    bold_italic_font auto
+    #font_family      auto
+    #bold_font        auto
+    #italic_font      auto
+    #bold_italic_font auto
 
     # General
     background_opacity 0.8
-    # cursor_trail 3
+    cursor_trail 3
     allow_remote_control yes
     confirm_os_window_close 0
     placement_strategy top
