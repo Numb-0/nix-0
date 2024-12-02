@@ -37,7 +37,7 @@ in
     cursor.size = 24;
 
     fonts = {
-      monospace = {
+      /* monospace = {
         package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
         name = "JetBrainsMono Nerd Font Mono";
       };
@@ -48,7 +48,7 @@ in
       serif = {
         package = pkgs.noto-fonts;
         name = "Noto";
-      };
+      }; */
       sizes = {
         applications = fontsize;
         terminal = fontsize;
