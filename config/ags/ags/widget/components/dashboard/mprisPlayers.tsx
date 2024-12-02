@@ -1,6 +1,8 @@
 import { Astal, Gtk } from "astal/gtk3"
 import Mpris from "gi://AstalMpris"
 import { bind } from "astal"
+import { pl_dashboard_toggler } from "../../PlayerDashboard"
+import { dashboard_toggler } from "../../Dashboard"
 
 function lengthStr(length: number) {
     const min = Math.floor(length / 60)
@@ -22,8 +24,9 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
     const coverArt = bind(player, "coverArt").as(c =>
         `background-image: url('${c}')`)
 
-    const playerIcon = bind(player, "entry").as(e =>
-        Astal.Icon.lookup_icon(e) ? e : "audio-x-generic-symbolic")
+    const playerIcon = bind(player, "entry").as(e => {
+        return e && Astal.Icon.lookup_icon(e) ? e : "audio-x-generic-symbolic";
+    })
 
     const position = bind(player, "position").as(p => player.length > 0
         ? p / player.length : 0)
@@ -62,6 +65,8 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
                         <icon icon="media-skip-backward-symbolic" />
                     </button>
                     <button
+                        // On Opening dashboard, grab focus to the play button
+                        setup={self => self.hook(pl_dashboard_toggler, (self, value) => value ? self.grab_focus() : null)}
                         onClicked={() => player.play_pause()}
                         visible={bind(player, "canControl")}>
                         <icon icon={playIcon} />
@@ -86,7 +91,7 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
 
 export default function MprisPlayers() {
     const mpris = Mpris.get_default()
-    return <box vertical>
+    return <box spacing={5} vertical>
         {bind(mpris, "players").as(arr => arr.map(player => (
             <MediaPlayer player={player} />
         )))}

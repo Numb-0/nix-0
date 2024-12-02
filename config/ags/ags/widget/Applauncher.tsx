@@ -1,10 +1,9 @@
 import Apps from "gi://AstalApps";
 import Hyprland from "gi://AstalHyprland"
-import { App, Astal, Gtk } from "astal/gtk3"
+import { App, Astal, Gtk, Gdk } from "astal/gtk3"
 import { FlowBox } from "./components/astalified/FlowBox";
 import { FlowBoxChild } from "./components/astalified/FlowBoxChild";
 import { bind, timeout, Variable } from "astal";
-import { dashboard_visible } from "./Dashboard";
 
 export const applauncher_visible = Variable(true)
 export const applauncher_toggling = Variable(false)
@@ -39,8 +38,8 @@ export default function Applauncher() {
     function AppButton({app}: {app: Apps.Application}): JSX.Element {
         return  <FlowBoxChild tooltipText={app.name} className={"appbutton"} name={app.name}
                     onActivate={() => {
-                        dashboard_visible.set(false);
                         app.launch();
+                        applauncher_toggler.set(false);
                     }}>
                     <icon icon={app.get_icon_name() || ""}/>
         </FlowBoxChild>
@@ -65,17 +64,12 @@ export default function Applauncher() {
         application={App} 
         className={"Applauncher"} 
         monitor={bind(hyprland, "focused_monitor").as((monitor) => monitor.id)}
-        onKeyPressEvent={(_, event) => event.get_keycode()[1] === 9 && applauncher_toggler.set(false)}>
+        onKeyPressEvent={(_, event) => event.get_keyval()[1] === Gdk.KEY_Escape && applauncher_toggler.set(false)}>
         <revealer revealChild={applauncher_visible()} transition_duration={applauncher_animation_cooldown + 50} transitionType={Gtk.RevealerTransitionType.SLIDE_LEFT}>
         <box vertical={true}>
             <entry  
                 setup={(self) => {
-                    self.hook(App, "window-toggled", (self) => {
-                        // Retakes focus when lauching app for next search
-                        self.grab_focus()
-                        // reset text
-                        self.text = "";  
-                    })
+                    applauncher_toggler.subscribe(open => open ? self.grab_focus() : null);
                 }}
                 onChanged={(self) => {
                     filterList(self.get_text());

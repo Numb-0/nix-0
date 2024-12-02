@@ -13,6 +13,7 @@
 
         abbr --add dotdot --regex '^\.\.+$' --function multicd
         abbr --add mkdir mkdir -p
+        abbr --add clear "clear && printf '\e[3J'"
         abbr --add clr "clear && krabby random --no-title"
         abbr --add ssh "kitten ssh"
         abbr --add tr "tree -a -f -I ".git""

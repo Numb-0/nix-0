@@ -11,6 +11,10 @@ export default function SysTray() {
                 App.add_icons(item.iconThemePath)
 
             const menu = item.create_menu()
+            if (menu) {
+                menu.rect_anchor_dx = 5
+                menu.rect_anchor_dy = 5
+            }
 
             return <button
                 tooltipMarkup={bind(item, "tooltipMarkup")}

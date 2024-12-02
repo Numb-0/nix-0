@@ -1,4 +1,10 @@
+@use "colors" as *;
+
 $radius: 10px;
+
+* {
+    box-shadow: none;
+}
 
 label {
     font-family: "JetBrainsMono Nerd Font Mono";
@@ -11,26 +17,24 @@ button {
     background-color: transparent;
     background-image: none;
     border: none;
-    box-shadow: none;
     text-shadow: none;
 }
 
+menu {
+    label {
+        color: $base05;
+    }
+    separator {
+        background-color: $base05;
+    }
+}
+
 @keyframes icon-wiggle {
-  16% {
-      -gtk-icon-transform: rotate(-60deg)
-  }
-  32% {
-        -gtk-icon-transform: rotate(-30deg)
-  }
-  48% {
-      -gtk-icon-transform: rotate(-45deg)
-  }
-  64% {
-      -gtk-icon-transform: rotate(-15deg)
-  }
-  100% {
-      -gtk-icon-transform: rotate(0deg)
-  }
+   0% {-gtk-icon-transform: rotate(15deg);}
+  25% {-gtk-icon-transform: rotate(-15deg);}
+  50% {-gtk-icon-transform: rotate(25deg);}
+  75% {-gtk-icon-transform: rotate(-10deg);}
+ 100% {-gtk-icon-transform: rotate(0deg);}
 }
 
 @keyframes icon-fade-in {
@@ -52,4 +56,10 @@ button {
     97% { -gtk-icon-transform:translateY(0); }
     99% { -gtk-icon-transform:translateY(-2px); }
     100% { -gtk-icon-transform:translateY(0); }
+}
+
+@keyframes icon-spin {
+    to {
+        -gtk-icon-transform: rotate(1turn);
+    }
 }

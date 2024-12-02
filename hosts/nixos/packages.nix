@@ -31,6 +31,7 @@
     prismlauncher
     aseprite
 
+    fastfetch
     krabby
     tree
     wget

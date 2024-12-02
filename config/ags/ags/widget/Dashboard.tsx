@@ -1,9 +1,8 @@
-import { App, Astal, Gtk} from "astal/gtk3"
+import { App, Astal, Gtk, Gdk } from "astal/gtk3"
 import Hyprland from "gi://AstalHyprland"
 import { bind, Variable, timeout } from "astal"
 import BrightnessSlider from "./components/dashboard/brightnessSlider"
 import VolumeSlider from "./components/dashboard/volumeSlider"
-import MprisPlayers from "./components/dashboard/mprisPlayers"
 
 const hyprland = Hyprland.get_default()
 
@@ -36,12 +35,11 @@ export default function Dashboard() {
             className={"Dashboard"}
             application={App}
             monitor={bind(hyprland, "focusedMonitor").as((monitor) => monitor.id)}
-            onKeyPressEvent={(_, e) => e.get_keycode()[1] === 9 && dashboard_toggler.set(false)}
+            onKeyPressEvent={(_, event) => event.get_keyval()[1] === Gdk.KEY_Escape && dashboard_toggler.set(false)}
             margin={10}>
             <box className={"container"} halign={Gtk.Align.END} valign={Gtk.Align.START}>
                 <revealer revealChild={dashboard_visible()} transitionDuration={dashboard_animation_cooldown + 50} transition_type={Gtk.RevealerTransitionType.SLIDE_DOWN}>
                     <box>
-                        <MprisPlayers/>
                         <box className={"slider_container"}>
                             <VolumeSlider/>
                             <BrightnessSlider/>

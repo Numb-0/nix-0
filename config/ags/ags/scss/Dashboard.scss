@@ -2,16 +2,16 @@
 @use "presets" as *;
 
 window.Dashboard {
-    box.container {
-        background-color: $base01;
+    /* box.container {
+        background-color: transparent;
         padding: .4rem;
         border-radius: $radius;
-    }
+    } */
 
     box.slider_container {
         padding: .6rem;
         border-radius: $radius;
-        background-color: $base00;
+        background-color: $base01;
     }
 
     box.volume_slider {
@@ -50,64 +50,6 @@ window.Dashboard {
                 highlight {
                     background-color: $base09;
                 }
-            }
-        }
-    }
-
-    box.MediaPlayer {
-        border-radius: $radius;
-        padding: .6rem;
-        background-color: $base00;
-        // Margin for slider box
-        margin-right: .4rem;
-
-        box.cover-art {
-            min-width: 120px;
-            min-height: 120px;
-            border-radius: $radius;
-            margin-right: .6rem;
-            background-size: contain;
-            background-position: center;
-        }
-
-        box.title {
-            label {
-                font-weight: bold;
-                font-size: 1.1rem;
-            }
-            icon {
-                font-size: 1.2rem;
-            }
-        }
-
-        scale {
-            padding: 0;
-            margin: .4rem 0;
-
-            trough {
-                min-height: 8px;
-            }
-
-            highlight {
-                background-color: $base05;
-            }
-
-            slider {
-                all: unset;
-            }
-        }
-
-        centerbox.actions {
-            min-width: 220px;
-
-            button {
-                icon {
-                    font-size: 1.2rem;
-                }
-                min-width: 0;
-                min-height: 0;
-                padding: .4rem;
-                margin: 0 .2rem;
             }
         }
     }
