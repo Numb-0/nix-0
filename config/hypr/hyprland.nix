@@ -36,6 +36,7 @@ with lib;
         env = GBM_BACKEND, nvidia-drm
         env = __GLX_VENDOR_LIBRARY_NAME, nvidia
         env = NVD_BACKEND, direct
+        env = GDK_SCALE, 2
         
         env = NIXOS_OZONE_WL, 1
         env = NIXPKGS_ALLOW_UNFREE, 1
@@ -54,7 +55,7 @@ with lib;
         exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
         exec-once = lxqt-policykit-agent
 
-        monitor = ,preferred,auto,auto
+        monitor = ,highres,auto,auto
 
         xwayland {
           force_zero_scaling = true
