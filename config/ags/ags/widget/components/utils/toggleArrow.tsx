@@ -7,7 +7,7 @@ export default function ToggleArrow() {
     let interval: any
     var deg = 0
 
-    function rotateArrow() {
+    function rotate_arrow() {
         let delay = 2
         if (!rotating().get() && deg < 90) {
             rotating.set(true)
@@ -36,7 +36,7 @@ export default function ToggleArrow() {
 
     return {
         arrow: () => <icon icon={"Arrow-symbolic"} css={css()} />,
-        rotateArrow,
+        rotate_arrow,
         arrow_open,
     }
 }

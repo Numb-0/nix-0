@@ -35,7 +35,7 @@
         set -g fish_color_autosuggestion yellow
         
         set -l last_status $status
-        set -l arrow ' ➤ '
+        set -l arrow ' ⮞ '
         set -l show_status 
 
         if test $last_status -ne 0

@@ -47,7 +47,7 @@ export default class Brightness extends GObject.Object {
         // Update
         this.notify("icon-name");
         this.notify("value");
-        //this.emit("value-changed", this._value);
+        this.emit("value-changed", this._value);
     }
 
     @signal(Number)

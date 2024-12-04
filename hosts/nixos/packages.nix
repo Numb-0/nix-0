@@ -40,6 +40,7 @@
     git
     htop
     lm_sensors
+    imv
 
     lxqt.lxqt-policykit
 
@@ -52,6 +53,7 @@
     upower
     bluez
 
+    hyprpicker
     hyprshot
     wl-clipboard
   ];

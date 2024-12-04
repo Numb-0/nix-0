@@ -25,6 +25,7 @@
       inputs.ags.packages.${pkgs.system}.notifd
       inputs.ags.packages.${pkgs.system}.tray
       inputs.ags.packages.${pkgs.system}.mpris
+      inputs.ags.packages.${pkgs.system}.cava
       inputs.ags.packages.${pkgs.system}.powerprofiles
     ];
   };

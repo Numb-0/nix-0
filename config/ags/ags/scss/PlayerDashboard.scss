@@ -2,6 +2,14 @@
 @use "presets" as *;
 
 window.pldashboard {
+
+    label.placeHolder {
+        padding: .6rem;
+        border-radius: $radius;
+        color: $base05;
+        background-color: $base01;
+    }
+
     box.MediaPlayer {
         border-radius: $radius;
         padding: .6rem;

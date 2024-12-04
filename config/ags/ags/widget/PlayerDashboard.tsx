@@ -2,6 +2,7 @@ import { App, Astal, Gtk, Gdk } from "astal/gtk3"
 import Hyprland from "gi://AstalHyprland"
 import { bind, Variable, timeout } from "astal"
 import MprisPlayers from "./components/dashboard/mprisPlayers"
+import Mpris from "gi://AstalMpris"
 
 const hyprland = Hyprland.get_default()
 
@@ -25,6 +26,7 @@ pl_dashboard_toggler.subscribe((toggling)=>{
 })
 
 export default function PlDashboard() {
+    const mpris = Mpris.get_default()
 
     return <window 
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
@@ -39,6 +41,7 @@ export default function PlDashboard() {
             <box className={"container"} halign={Gtk.Align.END} valign={Gtk.Align.END}>
                 <revealer revealChild={pl_dashboard_visible()} transitionDuration={pl_dashboard_animation_cooldown + 50} transition_type={Gtk.RevealerTransitionType.SLIDE_DOWN}>
                     <box>
+                        {bind(mpris, "players").as(players => players.length > 0 ? undefined : <label className={"placeHolder"} label={"No Active Players"}/>)}
                         <MprisPlayers/>
                     </box>
                 </revealer>

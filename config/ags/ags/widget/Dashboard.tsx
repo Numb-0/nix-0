@@ -1,8 +1,10 @@
 import { App, Astal, Gtk, Gdk } from "astal/gtk3"
 import Hyprland from "gi://AstalHyprland"
-import { bind, Variable, timeout } from "astal"
+import { bind, Variable, timeout, exec } from "astal"
 import BrightnessSlider from "./components/dashboard/brightnessSlider"
 import VolumeSlider from "./components/dashboard/volumeSlider"
+import BluetoothComponents from "./components/dashboard/bluetoothComponents"
+import WifiComponets from "./components/dashboard/wifiComponents"
 
 const hyprland = Hyprland.get_default()
 
@@ -27,6 +29,25 @@ dashboard_toggler.subscribe((toggling)=>{
 
 export default function Dashboard() {
 
+    const bluetooth = BluetoothComponents()
+    const wifi = WifiComponets()
+
+    bluetooth.bt_arrow.arrow_open.subscribe((open) => open ? ( wifi.wf_arrow.arrow_open.get() ? wifi.wf_arrow.rotate_arrow(): null): null)
+    wifi.wf_arrow.arrow_open.subscribe((open) => open ? ( bluetooth.bt_arrow.arrow_open.get() ? bluetooth.bt_arrow.rotate_arrow() : null ): null)
+
+    const switcher = Variable.derive(
+        [bluetooth.bt_arrow.arrow_open, wifi.wf_arrow.arrow_open],
+        (bluetooth_open, wifi_open) => { 
+            if (bluetooth_open && !wifi_open) {
+                return "bluetooth"
+            } else if (!bluetooth_open && wifi_open) {
+                return "wifi"
+            } else {
+                return "placeholder"
+            }
+        }
+    )
+
     return <window 
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
             anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.BOTTOM}
@@ -37,10 +58,22 @@ export default function Dashboard() {
             monitor={bind(hyprland, "focusedMonitor").as((monitor) => monitor.id)}
             onKeyPressEvent={(_, event) => event.get_keyval()[1] === Gdk.KEY_Escape && dashboard_toggler.set(false)}
             margin={10}>
-            <box className={"container"} halign={Gtk.Align.END} valign={Gtk.Align.START}>
+            <box halign={Gtk.Align.END} valign={Gtk.Align.START}>
                 <revealer revealChild={dashboard_visible()} transitionDuration={dashboard_animation_cooldown + 50} transition_type={Gtk.RevealerTransitionType.SLIDE_DOWN}>
-                    <box>
-                        <box className={"slider_container"}>
+                    <box spacing={4}>
+                        <stack vhomogeneous transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>
+                            <box name={"placeholder"}/>
+                            {bluetooth.BluetooohDeviceList()}
+                            {wifi.WifiAccessPointsList()}
+                        </stack>
+                        <box spacing={4} vertical>
+                            {bluetooth.BluetoothButton()}
+                            {wifi.WifiButton()}
+                            <button vexpand valign={Gtk.Align.FILL} className={"drop"} onClicked={()=>exec("hyprpicker")}> 
+                                <icon icon={"Drop-symbolic"}/>
+                            </button>
+                        </box>
+                        <box className={"container"}>
                             <VolumeSlider/>
                             <BrightnessSlider/>
                         </box>

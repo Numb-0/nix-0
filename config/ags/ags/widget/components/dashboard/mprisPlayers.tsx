@@ -2,7 +2,6 @@ import { Astal, Gtk } from "astal/gtk3"
 import Mpris from "gi://AstalMpris"
 import { bind } from "astal"
 import { pl_dashboard_toggler } from "../../PlayerDashboard"
-import { dashboard_toggler } from "../../Dashboard"
 
 function lengthStr(length: number) {
     const min = Math.floor(length / 60)

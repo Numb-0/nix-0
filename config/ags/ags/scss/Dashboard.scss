@@ -2,55 +2,90 @@
 @use "presets" as *;
 
 window.Dashboard {
-    /* box.container {
-        background-color: transparent;
-        padding: .4rem;
-        border-radius: $radius;
-    } */
 
-    box.slider_container {
+    box.container {
         padding: .6rem;
         border-radius: $radius;
         background-color: $base01;
     }
 
-    box.volume_slider {
-        color: $base0B;
+
+    button.drop, button.wifiButton, button.bluetoothButton {
+        padding: .4rem;
+        border-radius: $radius;
+        background-color: $base01;
+        outline: none;
         icon {
             font-size: 1.2rem;
         }
-        scale {
-            min-height: 100px;
-            trough {
-                outline: none;
-                min-width: 6px;
-                slider {
-                    all: unset;
-                }
-                highlight {
-                    background-color: $base0B;
-                }
+        &:hover, &:focus {
+            transition: all .5s;
+            background-color: $base02;
+        }
+    }
+    button.drop { color: $base09; }
+    button.wifiButton { color: $base0C; }
+    button.bluetoothButton { color: $base0D; }
+
+
+    scrollable.wifiList, scrollable.bluetoothList {
+        scrollbar {
+            // Remove scrollbar
+            &.overlay-indicator {
+                opacity: 0;
+            }
+        }
+        padding: .6rem;
+        border-radius: $radius;
+        background-color: $base01;
+        * {
+            border: none;
+        }
+        flowboxchild {
+            outline: none;
+            border-radius: $radius;
+            icon {
+                font-size: 1.2rem;
+            }
+            &:hover, &:focus {
+                color: $base05;
+                transition: all .5s;
+                background-color: $base02;
             }
         }
     }
+    scrollable.wifiList { color: $base0C; }
+    scrollable.bluetoothList { color: $base0D; }
 
-    box.brightness_slider {
-        color: $base09;
+
+    box.brightness_slider, box.volume_slider {
         icon {
             font-size: 1.2rem;
         }
         scale {
             min-height: 100px;
+            padding: 0.4rem;
+            margin: 0.4rem;
+            border-radius: $radius;
             trough {
                 outline: none;
                 min-width: 6px;
                 slider {
                     all: unset;
                 }
-                highlight {
-                    background-color: $base09;
-                }
+            }
+            &:hover, &:focus {
+                transition: all .5s;
+                background-color: $base02;
             }
         }
+    }
+    box.brightness_slider { 
+        color: $base09;
+        highlight { background-color: $base09; }
+    }
+    box.volume_slider { 
+        color: $base0B;
+        highlight { background-color: $base0B; }
     }
 }

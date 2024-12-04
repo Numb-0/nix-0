@@ -139,10 +139,14 @@ in
 
   console.keyMap = "${keyboardLayout}";
 
-  security.rtkit.enable = true;
+  security = {
+    rtkit.enable = true;
+    pam.services.wayland.enableGnomeKeyring = true;
+  };
 
   # Services to start
   services = {
+    gnome.gnome-keyring.enable = true;
     tlp = {
       enable = true;
       settings = {
