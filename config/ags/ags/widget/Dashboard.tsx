@@ -61,7 +61,7 @@ export default function Dashboard() {
             <box halign={Gtk.Align.END} valign={Gtk.Align.START}>
                 <revealer revealChild={dashboard_visible()} transitionDuration={dashboard_animation_cooldown + 50} transition_type={Gtk.RevealerTransitionType.SLIDE_DOWN}>
                     <box spacing={4}>
-                        <stack vhomogeneous transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>
+                        <stack hhomogeneous={false} transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>
                             <box name={"placeholder"}/>
                             {bluetooth.BluetooohDeviceList()}
                             {wifi.WifiAccessPointsList()}

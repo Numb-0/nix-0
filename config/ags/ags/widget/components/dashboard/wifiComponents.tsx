@@ -10,11 +10,13 @@ export default function WifiComponets() {
     const wf_arrow = ToggleArrow()
 
     function AccessPointButton({accesspoint}: {accesspoint: Network.AccessPoint}): JSX.Element {
-        return <FlowBoxChild className={accesspoint == wifi.get_active_access_point() ? "connected" : ""} >
-            <box spacing={2}>
-                <icon icon={accesspoint.get_icon_name()} />
-                <label label={accesspoint.get_ssid() || ""}/>
-            </box>
+        return <FlowBoxChild className={accesspoint == wifi.get_active_access_point() ? "connected" : ""}>
+            <eventbox>
+                <box spacing={2}>
+                    <icon icon={accesspoint.get_icon_name()} />
+                    <label label={accesspoint.get_ssid() || ""}/>
+                </box>
+            </eventbox>
         </FlowBoxChild>
     }
 
@@ -32,7 +34,7 @@ export default function WifiComponets() {
 
     function WifiAccessPointsList() {
         return <scrollable hscroll={Gtk.PolicyType.NEVER} name={"wifi"} className={"wifiList"}>
-            <FlowBox maxChildrenPerLine={1}>
+            <FlowBox valign={Gtk.Align.START} maxChildrenPerLine={1} rowSpacing={2}>
                 {access_points_list}
             </FlowBox>
         </scrollable>

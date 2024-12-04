@@ -45,8 +45,9 @@ window.pldashboard {
         }
 
         scale {
-            padding: 0;
-            margin: .4rem 0;
+            border-radius: $radius;
+            padding: .2rem;
+            margin: .2rem 0;
 
             trough {
                 min-height: 8px;
@@ -58,6 +59,9 @@ window.pldashboard {
 
             slider {
                 all: unset;
+            }
+            &:hover, &:focus {
+                background-color: $base02;
             }
         }
 
@@ -72,6 +76,9 @@ window.pldashboard {
                 min-height: 0;
                 padding: .4rem;
                 margin: 0 .2rem;
+                &:hover, &:focus {
+                    background-color: $base02;
+                }
             }
         }
     }

@@ -1,5 +1,7 @@
+@use "sass:color";
 @use "colors" as *;
 @use "presets" as *;
+
 
 window.Dashboard {
 
@@ -42,15 +44,27 @@ window.Dashboard {
             border: none;
         }
         flowboxchild {
+            padding: 0;
             outline: none;
             border-radius: $radius;
             icon {
                 font-size: 1.2rem;
             }
-            &:hover, &:focus {
-                color: $base05;
+            &:selected {
+                color: unset;
                 transition: all .5s;
                 background-color: $base02;
+            }
+            eventbox {
+                border-radius: $radius;
+                box {
+                    padding: .3rem
+                }
+                &:hover {
+                    color: unset;
+                    transition: all .5s;
+                    background-color: $base02;
+                }
             }
         }
     }

@@ -41,7 +41,7 @@ export default function PlDashboard() {
             <box className={"container"} halign={Gtk.Align.END} valign={Gtk.Align.END}>
                 <revealer revealChild={pl_dashboard_visible()} transitionDuration={pl_dashboard_animation_cooldown + 50} transition_type={Gtk.RevealerTransitionType.SLIDE_DOWN}>
                     <box>
-                        {bind(mpris, "players").as(players => players.length > 0 ? undefined : <label className={"placeHolder"} label={"No Active Players"}/>)}
+                        {bind(mpris, "players").as(players => players.length > 0 ? <box/> : <label className={"placeHolder"} label={"No Active Players"}/>)}
                         <MprisPlayers/>
                     </box>
                 </revealer>

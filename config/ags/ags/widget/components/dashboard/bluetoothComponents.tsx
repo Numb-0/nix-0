@@ -32,10 +32,12 @@ export default function BluetoothComponents() {
 
     function DeviceButton({device}: {device: Bluetooth.Device}): JSX.Element {
         return <FlowBoxChild onActivate={() => !device.connecting ? toggle_device(device) : null} className={bind(device, "connected").as(c => c ? "connected" : "")}>
-            <box spacing={2}>
-                <icon icon={custom_icons[device.get_icon()] || device.get_icon()} />
-                <label label={device.get_name().split(" ")[0]}/>
-            </box>
+            <eventbox>
+                <box spacing={2}>
+                    <icon icon={custom_icons[device.get_icon()] || device.get_icon()} />
+                    <label label={device.get_name().split(" ")[0]}/>
+                </box>
+            </eventbox>
         </FlowBoxChild>
     }
 
@@ -69,7 +71,7 @@ export default function BluetoothComponents() {
 
     function BluetooohDeviceList() {
         return <scrollable hscroll={Gtk.PolicyType.NEVER} name={"bluetooth"} className={"bluetoothList"}>
-            <FlowBox maxChildrenPerLine={1}>
+            <FlowBox valign={Gtk.Align.START} maxChildrenPerLine={1} rowSpacing={2}>
                 {device_list}
             </FlowBox>
         </scrollable>
