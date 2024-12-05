@@ -1,6 +1,6 @@
 import { App, Astal, Gtk, Gdk } from "astal/gtk3"
 import Hyprland from "gi://AstalHyprland"
-import { bind, Variable, timeout, exec } from "astal"
+import { bind, Variable, timeout, execAsync } from "astal"
 import BrightnessSlider from "./components/dashboard/brightnessSlider"
 import VolumeSlider from "./components/dashboard/volumeSlider"
 import BluetoothComponents from "./components/dashboard/bluetoothComponents"
@@ -61,7 +61,7 @@ export default function Dashboard() {
             <box halign={Gtk.Align.END} valign={Gtk.Align.START}>
                 <revealer revealChild={dashboard_visible()} transitionDuration={dashboard_animation_cooldown + 50} transition_type={Gtk.RevealerTransitionType.SLIDE_DOWN}>
                     <box spacing={4}>
-                        <stack hhomogeneous={false} transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>
+                        <stack homogeneous transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>
                             <box name={"placeholder"}/>
                             {bluetooth.BluetooohDeviceList()}
                             {wifi.WifiAccessPointsList()}
@@ -69,7 +69,7 @@ export default function Dashboard() {
                         <box spacing={4} vertical>
                             {bluetooth.BluetoothButton()}
                             {wifi.WifiButton()}
-                            <button vexpand valign={Gtk.Align.FILL} className={"drop"} onClicked={()=>exec("hyprpicker")}> 
+                            <button vexpand valign={Gtk.Align.FILL} className={"drop"} onClicked={()=>execAsync("hyprpicker -a")}> 
                                 <icon icon={"Drop-symbolic"}/>
                             </button>
                         </box>

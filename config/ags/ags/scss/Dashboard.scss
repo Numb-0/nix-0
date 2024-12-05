@@ -11,6 +11,12 @@ window.Dashboard {
         background-color: $base01;
     }
 
+    box.placeholder {
+        border-radius: $radius;
+        min-width: 50px;
+        background-color: $base01;
+    }
+
 
     button.drop, button.wifiButton, button.bluetoothButton {
         padding: .4rem;
