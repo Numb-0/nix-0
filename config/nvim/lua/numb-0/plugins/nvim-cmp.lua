@@ -21,7 +21,7 @@ return {
 
     cmp.setup({
 
-      completition = {
+      completion = { -- Fixed typo
         completeopt = "menu,menuone,preview,noselect",
       },
 

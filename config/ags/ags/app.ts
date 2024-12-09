@@ -4,7 +4,7 @@ import Bar from "./widget/Bar"
 import Corners from "./widget/Corners"
 import Applauncher, { applauncher_toggler, applauncher_toggling } from "./widget/Applauncher"
 import Dashboard, { dashboard_toggler, dashboard_toggling } from "./widget/Dashboard"
-import PlDashboard, { pl_dashboard_toggler, pl_dashboard_toggling } from "./widget/PlayerDashboard"
+import PlayerDashboard, { pl_dashboard_toggler, pl_dashboard_toggling } from "./widget/PlayerDashboard"
 
 App.start({
     icons: `${SRC}/assets`,
@@ -14,7 +14,7 @@ App.start({
         App.get_monitors().map(Corners)
         Applauncher()
         Dashboard()
-        PlDashboard()
+        PlayerDashboard()
     },
     requestHandler(request: string, res: (response: any) => void) {
         if (request == "applauncher") {
@@ -36,12 +36,12 @@ App.start({
             }
         }
         if (request == "pldashboard") {
-            if (App.get_window("PlDashboard")?.visible && !pl_dashboard_toggling.get()) {
+            if (App.get_window("PlayerDashboard")?.visible && !pl_dashboard_toggling.get()) {
                 pl_dashboard_toggler.set(false);
-                res("toggled pldashboard off");
+                res("toggled playerdashboard off");
             } else if (!dashboard_toggling.get()) {
                 pl_dashboard_toggler.set(true);
-                res("toggled pldashboard on");
+                res("toggled playerdashboard on");
             }
         }
     }

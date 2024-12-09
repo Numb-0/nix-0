@@ -15,18 +15,17 @@ export default function Corners(gdkmonitor: Gdk.Monitor) {
             anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.RIGHT}
             application={App}>
             <drawingarea setup={self => {
-                let drawed = false;
-                let corner_radius = 12;
-                let monitor = hyprland.get_monitors().find((monitor) => monitor.model === gdkmonitor.model);
-                let width = gdkmonitor.get_geometry().width * gdkmonitor.scale_factor / (monitor?.scale ?? 1);
+                const corner_radius = 12;
+                const corner_color = hexToRgb("#1e2030");
+                const monitor = hyprland.get_monitors().find((monitor) => monitor.model === gdkmonitor.model);
+                const width = gdkmonitor.get_geometry().width * gdkmonitor.scale_factor / (monitor?.scale ?? 1);
+                
                 self.connect('size-allocate', () => {
-                    if (drawed) return;
                     self.set_size_request(corner_radius, corner_radius);
-                    drawed = true;
                 });
+
                 self.connect('draw', (_, cr: Cairo.Context) => {
-                    const [r,g,b] = hexToRgb("#1e2030");
-                    cr.setSourceRGBA(r/255, g/255, b/255, 1);
+                    cr.setSourceRGBA(corner_color.r/255, corner_color.g/255, corner_color.b/255, 1);
                     cr.moveTo(0, 0);
                     cr.lineTo(0, corner_radius);
                     cr.arc(corner_radius, corner_radius, corner_radius, -Math.PI, -Math.PI / 2);

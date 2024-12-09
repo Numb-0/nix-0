@@ -38,8 +38,8 @@ export default function Applauncher() {
     function AppButton({app}: {app: Apps.Application}): JSX.Element {
         return  <FlowBoxChild tooltipText={app.name} className={"appbutton"} name={app.name}
                     onActivate={() => {
-                        app.launch();
                         applauncher_toggler.set(false);
+                        app.launch();
                     }}>
                     <icon icon={app.get_icon_name() || ""}/>
         </FlowBoxChild>

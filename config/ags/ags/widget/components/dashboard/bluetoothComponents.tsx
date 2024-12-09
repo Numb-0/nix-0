@@ -4,7 +4,6 @@ import ToggleArrow from "../utils/toggleArrow";
 import { Gtk, Gdk } from "astal/gtk3";
 import { FlowBoxChild } from "../astalified/FlowBoxChild";
 import { FlowBox } from "../astalified/FlowBox";
-import Pango from "gi://Pango";
 
 
 export default function BluetoothComponents() {

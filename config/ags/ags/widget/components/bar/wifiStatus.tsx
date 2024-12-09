@@ -5,8 +5,8 @@ import { bind } from "astal"
 export default function WifiStatus() {
     const { wifi } = Network.get_default()
 
-    return    <box className={"network"} spacing={4}>
-                  <icon icon={bind(wifi, "iconName")}/>
-                  <label label={bind(wifi, "ssid").as(String)}/>
-              </box>
+    return <box className={"network"} spacing={4}>
+            <icon icon={bind(wifi, "iconName")}/>
+            <label label={bind(wifi, "ssid").as(String)}/>
+    </box>
 }

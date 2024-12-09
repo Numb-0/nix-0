@@ -3,9 +3,11 @@
   ...
 }:
 {
+  environment.variables = { EDITOR = "code";};
   # Here add programs
   environment.systemPackages = with pkgs; [
     gcc
+    cmake
     python3
     typescript
     nodejs
@@ -25,6 +27,10 @@
     sdkmanager
     jdk17
 
+    unityhub
+    dotnetCorePackages.dotnet_8.sdk
+    icu
+
     vesktop
     spotify
     obs-studio
@@ -43,6 +49,7 @@
     imv
 
     lxqt.lxqt-policykit
+    patchelf
 
     unzip
     unrar

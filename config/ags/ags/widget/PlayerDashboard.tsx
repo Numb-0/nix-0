@@ -14,26 +14,26 @@ const pl_dashboard_animation_cooldown = 200
 pl_dashboard_toggler.subscribe((toggling)=>{
     if(toggling) {
         pl_dashboard_toggling.set(true)
-        App.toggle_window("PlDashboard")
+        App.toggle_window("PlayerDashboard")
         pl_dashboard_visible.set(true)
         timeout(pl_dashboard_animation_cooldown, ()=>pl_dashboard_toggling.set(false))
     } else {
         pl_dashboard_toggling.set(true)
         pl_dashboard_visible.set(false)
-        timeout(pl_dashboard_animation_cooldown,()=>App.toggle_window("PlDashboard"))
+        timeout(pl_dashboard_animation_cooldown,()=>App.toggle_window("PlayerDashboard"))
         timeout(pl_dashboard_animation_cooldown,()=>pl_dashboard_toggling.set(false))
     }
 })
 
-export default function PlDashboard() {
+export default function PlayerDashboard() {
     const mpris = Mpris.get_default()
 
     return <window 
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
             anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.BOTTOM}
             keymode={Astal.Keymode.EXCLUSIVE} 
-            name={"PlDashboard"} 
-            className={"pldashboard"}
+            name={"PlayerDashboard"} 
+            className={"PlayerDashboard"}
             application={App}
             monitor={bind(hyprland, "focusedMonitor").as((monitor) => monitor.id)}
             onKeyPressEvent={(_, event) => event.get_keyval()[1] === Gdk.KEY_Escape && pl_dashboard_toggler.set(false)}

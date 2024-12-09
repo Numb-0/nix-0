@@ -11,7 +11,8 @@ window.Dashboard {
         background-color: $base01;
     }
 
-    box.placeholder {
+    box.cava {
+        padding: .6rem .4rem;
         border-radius: $radius;
         min-width: 50px;
         background-color: $base01;
@@ -19,7 +20,7 @@ window.Dashboard {
 
 
     button.drop, button.wifiButton, button.bluetoothButton {
-        padding: .4rem;
+        padding: .4rem .6rem .4rem;
         border-radius: $radius;
         background-color: $base01;
         outline: none;
@@ -72,6 +73,10 @@ window.Dashboard {
                     background-color: $base02;
                 }
             }
+            // connected button text color
+            &.connected {
+                color: $base0A;
+            }
         }
     }
     scrollable.wifiList { color: $base0C; }
@@ -83,7 +88,7 @@ window.Dashboard {
             font-size: 1.2rem;
         }
         scale {
-            min-height: 100px;
+            min-height: 120px;
             padding: 0.4rem;
             margin: 0.4rem;
             border-radius: $radius;

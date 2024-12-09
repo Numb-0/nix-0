@@ -5,6 +5,7 @@ import BrightnessSlider from "./components/dashboard/brightnessSlider"
 import VolumeSlider from "./components/dashboard/volumeSlider"
 import BluetoothComponents from "./components/dashboard/bluetoothComponents"
 import WifiComponets from "./components/dashboard/wifiComponents"
+import CavaStatus from "./components/dashboard/cavaStatus"
 
 const hyprland = Hyprland.get_default()
 
@@ -58,28 +59,28 @@ export default function Dashboard() {
             monitor={bind(hyprland, "focusedMonitor").as((monitor) => monitor.id)}
             onKeyPressEvent={(_, event) => event.get_keyval()[1] === Gdk.KEY_Escape && dashboard_toggler.set(false)}
             margin={10}>
-            <box halign={Gtk.Align.END} valign={Gtk.Align.START}>
-                <revealer revealChild={dashboard_visible()} transitionDuration={dashboard_animation_cooldown + 50} transition_type={Gtk.RevealerTransitionType.SLIDE_DOWN}>
-                    <box spacing={4}>
-                        <stack homogeneous transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>
-                            <box name={"placeholder"}/>
-                            {bluetooth.BluetooohDeviceList()}
-                            {wifi.WifiAccessPointsList()}
-                        </stack>
-                        <box spacing={4} vertical>
-                            {bluetooth.BluetoothButton()}
-                            {wifi.WifiButton()}
-                            <button vexpand valign={Gtk.Align.FILL} className={"drop"} onClicked={()=>execAsync("hyprpicker -a")}> 
-                                <icon icon={"Drop-symbolic"}/>
-                            </button>
+            <revealer halign={Gtk.Align.END} valign={Gtk.Align.START} revealChild={dashboard_visible()} transitionDuration={dashboard_animation_cooldown + 50} transition_type={Gtk.RevealerTransitionType.SLIDE_DOWN}>
+                <box spacing={4}>
+                    <stack homogeneous transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>
+                        <box name={"placeholder"}>
+                            <CavaStatus/>
                         </box>
-                        <box className={"container"}>
-                            <VolumeSlider/>
-                            <BrightnessSlider/>
-                        </box>
+                        {bluetooth.BluetooohDeviceList()}
+                        {wifi.WifiAccessPointsList()}
+                    </stack>
+                    <box spacing={4} vertical>
+                        {bluetooth.BluetoothButton()}
+                        {wifi.WifiButton()}
+                        <button vexpand valign={Gtk.Align.FILL} className={"drop"} onClicked={()=>execAsync("hyprpicker -a")}> 
+                            <icon icon={"Drop-symbolic"}/>
+                        </button>
                     </box>
-                </revealer>
-            </box>
+                    <box className={"container"}>
+                        <VolumeSlider/>
+                        <BrightnessSlider/>
+                    </box>
+                </box>
+            </revealer>
     </window>
 }
                   
