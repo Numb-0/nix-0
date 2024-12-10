@@ -7,7 +7,7 @@ export default function hexToRgb(hex: string) {
         throw new Error('Invalid hex color');
     }
 
-    // Parse the hex string into RGB components
+    // Parse the hex string into RGB components still need to /255 them to get the correct values
     const r = parseInt(hex.slice(0, 2), 16);
     const g = parseInt(hex.slice(2, 4), 16);
     const b = parseInt(hex.slice(4, 6), 16);

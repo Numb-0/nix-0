@@ -1,7 +1,6 @@
 import { App, Astal, Gtk, Gdk } from "astal/gtk3"
 import GLib  from "gi://GLib"
 import { Variable } from "astal"
-import Cairo from 'cairo';
 
 import Workspaces from "./components/bar/workspaces"
 import VolumeStatus from "./components/bar/volumeStatus"

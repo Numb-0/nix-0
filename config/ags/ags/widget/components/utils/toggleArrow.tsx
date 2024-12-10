@@ -35,7 +35,7 @@ export default function ToggleArrow() {
     }
 
     return {
-        arrow: () => <icon icon={"Arrow-symbolic"} css={css()} />,
+        arrow: () => <icon className={"arrow"} icon={"Arrow-symbolic"} css={css()} />,
         rotate_arrow,
         arrow_open,
     }

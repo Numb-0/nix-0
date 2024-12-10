@@ -36,6 +36,7 @@
     obs-studio
     prismlauncher
     aseprite
+    steamcmd
 
     fastfetch
     krabby

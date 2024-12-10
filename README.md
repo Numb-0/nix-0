@@ -1,7 +1,7 @@
 ## Nixos configuration
 
 ## Installation
-1. git clone the repo in $HOME or use github flake feature !!!!
+1. git clone the repo in $HOME and rebuild :)
 ## Nix Cheatsheet
 ### Removing unused pkgs
 ```

@@ -20,6 +20,9 @@ window.Dashboard {
 
 
     button.drop, button.wifiButton, button.bluetoothButton {
+        .arrow {
+            padding-top: .4rem;
+        }
         padding: .4rem .6rem .4rem;
         border-radius: $radius;
         background-color: $base01;

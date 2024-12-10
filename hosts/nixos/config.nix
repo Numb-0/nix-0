@@ -114,11 +114,17 @@ in
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       extraPackages = with pkgs; [
+        bumblebee
+        glxinfo
+        libglvnd
+        SDL2
+        glibc
       ];
     };
   };
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.nvidia.acceptLicense = true;
 
   users = {
     mutableUsers = true;
