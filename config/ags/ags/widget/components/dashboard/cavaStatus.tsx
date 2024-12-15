@@ -16,7 +16,7 @@ export default function CavaStatus() {
 
     return <box className={"cava"} visible={bind(cava, "values").as(vals=>vals.every(val => val <= 0.001) ? false : true)}>
         <drawingarea widthRequest={200} heightRequest={150} setup={(self) => {
-            interval(15000, changeColor)
+            //interval(15000, changeColor)
             cava.set_active(false)
             cava.set_bars(7)
             cava.connect("notify::values", () => self.queue_draw())

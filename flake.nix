@@ -6,8 +6,6 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
-    #nixvim.url = "github:nix-community/nixvim/nixos-24.05";
-    #nixvim.inputs.nixpkgs.follows = "nixpkgs";
     ags.url = "github:aylur/ags";
   };
 
@@ -22,7 +20,7 @@
       nixosConfigurations = {
         "${host}" = nixpkgs.lib.nixosSystem {
           specialArgs = {
-	          inherit system;
+            inherit system;
             inherit inputs;
             inherit username;
             inherit host;

@@ -23,6 +23,7 @@ in
   ];
 
   hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
 
   # Bootloader
   boot = {
@@ -114,11 +115,11 @@ in
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       extraPackages = with pkgs; [
-        bumblebee
-        glxinfo
-        libglvnd
-        SDL2
-        glibc
+        #bumblebee
+        #glxinfo
+        #libglvnd
+        #SDL2
+        #glibc
       ];
     };
   };

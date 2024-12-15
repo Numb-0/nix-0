@@ -37,6 +37,14 @@
     prismlauncher
     aseprite
     steamcmd
+    (lutris.override {
+      extraLibraries =  pkgs: [
+        # List library dependencies here
+      ];
+      extraPkgs = pkgs: [
+         # List package dependencies here
+       ];
+    })
 
     fastfetch
     krabby
