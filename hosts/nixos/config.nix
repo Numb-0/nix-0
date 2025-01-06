@@ -28,10 +28,10 @@ in
   # Bootloader
   boot = {
     # This is for OBS Virtual Cam Support
-    kernelModules = [ "v4l2loopback" ];
+    kernelModules = [ "v4l2loopback" "acpi_call" ];
     # Needed for Razer
     kernelParams = [ "button.lid_init_state=open" "intremap=off" "quiet" "splash" "nvidia_drm.modeset=1" ];
-    extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+    extraModulePackages = [ config.boot.kernelPackages.v4l2loopback config.boot.kernelPackages.acpi_call ];
     # Needed For Some Steam Games
     kernel.sysctl = {
       "vm.max_map_count" = 2147483642;
@@ -155,6 +155,13 @@ in
 
   # Services to start
   services = {
+    mysql = {
+        enable = true;
+        package = pkgs.mariadb;
+    };
+  };
+
+  services = {
     gnome.gnome-keyring.enable = true;
     tlp = {
       enable = true;
@@ -171,8 +178,8 @@ in
         CPU_MAX_PERF_ON_BAT = 20;
 
        #Optional helps save long term battery health
-       START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
-       STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+       START_CHARGE_THRESH_BAT0 = 20; 
+       STOP_CHARGE_THRESH_BAT0 = 80;
       };
     };
     upower = {

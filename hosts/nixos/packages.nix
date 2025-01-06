@@ -6,9 +6,12 @@
   environment.variables = { EDITOR = "code";};
   # Here add programs
   environment.systemPackages = with pkgs; [
+    # Databases
+
     gcc
     cmake
     python3
+    php
     typescript
     nodejs
     nodePackages.npm
@@ -22,6 +25,7 @@
     vscode
     # nix language server
     nixd
+    #tk
 
     godot_4
     sdkmanager
@@ -36,7 +40,7 @@
     obs-studio
     prismlauncher
     aseprite
-    steamcmd
+    #steamcmd
     (lutris.override {
       extraLibraries =  pkgs: [
         # List library dependencies here

@@ -10,6 +10,13 @@ return {
     -- import lspconfig plugin
     local lspconfig = require("lspconfig")
 
+    lspconfig.phpactor.setup({
+      root_dir = function(fname)
+        return require('lspconfig').util.root_pattern('composer.json', '.git')(fname) or vim.loop.cwd()
+      end
+    })
+
+
     -- Create Commands
     local keymap = vim.keymap
     vim.api.nvim_create_autocmd("LspAttach", {

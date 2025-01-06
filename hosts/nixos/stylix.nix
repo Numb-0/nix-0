@@ -1,11 +1,14 @@
 {
   pkgs,
+  username,
+  lib,
   ...
 }:
 let
   fontsize = 11;
 in
 {
+  home-manager.users.${username} = { stylix.targets.hyprpaper.enable = lib.mkForce false; };
   # Styling Options
   stylix = {
     enable = true;

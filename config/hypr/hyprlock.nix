@@ -9,7 +9,7 @@
       settings = {
         general = {
           disable_loading_bar = true;
-          grace = 2;
+          grace = 10;
           hide_cursor = true;
         };
         background = [

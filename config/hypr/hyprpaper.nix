@@ -1,14 +1,17 @@
 let 
-  #wallpaperHomeDir = "~/Pictures/wallpapers";
-  #wallpaperDir = "${toString ./../wallpapers}";
-  #wallpapers = builtins.readDir wallpaperDir;
-  #wallpaperPaths = builtins.map (file: "${wallpaperHomeDir}/${file}") (builtins.attrNames wallpapers);
-  #selectedWallpaper = builtins.elemAt wallpaperPaths 0;
+  wallpaperDir = ./../wallpapers;
+  wallpaperImgs = builtins.readDir wallpaperDir;
+  wallpaperPaths = builtins.map (file: "${toString wallpaperDir}/${file}") (builtins.attrNames wallpaperImgs);
 in
+#builtins.trace wallpaperPaths
 { 
   services = {
     hyprpaper = {
       enable = true;
+      settings = {
+        preload = wallpaperPaths;
+        wallpaper = ",${builtins.elemAt wallpaperPaths 0}";
+      };
       # Setting are created by stylix
     };
   };
