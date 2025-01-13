@@ -9,14 +9,13 @@ import Pango from "gi://Pango";
 export default function WifiComponets() {
     const { wifi } = Network.get_default()
     const wf_arrow = ToggleArrow()
-    var read_access_point = Variable(false)
 
     function AccessPointButton({accesspoint}: {accesspoint: Network.AccessPoint}): JSX.Element {
         return <FlowBoxChild className={accesspoint == wifi.get_active_access_point() ? "connected" : ""}>
             <eventbox>
                 <box spacing={2}>
                     <icon icon={accesspoint.get_icon_name()}/>
-                    <label ellipsize={read_access_point().as(r=>r ? Pango.EllipsizeMode.NONE : Pango.EllipsizeMode.END)} maxWidthChars={20} label={accesspoint.get_ssid() || ""}/>
+                    <label ellipsize={wf_arrow.arrow_open().as(r=>r ? Pango.EllipsizeMode.NONE : Pango.EllipsizeMode.END)} maxWidthChars={20} label={accesspoint.get_ssid() || ""}/>
                 </box>
             </eventbox>
         </FlowBoxChild>
@@ -38,11 +37,9 @@ export default function WifiComponets() {
 
     function WifiAccessPointsList() {
         return <scrollable hscroll={Gtk.PolicyType.NEVER} name={"wifi"} className={"wifiList"}>
-            <eventbox onHover={() => read_access_point.set(true)} onHoverLost={() => read_access_point.set(false)}>
                 <FlowBox valign={Gtk.Align.START} maxChildrenPerLine={1} rowSpacing={2}>
                     {access_points_list}
                 </FlowBox>
-            </eventbox>
         </scrollable>
     }
 
