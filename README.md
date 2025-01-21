@@ -24,8 +24,9 @@ sudo /run/current-system/bin/switch-to-configuration boot
 ```
 ### Updating system
 ```
-sudo nix-channel --update
-sudo nixos-rebuild switch --flake .#nixos --update
+1. sudo nix-channel --update
+2. nix flake update
+3. sudo nixos-rebuild switch --flake .#nixos --update
 ```
 
 ### Channels
