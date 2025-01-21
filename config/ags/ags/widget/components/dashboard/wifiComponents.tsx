@@ -1,6 +1,6 @@
 import Network from "gi://AstalNetwork"
 import { bind, Variable } from "astal";
-import { Gtk, Gdk } from "astal/gtk4";
+import { Gtk, Gdk } from "astal/gtk3";
 import ToggleArrow from "../utils/toggleArrow";
 import { FlowBoxChild } from "../astalified/FlowBoxChild";
 import { FlowBox } from "../astalified/FlowBox";
@@ -25,8 +25,8 @@ export default function WifiComponets() {
         .map(access_point => <AccessPointButton accesspoint={access_point}/> ))
 
     function WifiButton() {
-        return <button className={"wifiButton"} vexpand /* valign={Gtk.Align.FILL}  */ 
-            /* onButtonPressEvent={(_,event)=> event.get_event_type()==Gdk.EventType.DOUBLE_BUTTON_PRESS ? wifi.set_enabled(!wifi.get_enabled()) : null} */ 
+        return <button className={"wifiButton"} vexpand valign={Gtk.Align.FILL}  
+            onButtonPressEvent={(_,event)=> event.get_event_type()==Gdk.EventType.DOUBLE_BUTTON_PRESS ? wifi.set_enabled(!wifi.get_enabled()) : null} 
             onClicked={() => { wf_arrow.rotate_arrow(); wifi.scan()}}>
             <box spacing={4}>
                 {wf_arrow.arrow()}
@@ -37,7 +37,7 @@ export default function WifiComponets() {
 
     function WifiAccessPointsList() {
         return <scrollable hscroll={Gtk.PolicyType.NEVER} name={"wifi"} className={"wifiList"}>
-                <FlowBox /* valign={Gtk.Align.START} */ maxChildrenPerLine={1} rowSpacing={2}>
+                <FlowBox valign={Gtk.Align.START} maxChildrenPerLine={1} rowSpacing={2}>
                     {access_points_list}
                 </FlowBox>
         </scrollable>

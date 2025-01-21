@@ -1,4 +1,4 @@
-import { App, Astal, Gdk, Gtk } from "astal/gtk4"
+import { App, Astal, Gtk, Gdk } from "astal/gtk3"
 import Hyprland from "gi://AstalHyprland"
 import { bind, Variable, timeout, execAsync } from "astal"
 import BrightnessSlider from "./components/dashboard/brightnessSlider"
@@ -30,10 +30,10 @@ dashboard_toggler.subscribe((toggling)=>{
 
 export default function Dashboard() {
 
-    //const bluetooth = BluetoothComponents()
-    //const wifi = WifiComponets()
+    const bluetooth = BluetoothComponents()
+    const wifi = WifiComponets()
 
-    /* bluetooth.bt_arrow.arrow_open.subscribe((open) => open ? ( wifi.wf_arrow.arrow_open.get() ? wifi.wf_arrow.rotate_arrow(): null): null)
+    bluetooth.bt_arrow.arrow_open.subscribe((open) => open ? ( wifi.wf_arrow.arrow_open.get() ? wifi.wf_arrow.rotate_arrow(): null): null)
     wifi.wf_arrow.arrow_open.subscribe((open) => open ? ( bluetooth.bt_arrow.arrow_open.get() ? bluetooth.bt_arrow.rotate_arrow() : null ): null)
 
     const switcher = Variable.derive(
@@ -47,36 +47,34 @@ export default function Dashboard() {
                 return "placeholder"
             }
         }
-    ) */
+    )
 
     return <window 
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
             anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.BOTTOM}
             keymode={Astal.Keymode.EXCLUSIVE} 
-            cssClasses={["Dashboard"]}
             name={"Dashboard"} 
-            namespace={"Dashboard"}
+            className={"Dashboard"}
             application={App}
             monitor={bind(hyprland, "focusedMonitor").as((monitor) => monitor.id)}
             onKeyPressEvent={(_, event) => event.get_keyval()[1] === Gdk.KEY_Escape && dashboard_toggler.set(false)}
             margin={10}>
             <box halign={Gtk.Align.END} valign={Gtk.Align.START} spacing={4}>
-                <stack /* homogeneous */ transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} /* visible_child_name={switcher()} */>
+                <stack homogeneous transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>
                     <box name={"placeholder"}>
-                        <label label={"No Active Players"}/>
-                        {/* <CavaStatus/> */}
+                        <CavaStatus/>
                     </box>
-                    {/* {bluetooth.BluetooohDeviceList()}
-                    {wifi.WifiAccessPointsList()} */}
+                    {bluetooth.BluetooohDeviceList()}
+                    {wifi.WifiAccessPointsList()}
                 </stack>
                 <box spacing={4} vertical>
-                    {/* {bluetooth.BluetoothButton()}
-                    {wifi.WifiButton()} */}
-                    <button vexpand valign={Gtk.Align.FILL} cssClasses={["drop"]} onClicked={()=>execAsync("hyprpicker -a")}> 
-                        <image iconName={"Drop-symbolic"}/>
+                    {bluetooth.BluetoothButton()}
+                    {wifi.WifiButton()}
+                    <button vexpand valign={Gtk.Align.FILL} className={"drop"} onClicked={()=>execAsync("hyprpicker -a")}> 
+                        <icon icon={"Drop-symbolic"}/>
                     </button>
                 </box>
-                <box cssClasses={["container"]}>
+                <box className={"container"}>
                     <VolumeSlider/>
                     <BrightnessSlider/>
                 </box>

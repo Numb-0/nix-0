@@ -1,6 +1,6 @@
-import { Astal, Gtk, } from "astal/gtk4"
+import { Astal, Gtk } from "astal/gtk3"
 import Mpris from "gi://AstalMpris"
-import { bind, GLib} from "astal"
+import { bind } from "astal"
 import { pl_dashboard_toggler } from "../../PlayerDashboard"
 
 function lengthStr(length: number) {
@@ -24,7 +24,7 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
         `background-image: url('${c}')`)
 
     const playerIcon = bind(player, "entry").as(e => {
-        return e && GLib.get_os_info(e) ? e : "audio-x-generic-symbolic";
+        return e && Astal.Icon.lookup_icon(e) ? e : "audio-x-generic-symbolic";
     })
 
     const position = bind(player, "position").as(p => player.length > 0
@@ -36,12 +36,12 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
             : "media-playback-start-symbolic"
     )
 
-    return <box cssClasses={["MediaPlayer"]}>
-        <box cssClasses={["cover-art"]} css={coverArt} />
+    return <box className="MediaPlayer">
+        <box className="cover-art" css={coverArt} />
         <box vertical>
-            <box spacing={2} cssClasses={["title"]}>
-                <label /* truncate */ hexpand halign={START} label={title} />
-                <image iconName={playerIcon} />
+            <box spacing={2} className="title">
+                <label truncate hexpand halign={START} label={title} />
+                <icon icon={playerIcon} />
             </box>
             <label halign={START} valign={START} vexpand wrap label={artist} />
             <slider
@@ -49,10 +49,10 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
                 onDragged={({ value }) => player.position = value * player.length}
                 value={position}
             />
-            <centerbox cssClasses={["actions"]}>
+            <centerbox className="actions">
                 <label
                     hexpand
-                    cssClasses={["position"]}
+                    className="position"
                     halign={START}
                     visible={bind(player, "length").as(l => l > 0)}
                     label={bind(player, "position").as(lengthStr)}
@@ -61,25 +61,25 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
                     <button
                         onClicked={() => player.previous()}
                         visible={bind(player, "canGoPrevious")}>
-                        <image iconName="media-skip-backward-symbolic" />
+                        <icon icon="media-skip-backward-symbolic" />
                     </button>
                     <button
                         // On Opening dashboard, grab focus to the play button
-                        //setup={self => self.hook(pl_dashboard_toggler, (self, value) => value ? self.grab_focus() : null)}
+                        setup={self => self.hook(pl_dashboard_toggler, (self, value) => value ? self.grab_focus() : null)}
                         onClicked={() => player.play_pause()}
                         visible={bind(player, "canControl")}>
-                        <image iconName={playIcon} />
+                        <icon icon={playIcon} />
                     </button>
                     <button
                         onClicked={() => player.next()}
                         visible={bind(player, "canGoNext")}>
-                        <image iconName="media-skip-forward-symbolic" />
+                        <icon icon="media-skip-forward-symbolic" />
                     </button>
                 </box>
                 <label
-                    cssClasses={["length"]}
+                    className="length"
                     hexpand
-                    /* halign={END} */
+                    halign={END}
                     visible={bind(player, "length").as(l => l > 0)}
                     label={bind(player, "length").as(l => l > 0 ? lengthStr(l) : "0:00")}
                 />

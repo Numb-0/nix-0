@@ -1,4 +1,4 @@
-import { App, Astal, Gdk, Gtk } from "astal/gtk4"
+import { App, Astal, Gtk, Gdk } from "astal/gtk3"
 import Hyprland from "gi://AstalHyprland"
 import { bind, Variable, timeout } from "astal"
 import MprisPlayers from "./components/dashboard/mprisPlayers"
@@ -33,13 +33,13 @@ export default function PlayerDashboard() {
             anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.BOTTOM}
             keymode={Astal.Keymode.EXCLUSIVE} 
             name={"PlayerDashboard"} 
-            cssClasses={["PlayerDashboard"]}
+            className={"PlayerDashboard"}
             application={App}
             monitor={bind(hyprland, "focusedMonitor").as((monitor) => monitor.id)}
             onKeyPressEvent={(_, event) => event.get_keyval()[1] === Gdk.KEY_Escape && pl_dashboard_toggler.set(false)}
             margin={10}>
-            <box cssClasses={["container"]} halign={Gtk.Align.END} valign={Gtk.Align.END}>
-                {bind(mpris, "players").as(players => players.length > 0 ? <box/> : <label cssClasses={["placeHolder"]} label={"No Active Players"}/>)}
+            <box className={"container"} halign={Gtk.Align.END} valign={Gtk.Align.END}>
+                {bind(mpris, "players").as(players => players.length > 0 ? <box/> : <label className={"placeHolder"} label={"No Active Players"}/>)}
                 <MprisPlayers/>
             </box>
     </window>

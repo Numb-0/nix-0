@@ -1,7 +1,7 @@
 import Bluetooth from "gi://AstalBluetooth";
 import { bind, timeout, Variable } from "astal";
 import ToggleArrow from "../utils/toggleArrow";
-import { Gtk, Gdk } from "astal/gtk4";
+import { Gtk, Gdk } from "astal/gtk3";
 import { FlowBoxChild } from "../astalified/FlowBoxChild";
 import { FlowBox } from "../astalified/FlowBox";
 
@@ -61,10 +61,10 @@ export default function BluetoothComponents() {
 
     // Button to open the device list
     function BluetoothButton() {
-        return  <button cssClasses={["bluetoothButton"]} vexpand valign={Gtk.Align.FILL} /* onButtonPressEvent={(_,event)=> event.get_event_type()==Gdk.EventType.DOUBLE_BUTTON_PRESS ? bluetooth.toggle() : null} */ onClicked={() => { bt_arrow.rotate_arrow()}}>
+        return  <button className={"bluetoothButton"} vexpand valign={Gtk.Align.FILL} onButtonPressEvent={(_,event)=> event.get_event_type()==Gdk.EventType.DOUBLE_BUTTON_PRESS ? bluetooth.toggle() : null} onClicked={() => { bt_arrow.rotate_arrow()}}>
             <box spacing={4}>
                 {bt_arrow.arrow()}
-                <image iconName={bind(bluetooth.adapter, "powered").as((powered) => powered ? "bluetooth-symbolic" : "bluetooth-disabled-symbolic")}/>
+                <icon icon={bind(bluetooth.adapter, "powered").as((powered) => powered ? "bluetooth-symbolic" : "bluetooth-disabled-symbolic")}/>
             </box>
         </button>
     }

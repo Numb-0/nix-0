@@ -1,4 +1,4 @@
-import { App, Astal, Gdk } from "astal/gtk4"
+import { App, Astal, Gtk, Gdk } from "astal/gtk3"
 import Cairo from 'cairo';
 import hexToRgb from "./components/utils/hexToRgb";
 import Hyprland from "gi://AstalHyprland"
@@ -8,7 +8,7 @@ const hyprland = Hyprland.get_default()
 export default function Corners(gdkmonitor: Gdk.Monitor) {
     return <window
             name={"Bar"}
-            cssClasses={["Bar"]}
+            className="Bar"
             gdkmonitor={gdkmonitor}
             exclusivity={Astal.Exclusivity.NORMAL}
             keymode={Astal.Keymode.NONE}
