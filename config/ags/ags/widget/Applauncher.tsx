@@ -65,7 +65,6 @@ export default function Applauncher() {
         className={"Applauncher"} 
         monitor={bind(hyprland, "focused_monitor").as((monitor) => monitor.id)}
         onKeyPressEvent={(_, event) => event.get_keyval()[1] === Gdk.KEY_Escape && applauncher_toggler.set(false)}>
-        <revealer revealChild={applauncher_visible()} transition_duration={applauncher_animation_cooldown + 50} transitionType={Gtk.RevealerTransitionType.SLIDE_LEFT}>
         <box vertical={true}>
             <entry  
                 setup={(self) => {
@@ -85,6 +84,5 @@ export default function Applauncher() {
                 </FlowBox>
             </scrollable>
         </box>
-        </revealer>
     </window>
 }

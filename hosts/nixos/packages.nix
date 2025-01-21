@@ -6,8 +6,6 @@
   environment.variables = { EDITOR = "code";};
   # Here add programs
   environment.systemPackages = with pkgs; [
-    # Databases
-
     gcc
     cmake
     python3
@@ -66,6 +64,7 @@
 
     unzip
     unrar
+    staruml
 
     libnotify
     ripgrep

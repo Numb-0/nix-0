@@ -59,28 +59,26 @@ export default function Dashboard() {
             monitor={bind(hyprland, "focusedMonitor").as((monitor) => monitor.id)}
             onKeyPressEvent={(_, event) => event.get_keyval()[1] === Gdk.KEY_Escape && dashboard_toggler.set(false)}
             margin={10}>
-            <revealer halign={Gtk.Align.END} valign={Gtk.Align.START} revealChild={dashboard_visible()} transitionDuration={dashboard_animation_cooldown + 50} transition_type={Gtk.RevealerTransitionType.SLIDE_DOWN}>
-                <box spacing={4}>
-                    <stack homogeneous transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>
-                        <box name={"placeholder"}>
-                            <CavaStatus/>
-                        </box>
-                        {bluetooth.BluetooohDeviceList()}
-                        {wifi.WifiAccessPointsList()}
-                    </stack>
-                    <box spacing={4} vertical>
-                        {bluetooth.BluetoothButton()}
-                        {wifi.WifiButton()}
-                        <button vexpand valign={Gtk.Align.FILL} className={"drop"} onClicked={()=>execAsync("hyprpicker -a")}> 
-                            <icon icon={"Drop-symbolic"}/>
-                        </button>
+            <box halign={Gtk.Align.END} valign={Gtk.Align.START} spacing={4}>
+                <stack homogeneous transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>
+                    <box name={"placeholder"}>
+                        <CavaStatus/>
                     </box>
-                    <box className={"container"}>
-                        <VolumeSlider/>
-                        <BrightnessSlider/>
-                    </box>
+                    {bluetooth.BluetooohDeviceList()}
+                    {wifi.WifiAccessPointsList()}
+                </stack>
+                <box spacing={4} vertical>
+                    {bluetooth.BluetoothButton()}
+                    {wifi.WifiButton()}
+                    <button vexpand valign={Gtk.Align.FILL} className={"drop"} onClicked={()=>execAsync("hyprpicker -a")}> 
+                        <icon icon={"Drop-symbolic"}/>
+                    </button>
                 </box>
-            </revealer>
+                <box className={"container"}>
+                    <VolumeSlider/>
+                    <BrightnessSlider/>
+                </box>
+            </box>
     </window>
 }
                   

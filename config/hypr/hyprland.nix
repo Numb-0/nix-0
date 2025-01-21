@@ -115,6 +115,9 @@ with lib;
           animation = border, 0, 6, circ
           animation = fade, 1, 10, default
           animation = workspaces, 1, 5, circ
+
+          animation = layersIn, 1, 3, circ, slide
+          animation = layersOut, 1, 1.6, circ
         }
 
         decoration {

@@ -39,12 +39,8 @@ export default function PlayerDashboard() {
             onKeyPressEvent={(_, event) => event.get_keyval()[1] === Gdk.KEY_Escape && pl_dashboard_toggler.set(false)}
             margin={10}>
             <box className={"container"} halign={Gtk.Align.END} valign={Gtk.Align.END}>
-                <revealer revealChild={pl_dashboard_visible()} transitionDuration={pl_dashboard_animation_cooldown + 50} transition_type={Gtk.RevealerTransitionType.SLIDE_DOWN}>
-                    <box>
-                        {bind(mpris, "players").as(players => players.length > 0 ? <box/> : <label className={"placeHolder"} label={"No Active Players"}/>)}
-                        <MprisPlayers/>
-                    </box>
-                </revealer>
+                {bind(mpris, "players").as(players => players.length > 0 ? <box/> : <label className={"placeHolder"} label={"No Active Players"}/>)}
+                <MprisPlayers/>
             </box>
     </window>
 }
