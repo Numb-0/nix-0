@@ -125,11 +125,12 @@ with lib;
           active_opacity = 0.95
           inactive_opacity = 0.95
 
-          drop_shadow = true
-          shadow_range = 6
-          shadow_render_power = 6
-          col.shadow = rgba(${config.stylix.base16Scheme.base01}ee)
-          
+          shadow {
+              enabled = true
+              range = 6
+              render_power = 6
+              color = rgba(${config.stylix.base16Scheme.base01}ee)
+          }
           blur {
               enabled = true
               size = 4

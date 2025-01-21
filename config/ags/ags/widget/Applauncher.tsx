@@ -1,6 +1,6 @@
 import Apps from "gi://AstalApps";
 import Hyprland from "gi://AstalHyprland"
-import { App, Astal, Gtk, Gdk } from "astal/gtk3"
+import { App, Astal, Gtk, Gdk } from "astal/gtk4"
 import { FlowBox } from "./components/astalified/FlowBox";
 import { FlowBoxChild } from "./components/astalified/FlowBoxChild";
 import { bind, timeout, Variable } from "astal";

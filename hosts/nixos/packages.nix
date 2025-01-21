@@ -84,7 +84,7 @@
       symbola
       monocraft
       noto-fonts
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      nerd-fonts.jetbrains-mono
       roboto
     ];
     fontconfig = {
