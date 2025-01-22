@@ -1,4 +1,4 @@
-import { App, Astal, Gtk, Gdk } from "astal/gtk3"
+import { App, Astal, Gtk, Gdk } from "astal/gtk4"
 import GLib  from "gi://GLib"
 import { Variable } from "astal"
 
@@ -13,19 +13,21 @@ import BluetoothStatus from "./components/bar/bluetoothStatus";
 const time = Variable<string>("").poll(1000, () => GLib.DateTime.new_now_local().format("%H:%M")!)
 
 export default function Bar(gdkmonitor: Gdk.Monitor) {
+    const { TOP, LEFT, RIGHT } = Astal.WindowAnchor
+
     return <window
-        name={"Bar"}
-        className="Bar"
+        visible
+        cssClasses={["Bar"]}
         gdkmonitor={gdkmonitor}
         exclusivity={Astal.Exclusivity.EXCLUSIVE}
-        anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.RIGHT}
+        anchor={TOP | LEFT | RIGHT}
         application={App}>
-        <centerbox className={"container"}>
+        <centerbox cssClasses={["container"]}>
                 <box hexpand={false} spacing={8}>
-                    <icon className={"logo"} icon={"Nixos-symbolic"}/>
+                    <image cssClasses={["logo"]} iconName={"Nixos-symbolic"}/>
                     <Workspaces/>
                 </box>
-                <box className={"clock"}>
+                <box cssClasses={["clock"]}>
                     <label label={time()}/>
                 </box>
                 <box spacing={6} halign={Gtk.Align.END}>

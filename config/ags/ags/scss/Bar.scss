@@ -8,8 +8,8 @@ window.Bar {
         background-color: $base01;
     }
 
-    icon.logo {
-        font-size: 1.4rem;
+    image.logo {
+        -gtk-icon-size: 1.4rem;
         color: $base0D;
     }
 
@@ -18,13 +18,13 @@ window.Bar {
             transition: color 1s;
             color: $base02;
             &.occupied {
-                icon {
+                image {
                     transition: color 1s;
                     color: $base07;
                 }
             }
             &.active {
-                icon {
+                image {
                     transition: color 1s;
                     animation: icon-wiggle 1s ease-in-out;
                     color: $base0A;
