@@ -25,15 +25,16 @@ window.Applauncher {
         color: $base05;
 
         background-color: $base01;
-        border: solid .1rem $base07;
+        border: solid .1rem $base04;
         border-radius: $radius;
         
         margin-bottom: .4rem;
 
-        &:focus {
-            // No focus outline
-            box-shadow: none;
+        &:selected {
+            border: solid .1rem $base07;
         }
+        
+        
     }
 
     scrollbar {
@@ -44,7 +45,7 @@ window.Applauncher {
     }
     
     // Pixel perfect
-    scrollable {
+    scrolledwindow {
         // 56 + 2 = 58
         min-height: 58px;
         * {

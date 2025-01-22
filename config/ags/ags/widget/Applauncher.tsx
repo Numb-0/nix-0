@@ -1,8 +1,9 @@
 import Apps from "gi://AstalApps";
 import Hyprland from "gi://AstalHyprland"
-import { App, Astal, hook, Gdk, Gtk } from "astal/gtk4"
+import { App, Astal, Gdk, Gtk } from "astal/gtk4"
 import { bind, timeout, Variable } from "astal";
 
+import ScrolledWindow from "./components/astalified/ScrolledWindow";
 import FlowBoxChild from "./components/astalified/FlowBoxChild";
 import FlowBox from "./components/astalified/FlowBox";
 
@@ -34,7 +35,7 @@ export default function Applauncher() {
     const appList = apps.fuzzy_query("");
 
     function AppButton({app}: {app: Apps.Application}): JSX.Element {
-        return  <FlowBoxChild cssName="flowboxchild" tooltipText={app.name} cssClasses={["appbutton"]} name={app.name}
+        return  <FlowBoxChild cssClasses={["appbutton"]} tooltipText={app.name} name={app.name}
                     onActivate={() => {
                         applauncher_toggler.set(false);
                         app.launch();
@@ -78,11 +79,11 @@ export default function Applauncher() {
                     const selectedApp  = appButtons.find((appButton) => appButton.visible);
                     selectedApp?.activate();
                 }}/>
-                <Gtk.ScrolledWindow cssName="scrollable" /* vscrollbarPolicy={Gtk.PolicyType.EXTERNAL} */ hscrollbarPolicy={Gtk.PolicyType.NEVER} /* halign={Gtk.Align.FILL} */>
-                    <FlowBox homogeneous minChildrenPerLine={3} selectionMode={Gtk.SelectionMode.SINGLE}>
+                <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER}>
+                    <FlowBox homogeneous minChildrenPerLine={4} selectionMode={Gtk.SelectionMode.SINGLE}>
                         {appButtons}
                     </FlowBox>
-                </Gtk.ScrolledWindow>
+                </ScrolledWindow>
         </box>
     </window>
 }
