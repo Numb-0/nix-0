@@ -78,13 +78,9 @@ export default function Applauncher() {
                     const selectedApp  = appButtons.find((appButton) => appButton.visible);
                     selectedApp?.activate();
                 }}/>
-                <Gtk.ScrolledWindow cssName="scrollable" vscrollbar-policy={Gtk.PolicyType.AUTOMATIC} hscrollbar-policy={Gtk.PolicyType.NEVER} vexpand={true} hexpand={true} halign={Gtk.Align.FILL} valign={Gtk.Align.FILL}>
-                    <FlowBox homogeneous min_children_per_line={4} setup={ self  => {
-                        appButtons.forEach(element => {
-                            self.append(element)    
-                        });
-                    } }>
-
+                <Gtk.ScrolledWindow cssName="scrollable" /* vscrollbarPolicy={Gtk.PolicyType.EXTERNAL} */ hscrollbarPolicy={Gtk.PolicyType.NEVER} /* halign={Gtk.Align.FILL} */>
+                    <FlowBox homogeneous minChildrenPerLine={3} selectionMode={Gtk.SelectionMode.SINGLE}>
+                        {appButtons}
                     </FlowBox>
                 </Gtk.ScrolledWindow>
         </box>

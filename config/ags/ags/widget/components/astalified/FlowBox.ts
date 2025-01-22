@@ -6,7 +6,15 @@ export type FlowBoxProps = ConstructProps<Gtk.FlowBox, Gtk.FlowBox.ConstructorPr
 const FlowBox = astalify<Gtk.FlowBox, Gtk.FlowBox.ConstructorProps>(Gtk.FlowBox, {
     // if it is a container widget, define children setter and getter here
     getChildren(self) { return [] },
-    setChildren(self, children) {},
+    setChildren(self, children) {
+        const filteredChildren = children.filter(
+            (child) => child instanceof Gtk.Widget,
+        );
+    
+        for (const child of filteredChildren) {
+            self.append(child);
+        }
+    },
 })
 
 export default FlowBox
