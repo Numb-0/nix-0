@@ -55,9 +55,10 @@ window.Applauncher {
     flowboxchild.appbutton {
         outline: none;
         border-radius: $radius;
-        icon {
+        image {
             // Size 56x56
-            font-size: 50px;
+            //font-size: 50px;
+            -gtk-icon-size: 50px;
         }
     }
 }
