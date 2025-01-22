@@ -17,14 +17,15 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
 
     return <window
         visible
+        cssName="window"
         cssClasses={["Bar"]}
         gdkmonitor={gdkmonitor}
         exclusivity={Astal.Exclusivity.EXCLUSIVE}
         anchor={TOP | LEFT | RIGHT}
         application={App}>
-        <centerbox cssClasses={["container"]}>
+        <centerbox cssName="centerbox" cssClasses={["container"]}>
                 <box hexpand={false} spacing={8}>
-                    <image cssClasses={["logo"]} iconName={"Nixos-symbolic"}/>
+                    <image cssClasses={["logo"]} iconName={"nixos-symbolic"}/>
                     <Workspaces/>
                 </box>
                 <box cssClasses={["clock"]}>
