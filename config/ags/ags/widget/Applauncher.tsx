@@ -84,9 +84,6 @@ export default function Applauncher() {
                         {appButtons}
                     </FlowBox>
                 </ScrolledWindow>
-                <Astal.Box orientation={Gtk.Orientation.HORIZONTAL} halign={Gtk.Align.CENTER}>
-
-                </Astal.Box>
         </box>
     </window>
 }
