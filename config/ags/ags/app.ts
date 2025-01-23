@@ -2,12 +2,14 @@ import { App } from "astal/gtk4"
 import style from "./scss/style.scss"
 import Bar from "./widget/Bar"
 import Applauncher, { applauncher_toggler, applauncher_toggling } from "./widget/Applauncher"
+import Corners from "./widget/Corners"
 
 App.start({
     icons: `${SRC}/assets`,
     css: style,
     main() {
         App.get_monitors().map(Bar)
+        App.get_monitors().map(Corners)
         Applauncher()
     },
     requestHandler(request: string, res: (response: any) => void) {

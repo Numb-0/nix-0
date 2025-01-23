@@ -1,6 +1,6 @@
 import Apps from "gi://AstalApps";
 import Hyprland from "gi://AstalHyprland"
-import { App, Astal, Gdk, Gtk } from "astal/gtk4"
+import { App, Astal, Gdk, Gtk, Widget } from "astal/gtk4"
 import { bind, timeout, Variable } from "astal";
 
 import ScrolledWindow from "./components/astalified/ScrolledWindow";
@@ -84,6 +84,9 @@ export default function Applauncher() {
                         {appButtons}
                     </FlowBox>
                 </ScrolledWindow>
+                <Astal.Box orientation={Gtk.Orientation.HORIZONTAL} halign={Gtk.Align.CENTER}>
+
+                </Astal.Box>
         </box>
     </window>
 }
