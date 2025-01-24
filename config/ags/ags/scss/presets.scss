@@ -21,6 +21,10 @@ button {
     text-shadow: none;
 }
 
+image {
+    -gtk-icon-size: 1rem;
+}
+
 menu {
     label {
         color: $base05;

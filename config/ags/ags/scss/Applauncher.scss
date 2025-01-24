@@ -30,11 +30,7 @@ window.Applauncher {
         
         margin-bottom: .4rem;
 
-        &:selected {
-            border: solid .1rem $base07;
-        }
-        
-        
+        outline-color: $base07;
     }
 
     scrollbar {
@@ -60,6 +56,9 @@ window.Applauncher {
             // Size 56x56
             //font-size: 50px;
             -gtk-icon-size: 50px;
+        }
+        &:selected {
+            background-color: $base02;
         }
     }
 }
