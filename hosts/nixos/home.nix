@@ -64,6 +64,5 @@ in
   home.packages = [
     (import ../../scripts/setup_ags.nix { inherit pkgs config; })
     (import ../../scripts/setup_nvim.nix { inherit pkgs config; })
-    (import ../../scripts/toggle_hypridle.nix { inherit pkgs config; })
   ];
 }

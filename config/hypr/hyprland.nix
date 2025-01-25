@@ -87,6 +87,7 @@ with lib;
         windowrule = center,^(steam)$
         windowrulev2 = stayfocused, title:^()$,class:^(steam)$
         windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
+        windowrulev2 = idleinhibit fullscreen, class:.*
 
         cursor {
           no_hardware_cursors = true
