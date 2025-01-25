@@ -8,7 +8,9 @@
 
     if pgrep -x "hypridle" >/dev/null ;then
         killall hypridle
+        echo "hypridle off"
     else
         hypridle
+        echo "hypridle on"
     fi
   ''
