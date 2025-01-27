@@ -29,7 +29,15 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
                     <Workspaces/>
                 </box>
                 <box cssClasses={["clock"]}>
-                    <label label={time()}/>
+                    <menubutton
+                    hexpand
+                    halign={Gtk.Align.CENTER}
+                    >
+                        <label label={time()} />
+                        <popover>
+                            <Gtk.Calendar />
+                        </popover>
+                    </menubutton>
                 </box>
                 <box spacing={6} halign={Gtk.Align.END}>
                     <WifiStatus/>

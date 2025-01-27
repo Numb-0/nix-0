@@ -68,7 +68,8 @@ export default function Applauncher() {
         onKeyPressed={(_,keyval) => keyval === Gdk.KEY_Escape && applauncher_toggler.set(false)}
         >
         <box vertical={true}>
-            <entry  
+            <entry
+                placeholderText={"ctrl+tab to select"}  
                 setup={(self) => {
                     applauncher_toggler.subscribe(open => open ? self.grab_focus() : null);
                 }}
@@ -76,7 +77,7 @@ export default function Applauncher() {
                     filterList(self.get_text());
                 }}
                 onActivate={() => {
-                    const selectedApp  = appButtons.find((appButton) => appButton.visible);
+                    const selectedApp = appButtons.find((appButton) => appButton.visible);
                     selectedApp?.activate();
                 }}/>
                 <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER}>
