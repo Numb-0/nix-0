@@ -60,8 +60,7 @@ export default function Dashboard() {
             <box halign={Gtk.Align.END} valign={Gtk.Align.START} spacing={4}>
                 <stack transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>
                     <box name={"placeholder"}>
-                        {/* <CavaStatus/> */}
-                        <label label={"Placeholder"}/>
+                        <CavaStatus/>
                     </box>
                     {bluetooth.BluetooohDeviceList()}
                     {wifi.WifiAccessPointsList()}
