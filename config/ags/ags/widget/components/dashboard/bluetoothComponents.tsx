@@ -51,7 +51,6 @@ export default function BluetoothComponents() {
         })
         .map(device => <DeviceButton device={device}/> ))
     
-    
     function scan() {
         if (!bluetooth.adapter.discovering && bluetooth.adapter.powered) {
             bluetooth.adapter.start_discovery()
@@ -69,10 +68,10 @@ export default function BluetoothComponents() {
         </button>
     }
 
-    const BluetooohDeviceList = () => {
+    function BluetooohDeviceList() {
         return <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER} name={"bluetooth"} cssClasses={["bluetoothList"]}>
             <FlowBox valign={Gtk.Align.START} maxChildrenPerLine={1} rowSpacing={2}>
-                {/* {device_list} */}
+                {device_list}
             </FlowBox>
         </ScrolledWindow>
     }

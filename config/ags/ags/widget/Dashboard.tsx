@@ -58,7 +58,7 @@ export default function Dashboard() {
             onKeyPressed={(_, keyval) => keyval === Gdk.KEY_Escape && dashboard_toggler.set(false)}
             margin={10}>
             <box halign={Gtk.Align.END} valign={Gtk.Align.START} spacing={4}>
-                <stack transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>
+                <stack hhomogeneous transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>
                     <box name={"placeholder"}>
                         <CavaStatus/>
                     </box>

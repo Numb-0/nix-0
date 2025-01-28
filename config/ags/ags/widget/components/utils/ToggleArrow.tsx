@@ -11,9 +11,7 @@ export default function ToggleArrow(id: string) {
     const cssprovider = new Gtk.CssProvider()
 
     function rotate_arrow() {
-        console.log("rotate_arrow")
         if (!rotating && deg < 90) {
-            console.log("rotating sx")
             rotating = true
             interval = setInterval(()=>{
                     deg += 1
@@ -25,7 +23,6 @@ export default function ToggleArrow(id: string) {
                     }
             }, delay)
         }else if (!rotating && deg >= 90) {
-            console.log("rotating dx")
             rotating = true
             interval = setInterval(()=>{
                     deg -= 1
