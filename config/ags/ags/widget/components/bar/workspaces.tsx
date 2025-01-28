@@ -15,6 +15,6 @@ export default function Workspaces() {
     }
 
     return <box>
-            <box spacing={2} cssClasses={["workspaces"]}>{workspaces.map(workspace => <WorkspaceButton workspace={workspace}/>)}</box>
+        <box spacing={2} cssClasses={["workspaces"]}>{workspaces.map(workspace => <WorkspaceButton workspace={workspace}/>)}</box>
     </box>
 }

@@ -40,7 +40,7 @@ window.Dashboard {
     button.bluetoothButton { color: $base0D; }
 
 
-    scrollable.wifiList, scrollable.bluetoothList {
+    scrolledwindow.wifiList, scrolledwindow.bluetoothList {
         scrollbar {
             // Remove scrollbar
             &.overlay-indicator {
@@ -82,8 +82,8 @@ window.Dashboard {
             }
         }
     }
-    scrollable.wifiList { color: $base0C; }
-    scrollable.bluetoothList { color: $base0D; }
+    scrolledwindow.wifiList { color: $base0C; }
+    scrolledwindow.bluetoothList { color: $base0D; }
 
 
     box.brightness_slider, box.volume_slider {

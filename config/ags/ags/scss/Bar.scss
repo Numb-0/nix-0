@@ -27,9 +27,10 @@ window.Bar {
             }
             &.active {
                 image {
-                    transition: color 1s;
+                    transition: all 1s;
                     animation: icon-wiggle 1s ease-in-out;
                     color: $base0A;
+                    -gtk-icon-size: 1.1rem;
                 }
             }
         }
@@ -37,6 +38,13 @@ window.Bar {
 
     box.clock {
         color: $base07;
+
+        calendar {
+            color: $base07;
+            button {
+                color: $base07;
+            }
+        }
     }
 
     box.network {

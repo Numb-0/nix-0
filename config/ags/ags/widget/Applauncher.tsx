@@ -40,7 +40,6 @@ export default function Applauncher() {
                         applauncher_toggler.set(false);
                         app.launch();
                     }}>
-                    <label label={app.get_name()} />
                     <image iconName={app.get_icon_name() || ""}/>
         </FlowBoxChild>
     }

@@ -1,6 +1,6 @@
 import Cava from "gi://AstalCava";
 import { bind } from "astal";
-import { Gtk, Gdk, hook } from "astal/gtk4";
+import { Gtk, Gdk } from "astal/gtk4";
 import GObject from "gi://GObject";
 import Gsk from "gi://Gsk";
 import Graphene from "gi://Graphene?version=1.0";
@@ -9,7 +9,7 @@ import Graphene from "gi://Graphene?version=1.0";
 
 const CavaWidget = GObject.registerClass(
     class CavaWidget extends Gtk.Widget {
-        private cava = Cava.get_default()!
+        public cava = Cava.get_default()!
         private cava_colors = ["#a6da95", "#eed49f", "#ed8796", "#8bd5ca", "#c6a0f6"]
         private cava_color: string;
         private barColor = new Gdk.RGBA()
@@ -54,7 +54,7 @@ const CavaWidget = GObject.registerClass(
 
 export default function CavaStatus() {
     const cavawidget = new CavaWidget()
-    return <box cssClasses={["cava"]}>
+    return <box cssClasses={["cava"]} visible={bind(cavawidget.cava, "values").as(vals=>vals.every(val => val <= 0.001) ? false : true)}>
         {cavawidget}
     </box>
 }

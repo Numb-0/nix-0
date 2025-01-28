@@ -1,7 +1,7 @@
 import Bluetooth from "gi://AstalBluetooth";
 import { bind, timeout, Variable } from "astal";
 import ToggleArrow from "../utils/ToggleArrow";
-import { Gtk, Gdk } from "astal/gtk4";
+import { Gtk, Gdk, hook } from "astal/gtk4";
 import FlowBoxChild from "../astalified/FlowBoxChild";
 import FlowBox from "../astalified/FlowBox";
 import ScrolledWindow from "../astalified/ScrolledWindow";
@@ -13,7 +13,7 @@ export default function BluetoothComponents() {
 
     // Custom icons for devices
     const custom_icons: { [key: string]: string } = {
-        "audio-headset": "Headset-symbolic",
+        "audio-headset": "headset-symbolic",
     }
 
     // DeviceButton method to connect device
@@ -51,7 +51,8 @@ export default function BluetoothComponents() {
         })
         .map(device => <DeviceButton device={device}/> ))
     
-    function refresh_device_list() {
+    
+    function scan() {
         if (!bluetooth.adapter.discovering && bluetooth.adapter.powered) {
             bluetooth.adapter.start_discovery()
             timeout(1000, () => bluetooth.adapter.stop_discovery())
@@ -68,10 +69,10 @@ export default function BluetoothComponents() {
         </button>
     }
 
-    function BluetooohDeviceList() {
+    const BluetooohDeviceList = () => {
         return <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER} name={"bluetooth"} cssClasses={["bluetoothList"]}>
             <FlowBox valign={Gtk.Align.START} maxChildrenPerLine={1} rowSpacing={2}>
-                {device_list}
+                {/* {device_list} */}
             </FlowBox>
         </ScrolledWindow>
     }

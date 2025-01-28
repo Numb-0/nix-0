@@ -1,6 +1,6 @@
 import Network from "gi://AstalNetwork"
-import { bind, Variable } from "astal";
-import { Gtk, Gdk } from "astal/gtk4";
+import { bind } from "astal";
+import { Gtk } from "astal/gtk4";
 import ToggleArrow from "../utils/ToggleArrow";
 import FlowBoxChild from "../astalified/FlowBoxChild";
 import FlowBox from "../astalified/FlowBox";
@@ -34,9 +34,10 @@ export default function WifiComponets() {
     }
 
     function WifiAccessPointsList() {
-        return <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER} name={"wifi"} cssClasses={["wifiList"]}>
+        return <ScrolledWindow /* hscrollbarPolicy={Gtk.PolicyType.NEVER} */ name={"wifi"} cssClasses={["wifiList"]}>
                 <FlowBox valign={Gtk.Align.START} maxChildrenPerLine={1} rowSpacing={2}>
-                    {access_points_list}
+                    {/* {access_points_list} */}
+                    <label label={"Scan for networks"} />
                 </FlowBox>
         </ScrolledWindow>
     }

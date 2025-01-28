@@ -29,13 +29,10 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
                     <Workspaces/>
                 </box>
                 <box cssClasses={["clock"]}>
-                    <menubutton
-                    hexpand
-                    halign={Gtk.Align.CENTER}
-                    >
+                    <menubutton>
                         <label label={time()} />
                         <popover>
-                            <Gtk.Calendar />
+                            <Gtk.Calendar canTarget={false} canFocus={false}/>
                         </popover>
                     </menubutton>
                 </box>
