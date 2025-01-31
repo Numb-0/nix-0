@@ -1,7 +1,7 @@
 import Network from "gi://AstalNetwork"
 import { bind, Variable } from "astal";
 import { Gtk, Gdk, hook } from "astal/gtk4";
-import ToggleArrow from "../utils/ToggleArrow";
+import ToggleArrow from "../utils/toggleArrow";
 import FlowBoxChild from "../astalified/FlowBoxChild";
 import FlowBox from "../astalified/FlowBox";
 import Pango from "gi://Pango";
