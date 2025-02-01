@@ -37,6 +37,7 @@ export default function WifiComponets() {
     function WifiAccessPointsList() {
         return <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER} name={"wifi"} cssClasses={["wifiList"]}>
                 <FlowBox valign={Gtk.Align.START} maxChildrenPerLine={1} rowSpacing={2}>
+                    <label label={"Wifi Networks"} halign={Gtk.Align.START} />
                     {access_points_list}
                 </FlowBox>
         </ScrolledWindow>

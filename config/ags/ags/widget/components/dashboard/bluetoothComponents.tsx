@@ -71,6 +71,7 @@ export default function BluetoothComponents() {
     function BluetooohDeviceList() {
         return <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER} name={"bluetooth"} cssClasses={["bluetoothList"]}>
             <FlowBox valign={Gtk.Align.START} maxChildrenPerLine={1} rowSpacing={2}>
+                <label label={"Bluetooth Devices"} halign={Gtk.Align.START} />
                 {device_list}
             </FlowBox>
         </ScrolledWindow>
