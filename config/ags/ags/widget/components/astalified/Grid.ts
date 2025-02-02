@@ -1,9 +1,8 @@
 import { Gtk, astalify, type ConstructProps } from "astal/gtk4"
 import { Binding, GObject } from "astal"
 
-
-export type ListBox = ConstructProps<Gtk.ListBox, Gtk.ListBox.ConstructorProps>
-const ListBox = astalify<Gtk.ListBox, Gtk.ListBox.ConstructorProps>(Gtk.ListBox, {
+type GridProps = ConstructProps<Gtk.Grid, Gtk.Grid.ConstructorProps>
+const Grid = astalify<Gtk.Grid, Gtk.Grid.ConstructorProps>(Gtk.Grid, {
     // if it is a container widget, define children setter and getter here
     getChildren(self) { 
         const children: Gtk.Widget[] = []
@@ -14,6 +13,7 @@ const ListBox = astalify<Gtk.ListBox, Gtk.ListBox.ConstructorProps>(Gtk.ListBox,
         }
         return children
     },
+    setChildren(self, children) {},
 })
 
-export default ListBox
+export default Grid

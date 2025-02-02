@@ -5,6 +5,8 @@ import { Gtk, Gdk, hook } from "astal/gtk4";
 import FlowBoxChild from "../astalified/FlowBoxChild";
 import FlowBox from "../astalified/FlowBox";
 import ScrolledWindow from "../astalified/ScrolledWindow";
+import ListBox from "../astalified/ListBox";
+import ListBoxRow from "../astalified/ListBoxRow";
 
 
 export default function BluetoothComponents() {
@@ -32,12 +34,12 @@ export default function BluetoothComponents() {
     }
 
     function DeviceButton({device}: {device: Bluetooth.Device}): JSX.Element {
-        return <FlowBoxChild onActivate={() => !device.connecting ? toggle_device(device) : null} cssClasses={bind(device, "connected").as(c => c ? ["connected"] : [""])}>
+        return <ListBoxRow onActivate={() => !device.connecting ? toggle_device(device) : null} cssClasses={bind(device, "connected").as(c => c ? ["connected"] : [""])}>
                 <box spacing={2}>
                     <image iconName={custom_icons[device.get_icon()] || device.get_icon()} />
                     <label label={device.get_name().split(" ")[0]}/>
                 </box>
-        </FlowBoxChild>
+        </ListBoxRow>
     }
 
     const device_list = bind(bluetooth, "devices").as(devices => devices
@@ -68,12 +70,16 @@ export default function BluetoothComponents() {
         </button>
     }
 
+    const text = Variable("dsadada")
+    
+
     function BluetooohDeviceList() {
         return <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER} name={"bluetooth"} cssClasses={["bluetoothList"]}>
-            <FlowBox valign={Gtk.Align.START} maxChildrenPerLine={1} rowSpacing={2}>
+            <ListBox>
                 <label label={"Bluetooth Devices"} halign={Gtk.Align.START} />
                 {device_list}
-            </FlowBox>
+                <label label={"Click on a device to connect"} halign={Gtk.Align.START} />
+            </ListBox>
         </ScrolledWindow>
     }
 
