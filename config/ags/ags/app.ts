@@ -46,7 +46,7 @@ App.start({
                 res("toggled playerdashboard on");
             }
         }
-        if (request == "vlearnotif") {
+        if (request == "clearnotif") {
             clearOldestNotification();
         }
     }

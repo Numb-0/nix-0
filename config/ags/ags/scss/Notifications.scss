@@ -11,13 +11,22 @@
     padding: 0;
     min-width: 15rem;
     .image {
-        border: 1px solid $base09;
         margin-right: .5rem;
         border-radius: 9px;
         min-width: 100px;
         min-height: 100px;
         background-size: cover;
         background-position: center;
+    }
+
+    .low {
+        border: 1px solid $base0D
+    }
+    .normal {
+        border: 1px solid $base0A;
+    }
+    .critical {
+        border: 1px solid $base08;
     }
 }
 
