@@ -23,8 +23,8 @@ const fileExists = (path: string) =>
     GLib.file_test(path, GLib.FileTest.EXISTS)
 
 export const notificationItem = (n: Notifd.Notification) =>
-    <box vertical cssClasses={["notification", urgency(n)]} onHoverEnter={()=>show_full_text.set(true)} onHoverLeave={()=>show_full_text.set(false)}>
-        <box cssClasses={["header"]}>
+    <box vertical cssClasses={["notification"]} onHoverEnter={()=>show_full_text.set(true)} onHoverLeave={()=>show_full_text.set(false)}>
+        <box cssClasses={["header", urgency(n)]}>
             {(n.appIcon || n.desktopEntry) && <image
                 cssClasses={["app-icon"]}
                 iconName={n.appIcon || n.desktopEntry || "notification-symbolic"}
