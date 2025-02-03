@@ -1,4 +1,4 @@
-import { Astal, Gtk } from "astal/gtk3"
+import { Astal, Gtk, hook } from "astal/gtk4"
 import Mpris from "gi://AstalMpris"
 import { bind } from "astal"
 import { pl_dashboard_toggler } from "../../PlayerDashboard"
@@ -10,6 +10,8 @@ function lengthStr(length: number) {
     return `${min}:${sec0}${sec}`
 }
 
+const ccsProvider = new Gtk.CssProvider()
+const iconTheme = new Gtk.IconTheme()
 
 function MediaPlayer({ player }: { player: Mpris.Player }) {
     const { START, END } = Gtk.Align
@@ -21,10 +23,10 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
         a || "Unknown Artist")
 
     const coverArt = bind(player, "coverArt").as(c =>
-        `background-image: url('${c}')`)
+        `.cover-art{background-image: url('file:///${c}');}`)
 
     const playerIcon = bind(player, "entry").as(e => {
-        return e && Astal.Icon.lookup_icon(e) ? e : "audio-x-generic-symbolic";
+        return e && iconTheme.has_icon(e) ? e : "audio-x-generic-symbolic";
     })
 
     const position = bind(player, "position").as(p => player.length > 0
@@ -36,23 +38,31 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
             : "media-playback-start-symbolic"
     )
 
-    return <box className="MediaPlayer">
-        <box className="cover-art" css={coverArt} />
+
+    return <box cssClasses={["MediaPlayer"]}>
+        <box cssClasses={["cover-art"]} 
+        setup={
+            self => {
+                self.get_style_context().add_provider(ccsProvider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+                hook(self, coverArt, () => ccsProvider.load_from_string(coverArt.get()))
+            }
+        }
+        />
         <box vertical>
-            <box spacing={2} className="title">
-                <label truncate hexpand halign={START} label={title} />
-                <icon icon={playerIcon} />
+            <box spacing={2} cssClasses={["title"]}>
+                <label hexpand halign={START} label={title} />
+                <image iconName={playerIcon} />
             </box>
             <label halign={START} valign={START} vexpand wrap label={artist} />
             <slider
                 visible={bind(player, "length").as(l => l > 0)}
-                onDragged={({ value }) => player.position = value * player.length}
+                onChangeValue={({value}) => player.position = value * player.length}
                 value={position}
             />
-            <centerbox className="actions">
+            <centerbox cssClasses={["actions"]}>
                 <label
                     hexpand
-                    className="position"
+                    cssClasses={["position"]}
                     halign={START}
                     visible={bind(player, "length").as(l => l > 0)}
                     label={bind(player, "position").as(lengthStr)}
@@ -61,23 +71,23 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
                     <button
                         onClicked={() => player.previous()}
                         visible={bind(player, "canGoPrevious")}>
-                        <icon icon="media-skip-backward-symbolic" />
+                        <image iconName="media-skip-backward-symbolic" />
                     </button>
                     <button
                         // On Opening dashboard, grab focus to the play button
-                        setup={self => self.hook(pl_dashboard_toggler, (self, value) => value ? self.grab_focus() : null)}
+                        setup={self => hook(self,pl_dashboard_toggler, (self, value) => value ? self.grab_focus() : null)}
                         onClicked={() => player.play_pause()}
                         visible={bind(player, "canControl")}>
-                        <icon icon={playIcon} />
+                        <image iconName={playIcon} />
                     </button>
                     <button
                         onClicked={() => player.next()}
                         visible={bind(player, "canGoNext")}>
-                        <icon icon="media-skip-forward-symbolic" />
+                        <image iconName="media-skip-forward-symbolic" />
                     </button>
                 </box>
                 <label
-                    className="length"
+                    cssClasses={["length"]}
                     hexpand
                     halign={END}
                     visible={bind(player, "length").as(l => l > 0)}

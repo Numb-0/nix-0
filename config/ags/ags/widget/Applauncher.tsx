@@ -1,11 +1,12 @@
 import Apps from "gi://AstalApps";
 import Hyprland from "gi://AstalHyprland"
-import { App, Astal, Gtk, Gdk } from "astal/gtk3"
-import { FlowBox } from "./components/astalified/FlowBox";
-import { FlowBoxChild } from "./components/astalified/FlowBoxChild";
+import { App, Astal, Gdk, Gtk, Widget } from "astal/gtk4"
 import { bind, timeout, Variable } from "astal";
 
-export const applauncher_visible = Variable(true)
+import ScrolledWindow from "./components/astalified/ScrolledWindow";
+import FlowBoxChild from "./components/astalified/FlowBoxChild";
+import FlowBox from "./components/astalified/FlowBox";
+
 export const applauncher_toggling = Variable(false)
 export const applauncher_toggler = Variable(true)
 const applauncher_animation_cooldown = 200
@@ -14,11 +15,9 @@ applauncher_toggler.subscribe((toggling)=>{
     if(toggling) {
         applauncher_toggling.set(true)
         App.toggle_window("Applauncher")
-        applauncher_visible.set(true)
         timeout(applauncher_animation_cooldown,()=>applauncher_toggling.set(false))
     } else {
         applauncher_toggling.set(true)
-        applauncher_visible.set(false)
         timeout(applauncher_animation_cooldown,()=>App.toggle_window("Applauncher"))
         timeout(applauncher_animation_cooldown,()=>applauncher_toggling.set(false))
     }
@@ -36,12 +35,12 @@ export default function Applauncher() {
     const appList = apps.fuzzy_query("");
 
     function AppButton({app}: {app: Apps.Application}): JSX.Element {
-        return  <FlowBoxChild tooltipText={app.name} className={"appbutton"} name={app.name}
+        return  <FlowBoxChild cssClasses={["appbutton"]} tooltipText={app.name} name={app.name}
                     onActivate={() => {
                         applauncher_toggler.set(false);
                         app.launch();
                     }}>
-                    <icon icon={app.get_icon_name() || ""}/>
+                    <image iconName={app.get_icon_name() || ""}/>
         </FlowBoxChild>
     }
 
@@ -58,15 +57,18 @@ export default function Applauncher() {
     }
     
     return <window 
+        visible
         exclusivity={Astal.Exclusivity.EXCLUSIVE}
         keymode={Astal.Keymode.EXCLUSIVE} 
         name={"Applauncher"} 
         application={App} 
-        className={"Applauncher"} 
+        cssClasses={["Applauncher"]} 
         monitor={bind(hyprland, "focused_monitor").as((monitor) => monitor.id)}
-        onKeyPressEvent={(_, event) => event.get_keyval()[1] === Gdk.KEY_Escape && applauncher_toggler.set(false)}>
+        onKeyPressed={(_,keyval) => keyval === Gdk.KEY_Escape && applauncher_toggler.set(false)}
+        >
         <box vertical={true}>
-            <entry  
+            <entry
+                placeholderText={"ctrl+tab to select"}  
                 setup={(self) => {
                     applauncher_toggler.subscribe(open => open ? self.grab_focus() : null);
                 }}
@@ -74,15 +76,14 @@ export default function Applauncher() {
                     filterList(self.get_text());
                 }}
                 onActivate={() => {
-                    const selectedApp  = appButtons.find((appButton) => appButton.visible);
+                    const selectedApp = appButtons.find((appButton) => appButton.visible);
                     selectedApp?.activate();
                 }}/>
-            <scrollable hscroll={Gtk.PolicyType.NEVER}>
-                <FlowBox homogeneous={true} min_children_per_line={4} setup={(self) => {
-                    self.hook(App, "window-toggled", (self) => {self.unselect_all()})}}>
-                    {appButtons}
-                </FlowBox>
-            </scrollable>
+                <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER}>
+                    <FlowBox homogeneous minChildrenPerLine={4} selectionMode={Gtk.SelectionMode.SINGLE}>
+                        {appButtons}
+                    </FlowBox>
+                </ScrolledWindow>
         </box>
     </window>
 }

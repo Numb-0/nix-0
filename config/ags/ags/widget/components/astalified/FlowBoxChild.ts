@@ -1,15 +1,10 @@
-import { Gtk, astalify, type ConstructProps } from "astal/gtk3"
-import GObject from "gi://GObject"
+import { Gtk, astalify, type ConstructProps } from "astal/gtk4"
 
-export class FlowBoxChild extends astalify(Gtk.FlowBoxChild) {
-    static { GObject.registerClass(this) }
-    constructor(props: ConstructProps<
-        FlowBoxChild,
-        Gtk.FlowBoxChild.ConstructorProps,
-        {   
-            onActivate: []
-        } // signals TODO: Add signals if needed
-    >) {
-        super(props as any)
-    }
-}
+type FlowBoxChildProps = ConstructProps<Gtk.FlowBoxChild, Gtk.FlowBoxChild.ConstructorProps>
+const FlowBoxChild = astalify<Gtk.FlowBoxChild, Gtk.FlowBoxChild.ConstructorProps>(Gtk.FlowBoxChild, {
+    /* // if it is a container widget, define children setter and getter here
+    getChildren(self) { return [] },
+    setChildren(self, children) {}, */
+})
+
+export default FlowBoxChild

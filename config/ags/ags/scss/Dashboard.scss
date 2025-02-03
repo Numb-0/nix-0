@@ -24,11 +24,13 @@ window.Dashboard {
             padding-top: .4rem;
         }
         padding: .4rem .6rem .4rem;
+        //padding: 1rem;
         border-radius: $radius;
         background-color: $base01;
         outline: none;
-        icon {
-            font-size: 1.2rem;
+        image {
+            //font-size: 1.2rem;
+            -gtk-icon-size: 1.2rem;
         }
         &:hover, &:focus {
             transition: all .5s;
@@ -40,7 +42,7 @@ window.Dashboard {
     button.bluetoothButton { color: $base0D; }
 
 
-    scrollable.wifiList, scrollable.bluetoothList {
+    scrolledwindow.wifiList, scrolledwindow.bluetoothList {
         scrollbar {
             // Remove scrollbar
             &.overlay-indicator {
@@ -53,28 +55,26 @@ window.Dashboard {
         * {
             border: none;
         }
-        flowboxchild {
+        button {
             padding: 0;
             outline: none;
             border-radius: $radius;
-            icon {
-                font-size: 1.2rem;
+            image {
+                //font-size: 1.2rem;
+                -gtk-icon-size: 1.2rem;
             }
-            &:selected {
-                color: unset;
-                transition: all .5s;
-                background-color: $base02;
-            }
-            eventbox {
+            box {
+                padding: .2rem;
                 border-radius: $radius;
                 box {
-                    padding: .3rem
+                    padding: .6rem
                 }
                 &:hover {
                     color: unset;
                     transition: all .5s;
                     background-color: $base02;
                 }
+
             }
             // connected button text color
             &.connected {
@@ -82,13 +82,14 @@ window.Dashboard {
             }
         }
     }
-    scrollable.wifiList { color: $base0C; }
-    scrollable.bluetoothList { color: $base0D; }
+    scrolledwindow.wifiList { color: $base0C; }
+    scrolledwindow.bluetoothList { color: $base0D; }
 
 
     box.brightness_slider, box.volume_slider {
-        icon {
-            font-size: 1.2rem;
+        image {
+            //font-size: 1.2rem;
+            -gtk-icon-size: 1.2rem;
         }
         scale {
             min-height: 120px;

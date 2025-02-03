@@ -5,6 +5,7 @@ $radius: 10px;
 // Removes box-shadow from menu widget
 * {
     box-shadow: none;
+    //all: unset;
 }
 
 label {
@@ -19,6 +20,11 @@ button {
     background-image: none;
     border: none;
     text-shadow: none;
+    outline: none;
+}
+
+image {
+    -gtk-icon-size: 1rem;
 }
 
 menu {

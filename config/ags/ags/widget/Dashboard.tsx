@@ -1,15 +1,12 @@
-import { App, Astal, Gtk, Gdk } from "astal/gtk3"
+import { App, Astal, Gtk, Gdk } from "astal/gtk4"
 import Hyprland from "gi://AstalHyprland"
 import { bind, Variable, timeout, execAsync } from "astal"
 import BrightnessSlider from "./components/dashboard/brightnessSlider"
 import VolumeSlider from "./components/dashboard/volumeSlider"
+import CavaStatus from "./components/dashboard/cavaStatus"
 import BluetoothComponents from "./components/dashboard/bluetoothComponents"
 import WifiComponets from "./components/dashboard/wifiComponents"
-import CavaStatus from "./components/dashboard/cavaStatus"
 
-const hyprland = Hyprland.get_default()
-
-export const dashboard_visible = Variable(true)
 export const dashboard_toggling = Variable(false)
 export const dashboard_toggler = Variable(true)
 const dashboard_animation_cooldown = 200
@@ -18,17 +15,16 @@ dashboard_toggler.subscribe((toggling)=>{
     if(toggling) {
         dashboard_toggling.set(true)
         App.toggle_window("Dashboard")
-        dashboard_visible.set(true)
         timeout(dashboard_animation_cooldown, ()=>dashboard_toggling.set(false))
     } else {
         dashboard_toggling.set(true)
-        dashboard_visible.set(false)
         timeout(dashboard_animation_cooldown,()=>App.toggle_window("Dashboard"))
         timeout(dashboard_animation_cooldown,()=>dashboard_toggling.set(false))
     }
 })
 
 export default function Dashboard() {
+    const hyprland = Hyprland.get_default()
 
     const bluetooth = BluetoothComponents()
     const wifi = WifiComponets()
@@ -49,36 +45,37 @@ export default function Dashboard() {
         }
     )
 
+
     return <window 
+            visible
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
             anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.BOTTOM}
             keymode={Astal.Keymode.EXCLUSIVE} 
             name={"Dashboard"} 
-            className={"Dashboard"}
+            cssClasses={["Dashboard"]}
             application={App}
             monitor={bind(hyprland, "focusedMonitor").as((monitor) => monitor.id)}
-            onKeyPressEvent={(_, event) => event.get_keyval()[1] === Gdk.KEY_Escape && dashboard_toggler.set(false)}
+            onKeyPressed={(_, keyval) => keyval === Gdk.KEY_Escape && dashboard_toggler.set(false)}
             margin={10}>
             <box halign={Gtk.Align.END} valign={Gtk.Align.START} spacing={4}>
-                <stack homogeneous transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>
+                <stack hhomogeneous transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>
                     <box name={"placeholder"}>
                         <CavaStatus/>
                     </box>
-                    {bluetooth.BluetooohDeviceList()}
-                    {wifi.WifiAccessPointsList()}
+                        {bluetooth.BluetooohDeviceList()}
+                        {wifi.WifiAccessPointsList()}
                 </stack>
                 <box spacing={4} vertical>
                     {bluetooth.BluetoothButton()}
                     {wifi.WifiButton()}
-                    <button vexpand valign={Gtk.Align.FILL} className={"drop"} onClicked={()=>execAsync("hyprpicker -a")}> 
-                        <icon icon={"Drop-symbolic"}/>
+                    <button vexpand valign={Gtk.Align.FILL} cssClasses={["drop"]} onClicked={()=>execAsync("hyprpicker -a")}> 
+                        <image iconName={"drop-symbolic"}/>
                     </button>
                 </box>
-                <box className={"container"}>
+                <box cssClasses={["container"]}>
                     <VolumeSlider/>
                     <BrightnessSlider/>
                 </box>
             </box>
     </window>
 }
-                  

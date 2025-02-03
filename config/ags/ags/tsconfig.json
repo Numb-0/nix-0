@@ -9,14 +9,6 @@
         // "checkJs": true,
         // "allowJs": true,
         "jsx": "react-jsx",
-        "jsxImportSource": "/home/cosix/.local/share/ags/gtk3",
-        "paths": {
-            "astal": [
-                "/home/cosix/.local/share/ags"
-            ],
-            "astal/*": [
-                "/home/cosix/.local/share/ags/*"
-            ]
-        },
+        "jsxImportSource": "astal/gtk4",
     }
 }

@@ -1,49 +1,47 @@
-import { App, Astal, Gtk, Gdk } from "astal/gtk3"
-import Cairo from 'cairo';
-import hexToRgb from "./components/utils/hexToRgb";
-import Hyprland from "gi://AstalHyprland"
+import { App, Astal, Gtk, Gdk, } from "astal/gtk4"
+import GObject from "gi://GObject";
+import Gsk from "gi://Gsk";
 
-const hyprland = Hyprland.get_default()
+const Corner = GObject.registerClass(
+    class Corner extends Gtk.Widget {
+        gdkmonitor!: Gdk.Monitor;
+        constructor(gdkmonitor: Gdk.Monitor) {
+            super();
+            this.gdkmonitor = gdkmonitor;
+            this.set_size_request(20, 20); // Adjust size as needed
+        }
+        vfunc_snapshot(snapshot: Gtk.Snapshot) {
+            const radius = 20;
+            const width = this.gdkmonitor.get_geometry().width;
+            const backgroundColor = new Gdk.RGBA();
+            backgroundColor.parse("#1e2030");
+
+            
+            const pathbuilder = new Gsk.PathBuilder;
+            pathbuilder.move_to(0, 0);
+            pathbuilder.line_to(0, radius);
+            pathbuilder.conic_to(0, 0, radius, 0, 1);
+
+            pathbuilder.move_to(width, 0);
+            pathbuilder.line_to(width, radius);
+            pathbuilder.conic_to(width, 0, width - radius, 0, 1);
+
+            snapshot.append_fill(pathbuilder.to_path(), Gsk.FillRule.EVEN_ODD, backgroundColor);
+        }
+    }
+);
 
 export default function Corners(gdkmonitor: Gdk.Monitor) {
+    const corners = new Corner(gdkmonitor);
     return <window
+            visible
             name={"Bar"}
-            className="Bar"
+            cssClasses={["Bar"]}
             gdkmonitor={gdkmonitor}
             exclusivity={Astal.Exclusivity.NORMAL}
             keymode={Astal.Keymode.NONE}
             anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.RIGHT}
             application={App}>
-            <drawingarea setup={self => {
-                const corner_radius = 12;
-                const corner_color = hexToRgb("#1e2030");
-                const monitor = hyprland.get_monitors().find((monitor) => monitor.model === gdkmonitor.model);
-                const width = gdkmonitor.get_geometry().width * gdkmonitor.scale_factor / (monitor?.scale ?? 1);
-                
-                self.connect('size-allocate', () => {
-                    self.set_size_request(corner_radius, corner_radius);
-                });
-
-                self.connect('draw', (_, cr: Cairo.Context) => {
-                    cr.setSourceRGBA(corner_color.r/255, corner_color.g/255, corner_color.b/255, 1);
-                    cr.moveTo(0, 0);
-                    cr.lineTo(0, corner_radius);
-                    cr.arc(corner_radius, corner_radius, corner_radius, -Math.PI, -Math.PI / 2);
-                    cr.lineTo(0, 0);
-                    cr.fill();
-                    cr.save(); // Save the current state to restore later
-
-                    // Apply the horizontal mirror (flip on the x-axis)
-                    cr.scale(-1, 1);  // Mirror horizontally
-                    cr.translate(-width, 0); // Move the drawing back to the right side
-                    cr.moveTo(0, 0);
-                    cr.lineTo(0, corner_radius);
-                    cr.arc(corner_radius, corner_radius, corner_radius, -Math.PI, -Math.PI / 2);
-                    cr.lineTo(0, 0);
-                    cr.fill();
-
-                    cr.restore(); // Restore the previous state
-                });
-            }}/>
+            {corners}
     </window>
 }

@@ -8,13 +8,13 @@ export default function Workspaces() {
 
     function WorkspaceButton({workspace}: {workspace: number}) : JSX.Element {
         return <button
-                className={bind(hyperland, "focused_workspace").as((ws) => ws.id == workspace ? "workspace active" : (hyperland.get_workspace(workspace)?.get_clients().length > 0 ? "workspace occupied" : "workspace"))}
+                cssClasses={bind(hyperland, "focused_workspace").as((ws) => ws.id == workspace ? ["workspace","active"] : (hyperland.get_workspace(workspace)?.get_clients().length > 0 ? ["workspace","occupied"] : ["workspace"]))}
                 onClicked={() => hyperland.get_focused_workspace().get_id() != workspace ? hyperland.dispatch("workspace", workspace.toString()) : null}>
-                <icon icon={"Hexagon-symbolic"} />
+                <image iconName={"hexagon-symbolic"} />
         </button>;
     }
 
     return <box>
-            <box spacing={2} className={"workspaces"}>{workspaces.map(workspace => <WorkspaceButton workspace={workspace}/>)}</box>
+        <box spacing={2} cssClasses={["workspaces"]}>{workspaces.map(workspace => <WorkspaceButton workspace={workspace}/>)}</box>
     </box>
 }

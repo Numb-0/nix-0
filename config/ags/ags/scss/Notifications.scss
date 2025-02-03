@@ -1,0 +1,32 @@
+@use "colors" as *;
+@use "presets" as *;
+
+.notificationwindow {
+    background-color: transparent;
+}
+
+.notification {
+    margin: 0.4rem;
+    border-radius: $radius;
+    padding: 0;
+    min-width: 15rem;
+}
+
+.notification .header {
+    background-color: $base02;
+    padding: 0.5rem;
+    margin: 0;
+    border-radius: $radius;
+    border-bottom: 2px solid $base09;
+}
+
+.notification .content {
+    margin-top: 0;
+    padding: 0.7rem;
+    background-color: $base01;
+}
+
+.notification .summary { font-size: 1.1rem; }
+.notification .actions { padding-top: 0.7rem; }
+.notification .app-icon { padding-right: 0.4rem; }
+//.notification .app-name, .notification .summary { font-family: 'Hammersmith One'; }
