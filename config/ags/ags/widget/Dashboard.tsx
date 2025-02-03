@@ -1,5 +1,6 @@
 import { App, Astal, Gtk, Gdk } from "astal/gtk4"
 import Hyprland from "gi://AstalHyprland"
+import Notifd from "gi://AstalNotifd"
 import { bind, Variable, timeout, execAsync } from "astal"
 import BrightnessSlider from "./components/dashboard/brightnessSlider"
 import VolumeSlider from "./components/dashboard/volumeSlider"
@@ -25,6 +26,7 @@ dashboard_toggler.subscribe((toggling)=>{
 
 export default function Dashboard() {
     const hyprland = Hyprland.get_default()
+    const notifid = Notifd.get_default()
 
     const bluetooth = BluetoothComponents()
     const wifi = WifiComponets()
@@ -65,6 +67,11 @@ export default function Dashboard() {
                         {bluetooth.BluetooohDeviceList()}
                         {wifi.WifiAccessPointsList()}
                 </stack>
+                <box spacing={4} vertical>
+                    <button cssClasses={["notif"]} vexpand valign={Gtk.Align.FILL} onClicked={()=>notifid.dontDisturb = !notifid.dontDisturb}>
+                        <image iconName={bind(notifid, "dontDisturb").as(d => d ? "notification-disabled-symbolic" : "notification-symbolic")}/>
+                    </button>
+                </box>
                 <box spacing={4} vertical>
                     {bluetooth.BluetoothButton()}
                     {wifi.WifiButton()}

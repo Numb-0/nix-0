@@ -1,4 +1,4 @@
-import { App, Astal } from 'astal/gtk4';
+import { App, Astal, hook } from 'astal/gtk4';
 import Notifd from 'gi://AstalNotifd';
 import { notificationItem } from './components/notifications/notificationItem';
 import { type Subscribable } from 'astal/binding';
@@ -59,14 +59,14 @@ const Notifications = () =>
         anchor={TOP | LEFT}
         application={App}
         visible={false}
-        setup={(self) => notif = self}
+        setup={(self) => {bind(Notifd.get_default(), "dontDisturb").subscribe((v) => v ? self.hide() : self.show());notif = self}}
         margin={4}
         cssClasses={["notificationwindow"]}
     >
         <box vertical>
             {bind(allNotifications).as((n) => {
                 if (notif)
-                    (n.length == 0)
+                    (n.length == 0 || Notifd.get_default().dontDisturb)
                         ? notif.hide()
                         : notif.show()
 

@@ -5,7 +5,7 @@ import Applauncher, { applauncher_toggler, applauncher_toggling } from "./widget
 import Dashboard, { dashboard_toggler, dashboard_toggling } from "./widget/Dashboard"
 import PlayerDashboard, { pl_dashboard_toggler, pl_dashboard_toggling } from "./widget/PlayerDashboard"
 import Corners from "./widget/Corners"
-import Notifications  from "./widget/Notifications"
+import Notifications, {clearOldestNotification}  from "./widget/Notifications"
 
 App.start({
     icons: `${SRC}/assets`,
@@ -45,6 +45,9 @@ App.start({
                 pl_dashboard_toggler.set(true);
                 res("toggled playerdashboard on");
             }
+        }
+        if (request == "vlearnotif") {
+            clearOldestNotification();
         }
     }
 })

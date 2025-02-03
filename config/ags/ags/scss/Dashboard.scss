@@ -19,7 +19,7 @@ window.Dashboard {
     }
 
 
-    button.drop, button.wifiButton, button.bluetoothButton {
+    button.notif, button.drop, button.wifiButton, button.bluetoothButton {
         .arrow {
             padding-top: .4rem;
         }
@@ -40,6 +40,7 @@ window.Dashboard {
     button.drop { color: $base09; }
     button.wifiButton { color: $base0C; }
     button.bluetoothButton { color: $base0D; }
+    button.notif { color: $base0A; }
 
 
     scrolledwindow.wifiList, scrolledwindow.bluetoothList {

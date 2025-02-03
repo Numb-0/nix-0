@@ -160,11 +160,12 @@ with lib;
         bind = $mainMod, M, exit,
         bind = $mainMod, E, exec, ${browser}
         bind = $mainMod, W, togglefloating,
-        bind = $mainMod, C, pseudo, # dwindle
+        bind = $mainMod, F, pseudo, # dwindle
         bind = $mainMod, J, togglesplit, # dwindle
         bind = $mainMod, A, exec, ags request applauncher
         bind = $mainMod, D, exec, ags request dashboard
         bind = $mainMod, P, exec, ags request pldashboard
+        bind = $mainMod, C, exec, ags request clearnotif 
         bind = $mainMod, H, exec, hyprshot -m region
 
         # Move focus with mainMod + arrow keys
