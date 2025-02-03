@@ -13,7 +13,6 @@ in
     hyprlock.enable = lib.mkForce false;
     hyprland.enable = lib.mkForce false;
     qt.enable = lib.mkForce false;
-    #gtk3.enable = lib.mkForce false;
     };
   };
   # Styling Options
