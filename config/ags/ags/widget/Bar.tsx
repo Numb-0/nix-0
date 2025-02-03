@@ -10,7 +10,7 @@ import SysTray from "./components/bar/sysTray"
 import WifiStatus from "./components/bar/wifiStatus";
 import BluetoothStatus from "./components/bar/bluetoothStatus";
 
-const time = Variable<string>("").poll(1000, () => GLib.DateTime.new_now_local().format("%H:%M")!)
+export const time = Variable<string>("").poll(1000, () => GLib.DateTime.new_now_local().format("%H:%M")!)
 
 export default function Bar(gdkmonitor: Gdk.Monitor) {
     const { TOP, LEFT, RIGHT } = Astal.WindowAnchor
