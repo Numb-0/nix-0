@@ -10,20 +10,42 @@
     border-radius: $radius;
     padding: 0;
     min-width: 15rem;
+    .image {
+        border: 1px solid $base09;
+        margin-right: .5rem;
+        border-radius: 9px;
+        min-width: 100px;
+        min-height: 100px;
+        background-size: cover;
+        background-position: center;
+    }
 }
 
 .notification .header {
     background-color: $base02;
     padding: 0.5rem;
     margin: 0;
-    border-radius: $radius;
+    border-radius: $radius $radius 0 0;
     border-bottom: 2px solid $base09;
+
+    .close-button {
+        border-radius: $radius;
+        background-color: $base01;
+        padding: .2rem;
+        min-width: 0;
+        min-height: 0;
+    }
+
+    .time {
+        margin: 0 .4rem;
+    }
 }
 
 .notification .content {
     margin-top: 0;
     padding: 0.7rem;
     background-color: $base01;
+    border-radius: 0 0 $radius $radius;
 }
 
 .notification .summary { font-size: 1.1rem; }

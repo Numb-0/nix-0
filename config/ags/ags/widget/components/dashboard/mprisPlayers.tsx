@@ -1,6 +1,6 @@
 import { Astal, Gtk, hook } from "astal/gtk4"
 import Mpris from "gi://AstalMpris"
-import { bind } from "astal"
+import { bind, GLib } from "astal"
 import { pl_dashboard_toggler } from "../../PlayerDashboard"
 
 function lengthStr(length: number) {
@@ -11,7 +11,6 @@ function lengthStr(length: number) {
 }
 
 const ccsProvider = new Gtk.CssProvider()
-const iconTheme = new Gtk.IconTheme()
 
 function MediaPlayer({ player }: { player: Mpris.Player }) {
     const { START, END } = Gtk.Align
@@ -26,7 +25,7 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
         `.cover-art{background-image: url('file:///${c}');}`)
 
     const playerIcon = bind(player, "entry").as(e => {
-        return e && iconTheme.has_icon(e) ? e : "audio-x-generic-symbolic";
+        return e ? e : "audio-x-generic-symbolic";
     })
 
     const position = bind(player, "position").as(p => player.length > 0

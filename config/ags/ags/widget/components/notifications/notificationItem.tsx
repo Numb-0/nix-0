@@ -3,16 +3,30 @@ import { Gtk, Gdk } from 'astal/gtk4';
 import Notifd from 'gi://AstalNotifd';
 import Pango from 'gi://Pango';
 const { START, CENTER, END } = Gtk.Align
+import { time } from '../../Bar'
 
-const time = (time: number) => GLib.DateTime.new_from_unix_local(time).format("%H:%M")!;
-const iconTheme = new Gtk.IconTheme()
+const cssProvider = new Gtk.CssProvider()
+
+const urgency = (n: Notifd.Notification) => {
+    const { LOW, NORMAL, CRITICAL } = Notifd.Urgency
+    switch (n.urgency) {
+        case LOW: return "low"
+        case CRITICAL: return "critical"
+        case NORMAL:
+        default: return "normal"
+    }
+}
+
+const fileExists = (path: string) =>
+    GLib.file_test(path, GLib.FileTest.EXISTS)
 
 export const notificationItem = (n: Notifd.Notification) =>
-    <box vertical cssClasses={["notification"]}>
+    <box vertical cssClasses={["notification", urgency(n)]}>
         <box cssClasses={["header"]}>
-            {(iconTheme.has_icon(n.appIcon)) && <image
+            {n.appIcon || n.desktopEntry && <image
                 cssClasses={["app-icon"]}
-                iconName={n.appIcon}
+                visible={!!(n.appIcon || n.desktopEntry)}
+                iconName={n.appIcon || n.desktopEntry}
             />}
             <label
                 cssClasses={["app-name"]}
@@ -24,43 +38,54 @@ export const notificationItem = (n: Notifd.Notification) =>
                 cssClasses={["time"]}
                 hexpand
                 halign={END}
-                label={time(n.time)}
+                label={time.get()}
             />
+            <button cssClasses={["close-button"]} halign={END} onClicked={() => n.dismiss()}>
+                    <image iconName="window-close-symbolic" />
+            </button>
         </box>
         <box cssClasses={["content"]}>
-            <box vertical>
-                <label
-                    cssClasses={["summary"]}
-                    halign={START}
-                    wrap
-                    xalign={0}
-                    label={n.summary}
-                    maxWidthChars={1} // Literally any value forces wrap for some reason
-                />
-                {n.image && n.get_hint('internal') && <image
-                    file={n.image}
-                    heightRequest={100}
-                    widthRequest={100}
+            <box>
+                {n.image && fileExists(n.image) && <box
+                    setup={(self =>{ 
+                        self.get_style_context().add_provider(cssProvider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+                        cssProvider.load_from_string(`.image { background-image: url('file:///${n.image}'); }`)
+                    })}
                     cssClasses={["image"]}
                 />}
-                {n.body && <label
-                    cssClasses={["body"]}
-                    wrap
-                    xalign={0}
-                    label={n.body}
-                    maxWidthChars={1} // Literally any value forces wrap for some reason
-                />}
-                {n.get_actions().length > 0 && <box cssClasses={["actions"]} spacing={5}>
-                    {n.get_actions().map(({ label, id }) =>
-                        <button
-                            hexpand
-                            cursor={Gdk.Cursor.new_from_name('pointer', null)}
-                            onButtonPressed={() => { n.invoke(id); n.dismiss(); }}
-                        >
-                            <label label={label} halign={CENTER}/>
-                        </button>
-                    )}
-                </box>}
+                {/* {n.image && <box
+                    cssClasses={["icon-image"]}>
+                    <image iconName={n.image} halign={CENTER} valign={CENTER} />
+                </box>} */}
+                <box vertical valign={CENTER}>
+                    <label
+                        cssClasses={["summary"]}
+                        halign={START}
+                        wrap
+                        label={n.summary}
+                        maxWidthChars={1}
+                    />
+                    {n.body && <label
+                        cssClasses={["body"]}
+                        wrap
+                        wrapMode={Pango.WrapMode.WORD}
+                        useMarkup
+                        label={n.body}
+                        ellipsize={Pango.EllipsizeMode.END}
+                        maxWidthChars={10}
+                    />}
+                    {n.get_actions().length > 0 && <box cssClasses={["actions"]} spacing={5}>
+                        {n.get_actions().map(({ label, id }) =>
+                            <button
+                                hexpand
+                                cursor={Gdk.Cursor.new_from_name('pointer', null)}
+                                onButtonPressed={() => { n.invoke(id) }}
+                            >
+                                <label label={label} halign={CENTER}/>
+                            </button>
+                        )}
+                    </box>}
+                </box>
             </box>
         </box>
     </box>
