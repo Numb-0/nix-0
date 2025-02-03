@@ -57,7 +57,8 @@ in
   qt = {
     enable = true;
     style.name = "adwaita-dark";
-    platformTheme.name = "gtk3";
+    # Was gtk3
+    platformTheme.name = "gtk4";
   };
 
   # Scripts
