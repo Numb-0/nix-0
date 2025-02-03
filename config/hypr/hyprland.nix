@@ -54,7 +54,7 @@ with lib;
         exec-once = hyprlock --immediate || hyprctl dispatch exit
         exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
         exec-once = lxqt-policykit-agent
-        exec-once = ags run 
+        exec-once = ags run --gtk4
 
         monitor = eDP-1,highres,auto,auto
         monitor = DP-3,highres,auto,auto
