@@ -1,4 +1,4 @@
-import { GLib } from 'astal';
+import { GLib, Variable } from 'astal';
 import { Gtk, Gdk } from 'astal/gtk4';
 import Notifd from 'gi://AstalNotifd';
 import Pango from 'gi://Pango';
@@ -17,16 +17,17 @@ const urgency = (n: Notifd.Notification) => {
     }
 }
 
+const show_full_text = Variable(false)
+
 const fileExists = (path: string) =>
     GLib.file_test(path, GLib.FileTest.EXISTS)
 
 export const notificationItem = (n: Notifd.Notification) =>
-    <box vertical cssClasses={["notification", urgency(n)]}>
+    <box vertical cssClasses={["notification", urgency(n)]} onHoverEnter={()=>show_full_text.set(true)} onHoverLeave={()=>show_full_text.set(false)}>
         <box cssClasses={["header"]}>
-            {n.appIcon || n.desktopEntry && <image
+            {(n.appIcon || n.desktopEntry) && <image
                 cssClasses={["app-icon"]}
-                visible={!!(n.appIcon || n.desktopEntry)}
-                iconName={n.appIcon || n.desktopEntry}
+                iconName={n.appIcon || n.desktopEntry || "notification-symbolic"}
             />}
             <label
                 cssClasses={["app-name"]}
@@ -71,7 +72,7 @@ export const notificationItem = (n: Notifd.Notification) =>
                         wrapMode={Pango.WrapMode.WORD}
                         useMarkup
                         label={n.body}
-                        ellipsize={Pango.EllipsizeMode.END}
+                        ellipsize={show_full_text().as(v => v ? Pango.EllipsizeMode.NONE : Pango.EllipsizeMode.END)}
                         maxWidthChars={10}
                     />}
                     {n.get_actions().length > 0 && <box cssClasses={["actions"]} spacing={5}>
