@@ -23,8 +23,8 @@ window.Dashboard {
         .arrow {
             padding-top: .4rem;
         }
-        //padding: .4rem .6rem .4rem;
-        padding: 1rem;
+        padding: .4rem .6rem .4rem;
+        //padding: 1rem;
         border-radius: $radius;
         background-color: $base01;
         outline: none;
@@ -55,7 +55,7 @@ window.Dashboard {
         * {
             border: none;
         }
-        flowboxchild {
+        button {
             padding: 0;
             outline: none;
             border-radius: $radius;
@@ -63,12 +63,8 @@ window.Dashboard {
                 //font-size: 1.2rem;
                 -gtk-icon-size: 1.2rem;
             }
-            &:selected {
-                color: unset;
-                transition: all .5s;
-                background-color: $base02;
-            }
             box {
+                padding: .2rem;
                 border-radius: $radius;
                 box {
                     padding: .6rem
@@ -78,6 +74,7 @@ window.Dashboard {
                     transition: all .5s;
                     background-color: $base02;
                 }
+
             }
             // connected button text color
             &.connected {

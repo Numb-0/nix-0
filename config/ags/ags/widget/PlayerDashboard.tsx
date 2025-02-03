@@ -37,7 +37,7 @@ export default function PlayerDashboard() {
             onKeyPressed={(_, keyval) => keyval === Gdk.KEY_Escape && pl_dashboard_toggler.set(false)}
             margin={10}>
             <box cssClasses={["container"]} halign={Gtk.Align.END} valign={Gtk.Align.END}>
-                {/* {bind(mpris, "players").as(players => players.length > 0 ? <box/> : <label cssClasses={["placeHolder"]} label={"No Active Players"}/>)} */}
+                {bind(mpris, "players").as(players => players.length > 0 ? <box/> : <label cssClasses={["placeHolder"]} label={"No Active Players"}/>)}
                 <MprisPlayers/>
             </box>
     </window>

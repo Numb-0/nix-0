@@ -2,8 +2,6 @@ import Network from "gi://AstalNetwork"
 import { bind, Variable } from "astal";
 import { Gtk, Gdk, hook } from "astal/gtk4";
 import ToggleArrow from "../utils/toggleArrow";
-import FlowBoxChild from "../astalified/FlowBoxChild";
-import FlowBox from "../astalified/FlowBox";
 import Pango from "gi://Pango";
 import ScrolledWindow from "../astalified/ScrolledWindow";
 
@@ -12,12 +10,12 @@ export default function WifiComponets() {
     const wf_arrow = ToggleArrow("wf")
 
     function AccessPointButton({accesspoint}: {accesspoint: Network.AccessPoint}): JSX.Element {
-        return <FlowBoxChild cssClasses={accesspoint == wifi.get_active_access_point() ? ["connected"] : [""]}>
+        return <button cssClasses={accesspoint == wifi.get_active_access_point() ? ["connected"] : [""]}>
                 <box spacing={2}>
                     <image iconName={accesspoint.get_icon_name()}/>
                     <label ellipsize={wf_arrow.arrow_open().as(r=>r ? Pango.EllipsizeMode.NONE : Pango.EllipsizeMode.END)} maxWidthChars={20} label={accesspoint.get_ssid() || ""}/>
                 </box>
-        </FlowBoxChild>
+        </button>
     }
 
 
@@ -36,10 +34,10 @@ export default function WifiComponets() {
 
     function WifiAccessPointsList() {
         return <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER} name={"wifi"} cssClasses={["wifiList"]}>
-                <FlowBox valign={Gtk.Align.START} maxChildrenPerLine={1} rowSpacing={2}>
+                <box orientation={Gtk.Orientation.VERTICAL} spacing={4}>
                     <label label={"Wifi Networks"} halign={Gtk.Align.START} />
                     {access_points_list}
-                </FlowBox>
+                </box>
         </ScrolledWindow>
     }
 

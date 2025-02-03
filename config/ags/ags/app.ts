@@ -5,6 +5,7 @@ import Applauncher, { applauncher_toggler, applauncher_toggling } from "./widget
 import Dashboard, { dashboard_toggler, dashboard_toggling } from "./widget/Dashboard"
 import PlayerDashboard, { pl_dashboard_toggler, pl_dashboard_toggling } from "./widget/PlayerDashboard"
 import Corners from "./widget/Corners"
+import Notifications  from "./widget/Notifications"
 
 App.start({
     icons: `${SRC}/assets`,
@@ -15,6 +16,7 @@ App.start({
         Applauncher()
         Dashboard()
         PlayerDashboard()
+        Notifications()
     },
     requestHandler(request: string, res: (response: any) => void) {
         if (request == "applauncher") {
