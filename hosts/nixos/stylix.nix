@@ -12,6 +12,8 @@ in
     hyprpaper.enable = lib.mkForce false;
     hyprlock.enable = lib.mkForce false;
     hyprland.enable = lib.mkForce false;
+    qtct.enable = lib.mkForce false;
+    gtk3.enable = lib.mkForce false;
     };
   };
   # Styling Options
