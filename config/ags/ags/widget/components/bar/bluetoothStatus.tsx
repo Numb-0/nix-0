@@ -6,7 +6,7 @@ export default function BluetoothStatus() {
 
     return <box cssClasses={["bluetooth"]}>
             <button onClicked={() => bluetooth.toggle()}>
-                <image iconName={bind(bluetooth.adapter, "powered").as((powered) => powered ? "bluetooth-symbolic" : "bluetooth-disabled-symbolic")}/>
+                <image iconName={bind(bluetooth.adapter, "powered").as((powered) => powered ? "bluetooth-active-symbolic" : "bluetooth-disabled-symbolic")}/>
             </button>
     </box>
 }

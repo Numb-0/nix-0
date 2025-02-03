@@ -11,6 +11,7 @@ function lengthStr(length: number) {
 }
 
 const ccsProvider = new Gtk.CssProvider()
+const iconTheme = new Gtk.IconTheme()
 
 function MediaPlayer({ player }: { player: Mpris.Player }) {
     const { START, END } = Gtk.Align
@@ -22,10 +23,10 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
         a || "Unknown Artist")
 
     const coverArt = bind(player, "coverArt").as(c =>
-        `.cover-art{background-image: url('${c}');}`)
+        `.cover-art{background-image: url('file:///${c}');}`)
 
     const playerIcon = bind(player, "entry").as(e => {
-        return e ? e : "audio-x-generic-symbolic";
+        return e && iconTheme.has_icon(e) ? e : "audio-x-generic-symbolic";
     })
 
     const position = bind(player, "position").as(p => player.length > 0
@@ -37,12 +38,13 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
             : "media-playback-start-symbolic"
     )
 
+
     return <box cssClasses={["MediaPlayer"]}>
         <box cssClasses={["cover-art"]} 
         setup={
             self => {
-                ccsProvider.load_from_string(coverArt.get())
                 self.get_style_context().add_provider(ccsProvider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+                hook(self, coverArt, () => ccsProvider.load_from_string(coverArt.get()))
             }
         }
         />

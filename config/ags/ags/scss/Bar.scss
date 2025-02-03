@@ -44,6 +44,9 @@ window.Bar {
             button {
                 color: $base07;
             }
+            label:selected {
+                background-color: $base0E;
+            }
         }
     }
 
@@ -67,6 +70,12 @@ window.Bar {
 
     box.battery {
         color: $base0A;
+    }
+
+    box.systray {
+        * {
+            -gtk-icon-size: 1.2rem;
+        }
     }
 
 }

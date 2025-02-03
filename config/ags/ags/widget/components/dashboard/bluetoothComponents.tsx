@@ -68,10 +68,7 @@ export default function BluetoothComponents() {
                 <image iconName={bind(bluetooth.adapter, "powered").as((powered) => powered ? "bluetooth-symbolic" : "bluetooth-disabled-symbolic")}/>
             </box>
         </button>
-    }
-
-    const text = Variable("dsadada")
-    
+    }    
 
     function BluetooohDeviceList() {
         return <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER} name={"bluetooth"} cssClasses={["bluetoothList"]}>

@@ -23,12 +23,14 @@ window.Dashboard {
         .arrow {
             padding-top: .4rem;
         }
-        padding: .4rem .6rem .4rem;
+        //padding: .4rem .6rem .4rem;
+        padding: 1rem;
         border-radius: $radius;
         background-color: $base01;
         outline: none;
-        icon {
-            font-size: 1.2rem;
+        image {
+            //font-size: 1.2rem;
+            -gtk-icon-size: 1.2rem;
         }
         &:hover, &:focus {
             transition: all .5s;
@@ -57,8 +59,9 @@ window.Dashboard {
             padding: 0;
             outline: none;
             border-radius: $radius;
-            icon {
-                font-size: 1.2rem;
+            image {
+                //font-size: 1.2rem;
+                -gtk-icon-size: 1.2rem;
             }
             &:selected {
                 color: unset;
@@ -87,8 +90,9 @@ window.Dashboard {
 
 
     box.brightness_slider, box.volume_slider {
-        icon {
-            font-size: 1.2rem;
+        image {
+            //font-size: 1.2rem;
+            -gtk-icon-size: 1.2rem;
         }
         scale {
             min-height: 120px;
