@@ -5,15 +5,20 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    stylix.url = "github:danth/stylix";
+    stylix = {
+      url = "github:danth/stylix";
+    };
     ags = {
       url = "github:aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
   };
 
   outputs =
-    { nixpkgs, home-manager, stylix,  ... }@inputs:
+    { nixpkgs, home-manager, stylix, ghostty,  ... }@inputs:
     let
       system = "x86_64-linux";
       host = "nixos";
@@ -33,6 +38,9 @@
             stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
             {
+              environment.systemPackages = [
+                ghostty.packages.x86_64-linux.default
+              ];
               home-manager.extraSpecialArgs = {
                 inherit username;
                 inherit inputs;
