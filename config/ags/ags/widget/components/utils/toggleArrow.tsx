@@ -8,7 +8,7 @@ export default function ToggleArrow(id: string) {
     var interval: any
     var deg = 0
     var delay = 2
-    const cssprovider = new Gtk.CssProvider()
+    const cssProvider = new Gtk.CssProvider()
 
     function rotate_arrow() {
         if (!rotating && deg < 90) {
@@ -41,8 +41,8 @@ export default function ToggleArrow(id: string) {
                 cssClasses={[`arrow${id}`]} 
                 iconName={"arrow-symbolic"}
                 setup={self=> {
-                    self.get_style_context().add_provider(cssprovider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
-                    hook(self, css(), () =>{cssprovider.load_from_string(`.arrow${id} { ${css().get()} }`)})
+                    self.get_style_context().add_provider(cssProvider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+                    hook(self, css(), () =>{cssProvider.load_from_string(`.arrow${id} { ${css().get()} }`)})
                 }}
                 />,
         rotate_arrow,

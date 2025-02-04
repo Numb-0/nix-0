@@ -1,19 +1,16 @@
-import { App, Astal, hook } from 'astal/gtk4';
+import { App, Astal, Gtk } from 'astal/gtk4';
 import Notifd from 'gi://AstalNotifd';
 import { notificationItem } from './components/notifications/notificationItem';
 import { type Subscribable } from 'astal/binding';
 import { Variable, bind } from 'astal';
 const { TOP, LEFT } = Astal.WindowAnchor;
-export const DND = Variable(false);
 
 const map: Map<number, Notifd.Notification> = new Map();
 const notifications: Variable<Array<Notifd.Notification>> = new Variable([]);
 let notif: Astal.Window;
 
 class NotifiationMap implements Subscribable {
-    private notifiy = () =>
-        (!DND.get()) &&
-            notifications.set([...map.values()].reverse());
+    private notifiy = () => notifications.set([...map.values()].reverse());
     
     constructor() {
         const notifd = Notifd.get_default();
@@ -33,19 +30,11 @@ class NotifiationMap implements Subscribable {
     };
 
     public delete(key: number) {
-        let isDND;
-        if (DND.get()) {
-            isDND = true;
-            DND.set(false);
-        };
-
         map.delete(key);
         this.notifiy();
-
-        (isDND) &&
-            DND.set(true);
     };
     
+    get_last = () => map.get([...map][0][0]);
     get = () => notifications.get();
     
     subscribe = (callback: (list: Array<Notifd.Notification>) => void) => 
@@ -53,6 +42,7 @@ class NotifiationMap implements Subscribable {
 };
 const allNotifications = new NotifiationMap();
 
+const cssProviderN = new Gtk.CssProvider();
 const Notifications = () =>
     <window
         name="notifications"
@@ -78,5 +68,16 @@ const Notifications = () =>
 
 export default Notifications;
 
-export const clearOldestNotification = () =>
-    allNotifications.delete([...map][0][0]);
+export const clearOldestNotification = () => {
+    let id = allNotifications.get_last()?.id;
+    if (id) {
+        print(id);
+        App.apply_css(`.notif${id} { 
+            animation-name: slide_left;
+            animation-duration: 2s;
+            animation-iteration-count: 1; }`)
+        setTimeout(() => allNotifications.delete([...map][0][0]), 1200);
+    } else {
+        print("No valid notification ID found.");
+    }
+}

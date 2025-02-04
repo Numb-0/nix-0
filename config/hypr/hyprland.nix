@@ -118,7 +118,7 @@ with lib;
           animation = workspaces, 1, 5, circ
 
           animation = layersIn, 1, 3, circ, slide
-          animation = layersOut, 1, 1.6, circ
+          animation = layersOut, 1, 2, circ, slide
         }
 
         decoration {

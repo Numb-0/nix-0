@@ -1,4 +1,4 @@
-import { GLib, Variable } from 'astal';
+import { bind, GLib, Variable } from 'astal';
 import { Gtk, Gdk } from 'astal/gtk4';
 import Notifd from 'gi://AstalNotifd';
 import Pango from 'gi://Pango';
@@ -23,7 +23,7 @@ const fileExists = (path: string) =>
     GLib.file_test(path, GLib.FileTest.EXISTS)
 
 export const notificationItem = (n: Notifd.Notification) =>
-    <box vertical cssClasses={["notification"]} onHoverEnter={()=>show_full_text.set(true)} onHoverLeave={()=>show_full_text.set(false)}>
+    <box vertical cssClasses={["notification", `notif${n.id}`]} onHoverEnter={()=>show_full_text.set(true)} onHoverLeave={()=>show_full_text.set(false)}>
         <box cssClasses={["header", urgency(n)]}>
             {(n.appIcon || n.desktopEntry) && <image
                 cssClasses={["app-icon"]}

@@ -5,6 +5,15 @@
     background-color: transparent;
 }
 
+@keyframes slide_left {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-400px);
+    }
+}
+
 .notification {
     margin: 0.4rem;
     border-radius: $radius;
