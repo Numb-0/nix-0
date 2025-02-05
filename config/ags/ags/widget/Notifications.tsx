@@ -44,7 +44,7 @@ class NotifiationMap implements Subscribable {
         notifications.subscribe(callback);
 };
 const allNotifications = new NotifiationMap();
-const cssProvider = new Gtk.CssProvider();
+const cssProviderNotification = new Gtk.CssProvider();
 
 export default function Notifications() {
     return <window
@@ -55,7 +55,7 @@ export default function Notifications() {
         setup={(self) => {
             bind(Notifd.get_default(), "dontDisturb").subscribe((v) => v ? self.hide() : self.show());
             notif = self;
-            App.get_monitors().map((monitor) => Gtk.StyleContext.add_provider_for_display(monitor.display, cssProvider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION));
+            App.get_monitors().map((monitor) => Gtk.StyleContext.add_provider_for_display(monitor.display, cssProviderNotification, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION));
         }}
         margin={4}
         cssClasses={["notificationwindow"]}
@@ -64,7 +64,7 @@ export default function Notifications() {
             {bind(allNotifications).as((n) => {
                 if (notif){
                     (n.length == 0 || Notifd.get_default().dontDisturb)
-                        ? notif.hide()
+                        ? setTimeout(()=>notif.hide(), 300)
                         : notif.show()
                 }
                 return n.map(notificationItem)}
@@ -82,11 +82,11 @@ export function clearOldestNotification() {
     let id = allNotifications.get_last()?.id;
     if (id != lastId) {
         clearing = true;
-        cssProvider.load_from_string(`.notif${id} { 
+        cssProviderNotification.load_from_string(`.notif${id} { 
             animation-name: slide_left;
             animation-duration: 1s;
             animation-iteration-count: 1;
             animation-timing-function: cubic-bezier(0.85, 0, 0.15, 1); }`)
-        setTimeout(() => {allNotifications.delete([...map][0][0]); clearing = false; cssProvider.load_from_string("") }, 1000);
+        setTimeout(() => {allNotifications.delete([...map][0][0]); clearing = false; cssProviderNotification.load_from_string("") }, 800);
     }
 }
