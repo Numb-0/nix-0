@@ -1,5 +1,5 @@
 import { Variable} from "astal"
-import { App, Gtk, hook} from "astal/gtk4"
+import { Gtk, hook} from "astal/gtk4"
 
 export default function ToggleArrow(id: string) {
     var rotating = false

@@ -1,7 +1,6 @@
+import { Variable } from "astal"
 import { App, Astal, Gtk, Gdk } from "astal/gtk4"
 import GLib  from "gi://GLib"
-import { Variable } from "astal"
-
 import Workspaces from "./components/bar/workspaces"
 import VolumeStatus from "./components/bar/volumeStatus"
 import BrightnessStatus from "./components/bar/brightnessStatus"

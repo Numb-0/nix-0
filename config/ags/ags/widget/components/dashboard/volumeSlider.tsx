@@ -1,6 +1,7 @@
 import { bind } from "astal"
-import Wp from "gi://AstalWp";
 import { Gtk } from "astal/gtk4";
+import Wp from "gi://AstalWp";
+
 
 export default function VolumeSlider() {
     const speaker = Wp.get_default()?.audio.defaultSpeaker!

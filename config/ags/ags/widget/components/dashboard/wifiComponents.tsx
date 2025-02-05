@@ -1,8 +1,8 @@
+import { bind } from "astal";
+import { Gtk } from "astal/gtk4";
 import Network from "gi://AstalNetwork"
-import { bind, Variable } from "astal";
-import { Gtk, Gdk, hook } from "astal/gtk4";
-import ToggleArrow from "../utils/toggleArrow";
 import Pango from "gi://Pango";
+import ToggleArrow from "../utils/toggleArrow";
 import ScrolledWindow from "../astalified/ScrolledWindow";
 
 export default function WifiComponets() {

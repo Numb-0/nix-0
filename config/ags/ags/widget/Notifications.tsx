@@ -1,10 +1,11 @@
+import { Variable, bind } from 'astal';
 import { App, Astal, Gtk } from 'astal/gtk4';
+import { type Subscribable } from 'astal/binding';
 import Notifd from 'gi://AstalNotifd';
 import { notificationItem } from './components/notifications/notificationItem';
-import { type Subscribable } from 'astal/binding';
-import { Variable, bind } from 'astal';
-const { TOP, LEFT } = Astal.WindowAnchor;
 
+
+const { TOP, LEFT } = Astal.WindowAnchor;
 const map: Map<number, Notifd.Notification> = new Map();
 const notifications: Variable<Array<Notifd.Notification>> = new Variable([]);
 let notif: Astal.Window;
@@ -30,8 +31,10 @@ class NotifiationMap implements Subscribable {
     };
 
     public delete(key: number) {
-        map.delete(key);
-        this.notifiy();
+        if (map.has(key)){
+            map.delete(key);
+            this.notifiy();
+        }
     };
     
     get_last = () => map.get([...map][0][0]);
@@ -41,43 +44,49 @@ class NotifiationMap implements Subscribable {
         notifications.subscribe(callback);
 };
 const allNotifications = new NotifiationMap();
+const cssProvider = new Gtk.CssProvider();
 
-const cssProviderN = new Gtk.CssProvider();
-const Notifications = () =>
-    <window
+export default function Notifications() {
+    return <window
         name="notifications"
         anchor={TOP | LEFT}
         application={App}
         visible={false}
-        setup={(self) => {bind(Notifd.get_default(), "dontDisturb").subscribe((v) => v ? self.hide() : self.show());notif = self}}
+        setup={(self) => {
+            bind(Notifd.get_default(), "dontDisturb").subscribe((v) => v ? self.hide() : self.show());
+            notif = self;
+            App.get_monitors().map((monitor) => Gtk.StyleContext.add_provider_for_display(monitor.display, cssProvider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION));
+        }}
         margin={4}
         cssClasses={["notificationwindow"]}
     >
         <box vertical>
             {bind(allNotifications).as((n) => {
-                if (notif)
+                if (notif){
                     (n.length == 0 || Notifd.get_default().dontDisturb)
                         ? notif.hide()
                         : notif.show()
-
+                }
                 return n.map(notificationItem)}
             )}
             
         </box>
     </window>
+}
 
-export default Notifications;
+var clearing = false;
+var lastId = 0;
 
-export const clearOldestNotification = () => {
+export function clearOldestNotification() {
+    if (clearing) return;
     let id = allNotifications.get_last()?.id;
-    if (id) {
-        print(id);
-        App.apply_css(`.notif${id} { 
+    if (id != lastId) {
+        clearing = true;
+        cssProvider.load_from_string(`.notif${id} { 
             animation-name: slide_left;
-            animation-duration: 2s;
-            animation-iteration-count: 1; }`)
-        setTimeout(() => allNotifications.delete([...map][0][0]), 1200);
-    } else {
-        print("No valid notification ID found.");
+            animation-duration: 1s;
+            animation-iteration-count: 1;
+            animation-timing-function: cubic-bezier(0.85, 0, 0.15, 1); }`)
+        setTimeout(() => {allNotifications.delete([...map][0][0]); clearing = false; cssProvider.load_from_string("") }, 1000);
     }
 }

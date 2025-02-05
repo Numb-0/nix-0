@@ -1,6 +1,6 @@
-import Hyprland from "gi://AstalHyprland"
-import { Gtk } from "astal/gtk3";
 import { bind } from "astal"
+import Hyprland from "gi://AstalHyprland"
+
 
 export default function Workspaces() {
     const hyperland = Hyprland.get_default();

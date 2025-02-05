@@ -3,7 +3,7 @@ import Tray from "gi://AstalTray"
 
 export default function SysTray() {
     const tray = Tray.get_default()
-
+    
     return <box cssClasses={["systray"]} spacing={4}>
         {bind(tray, "items").as(items => items.map(item => (
             <menubutton

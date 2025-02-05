@@ -1,13 +1,13 @@
-import { bind, GLib, Variable } from 'astal';
+import { GLib, Variable } from 'astal';
 import { Gtk, Gdk } from 'astal/gtk4';
 import Notifd from 'gi://AstalNotifd';
 import Pango from 'gi://Pango';
-const { START, CENTER, END } = Gtk.Align
 import { time } from '../../Bar'
 
-const cssProvider = new Gtk.CssProvider()
 
-const urgency = (n: Notifd.Notification) => {
+const { START, CENTER, END } = Gtk.Align
+
+function urgency(n: Notifd.Notification) {
     const { LOW, NORMAL, CRITICAL } = Notifd.Urgency
     switch (n.urgency) {
         case LOW: return "low"
@@ -19,11 +19,11 @@ const urgency = (n: Notifd.Notification) => {
 
 const show_full_text = Variable(false)
 
-const fileExists = (path: string) =>
-    GLib.file_test(path, GLib.FileTest.EXISTS)
+const fileExists = (path: string) => GLib.file_test(path, GLib.FileTest.EXISTS)
 
-export const notificationItem = (n: Notifd.Notification) =>
-    <box vertical cssClasses={["notification", `notif${n.id}`]} onHoverEnter={()=>show_full_text.set(true)} onHoverLeave={()=>show_full_text.set(false)}>
+export function notificationItem(n: Notifd.Notification) {
+    const cssProvider = new Gtk.CssProvider()
+    return <box vertical cssClasses={["notification", `notif${n.id}`]} onHoverEnter={()=>show_full_text.set(true)} onHoverLeave={()=>show_full_text.set(false)}>
         <box cssClasses={["header", urgency(n)]}>
             {(n.appIcon || n.desktopEntry) && <image
                 cssClasses={["app-icon"]}
@@ -90,3 +90,4 @@ export const notificationItem = (n: Notifd.Notification) =>
             </box>
         </box>
     </box>
+}

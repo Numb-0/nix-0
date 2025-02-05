@@ -1,12 +1,8 @@
+import { bind, timeout } from "astal";
+import { Gtk } from "astal/gtk4";
 import Bluetooth from "gi://AstalBluetooth";
-import { bind, timeout, Variable } from "astal";
 import ToggleArrow from "../utils/toggleArrow";
-import { Gtk, Gdk, hook } from "astal/gtk4";
-import FlowBoxChild from "../astalified/FlowBoxChild";
-import FlowBox from "../astalified/FlowBox";
 import ScrolledWindow from "../astalified/ScrolledWindow";
-import ListBox from "../astalified/ListBox";
-import ListBoxRow from "../astalified/ListBoxRow";
 
 
 export default function BluetoothComponents() {

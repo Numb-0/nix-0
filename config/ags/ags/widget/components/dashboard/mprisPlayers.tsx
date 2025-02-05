@@ -1,7 +1,7 @@
-import { Astal, Gtk, hook } from "astal/gtk4"
+import { bind } from "astal"
+import { Gtk, hook } from "astal/gtk4"
 import Mpris from "gi://AstalMpris"
-import { bind, GLib } from "astal"
-import { pl_dashboard_toggler } from "../../PlayerDashboard"
+
 
 function lengthStr(length: number) {
     const min = Math.floor(length / 60)
@@ -10,19 +10,17 @@ function lengthStr(length: number) {
     return `${min}:${sec0}${sec}`
 }
 
-const ccsProvider = new Gtk.CssProvider()
-
 function MediaPlayer({ player }: { player: Mpris.Player }) {
+    const ccsProvider = new Gtk.CssProvider()
     const { START, END } = Gtk.Align
-
+    const id = player.entry
     const title = bind(player, "title").as(t =>
         t || "Unknown Track")
 
     const artist = bind(player, "artist").as(a =>
         a || "Unknown Artist")
 
-    const coverArt = bind(player, "coverArt").as(c =>
-        `.cover-art{background-image: url('file:///${c}');}`)
+    const coverArt = bind(player, "coverArt").as(c => `.cover-art {background-image: url('file:///${c}');}`)
 
     const playerIcon = bind(player, "entry").as(e => {
         return e ? e : "audio-x-generic-symbolic";
@@ -39,13 +37,11 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
 
 
     return <box cssClasses={["MediaPlayer"]}>
-        <box cssClasses={["cover-art"]} 
-        setup={
-            self => {
-                self.get_style_context().add_provider(ccsProvider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
-                hook(self, coverArt, () => ccsProvider.load_from_string(coverArt.get()))
-            }
-        }
+        <box cssClasses={[`cover-art`]} 
+        setup={self => {
+            self.get_style_context().add_provider(ccsProvider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+            hook(self, coverArt, () => ccsProvider.load_from_string(coverArt.get()))
+        }}
         />
         <box vertical>
             <box spacing={2} cssClasses={["title"]}>
@@ -73,8 +69,7 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
                         <image iconName="media-skip-backward-symbolic" />
                     </button>
                     <button
-                        // On Opening dashboard, grab focus to the play button
-                        setup={self => hook(self,pl_dashboard_toggler, (self, value) => value ? self.grab_focus() : null)}
+                        //TODO On Opening dashboard, grab focus to the play button
                         onClicked={() => player.play_pause()}
                         visible={bind(player, "canControl")}>
                         <image iconName={playIcon} />

@@ -1,28 +1,12 @@
+import { bind, Variable, execAsync } from "astal"
 import { App, Astal, Gtk, Gdk } from "astal/gtk4"
 import Hyprland from "gi://AstalHyprland"
 import Notifd from "gi://AstalNotifd"
-import { bind, Variable, timeout, execAsync } from "astal"
 import BrightnessSlider from "./components/dashboard/brightnessSlider"
 import VolumeSlider from "./components/dashboard/volumeSlider"
 import CavaStatus from "./components/dashboard/cavaStatus"
 import BluetoothComponents from "./components/dashboard/bluetoothComponents"
 import WifiComponets from "./components/dashboard/wifiComponents"
-
-export const dashboard_toggling = Variable(false)
-export const dashboard_toggler = Variable(true)
-const dashboard_animation_cooldown = 200
-
-dashboard_toggler.subscribe((toggling)=>{
-    if(toggling) {
-        dashboard_toggling.set(true)
-        App.toggle_window("Dashboard")
-        timeout(dashboard_animation_cooldown, ()=>dashboard_toggling.set(false))
-    } else {
-        dashboard_toggling.set(true)
-        timeout(dashboard_animation_cooldown,()=>App.toggle_window("Dashboard"))
-        timeout(dashboard_animation_cooldown,()=>dashboard_toggling.set(false))
-    }
-})
 
 export default function Dashboard() {
     const hyprland = Hyprland.get_default()
@@ -47,9 +31,7 @@ export default function Dashboard() {
         }
     )
 
-
     return <window 
-            visible
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
             anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.BOTTOM}
             keymode={Astal.Keymode.EXCLUSIVE} 
@@ -57,7 +39,7 @@ export default function Dashboard() {
             cssClasses={["Dashboard"]}
             application={App}
             monitor={bind(hyprland, "focusedMonitor").as((monitor) => monitor.id)}
-            onKeyPressed={(_, keyval) => keyval === Gdk.KEY_Escape && dashboard_toggler.set(false)}
+            onKeyPressed={(self, keyval) => keyval === Gdk.KEY_Escape && self.hide()}
             margin={10}>
             <box halign={Gtk.Align.END} valign={Gtk.Align.START} spacing={4}>
                 <stack hhomogeneous transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>

@@ -1,5 +1,6 @@
-import Network from "gi://AstalNetwork"
 import { bind } from "astal"
+import Network from "gi://AstalNetwork"
+
 
 
 export default function WifiStatus() {

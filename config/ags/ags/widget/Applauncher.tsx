@@ -1,27 +1,10 @@
+import { bind } from "astal";
+import { App, Astal, Gdk, Gtk } from "astal/gtk4";
 import Apps from "gi://AstalApps";
-import Hyprland from "gi://AstalHyprland"
-import { App, Astal, Gdk, Gtk, Widget } from "astal/gtk4"
-import { bind, timeout, Variable } from "astal";
-
+import Hyprland from "gi://AstalHyprland";
 import ScrolledWindow from "./components/astalified/ScrolledWindow";
 import FlowBoxChild from "./components/astalified/FlowBoxChild";
 import FlowBox from "./components/astalified/FlowBox";
-
-export const applauncher_toggling = Variable(false)
-export const applauncher_toggler = Variable(true)
-const applauncher_animation_cooldown = 200
-
-applauncher_toggler.subscribe((toggling)=>{
-    if(toggling) {
-        applauncher_toggling.set(true)
-        App.toggle_window("Applauncher")
-        timeout(applauncher_animation_cooldown,()=>applauncher_toggling.set(false))
-    } else {
-        applauncher_toggling.set(true)
-        timeout(applauncher_animation_cooldown,()=>App.toggle_window("Applauncher"))
-        timeout(applauncher_animation_cooldown,()=>applauncher_toggling.set(false))
-    }
-})
 
 
 export default function Applauncher() {
@@ -37,8 +20,8 @@ export default function Applauncher() {
     function AppButton({app}: {app: Apps.Application}): JSX.Element {
         return  <FlowBoxChild cssClasses={["appbutton"]} tooltipText={app.name} name={app.name}
                     onActivate={() => {
-                        applauncher_toggler.set(false);
                         app.launch();
+                        App.toggle_window("Applauncher");
                     }}>
                     <image iconName={app.get_icon_name() || ""}/>
         </FlowBoxChild>
@@ -57,21 +40,17 @@ export default function Applauncher() {
     }
     
     return <window 
-        visible
         exclusivity={Astal.Exclusivity.EXCLUSIVE}
         keymode={Astal.Keymode.EXCLUSIVE} 
         name={"Applauncher"} 
         application={App} 
         cssClasses={["Applauncher"]} 
         monitor={bind(hyprland, "focused_monitor").as((monitor) => monitor.id)}
-        onKeyPressed={(_,keyval) => keyval === Gdk.KEY_Escape && applauncher_toggler.set(false)}
+        onKeyPressed={(self, keyval) => keyval === Gdk.KEY_Escape && self.hide()}
         >
         <box vertical={true}>
             <entry
-                placeholderText={"ctrl+tab to select"}  
-                setup={(self) => {
-                    applauncher_toggler.subscribe(open => open ? self.grab_focus() : null);
-                }}
+                placeholderText={"ctrl+tab to select"}
                 onChanged={(self) => {
                     filterList(self.get_text());
                 }}
