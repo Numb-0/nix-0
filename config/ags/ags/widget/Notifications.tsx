@@ -60,7 +60,7 @@ export default function Notifications() {
         margin={4}
         cssClasses={["notificationwindow"]}
     >
-        <box vertical>
+        <box vertical hexpand>
             {bind(allNotifications).as((n) => {
                 if (notif){
                     (n.length == 0 || Notifd.get_default().dontDisturb)

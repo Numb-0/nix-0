@@ -8,7 +8,7 @@ const Corner = GObject.registerClass(
         constructor(gdkmonitor: Gdk.Monitor) {
             super();
             this.gdkmonitor = gdkmonitor;
-            this.set_size_request(20, 20); // Adjust size as needed
+            this.set_size_request(20, 10); // Adjust size as needed
         }
         vfunc_snapshot(snapshot: Gtk.Snapshot) {
             const radius = 20;

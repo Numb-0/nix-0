@@ -1,5 +1,5 @@
 import { bind } from "astal";
-import { App, Astal, Gdk, Gtk } from "astal/gtk4";
+import { App, Astal, Gdk, Gtk, hook } from "astal/gtk4";
 import Apps from "gi://AstalApps";
 import Hyprland from "gi://AstalHyprland";
 import ScrolledWindow from "./components/astalified/ScrolledWindow";
@@ -54,9 +54,10 @@ export default function Applauncher() {
                 onChanged={(self) => {
                     filterList(self.get_text());
                 }}
-                onActivate={() => {
+                onActivate={(self) => {
                     const selectedApp = appButtons.find((appButton) => appButton.visible);
                     selectedApp?.activate();
+                    self.text = "";
                 }}/>
                 <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER}>
                     <FlowBox homogeneous minChildrenPerLine={4} selectionMode={Gtk.SelectionMode.SINGLE}>
