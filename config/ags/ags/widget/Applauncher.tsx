@@ -6,7 +6,6 @@ import ScrolledWindow from "./components/astalified/ScrolledWindow";
 import FlowBoxChild from "./components/astalified/FlowBoxChild";
 import FlowBox from "./components/astalified/FlowBox";
 
-
 export default function Applauncher() {
     const hyprland = Hyprland.get_default()
     const apps = new Apps.Apps({
@@ -14,7 +13,6 @@ export default function Applauncher() {
         entryMultiplier: 0,
         executableMultiplier: 2,
     });
-    
     const appList = apps.fuzzy_query("");
 
     function AppButton({app}: {app: Apps.Application}): JSX.Element {
@@ -38,18 +36,8 @@ export default function Applauncher() {
             appButton.set_visible(isVisible);
         });
     }
-    
-    return <window 
-        exclusivity={Astal.Exclusivity.EXCLUSIVE}
-        keymode={Astal.Keymode.EXCLUSIVE} 
-        name={"Applauncher"} 
-        application={App} 
-        cssClasses={["Applauncher"]} 
-        monitor={bind(hyprland, "focused_monitor").as((monitor) => monitor.id)}
-        onKeyPressed={(self, keyval) => keyval === Gdk.KEY_Escape && self.hide()}
-        >
-        <box vertical={true}>
-            <entry
+
+    const entry = <entry
                 placeholderText={"ctrl+tab to select"}
                 onChanged={(self) => {
                     filterList(self.get_text());
@@ -59,6 +47,20 @@ export default function Applauncher() {
                     selectedApp?.activate();
                     self.text = "";
                 }}/>
+
+    
+    return <window 
+        exclusivity={Astal.Exclusivity.EXCLUSIVE}
+        keymode={Astal.Keymode.EXCLUSIVE} 
+        name={"Applauncher"} 
+        application={App} 
+        cssClasses={["Applauncher"]} 
+        monitor={bind(hyprland, "focused_monitor").as((monitor) => monitor.id)}
+        onKeyPressed={(self, keyval) => keyval === Gdk.KEY_Escape && self.hide()}
+        setup={self=>hook(entry, self, "notify::visible", ()=>entry.grab_focus())}
+        >
+        <box vertical={true}>
+                {entry}
                 <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER}>
                     <FlowBox homogeneous minChildrenPerLine={4} selectionMode={Gtk.SelectionMode.SINGLE}>
                         {appButtons}
