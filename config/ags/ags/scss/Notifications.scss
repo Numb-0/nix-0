@@ -8,9 +8,11 @@
 @keyframes slide_left {
     from {
         transform: translateX(0);
+        opacity: 1;
     }
     to {
-        transform: translateX(-1000px);
+        transform: translateX(-200px);
+        opacity: 0;
     }
 }
 

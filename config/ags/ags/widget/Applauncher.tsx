@@ -25,9 +25,7 @@ export default function Applauncher() {
         </FlowBoxChild>
     }
 
-    const appButtons = appList.map((app) => (
-        <AppButton app={app} />
-    ));
+    const appButtons = appList.map((app) => (<AppButton app={app} />));
 
     function filterList(text: string) {
         appButtons.forEach((appButton) => {
@@ -47,7 +45,7 @@ export default function Applauncher() {
                     let selectedApp  = appButtons.find((appButton) => appButton.visible);
                     selectedApp?.activate();
                 }}
-               />
+    />
 
     
     return <window 

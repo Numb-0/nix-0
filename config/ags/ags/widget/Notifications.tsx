@@ -3,9 +3,8 @@ import { App, Astal, Gtk } from 'astal/gtk4';
 import { type Subscribable } from 'astal/binding';
 import Notifd from 'gi://AstalNotifd';
 import { notificationItem } from './components/notifications/notificationItem';
-
-
 const { TOP, LEFT } = Astal.WindowAnchor;
+
 
 class NotificationMap implements Subscribable {
     private map = new Map<number, Gtk.Widget>();
@@ -58,8 +57,9 @@ export default function Notifications() {
         cssClasses={["notificationwindow"]}
         defaultHeight={1}
         defaultWidth={1}
+        overflow={Gtk.Overflow.VISIBLE}
     >
-        <box name={"notifbox"} vertical hexpand>
+        <box vertical hexpand>
             {bind(notificationsMap).as((n) => {
                 if (notif) {
                     (n.length == 0 || Notifd.get_default().dontDisturb) ? notif.hide() : notif.show()
@@ -79,11 +79,11 @@ export function clearLastNotification() {
     let id = notificationsMap.get_last_id();
     if (id != lastId && id != undefined) {
         clearing = true;
-        cssProviderNotification.load_from_string(`.notif${id} { 
-            animation-name: slide_left;
-            animation-duration: 1s;
-            animation-iteration-count: 1;
-            animation-timing-function: cubic-bezier(0.85, 0, 0.15, 1); }`)
+        cssProviderNotification.load_from_string(
+            `.notif${id} {
+                animation: slide_left 1s cubic-bezier(0.85, 0, 0.15, 1);
+            }`
+        );
         setTimeout(() => {notificationsMap.delete(id); clearing = false; cssProviderNotification.load_from_string("") }, 1000);
     }
 }
