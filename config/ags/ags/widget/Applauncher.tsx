@@ -31,8 +31,8 @@ export default function Applauncher() {
 
     function filterList(text: string) {
         appButtons.forEach((appButton) => {
-            const appName = appButton.name.toLowerCase();
-            const isVisible = appName.includes(text.toLowerCase());
+            let appName = appButton.name.toLowerCase();
+            let isVisible = appName.includes(text.toLowerCase());
             appButton.set_visible(isVisible);
         });
     }
@@ -42,11 +42,7 @@ export default function Applauncher() {
                 onChanged={(self) => {
                     filterList(self.get_text());
                 }}
-                onActivate={(self) => {
-                    const selectedApp = appButtons.find((appButton) => appButton.visible);
-                    selectedApp?.activate();
-                    self.text = "";
-                }}/>
+               />
 
     
     return <window 
