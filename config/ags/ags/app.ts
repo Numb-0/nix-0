@@ -5,7 +5,7 @@ import Applauncher from "./widget/Applauncher"
 import Dashboard from "./widget/Dashboard"
 import PlayerDashboard from "./widget/PlayerDashboard"
 import Corners from "./widget/Corners"
-import Notifications, {clearOldestNotification}  from "./widget/Notifications"
+import Notifications, {clearLastNotification}  from "./widget/Notifications"
 
 App.start({
     icons: `${SRC}/assets`,
@@ -29,7 +29,7 @@ App.start({
             App.toggle_window("PlayerDashboard");
         }
         if (request == "clearnotif") {
-            clearOldestNotification();
+            clearLastNotification();
         }
     }
 })

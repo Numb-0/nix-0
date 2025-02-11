@@ -6,45 +6,42 @@ import { notificationItem } from './components/notifications/notificationItem';
 
 
 const { TOP, LEFT } = Astal.WindowAnchor;
-const map: Map<number, Notifd.Notification> = new Map();
-const notifications: Variable<Array<Notifd.Notification>> = new Variable([]);
-let notif: Astal.Window;
 
-class NotifiationMap implements Subscribable {
-    private notifiy = () => notifications.set([...map.values()].reverse());
+class NotificationMap implements Subscribable {
+    private map = new Map<number, Gtk.Widget>();
+    private notifications: Variable<Array<Gtk.Widget>> = new Variable([]);
+    private notifiy = () => this.notifications.set([...this.map.values()].reverse());
     
     constructor() {
         const notifd = Notifd.get_default();
 
-        notifd.connect("notified", (_, id) =>
-            this.set(id, notifd.get_notification(id)!)
-        );
+        notifd.connect("notified", (n, id) => this.set(id, notificationItem(n.get_notification(id))));
 
-        notifd.connect("resolved", (_, id) =>
-            this.delete(id)
-        );
+        notifd.connect("resolved", (_, id) => this.delete(id));
     };
 
-    private set(key: number, value: Notifd.Notification) {
-        map.set(key, value);
+    private set(key: number, value: Gtk.Widget) {
+        this.map.set(key, value);
         this.notifiy();
     };
 
     public delete(key: number) {
-        if (map.has(key)){
-            map.delete(key);
-            this.notifiy();
-        }
+        this.map.delete(key);
+        this.notifiy();
     };
     
-    get_last = () => map.get([...map][0][0]);
-    get = () => notifications.get();
+    get_last = () => this.map.size > 0 ? this.map.get([...this.map.keys()][0]) : undefined;
+    get_last_id = () => this.map.size > 0 ? [...this.map.keys()][0] : undefined;
+    get = () => this.notifications.get();
     
-    subscribe = (callback: (list: Array<Notifd.Notification>) => void) => 
-        notifications.subscribe(callback);
+    
+    subscribe = (callback: (list: Array<Gtk.Widget>) => void) => this.notifications.subscribe(callback);
 };
-const allNotifications = new NotifiationMap();
+
+
+const notificationsMap = new NotificationMap();
 const cssProviderNotification = new Gtk.CssProvider();
+var notif: Astal.Window;
 
 export default function Notifications() {
     return <window
@@ -59,15 +56,15 @@ export default function Notifications() {
         }}
         margin={4}
         cssClasses={["notificationwindow"]}
+        defaultHeight={1}
+        defaultWidth={1}
     >
-        <box vertical hexpand>
-            {bind(allNotifications).as((n) => {
-                if (notif){
-                    (n.length == 0 || Notifd.get_default().dontDisturb)
-                        ? setTimeout(()=>notif.hide(), 300)
-                        : notif.show()
+        <box name={"notifbox"} vertical hexpand>
+            {bind(notificationsMap).as((n) => {
+                if (notif) {
+                    (n.length == 0 || Notifd.get_default().dontDisturb) ? notif.hide() : notif.show()
                 }
-                return n.map(notificationItem)}
+                return n}
             )}
             
         </box>
@@ -77,16 +74,16 @@ export default function Notifications() {
 var clearing = false;
 var lastId = 0;
 
-export function clearOldestNotification() {
+export function clearLastNotification() {
     if (clearing) return;
-    let id = allNotifications.get_last()?.id;
-    if (id != lastId) {
+    let id = notificationsMap.get_last_id();
+    if (id != lastId && id != undefined) {
         clearing = true;
         cssProviderNotification.load_from_string(`.notif${id} { 
             animation-name: slide_left;
             animation-duration: 1s;
             animation-iteration-count: 1;
             animation-timing-function: cubic-bezier(0.85, 0, 0.15, 1); }`)
-        setTimeout(() => {allNotifications.delete([...map][0][0]); clearing = false; cssProviderNotification.load_from_string("") }, 800);
+        setTimeout(() => {notificationsMap.delete(id); clearing = false; cssProviderNotification.load_from_string("") }, 1000);
     }
 }

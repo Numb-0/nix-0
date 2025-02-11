@@ -42,6 +42,11 @@ export default function Applauncher() {
                 onChanged={(self) => {
                     filterList(self.get_text());
                 }}
+                onActivate={() => {
+                    // Handle case where no app is selected but we want to launch the first visible app
+                    let selectedApp  = appButtons.find((appButton) => appButton.visible);
+                    selectedApp?.activate();
+                }}
                />
 
     

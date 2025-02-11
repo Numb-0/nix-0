@@ -1,6 +1,15 @@
 @use "colors" as *;
 @use "presets" as *;
 
+
+@keyframes icon-wiggle {
+    0% {-gtk-icon-transform: rotate(15deg);}
+   25% {-gtk-icon-transform: rotate(-15deg);}
+   50% {-gtk-icon-transform: rotate(25deg);}
+   75% {-gtk-icon-transform: rotate(-10deg);}
+  100% {-gtk-icon-transform: rotate(0deg);}
+ }
+
 window.Bar {
     centerbox.container {
         padding: .2rem .6rem .2rem;
@@ -16,12 +25,12 @@ window.Bar {
 
     box.workspaces {
         button.workspace {
-            transition: color 1s;
             color: $base02;
             -gtk-icon-size: 1rem;
+            transition: color 1.5s;
             &.occupied {
                 image {
-                    transition: color 1s;
+                    transition: color 1.5s;
                     color: $base07;
                 }
             }
