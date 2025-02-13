@@ -101,4 +101,16 @@ window.Bar {
         }
     }
 
+    separator {
+        color: $base05;
+        border-radius: $radius;
+        min-width: 2px;
+    }
+
+    .power {
+        color: $base07;
+        image {
+            -gtk-icon-size: 1.2rem;
+        }
+    }
 }

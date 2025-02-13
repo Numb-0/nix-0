@@ -6,6 +6,7 @@ import Dashboard from "./widget/Dashboard"
 import PlayerDashboard from "./widget/PlayerDashboard"
 import Corners from "./widget/Corners"
 import Notifications, {clearLastNotification}  from "./widget/Notifications"
+import PowerActions from "./widget/PowerActions"
 
 App.start({
     icons: `${SRC}/assets`,
@@ -17,6 +18,7 @@ App.start({
         Dashboard()
         PlayerDashboard()
         Notifications()
+        PowerActions()
     },
     requestHandler(request: string, res: (response: any) => void) {
         if (request == "applauncher") {
@@ -28,7 +30,10 @@ App.start({
         if (request == "pldashboard") {
             App.toggle_window("PlayerDashboard");
         }
-        if (request == "clearnotif") {
+        if (request == "poweractions") {
+            App.toggle_window("PowerActions");
+        }
+        if (request == "clearnotification") {
             clearLastNotification();
         }
     }

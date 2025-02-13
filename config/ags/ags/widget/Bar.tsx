@@ -9,6 +9,7 @@ import SysTray from "./components/bar/sysTray"
 import WifiStatus from "./components/bar/wifiStatus";
 import BluetoothStatus from "./components/bar/bluetoothStatus";
 import NotifyStatus from "./components/bar/notifyStatus"
+import PowerStatus from "./components/bar/powerStatus"
 
 export const time = Variable<string>("").poll(1000, () => GLib.DateTime.new_now_local().format("%H:%M")!)
 
@@ -44,6 +45,8 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
                     <BrightnessStatus/>
                     <BatteryStatus/>
                     <SysTray/>
+                    <Gtk.Separator/>
+                    <PowerStatus/>
                 </box>
             </centerbox>
     </window>

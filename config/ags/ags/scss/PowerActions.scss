@@ -1,0 +1,38 @@
+@use "colors" as *;
+@use "presets" as *;
+
+.dialog {
+    border-radius: $radius;
+    .dialog-action-area {
+        button {
+            padding: 0.4rem;
+            &:hover, &:focus {
+                background-color: $base02;
+            }
+        }
+    }
+}
+
+.PowerActions {
+    box {
+        background-color: $base01;
+        padding: .6rem;
+        border-radius: $radius;
+        button {
+            border-radius: $radius;
+            padding: .6rem;
+            image {
+                -gtk-icon-size: 2rem;
+            }
+            &:hover, &:focus {
+                background-color: $base02;
+            }
+            &.power{
+                color: $base08;
+            }
+            &.reboot {
+                color: $base0C;
+            }
+        }
+    }
+}

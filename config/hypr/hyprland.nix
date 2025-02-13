@@ -165,7 +165,8 @@ with lib;
         bind = $mainMod, A, exec, ags request applauncher
         bind = $mainMod, D, exec, ags request dashboard
         bind = $mainMod, P, exec, ags request pldashboard
-        bind = $mainMod, C, exec, ags request clearnotif 
+        bind = $mainMod, C, exec, ags request clearnotification 
+        bind = $mainMod, X, exec, ags request poweractions
         bind = $mainMod, H, exec, hyprshot -m region
 
         # Move focus with mainMod + arrow keys
