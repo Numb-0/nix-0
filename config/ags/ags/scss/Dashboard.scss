@@ -14,108 +14,118 @@ window.Dashboard {
     box.cava {
         padding: .6rem .4rem;
         border-radius: $radius;
-        min-width: 50px;
+        //min-width: 50px;
         background-color: $base01;
     }
 
 
-    button.notif, button.drop, button.wifiButton, button.bluetoothButton {
-        .arrow {
-            padding-top: .4rem;
-        }
-        padding: .4rem .6rem .4rem;
-        //padding: 1rem;
-        border-radius: $radius;
-        background-color: $base01;
-        outline: none;
-        image {
-            //font-size: 1.2rem;
-            -gtk-icon-size: 1.2rem;
-        }
-        &:hover, &:focus {
-            transition: all .5s;
-            background-color: $base02;
-        }
-    }
-    button.drop { color: $base09; }
-    button.wifiButton { color: $base0C; }
-    button.bluetoothButton { color: $base0D; }
-    button.notif { color: $base0A; }
-
-
-    scrolledwindow.wifiList, scrolledwindow.bluetoothList {
-        scrollbar {
-            // Remove scrollbar
-            &.overlay-indicator {
-                opacity: 0;
-            }
-        }
-        padding: .6rem;
-        border-radius: $radius;
-        background-color: $base01;
-        * {
-            border: none;
-        }
-        button {
-            padding: 0;
+    button {
+        &.toggle, &.notif, &.drop, &.wifiButton, &.bluetoothButton {
+            min-width: 50px;
+            border-radius: $radius;
+            background-color: $base01;
             outline: none;
-            border-radius: $radius;
             image {
-                //font-size: 1.2rem;
-                -gtk-icon-size: 1.2rem;
-            }
-            box {
-                padding: .2rem;
-                border-radius: $radius;
-                box {
-                    padding: .6rem
-                }
-                &:hover {
-                    color: unset;
-                    transition: all .5s;
-                    background-color: $base02;
-                }
-
-            }
-            // connected button text color
-            &.connected {
-                color: $base0A;
-            }
-        }
-    }
-    scrolledwindow.wifiList { color: $base0C; }
-    scrolledwindow.bluetoothList { color: $base0D; }
-
-
-    box.brightness_slider, box.volume_slider {
-        image {
-            //font-size: 1.2rem;
-            -gtk-icon-size: 1.2rem;
-        }
-        scale {
-            min-height: 120px;
-            padding: 0.4rem;
-            margin: 0.4rem;
-            border-radius: $radius;
-            trough {
-                outline: none;
-                min-width: 6px;
-                slider {
-                    all: unset;
-                }
+                transition: all .5s;
+                -gtk-icon-size: 1.4rem;
             }
             &:hover, &:focus {
                 transition: all .5s;
                 background-color: $base02;
             }
         }
+        &.drop { color: $base09; }
+        &.wifiButton { color: $base0C; }
+        &.bluetoothButton { color: $base0D; }
+        &.notif { color: $base0A; }
+
+        &.toggle {
+            &:checked {
+                image {
+                    transition: all .5s;
+                    -gtk-icon-transform: rotate(90deg);
+                }
+            }
+        }
     }
-    box.brightness_slider { 
-        color: $base09;
-        highlight { background-color: $base09; }
+
+
+    scrolledwindow {
+        &.wifiList, &.bluetoothList {
+            scrollbar {
+                // Remove scrollbar
+                &.overlay-indicator {
+                    opacity: 0;
+                }
+            }
+            padding: .6rem;
+            border-radius: $radius;
+            background-color: $base01;
+            * {
+                border: none;
+            }
+            button {
+                padding: 0;
+                outline: none;
+                border-radius: $radius;
+                image {
+                    //font-size: 1.2rem;
+                    -gtk-icon-size: 1.2rem;
+                }
+                box {
+                    padding: .2rem;
+                    border-radius: $radius;
+                    box {
+                        padding: .6rem
+                    }
+                    &:hover {
+                        color: unset;
+                        transition: all .5s;
+                        background-color: $base02;
+                    }
+
+                }
+                // connected button text color
+                &.connected {
+                    color: $base0A;
+                }
+            }
+        }
+        &.wifiList { color: $base0C; }
+        &.bluetoothList { color: $base0D; }
     }
-    box.volume_slider { 
-        color: $base0B;
-        highlight { background-color: $base0B; }
+
+
+    box {
+        &.brightness_slider, &.volume_slider {
+            image {
+                -gtk-icon-size: 1.3rem;
+            }
+            scale {
+                min-height: 120px;
+                padding: .6rem;
+                margin: .6rem;
+                border-radius: $radius;
+                trough {
+                    outline: none;
+                    min-width: 8px;
+                    slider {
+                        all: unset;
+                    }
+                }
+                &:hover, &:focus {
+                    transition: all .5s;
+                    background-color: $base02;
+                }
+            }
+        }
+        &.brightness_slider { 
+            color: $base09;
+            highlight { background-color: $base09; }
+        }
+        &.volume_slider { 
+            color: $base0B;
+            highlight { background-color: $base0B; }
+        }
     }
 }

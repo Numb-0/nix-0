@@ -2,34 +2,18 @@ import { bind, Variable, execAsync } from "astal"
 import { App, Astal, Gtk, Gdk } from "astal/gtk4"
 import Hyprland from "gi://AstalHyprland"
 import Notifd from "gi://AstalNotifd"
+import ToggleButton from "./components/astalified/ToggleButton"
 import BrightnessSlider from "./components/dashboard/brightnessSlider"
 import VolumeSlider from "./components/dashboard/volumeSlider"
 import CavaStatus from "./components/dashboard/cavaStatus"
-import BluetoothComponents from "./components/dashboard/bluetoothComponents"
-import WifiComponets from "./components/dashboard/wifiComponents"
+import BluetoothList from "./components/dashboard/bluetoothList"
+import WifiList from "./components/dashboard/wifiList"
 
 export default function Dashboard() {
     const hyprland = Hyprland.get_default()
     const notifid = Notifd.get_default()
 
-    const bluetooth = BluetoothComponents()
-    const wifi = WifiComponets()
-
-    bluetooth.bt_arrow.arrow_open.subscribe((open) => open ? ( wifi.wf_arrow.arrow_open.get() ? wifi.wf_arrow.rotate_arrow(): null): null)
-    wifi.wf_arrow.arrow_open.subscribe((open) => open ? ( bluetooth.bt_arrow.arrow_open.get() ? bluetooth.bt_arrow.rotate_arrow() : null ): null)
-
-    const switcher = Variable.derive(
-        [bluetooth.bt_arrow.arrow_open, wifi.wf_arrow.arrow_open],
-        (bluetooth_open, wifi_open) => { 
-            if (bluetooth_open && !wifi_open) {
-                return "bluetooth"
-            } else if (!bluetooth_open && wifi_open) {
-                return "wifi"
-            } else {
-                return "placeholder"
-            }
-        }
-    )
+    const activeStack = new Variable<string>("cava")
 
     return <window 
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
@@ -42,12 +26,10 @@ export default function Dashboard() {
             onKeyPressed={(self, keyval) => keyval === Gdk.KEY_Escape && self.hide()}
             margin={10}>
             <box halign={Gtk.Align.END} valign={Gtk.Align.START} spacing={4}>
-                <stack hhomogeneous transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={switcher()}>
-                    <box name={"placeholder"}>
-                        <CavaStatus/>
-                    </box>
-                        {bluetooth.BluetooohDeviceList()}
-                        {wifi.WifiAccessPointsList()}
+                <stack hhomogeneous transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={activeStack()}>
+                    <box name="cava"><CavaStatus/></box>
+                    <BluetoothList/>
+                    <WifiList/>
                 </stack>
                 <box spacing={4} vertical>
                     <button cssClasses={["notif"]} vexpand valign={Gtk.Align.FILL} onClicked={()=>notifid.dontDisturb = !notifid.dontDisturb}>
@@ -55,8 +37,12 @@ export default function Dashboard() {
                     </button>
                 </box>
                 <box spacing={4} vertical>
-                    {bluetooth.BluetoothButton()}
-                    {wifi.WifiButton()}
+                    <ToggleButton vexpand valign={Gtk.Align.FILL} cssClasses={["toggle", "wifiButton"]} active={activeStack().as(s => s == "wifi")} onClicked={(self)=> !self.active ? activeStack.set("cava") : activeStack.set("wifi")}>
+                        <image iconName={"arrow-symbolic"}/>
+                    </ToggleButton>
+                    <ToggleButton vexpand valign={Gtk.Align.FILL} cssClasses={["toggle", "bluetoothButton"]} active={activeStack().as(s => s == "bluetooth")} onClicked={(self)=> !self.active ? activeStack.set("cava") : activeStack.set("bluetooth")}>
+                        <image iconName={"arrow-symbolic"}/>
+                    </ToggleButton>
                     <button vexpand valign={Gtk.Align.FILL} cssClasses={["drop"]} onClicked={()=>execAsync("hyprpicker -a")}> 
                         <image iconName={"drop-symbolic"}/>
                     </button>

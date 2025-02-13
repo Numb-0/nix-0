@@ -5,8 +5,7 @@ import ToggleArrow from "../utils/toggleArrow";
 import ScrolledWindow from "../astalified/ScrolledWindow";
 
 
-export default function BluetoothComponents() {
-    const bt_arrow = ToggleArrow("bt")
+export default function BluetoothList() {
     const bluetooth = Bluetooth.get_default()
 
     // Custom icons for devices
@@ -30,6 +29,7 @@ export default function BluetoothComponents() {
         }
     }
 
+    
     function DeviceButton({device}: {device: Bluetooth.Device}): JSX.Element {
         return <button onButtonPressed={() => !device.connecting ? toggle_device(device) : null} cssClasses={bind(device, "connected").as(c => c ? ["connected"] : [""])}>
                 <box spacing={2}>
@@ -38,6 +38,7 @@ export default function BluetoothComponents() {
                 </box>
         </button>
     }
+
 
     const device_list = bind(bluetooth, "devices").as(devices => devices
         .filter(device => device.name && device.icon)
@@ -50,6 +51,7 @@ export default function BluetoothComponents() {
         })
         .map(device => <DeviceButton device={device}/> ))
     
+
     function scan() {
         if (!bluetooth.adapter.discovering && bluetooth.adapter.powered) {
             bluetooth.adapter.start_discovery()
@@ -57,28 +59,11 @@ export default function BluetoothComponents() {
         }
     }
 
-    // Button to open the device list
-    function BluetoothButton() {
-        return  <button cssClasses={["bluetoothButton"]} vexpand valign={Gtk.Align.FILL} onClicked={() => { bt_arrow.rotate_arrow()}}>
-            <box spacing={4}>
-                {bt_arrow.arrow}
-                <image iconName={bind(bluetooth.adapter, "powered").as((powered) => powered ? "bluetooth-active-symbolic" : "bluetooth-disabled-symbolic")}/>
-            </box>
-        </button>
-    }    
 
-    function BluetooohDeviceList() {
-        return <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER} name={"bluetooth"} cssClasses={["bluetoothList"]}>
+    return <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER} name={"bluetooth"} cssClasses={["bluetoothList"]}>
                 <box orientation={Gtk.Orientation.VERTICAL} spacing={4}>
                     <label label={"Bluetooth Devices"} halign={Gtk.Align.START} />
                     {device_list}
                 </box>
-        </ScrolledWindow>
-    }
-
-    return {
-        BluetoothButton,
-        BluetooohDeviceList,
-        bt_arrow,
-    }
+    </ScrolledWindow>
 }

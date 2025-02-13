@@ -2,13 +2,21 @@
 @use "presets" as *;
 
 
-@keyframes icon-wiggle {
+@keyframes icon-wiggle-active {
     0% {-gtk-icon-transform: rotate(15deg);}
    25% {-gtk-icon-transform: rotate(-15deg);}
    50% {-gtk-icon-transform: rotate(25deg);}
    75% {-gtk-icon-transform: rotate(-10deg);}
   100% {-gtk-icon-transform: rotate(0deg);}
- }
+}
+
+@keyframes icon-wiggle-occupied {
+    0% {-gtk-icon-transform: rotate(15deg);}
+   25% {-gtk-icon-transform: rotate(-15deg);}
+   50% {-gtk-icon-transform: rotate(25deg);}
+   75% {-gtk-icon-transform: rotate(-10deg);}
+  100% {-gtk-icon-transform: rotate(0deg);}
+}
 
 window.Bar {
     centerbox.container {
@@ -25,19 +33,21 @@ window.Bar {
 
     box.workspaces {
         button.workspace {
+            transition: all 1s;
             color: $base02;
             -gtk-icon-size: 1rem;
-            transition: color 1.5s;
             &.occupied {
                 image {
-                    transition: color 1.5s;
+                    animation: icon-wiggle-occupied 1s ease-in-out;
+                    transition: all 1s;
                     color: $base07;
+                    -gtk-icon-size: 1rem;
                 }
             }
             &.active {
                 image {
+                    animation: icon-wiggle-active 1s ease-in-out;
                     transition: all 1s;
-                    animation: icon-wiggle 1s ease-in-out;
                     color: $base0A;
                     -gtk-icon-size: 1.1rem;
                 }
