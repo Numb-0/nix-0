@@ -32,7 +32,7 @@ export default function Dashboard() {
                     <WifiList/>
                 </stack>
                 <box spacing={4} vertical>
-                    <button cssClasses={["notif"]} vexpand valign={Gtk.Align.FILL} onClicked={()=>notifid.dontDisturb = !notifid.dontDisturb}>
+                    <button cssClasses={bind(notifid, "dontDisturb").as(d => d ? ["notif"] : ["notif", "bell"])} vexpand valign={Gtk.Align.FILL} onClicked={()=>notifid.dontDisturb = !notifid.dontDisturb}>
                         <image iconName={bind(notifid, "dontDisturb").as(d => d ? "notification-disabled-symbolic" : "notification-symbolic")}/>
                     </button>
                 </box>

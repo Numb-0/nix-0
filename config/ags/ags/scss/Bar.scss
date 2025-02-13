@@ -76,6 +76,11 @@ window.Bar {
     box.notify {
         color: $base0A;
     }
+    box.bell {
+        image{
+            animation: icon-wiggle-active 1s ease-in-out;
+        }
+    }
 
     box.bluetooth {
         button {
