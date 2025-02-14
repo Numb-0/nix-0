@@ -155,14 +155,11 @@ in
 
   # Services to start
   services = {
+    gnome.gnome-keyring.enable = true;
     mysql = {
         enable = true;
         package = pkgs.mariadb;
     };
-  };
-
-  services = {
-    gnome.gnome-keyring.enable = true;
     tlp = {
       enable = true;
       settings = {

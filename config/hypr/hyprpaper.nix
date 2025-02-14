@@ -12,7 +12,6 @@ in
         preload = wallpaperPaths;
         wallpaper = ",${builtins.elemAt wallpaperPaths 0}";
       };
-      # Setting are created by stylix
     };
   };
 }

@@ -12,13 +12,14 @@
       url = "github:aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
+    # not using this till it has the features kitty has
+    # ghostty = {
+    #   url = "github:ghostty-org/ghostty";
+    # };
   };
 
   outputs =
-    { nixpkgs, home-manager, stylix, ghostty,  ... }@inputs:
+    { nixpkgs, home-manager, stylix, ... }@inputs:
     let
       system = "x86_64-linux";
       # Here choose the host configuration
