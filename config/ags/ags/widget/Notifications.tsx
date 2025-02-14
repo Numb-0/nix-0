@@ -9,7 +9,11 @@ const { TOP, LEFT } = Astal.WindowAnchor;
 class NotificationMap implements Subscribable {
     private map = new Map<number, Gtk.Widget>();
     private notifications: Variable<Array<Gtk.Widget>> = new Variable([]);
-    private notifiy = () => this.notifications.set([...this.map.values()].reverse());
+
+    // Rerender when we need
+    private refresh() {
+        this.notifications.set([...this.map.values()].reverse());
+    }
     
     constructor() {
         const notifd = Notifd.get_default();
@@ -21,12 +25,12 @@ class NotificationMap implements Subscribable {
 
     private set(key: number, value: Gtk.Widget) {
         this.map.set(key, value);
-        this.notifiy();
+        this.refresh();
     };
 
     public delete(key: number) {
         this.map.delete(key);
-        this.notifiy();
+        this.refresh();
     };
     
     get_last = () => this.map.size > 0 ? this.map.get([...this.map.keys()][0]) : undefined;
