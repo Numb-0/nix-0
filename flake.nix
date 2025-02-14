@@ -21,6 +21,7 @@
     { nixpkgs, home-manager, stylix, ghostty,  ... }@inputs:
     let
       system = "x86_64-linux";
+      # Here choose the host configuration
       host = "nixos";
       username = "cosix";
     in

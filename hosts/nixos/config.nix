@@ -44,7 +44,7 @@ in
     '';
   };
 
-  # Extra Module Options
+  # Extra Module Options based on machine structure
   drivers.amdgpu.enable = false;
   drivers.nvidia.enable = true;
   drivers.nvidia-prime = {

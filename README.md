@@ -25,7 +25,7 @@ sudo /run/current-system/bin/switch-to-configuration boot
 ### Updating system
 ```
 1. sudo nix-channel --update
-2. nix flake update
+2. nix flake update (probs the same as under here?)
 3. sudo nixos-rebuild switch --flake .#nixos --update
 ```
 
@@ -42,10 +42,10 @@ What you have to do is adding the flake in the inputs and add the entry in the m
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    stylix.url = "github:danth/stylix";
+    ***stylix.url = "github:danth/stylix";***
   };
 
-  outputs = { nixpkgs, stylix, ... }: {
+  outputs = { nixpkgs, ***stylix***, ... }: {
     nixosConfigurations."«hostname»" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [ stylix.nixosModules.stylix ./configuration.nix ];

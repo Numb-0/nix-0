@@ -8,6 +8,7 @@ let
   fontsize = 11;
 in
 {
+  # Applications to NOT style
   home-manager.users.${username} = { stylix.targets = { 
     hyprpaper.enable = lib.mkForce false;
     hyprlock.enable = lib.mkForce false;
