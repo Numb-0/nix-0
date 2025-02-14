@@ -26,6 +26,10 @@ const CavaWidget = GObject.registerClass(
             this.cava.connect("notify::values", () => {
                 this.queue_draw();
             });
+            // Change color every 10 seconds
+            setTimeout(() => {
+                this.setCavaColor()
+            }, 10000)
         }
 
         setCavaColor() {
