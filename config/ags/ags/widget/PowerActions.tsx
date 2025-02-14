@@ -40,7 +40,7 @@ export default function PowerActions() {
                 }}>
                     <image iconName="system-reboot-symbolic"/>
                 </button>
-                <button cssClasses={["lock"]} onClicked={() => execAsync("hyprlock")}>
+                <button cssClasses={["lock"]} onClicked={() => { execAsync("hyprlock"); App.get_window("PowerActions")?.hide() }}>
                     <image iconName="lock-symbolic"/>
                 </button>
             </box>
