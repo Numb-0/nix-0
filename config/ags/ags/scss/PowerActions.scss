@@ -42,6 +42,9 @@
             &.reboot {
                 color: $base0C;
             }
+            &.lock {
+              color: $base05;
+            }
         }
     }
 }

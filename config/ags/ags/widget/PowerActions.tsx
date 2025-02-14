@@ -8,6 +8,7 @@ export default function PowerActions() {
     const hyprland = Hyprland.get_default()
     const powerAlertDialog = new Gtk.AlertDialog({ defaultButton: 0, cancelButton: 0, message: "Power Off?", buttons: ["Cancel", "Power Off"] })
     const rebootAlertDialog = new Gtk.AlertDialog({ defaultButton: 0, cancelButton: 0, message: "Reboot?", buttons: ["Cancel", "Reboot"] })
+
     return <window 
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
             anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.BOTTOM}
@@ -38,6 +39,9 @@ export default function PowerActions() {
                     }
                 }}>
                     <image iconName="system-reboot-symbolic"/>
+                </button>
+                <button cssClasses={["lock"]} onClicked={() => execAsync("hyprlock")}>
+                    <image iconName="lock-symbolic"/>
                 </button>
             </box>
     </window>
