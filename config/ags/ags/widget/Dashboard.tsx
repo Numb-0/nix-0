@@ -26,7 +26,7 @@ export default function Dashboard() {
             onKeyPressed={(self, keyval) => keyval === Gdk.KEY_Escape && self.hide()}
             margin={10}>
             <box halign={Gtk.Align.END} valign={Gtk.Align.START} spacing={4}>
-                <stack hhomogeneous transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={activeStack()}>
+                <stack hhomogeneous transitionDuration={1000} transition_type={Gtk.StackTransitionType.OVER_LEFT_RIGHT} visible_child_name={activeStack()}>
                     <box name="cava"><CavaStatus/></box>
                     <BluetoothList/>
                     <WifiList/>
