@@ -40,10 +40,10 @@ export default function Applauncher() {
                 onChanged={(self) => {
                     filterList(self.get_text());
                 }}
-                onActivate={() => {
-                    // Handle case where no app is selected but we want to launch the first visible app
-                    let selectedApp  = appButtons.find((appButton) => appButton.visible);
+                onActivate={(self) => {
+                    let selectedApp = appButtons.find((appButton) => appButton.visible);
                     selectedApp?.activate();
+                    self.text = ""
                 }}
     />
 
@@ -61,7 +61,7 @@ export default function Applauncher() {
         <box vertical={true}>
                 {entry}
                 <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER}>
-                    <FlowBox onChildActivated={(self) => self.unselect_all()} homogeneous minChildrenPerLine={4} selectionMode={Gtk.SelectionMode.SINGLE}>
+                    <FlowBox onFocusLeave={(self) => self.unselect_all()} onChildActivated={(self) => self.unselect_all()} homogeneous minChildrenPerLine={4} selectionMode={Gtk.SelectionMode.SINGLE}>
                         {appButtons}
                     </FlowBox>
                 </ScrolledWindow>

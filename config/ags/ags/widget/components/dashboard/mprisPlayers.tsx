@@ -13,7 +13,6 @@ function lengthStr(length: number) {
 function MediaPlayer({ player }: { player: Mpris.Player }) {
     const ccsProvider = new Gtk.CssProvider()
     const { START, END } = Gtk.Align
-    const id = player.entry
     const title = bind(player, "title").as(t =>
         t || "Unknown Track")
 
@@ -50,8 +49,8 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
             </box>
             <label halign={START} valign={START} vexpand wrap label={artist} />
             <slider
-                visible={bind(player, "length").as(l => l > 0)}
-                onChangeValue={({value}) => player.position = value * player.length}
+                visible={bind(player, "length").as((l: number) => l > 0)}
+                //onChangeValue={(_self: any, _scroll: any, val: number) => player.position = val * player.length}
                 value={position}
             />
             <centerbox cssClasses={["actions"]}>
@@ -94,7 +93,7 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
 
 export default function MprisPlayers() {
     const mpris = Mpris.get_default()
-    return <box spacing={5} vertical>
+    return <box spacing={4} vertical>
         {bind(mpris, "players").as(arr => arr.map(player => (
             <MediaPlayer player={player} />
         )))}
