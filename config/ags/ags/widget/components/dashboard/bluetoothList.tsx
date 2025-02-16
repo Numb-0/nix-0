@@ -32,7 +32,7 @@ export default function BluetoothList() {
     
     function DeviceButton({device}: {device: Bluetooth.Device}): JSX.Element {
         return <button onButtonPressed={() => !device.connecting ? toggle_device(device) : null} cssClasses={bind(device, "connected").as(c => c ? ["connected"] : [""])}>
-                <box spacing={2}>
+                <box spacing={4}>
                     <image iconName={custom_icons[device.get_icon()] || device.get_icon()} />
                     <label label={device.get_name().split(" ")[0]}/>
                 </box>

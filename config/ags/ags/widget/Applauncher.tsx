@@ -61,7 +61,7 @@ export default function Applauncher() {
         <box vertical={true}>
                 {entry}
                 <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER}>
-                    <FlowBox homogeneous minChildrenPerLine={4} selectionMode={Gtk.SelectionMode.SINGLE}>
+                    <FlowBox onChildActivated={(self) => self.unselect_all()} homogeneous minChildrenPerLine={4} selectionMode={Gtk.SelectionMode.SINGLE}>
                         {appButtons}
                     </FlowBox>
                 </ScrolledWindow>

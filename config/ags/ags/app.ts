@@ -21,20 +21,23 @@ App.start({
         PowerActions()
     },
     requestHandler(request: string, res: (response: any) => void) {
-        if (request == "applauncher") {
-           App.toggle_window("Applauncher");
+        switch(request) {
+            case "applauncher": 
+                App.toggle_window("Applauncher");
+                break
+            case "dashboard":
+                App.toggle_window("Dashboard");
+                break
+            case "pldashboard":
+                App.toggle_window("PlayerDashboard");
+                break
+            case "poweractions":
+                App.toggle_window("PowerActions");
+                break
+            case "clearnotification":
+                clearLastNotification();
+                break
         }
-        if (request == "dashboard") {
-            App.toggle_window("Dashboard");
-        }
-        if (request == "pldashboard") {
-            App.toggle_window("PlayerDashboard");
-        }
-        if (request == "poweractions") {
-            App.toggle_window("PowerActions");
-        }
-        if (request == "clearnotification") {
-            clearLastNotification();
-        }
+        return res("toggled window")
     }
 })
