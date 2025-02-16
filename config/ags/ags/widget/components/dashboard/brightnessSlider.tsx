@@ -11,6 +11,6 @@ export default function BrightnessSlider() {
                 drawValue={false}
                 orientation={Gtk.Orientation.VERTICAL}
                 value={bind(brightness, "value")}
-                onValueChanged={(self)=> brightness.value = self.value }/>
+                onValueChanged={(self) => brightness.value = self.value }/>
     </box>
 }

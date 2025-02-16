@@ -3,7 +3,7 @@
 
 
 tooltip {
-    background-color: $base01;
+    background-color: $base00;
     label {
         color: $base05;
     }
@@ -12,9 +12,9 @@ tooltip {
 }
 
 window.Applauncher {
-    background-color: $base00;
-    border-radius: $radius;
     box {
+        background-color: $base00;
+        border-radius: $radius;
         padding: .4rem;
     }
 

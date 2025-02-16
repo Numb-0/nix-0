@@ -49,6 +49,7 @@ export default function Applauncher() {
 
     
     return <window 
+        anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.BOTTOM}
         exclusivity={Astal.Exclusivity.EXCLUSIVE}
         keymode={Astal.Keymode.EXCLUSIVE} 
         name={"Applauncher"} 
@@ -58,7 +59,7 @@ export default function Applauncher() {
         onKeyPressed={(self, keyval) => keyval === Gdk.KEY_Escape && self.hide()}
         setup={self=>hook(entry, self, "notify::visible", ()=>entry.grab_focus())}
         >
-        <box vertical={true}>
+        <box halign={Gtk.Align.CENTER} valign={Gtk.Align.CENTER} vertical={true}>
                 {entry}
                 <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER}>
                     <FlowBox onFocusLeave={(self) => self.unselect_all()} onChildActivated={(self) => self.unselect_all()} homogeneous minChildrenPerLine={4} selectionMode={Gtk.SelectionMode.SINGLE}>

@@ -12,6 +12,6 @@ export default function VolumeSlider() {
                 drawValue={false}
                 orientation={Gtk.Orientation.VERTICAL}
                 value={bind(speaker, "volume")}
-                onValueChanged={(self)=> speaker.volume = self.value }/>
+                onValueChanged={(self) => speaker.volume = self.value }/>
     </box>
 }
