@@ -1,45 +1,33 @@
 import { App, Astal, Gtk, Gdk, } from "astal/gtk4"
+import cairo from "gi://cairo?version=1.0";
 import GObject from "gi://GObject";
 import Gsk from "gi://Gsk";
 
-class CornerLeft extends Gtk.Widget {
+const radius = 20;
+
+class CornerLeftRight extends Gtk.Widget {
     static { GObject.registerClass(this) }
     radius: number;
-    constructor() {
+    gdkmonitor!: Gdk.Monitor;
+    constructor(gdkmonitor: Gdk.Monitor) {
         super();
-        this.radius = 20;
+        this.radius = radius;
+        this.gdkmonitor = gdkmonitor;
     }
     vfunc_snapshot(snapshot: Gtk.Snapshot) {
+        const width = this.gdkmonitor.get_geometry().width;
         const backgroundColor = new Gdk.RGBA();
         backgroundColor.parse("#1e2030");
 
         const pathbuilder = new Gsk.PathBuilder;
         
         pathbuilder.move_to(0, 0);
-        pathbuilder.line_to(0, this.radius);
-        pathbuilder.conic_to(0, 0, this.radius, 0, 1);
+        pathbuilder.line_to(0, radius);
+        pathbuilder.conic_to(0, 0, radius, 0, 1);
 
-        snapshot.append_fill(pathbuilder.to_path(), Gsk.FillRule.EVEN_ODD, backgroundColor);
-    }
-}
-
-
-class CornerRight extends Gtk.Widget {
-    static { GObject.registerClass(this) }
-    radius: number;
-    constructor() {
-        super();
-        this.radius = 20;
-    }
-    vfunc_snapshot(snapshot: Gtk.Snapshot) {
-        const backgroundColor = new Gdk.RGBA();
-        backgroundColor.parse("#1e2030");
-
-        const pathbuilder = new Gsk.PathBuilder;
-
-        pathbuilder.move_to(this.radius, 0);
-        pathbuilder.line_to(0, 0);
-        pathbuilder.conic_to(this.radius, 0, this.radius, this.radius, 1);
+        pathbuilder.move_to(width, 0);
+        pathbuilder.line_to(width, radius);
+        pathbuilder.conic_to(width, 0, width - radius, 0, 1);
 
         snapshot.append_fill(pathbuilder.to_path(), Gsk.FillRule.EVEN_ODD, backgroundColor);
     }
@@ -47,40 +35,21 @@ class CornerRight extends Gtk.Widget {
 
 
 export default function Corners(gdkmonitor: Gdk.Monitor) {
-    const cornerleft = new CornerLeft();
-    const cornerright = new CornerRight();
-    return { 
-        cornerLeft:  <window
+    const corners = new CornerLeftRight(gdkmonitor);
+    return <window
                 visible
                 name={"Bar"}
                 cssClasses={["Bar"]}
                 gdkmonitor={gdkmonitor}
                 exclusivity={Astal.Exclusivity.NORMAL}
                 keymode={Astal.Keymode.NONE}
-                anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.LEFT}
+                anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.RIGHT}
                 application={App}
                 layer={Astal.Layer.BACKGROUND}
-                defaultHeight={cornerleft.radius}
-                defaultWidth={cornerleft.radius}
+                defaultHeight={corners.radius}
+                defaultWidth={corners.radius}
+                setup={(self) => self.get_surface()?.set_input_region(new cairo.Region())}
                 >
-                {cornerleft} 
-        </window>,
-
-        cornerRight: <window
-                visible
-                name={"Bar"}
-                cssClasses={["Bar"]}
-                gdkmonitor={gdkmonitor}
-                exclusivity={Astal.Exclusivity.NORMAL}
-                keymode={Astal.Keymode.NONE}
-                anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
-                application={App}
-                layer={Astal.Layer.BACKGROUND}
-                defaultHeight={cornerright.radius}
-                defaultWidth={cornerright.radius}
-                >
-                {cornerright} 
-        </window>,
-
-    }
+                {corners} 
+    </window>
 }
