@@ -1,54 +1,49 @@
 import { App, Astal, Gtk, Gdk, } from "astal/gtk4"
 import GObject from "gi://GObject";
 import Gsk from "gi://Gsk";
-import Graphene from "gi://Graphene";
 
-const CornerLeft = GObject.registerClass(
-    class Corner extends Gtk.Widget {
-        radius: number;
-        constructor() {
-            super();
-            this.radius = 20;
-        }
-        vfunc_snapshot(snapshot: Gtk.Snapshot) {
-            const backgroundColor = new Gdk.RGBA();
-            backgroundColor.parse("#1e2030");
-
-            const pathbuilder = new Gsk.PathBuilder;
-            
-            pathbuilder.move_to(0, 0);
-            pathbuilder.line_to(0, this.radius);
-            pathbuilder.conic_to(0, 0, this.radius, 0, 1);
-
-            snapshot.append_fill(pathbuilder.to_path(), Gsk.FillRule.EVEN_ODD, backgroundColor);
-        }
+class CornerLeft extends Gtk.Widget {
+    static { GObject.registerClass(this) }
+    radius: number;
+    constructor() {
+        super();
+        this.radius = 20;
     }
-);
+    vfunc_snapshot(snapshot: Gtk.Snapshot) {
+        const backgroundColor = new Gdk.RGBA();
+        backgroundColor.parse("#1e2030");
 
-const CornerRight = GObject.registerClass(
-    class Corner extends Gtk.Widget {
-        radius: number;
-        constructor() {
-            super();
-            this.radius = 20;
-        }
-        vfunc_snapshot(snapshot: Gtk.Snapshot) {
-            const backgroundColor = new Gdk.RGBA();
-            backgroundColor.parse("#1e2030");
+        const pathbuilder = new Gsk.PathBuilder;
+        
+        pathbuilder.move_to(0, 0);
+        pathbuilder.line_to(0, this.radius);
+        pathbuilder.conic_to(0, 0, this.radius, 0, 1);
 
-            const pathbuilder = new Gsk.PathBuilder;
-
-            pathbuilder.move_to(this.radius, 0);
-            pathbuilder.line_to(0, 0);
-            pathbuilder.conic_to(this.radius, 0, this.radius, this.radius, 1);
-
-            snapshot.append_fill(pathbuilder.to_path(), Gsk.FillRule.EVEN_ODD, backgroundColor);
-        }
+        snapshot.append_fill(pathbuilder.to_path(), Gsk.FillRule.EVEN_ODD, backgroundColor);
     }
-);
+}
 
 
+class CornerRight extends Gtk.Widget {
+    static { GObject.registerClass(this) }
+    radius: number;
+    constructor() {
+        super();
+        this.radius = 20;
+    }
+    vfunc_snapshot(snapshot: Gtk.Snapshot) {
+        const backgroundColor = new Gdk.RGBA();
+        backgroundColor.parse("#1e2030");
 
+        const pathbuilder = new Gsk.PathBuilder;
+
+        pathbuilder.move_to(this.radius, 0);
+        pathbuilder.line_to(0, 0);
+        pathbuilder.conic_to(this.radius, 0, this.radius, this.radius, 1);
+
+        snapshot.append_fill(pathbuilder.to_path(), Gsk.FillRule.EVEN_ODD, backgroundColor);
+    }
+}
 
 
 export default function Corners(gdkmonitor: Gdk.Monitor) {

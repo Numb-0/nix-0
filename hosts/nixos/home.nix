@@ -8,6 +8,9 @@ let
   inherit (import ./variables.nix) gitUsername gitEmail;
 in
 {
+  # This File is contained in home-manager.user.${username} = {<file>}  
+  # Take a look at flake.nix
+
   # Home Manager Settings
   programs.home-manager.enable = true;
   home = { 

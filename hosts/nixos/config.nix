@@ -11,6 +11,7 @@ let
   inherit (import ./variables.nix) keyboardLayout;
 in
 {
+  # This file contains all the nixos modules configutations of the modules not included using the flake {ags, stylix, ...}
   imports = [
     ./hardware.nix
     ./users.nix
