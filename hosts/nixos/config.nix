@@ -115,13 +115,13 @@ in
       gamescopeSession.enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
-      extraPackages = with pkgs; [
-        #bumblebee
-        #glxinfo
-        #libglvnd
-        #SDL2
-        #glibc
-      ];
+      /* extraPackages = with pkgs; [
+        bumblebee
+        glxinfo
+        libglvnd
+        SDL2
+        glibc
+      ]; */
     };
   };
 
