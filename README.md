@@ -1,17 +1,20 @@
 <div align="center">   
     <img src="./docs/assets/nix0_banner.svg">
-    <br>My Personal ❄ NixOs configuration ❄</br>
+    </br>
+    <b>My Personal ❄ NixOs configuration ❄</b>
 </div>
 
 # Installation
-```
-Git clone the repo in the home directory and run `sudo nixos-rebuild switch --flake .#nixos` while in the nix-0 folder
-```
-
-# Setup after install
 ---
-## System Colors using stylix
-
+1. **Clone the repository** in the home directory or where you want:
+```bash
+git clone https://github.com/Numb-0/nix-0.git ~/nix-0
 ```
-1. Setup ags widgets run the `setup_ags` script once 
+2. **Navigate to directory**
+```bash
+cd ~/nix-0
+```
+3. **Apply flake configuration**
+```bash
+sudo nixos-rebuild switch --flake .#nixos
 ```
