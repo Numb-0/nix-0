@@ -1,9 +1,9 @@
 {
   pkgs,
   config,
+  self,
   ...
 }:
-  # TODO: FLAKE_ROOT
   let
     colors = config.stylix.base16Scheme;
   in
@@ -15,7 +15,7 @@
   # Create the AGS configuration directory if needed
   mkdir -p ~/.config/ags
 
-  colorpath="$HOME/nix-0/config/ags/ags/scss/colors.scss"
+  colorpath="${self}/config/ags/ags/scss/colors.scss"
   
   cat << EOF > $colorpath
   \$base00: #${colors.base00};
@@ -38,7 +38,7 @@
   
   # Copy AGS configuration files
   echo "Copying AGS configuration files..."
-  cp -r $HOME/nix-0/config/ags/ags/* ~/.config/ags
+  cp -r ${self}/config/ags/ags/* ~/.config/ags
 
   echo "AGS setup complete!"
   ''

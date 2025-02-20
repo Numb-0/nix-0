@@ -1,4 +1,11 @@
 {
+  config,
+  ...
+}:
+let
+  colors = config.stylix.base16Scheme;
+in
+{
   programs = {
     fish = {
       enable = true;
@@ -29,25 +36,25 @@
         set -g __fish_git_prompt_show_informative_status true
         set -g __fish_git_prompt_showcolorhints true
         set -g __fish_git_prompt_char_stateseparator |
-        set -g __fish_git_prompt_color_branch blue
+        set -g __fish_git_prompt_color_branch ${colors.base0D}
 
-        set -g fish_color_param white
-        set -g fish_color_autosuggestion yellow
+        set -g fish_color_param ${colors.base05}
+        set -g fish_color_autosuggestion ${colors.base0A}
         
         set -l last_status $status
         set -l arrow ' ⮞ '
         set -l show_status 
 
         if test $last_status -ne 0
-            set arrow (set_color red) $arrow (set_color normal)
-            set show_status (set_color red) "[$last_status]" (set_color normal)
+            set arrow (set_color ${colors.base08}) $arrow (set_color normal)
+            set show_status (set_color ${colors.base08}) "[$last_status]" (set_color normal)
         end
 
-        string join "" -- (set_color yellow) (prompt_pwd --full-length-dirs 2) (set_color normal) (fish_git_prompt) $show_status (set_color purple) $arrow (set_color normal)
+        string join "" -- (set_color ${colors.base0A}) (prompt_pwd --full-length-dirs 2) (set_color normal) (fish_git_prompt) $show_status (set_color ${colors.base0E}) $arrow (set_color normal)
         '';
         fish_right_prompt = ''
         set -l time_counter "$CMD_DURATION ms" 
-        string join "" -- (set_color yellow) "[$time_counter]"
+        string join "" -- (set_color ${colors.base0A}) "[$time_counter]"
         '';
       };
     };

@@ -1,4 +1,5 @@
 {
+  self,
   pkgs,
   username,
   config,
@@ -21,7 +22,6 @@ in
 
   # Import Program Configurations
   imports = [ 
-    ../../config/ags
     ../../config/hypr
     ../../config/kitty
     ../../config/fish 
@@ -66,7 +66,7 @@ in
 
   # Scripts
   home.packages = [
-    (import ../../scripts/setup_ags.nix { inherit pkgs config; })
-    (import ../../scripts/setup_nvim.nix { inherit pkgs config; })
+    (import ../../scripts/setup_ags.nix { inherit pkgs config self; })
+    (import ../../scripts/setup_nvim.nix { inherit pkgs config self; })
   ];
 }

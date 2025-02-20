@@ -15,7 +15,7 @@
     cursor_trail 3
     allow_remote_control yes
     confirm_os_window_close 0
-    placement_strategy top
+    # placement_strategy top
 
     # Keybindings
     map ctrl+c copy_to_clipboard
