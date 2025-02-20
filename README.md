@@ -1,6 +1,6 @@
 
 <div align="center">
-    ![nix0banner](https://raw.githubusercontent.com/Numb-0/nix-0/docs/assets/nix0_banner.svg)
+    <img src="./docs/assets/nix0_banner.svg">
 </div>
 
 ## Nixos configuration
