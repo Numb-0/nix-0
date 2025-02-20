@@ -1,9 +1,6 @@
-
-<div align="center">
+<div align="center">   
     <img src="./docs/assets/nix0_banner.svg">
-    <br>
-        My Personal ❄ NixOs configuration ❄ 
-    </br
+    <br>My Personal ❄ NixOs configuration ❄</br>
 </div>
 
 # Installation
@@ -18,6 +15,3 @@ Git clone the repo in the home directory and run `sudo nixos-rebuild switch --fl
 ```
 1. Setup ags widgets run the `setup_ags` script once 
 ```
-
-
-
