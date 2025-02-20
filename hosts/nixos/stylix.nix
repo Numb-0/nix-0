@@ -14,6 +14,7 @@ in
     hyprlock.enable = lib.mkForce false;
     hyprland.enable = lib.mkForce false;
     qt.enable = lib.mkForce false;
+    fish.enable = lib.mkForce false;
     };
   };
   # Styling Options
