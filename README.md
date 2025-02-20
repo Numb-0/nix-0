@@ -5,7 +5,6 @@
 </div>
 
 # Installation
----
 1. **Clone the repository** in the home directory or where you want:
 ```bash
 git clone https://github.com/Numb-0/nix-0.git ~/nix-0
