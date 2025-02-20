@@ -11,6 +11,7 @@ let
     browser
     terminal
     keyboardLayout;
+  colors = config.stylix.base16Scheme;
 in
 with lib;
 {
@@ -66,6 +67,7 @@ with lib;
           gaps_in = 5
           gaps_out = 5
           border_size = 0
+          # col.active_border = rgba(${colors.base07}ee)
           layout = dwindle
           resize_on_border = true
           allow_tearing = true
@@ -129,7 +131,7 @@ with lib;
               enabled = true
               range = 6
               render_power = 6
-              color = rgba(${config.stylix.base16Scheme.base01}ee)
+              color = rgba(${colors.base01}ee)
           }
           blur {
               enabled = true

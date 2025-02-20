@@ -6,8 +6,8 @@ import Hyprland from "gi://AstalHyprland"
 
 export default function PowerActions() {
     const hyprland = Hyprland.get_default()
-    const powerAlertDialog = new Gtk.AlertDialog({ defaultButton: 0, cancelButton: 0, message: "Power Off?", buttons: ["Cancel", "Power Off"] })
-    const rebootAlertDialog = new Gtk.AlertDialog({ defaultButton: 0, cancelButton: 0, message: "Reboot?", buttons: ["Cancel", "Reboot"] })
+    const powerAlertDialog = new Gtk.AlertDialog({ defaultButton: 0, cancelButton: 0, message: "⏻ Power Off?", buttons: ["Cancel", "Power Off"] })
+    const rebootAlertDialog = new Gtk.AlertDialog({ defaultButton: 0, cancelButton: 0, message: "↺ Reboot?", buttons: ["Cancel", "Reboot"] })
 
     return <window 
             exclusivity={Astal.Exclusivity.EXCLUSIVE}

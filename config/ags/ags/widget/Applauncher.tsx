@@ -17,36 +17,26 @@ export default function Applauncher() {
 
     function AppButton({app}: {app: Apps.Application}): JSX.Element {
         return  <FlowBoxChild cssClasses={["appbutton"]} tooltipText={app.name} name={app.name}
-                    onActivate={() => {
+                    onActivate={(self) => {
                         app.launch();
                         App.toggle_window("Applauncher");
+                        self.set_state_flags(Gtk.StateFlags.NORMAL, false)
                     }}>
                     <image iconName={app.get_icon_name() || ""}/>
         </FlowBoxChild>
     }
 
     const appButtons = appList.map((app) => (<AppButton app={app} />));
+    var first_visible_child : Gtk.Widget | undefined;
 
     function filterList(text: string) {
         appButtons.forEach((appButton) => {
             let appName = appButton.name.toLowerCase();
             let isVisible = appName.includes(text.toLowerCase());
             appButton.set_visible(isVisible);
+            appButton.set_state_flags(Gtk.StateFlags.NORMAL, true)
         });
     }
-
-    const entry = <entry
-                placeholderText={"ctrl+tab to select"}
-                onChanged={(self) => {
-                    filterList(self.get_text());
-                }}
-                onActivate={(self) => {
-                    let selectedApp = appButtons.find((appButton) => appButton.visible);
-                    selectedApp?.activate();
-                    self.text = ""
-                }}
-    />
-
     
     return <window 
         anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.BOTTOM}
@@ -57,12 +47,24 @@ export default function Applauncher() {
         cssClasses={["Applauncher"]} 
         monitor={bind(hyprland, "focused_monitor").as((monitor) => monitor.id)}
         onKeyPressed={(self, keyval) => keyval === Gdk.KEY_Escape && self.hide()}
-        setup={self=>hook(entry, self, "notify::visible", ()=>entry.grab_focus())}
         >
         <box halign={Gtk.Align.CENTER} valign={Gtk.Align.CENTER} vertical={true}>
-                {entry}
+                <entry
+                placeholderText={"ctrl+tab to select"}
+                onChanged={(self) => {
+                    let app_name = self.get_text()
+                    filterList(app_name)
+                    if (!app_name) return;
+                    // Select the first visible child
+                    first_visible_child = appButtons.find((appButton) => appButton.visible)
+                    first_visible_child?.set_state_flags(Gtk.StateFlags.SELECTED, true);
+                }}
+                onActivate={(self) => {
+                    first_visible_child?.activate();
+                    self.text = "";
+                }}/>
                 <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER}>
-                    <FlowBox onFocusLeave={(self) => self.unselect_all()} onChildActivated={(self) => self.unselect_all()} homogeneous minChildrenPerLine={4} selectionMode={Gtk.SelectionMode.SINGLE}>
+                    <FlowBox homogeneous minChildrenPerLine={4} selectionMode={Gtk.SelectionMode.SINGLE} >
                         {appButtons}
                     </FlowBox>
                 </ScrolledWindow>

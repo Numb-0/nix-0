@@ -18,7 +18,12 @@ export default function WifiList() {
 
 
     const access_points_list = bind(wifi, "access_points").as(access_points => access_points
-        .map(access_point => <AccessPointButton accesspoint={access_point}/> ))
+        .sort((a,b) => {
+            if (a == wifi.get_active_access_point())  return -1;
+            else return 1;
+            
+        })
+        .map(access_point => <AccessPointButton accesspoint={access_point}/>))
 
 
     return <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER} name={"wifi"} cssClasses={["wifiList"]}>
