@@ -1,7 +1,0 @@
-{
-    "name": "astal-shell",
-    "dependencies": {
-        "astal": "/home/cosix/.local/share/ags",
-        "typescript": "^5.7.3"
-    }
-}

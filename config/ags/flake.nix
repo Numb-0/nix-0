@@ -24,6 +24,7 @@
         # additional libraries and executables to add to gjs' runtime
         extraPackages = [
           pkgs.fzf
+          ags.packages.${system}.io
           ags.packages.${system}.apps
           ags.packages.${system}.apps
           ags.packages.${system}.battery
