@@ -1,7 +1,4 @@
-<div align="center">   
-    <img src="./docs/assets/nix0_banner.svg">
-    <br>
-</div>
+<div align="center"><img src="./docs/assets/nix0_banner.svg"></div>
 
 
 # Nix-0
@@ -21,10 +18,11 @@ cd ~/nix-0
 sudo nixos-rebuild switch --flake .#nixos
 ```
 # Ags
-The ags application is quite bounded with Hyprland so if you are using another WM most of the features won't work.
+The ags application is quite bounded with Hyprland so if you are using another WM most of the features won't work.\
 For example i'm using the Hyprland keybinds to hide/show different windows of the ags application.
 
-# variables.nix
+# Personalization
+Some of the configuarion options are in the [variables.nix](hosts/nixos/variables.nix) file.
 The file contains variables that are used to set options in different part of the configuration like hyprland, git and others.
 
 > [!WARNING] 
