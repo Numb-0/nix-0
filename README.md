@@ -1,4 +1,4 @@
-<div align="center"><img src="./docs/assets/nix0_banner.svg"></div>
+<div align="center"><img src="./docs/assets/nix-0.svg"></div>
 
 
 # nix-0
