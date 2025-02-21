@@ -20,8 +20,9 @@ in
     stateVersion = "24.05";
   };
 
-  # Import Program Configurations
+  # Import Programs Configurations
   imports = [ 
+    ../../config/btop
     ../../config/hypr
     ../../config/kitty
     ../../config/fish 
@@ -36,6 +37,7 @@ in
 
   # Create XDG Dirs
   xdg = {
+    enable = true;
     userDirs = {
       enable = true;
       createDirectories = true;
@@ -66,7 +68,6 @@ in
 
   # Scripts
   home.packages = [
-    (import ../../scripts/setup_ags.nix { inherit pkgs config self; })
     (import ../../scripts/setup_nvim.nix { inherit pkgs config self; })
   ];
 }
