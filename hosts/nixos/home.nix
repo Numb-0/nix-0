@@ -22,7 +22,6 @@ in
 
   # Import Programs Configurations
   imports = [ 
-    ../../config/btop
     ../../config/hypr
     ../../config/kitty
     ../../config/fish 
