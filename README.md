@@ -27,3 +27,7 @@ The file contains variables that are used to set options in different part of th
 
 > [!WARNING] 
 > Not all the settings are covered by variables, some options have been manually written in [config.nix](hosts/nixos/config.nix)!
+
+# Docs
+> [!NOTE]
+>The docs folder contains information about commands and nix not the configuration. It's still a work in progress.
