@@ -2,8 +2,10 @@
     <img src="./docs/assets/nix0_banner.svg">
     <br>
 </div>
-$${\color{red}❄ NixOs configuration ❄}$$
 
+
+# Nix-0
+A simple ***❄ NixOs configuration ❄*** using [**Hyrpland**](https://github.com/hyprwm/Hyprland) and [**Ags**](https://github.com/Aylur/ags) themed in Catpuccin Macchiato
 
 # Installation
 1. **Clone the repository** in the home directory or where you want:
@@ -21,4 +23,4 @@ sudo nixos-rebuild switch --flake .#nixos
 # The  variables.nix File
 This file contains variables that are used to set options in different part of the configuration like hyprland, git
 > [!WARNING] 
-> Not all the settings are covered by variables, other options have been manually written in the config.nix file!
+> Not all the settings are covered by variables, some options have been manually written in config.nix!
