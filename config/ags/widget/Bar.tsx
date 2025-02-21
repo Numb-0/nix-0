@@ -26,7 +26,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
         application={App}>
         <centerbox cssName="centerbox" cssClasses={["container"]}>
                 <box hexpand={false} spacing={8}>
-                    <image cssClasses={["logo"]} iconName={"nixos-symbolic"}/>
+                    <image cssClasses={["logo"]} iconName={"flake3-symbolic"}/>
                     <Workspaces/>
                 </box>
                 <box cssClasses={["clock"]}>

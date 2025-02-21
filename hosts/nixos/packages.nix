@@ -13,6 +13,9 @@
     nodePackages.npm
     gnumake
 
+    nixfmt-rfc-style
+    nil
+
     neovim
     ranger
     fzf

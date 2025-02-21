@@ -1,7 +1,7 @@
 <div align="center"><img src="./docs/assets/nix0_banner.svg"></div>
 
 
-# Nix-0
+# nix-0
 A simple ***❄ NixOs configuration ❄*** using [**Hyrpland**](https://github.com/hyprwm/Hyprland) and [**Ags**](https://github.com/Aylur/ags) themed using Catpuccin Macchiato
 
 # Installation

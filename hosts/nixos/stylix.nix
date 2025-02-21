@@ -15,6 +15,7 @@ in
     hyprland.enable = lib.mkForce false;
     qt.enable = lib.mkForce false;
     fish.enable = lib.mkForce false;
+    vscode.enable = lib.mkForce false;
     };
   };
   # Styling Options

@@ -23,6 +23,11 @@ in
     ../../modules/intel-drivers.nix
   ];
 
+  nixpkgs.config = {
+    allowUnfree = true;
+    nvidia.acceptLicense = true;
+  };
+  
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -130,11 +135,6 @@ in
         glibc
       ]; */
     };
-  };
-
-  nixpkgs.config = {
-    allowUnfree = true;
-    nvidia.acceptLicense = true;
   };
 
   # Extra Portal Configuration
