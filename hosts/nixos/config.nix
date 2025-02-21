@@ -8,7 +8,7 @@
   ...
 }:
 let
-  inherit (import ./variables.nix) keyboardLayout;
+  inherit (import ./variables.nix) keyboardLayout timeZone defaultLocale extraLocale keydExtra;
 in
 {
   # This file contains all the nixos modules configutations of the modules not included using the flake {ags, stylix, ...}
@@ -23,8 +23,10 @@ in
     ../../modules/intel-drivers.nix
   ];
 
-  hardware.graphics.enable = true;
-  hardware.graphics.enable32Bit = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   # Bootloader
   boot = {
@@ -46,37 +48,42 @@ in
   };
 
   # Extra Module Options based on machine structure
-  drivers.amdgpu.enable = false;
-  drivers.nvidia.enable = true;
-  drivers.nvidia-prime = {
-    enable = true;
-    intelBusID = "PCI:00:02:0";
-    nvidiaBusID = "PCI:58:00:0";
+  drivers = {
+    amdgpu.enable = false;
+    nvidia.enable = true;
+    nvidia-prime = {
+      enable = true;
+      intelBusID = "PCI:00:02:0";
+      nvidiaBusID = "PCI:58:00:0";
+    };
+    intel.enable = true;
   };
-  drivers.intel.enable = true;
 
 
   # Enable networking
-  networking.networkmanager.enable = true;
-  networking.hostName = host;
-  networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
+  networking = {
+    networkmanager.enable = true;
+    hostName = host;
+    timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
+  };
 
   # Set your time zone.
-  time.timeZone = "Europe/Rome";
+  time.timeZone = timeZone;
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "it_IT.UTF-8";
-    LC_IDENTIFICATION = "it_IT.UTF-8";
-    LC_MEASUREMENT = "it_IT.UTF-8";
-    LC_MONETARY = "it_IT.UTF-8";
-    LC_NAME = "it_IT.UTF-8";
-    LC_NUMERIC = "it_IT.UTF-8";
-    LC_PAPER = "it_IT.UTF-8";
-    LC_TELEPHONE = "it_IT.UTF-8";
-    LC_TIME = "it_IT.UTF-8";
+  i18n = {
+    defaultLocale = defaultLocale;
+    extraLocaleSettings = {
+      LC_ADDRESS = extraLocale;
+      LC_IDENTIFICATION = extraLocale;
+      LC_MEASUREMENT = extraLocale;
+      LC_MONETARY = extraLocale;
+      LC_NAME = extraLocale;
+      LC_NUMERIC = extraLocale;
+      LC_PAPER = extraLocale;
+      LC_TELEPHONE = extraLocale;
+      LC_TIME = extraLocale;
+    };
   };
 
   programs.nix-ld = {
@@ -125,11 +132,9 @@ in
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.nvidia.acceptLicense = true;
-
-  users = {
-    mutableUsers = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    nvidia.acceptLicense = true;
   };
 
   # Extra Portal Configuration
@@ -147,7 +152,7 @@ in
     ];
   };
 
-  console.keyMap = "${keyboardLayout}";
+  console.keyMap = keyboardLayout;
 
   security = {
     rtkit.enable = true;
@@ -176,7 +181,7 @@ in
         CPU_MAX_PERF_ON_BAT = 20;
 
        #Optional helps save long term battery health
-       START_CHARGE_THRESH_BAT0 = 20; 
+       START_CHARGE_THRESH_BAT0 = 30; 
        STOP_CHARGE_THRESH_BAT0 = 80;
       };
     };
@@ -194,11 +199,7 @@ in
             };
             otherlayer = {};
           };
-          extraConfig = ''
-            [main]
-            y = z
-            z = y
-          '';
+          extraConfig = keydExtra;
         };
       };
     };
