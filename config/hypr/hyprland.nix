@@ -10,7 +10,8 @@ let
   inherit (import ../../hosts/${host}/variables.nix)
     browser
     terminal
-    keyboardLayout;
+    keyboardLayout
+    editor;
   colors = config.stylix.base16Scheme;
 in
 with lib;
@@ -30,7 +31,8 @@ with lib;
         env = JAVA_17_HOME, ${pkgs.jdk17}
 
         # Needed by steam
-        env = SDL_DYNAMIC_API, ${pkgs.SDL2}/lib/libSDL2-2.0.so.0
+        env = SDL_DYNAMIC_API, ${pkgs.SDL2}/lib/libSDL2-2.0.so.0v
+        env = EDITOR, ${editor}
         
         env = LIBVA_DRIVER_NAME, i965
         env = GBM_BACKEND, nvidia-drm

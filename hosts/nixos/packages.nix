@@ -3,7 +3,6 @@
   ...
 }:
 {
-  environment.variables = { EDITOR = "code";};
   environment.systemPackages = with pkgs; [
     gcc
     cmake
@@ -18,9 +17,6 @@
     ranger
     fzf
     fd
-
-    vscode
-    nixd
 
     godot_4
     sdkmanager

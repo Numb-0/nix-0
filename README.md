@@ -22,7 +22,7 @@ The ags application is quite bounded with Hyprland so if you are using another W
 For example i'm using the Hyprland keybinds to hide/show different windows of the ags application.
 
 # Personalization
-Some of the configuarion options are in the [variables.nix](hosts/nixos/variables.nix) file.
+Some of the configuration values are in the [variables.nix](hosts/nixos/variables.nix) file.
 The file contains variables that are used to set options in different part of the configuration like hyprland, git and others.
 
 > [!WARNING] 

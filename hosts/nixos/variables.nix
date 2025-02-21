@@ -7,6 +7,7 @@
   browser = "firefox"; # Set Default Browser
   terminal = "kitty"; # Set Default System Terminal
   keyboardLayout = "us";
+  editor = "code";
 
   # Time Options
   timeZone = "Europe/Rome";
