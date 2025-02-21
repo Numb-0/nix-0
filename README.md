@@ -2,7 +2,7 @@
 
 
 # nix-0
-A simple ***❄ NixOs configuration ❄*** using [**Hyrpland**](https://github.com/hyprwm/Hyprland) and [**Ags**](https://github.com/Aylur/ags) themed using Catpuccin Macchiato
+A simple ***❄ NixOs configuration ❄*** using [**Hyrpland**](https://github.com/hyprwm/Hyprland) and [**Ags**](https://github.com/Aylur/ags) themed using [**Catppuccin Macchiato**](https://catppuccin.com/palette).
 
 # Installation
 1. **Clone the repository** in the home directory or where you want:
