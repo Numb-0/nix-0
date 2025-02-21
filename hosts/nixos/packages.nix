@@ -17,7 +17,6 @@
     nil
 
     neovim
-    ranger
     fzf
     fd
 
