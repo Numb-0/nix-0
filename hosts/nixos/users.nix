@@ -23,7 +23,6 @@ in
       ];
       shell = pkgs.fish;
       ignoreShellProgramCheck = true;
-      #packages = with pkgs; [];
     };
   };
 }

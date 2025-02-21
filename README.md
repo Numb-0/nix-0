@@ -1,7 +1,7 @@
 <div align="center">   
     <img src="./docs/assets/nix0_banner.svg">
     </br>
-    <b>My Personal ❄ NixOs configuration ❄</b>
+    <b style="color:#8aadf4; font-size:24px;"> ❄ NixOs configuration ❄</b>
 </div>
 
 # Installation

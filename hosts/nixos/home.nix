@@ -12,7 +12,6 @@ in
   # This File is contained in home-manager.user.${username} = {<file>}  
   # Take a look at flake.nix
 
-  # Home Manager Settings
   programs.home-manager.enable = true;
   home = { 
     username = "${username}";
@@ -27,14 +26,12 @@ in
     ../../config/fish 
   ];
 
-  # Install & Configure Git
   programs.git = {
     enable = true;
     userName = "${gitUsername}";
     userEmail = "${gitEmail}";
   };
 
-  # Btop
   programs.btop = {
     enable = true;
     settings = {
@@ -46,7 +43,6 @@ in
     };
   };
 
-  # Create XDG Dirs
   xdg = {
     enable = true;
     userDirs = {
@@ -55,7 +51,6 @@ in
     };
   };  
   
-  # Gtk
   gtk = {
     iconTheme = {
       name = "Papirus-Dark";
@@ -69,7 +64,6 @@ in
     };
   };
 
-  # Qt
   qt = {
     enable = true;
     style.name = "adwaita-dark";
