@@ -26,4 +26,4 @@ Some of the configuration values are in the [variables.nix](hosts/nixos/variable
 The file contains variables that are used to set options in different part of the configuration like hyprland, git and others.
 
 > [!WARNING] 
-> Not all the settings are covered by variables, some options have been manually written in config.nix!
+> Not all the settings are covered by variables, some options have been manually written in [config.nix](hosts/nixos/config.nix)!
