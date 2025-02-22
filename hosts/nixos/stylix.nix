@@ -53,7 +53,7 @@ in
     cursor.size = 24;
 
     fonts = {
-      serif = {
+      /* serif = {
         package = pkgs.noto-fonts;
         name = "Noto Serif";
       };
@@ -68,7 +68,7 @@ in
       emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";
-      };
+      }; */
       sizes = {
         applications = fontsize;
         terminal = fontsize;
