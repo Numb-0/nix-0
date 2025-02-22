@@ -3,9 +3,9 @@
     enable = true;
     shellIntegration.enableFishIntegration = true;
     themeFile = "Catppuccin-Macchiato";
-    font = {
+    /* font = {
       name = "JetBrainsMono Nerd Font Mono";
-    };
+    }; */
     settings = {
       background_opacity = 0.8;
       confirm_os_window_close = 0;
