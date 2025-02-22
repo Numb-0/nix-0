@@ -2,7 +2,7 @@
 
 
 # nix-0
-A simple ***❄ NixOs configuration ❄*** using [**Hyrpland**](https://github.com/hyprwm/Hyprland) and [**Ags**](https://github.com/Aylur/ags) themed using [**Catppuccin Macchiato**](https://catppuccin.com/palette).
+A simple ***❄ NixOs configuration ❄*** using [**Hyrpland**](https://github.com/hyprwm/Hyprland) and [**Ags**](https://github.com/Aylur/ags) themed using [**Stylix**](https://github.com/danth/stylix) and [**Catppuccin Macchiato**](https://catppuccin.com/palette) colors.
 
 # Installation
 1. **Clone the repository** in the home directory or where you want:
@@ -31,3 +31,15 @@ The file contains variables that are used to set options in different part of th
 # Docs
 > [!NOTE]
 >The docs folder contains information about commands and nix not the configuration. It's still a work in progress.
+# Keybinds
+
+| Keys | Action |
+| :--- | : ---  |
+| <kbd>Super</kbd> + <kbd>Q</kbd> | Close focused window |
+| <kbd>Super</kbd> + <kbd>T</kbd> | Launch terminal |
+| <kbd>Shift</kbd> + <kbd>Enter</kbd> | Toggle window fullscreen|
+| <kbd>Super</kbd> + <kbd>A</kbd> | Bring up Applauncher|
+| <kbd>Super</kbd> + <kbd>D</kbd> | Bring up Dashboard |
+| <kbd>Super</kbd> + <kbd>P</kbd> | Bring up AudioPlayer |
+| <kbd>Super</kbd> + <kbd>C</kbd> | Remove Last Notification|
+| More to add | |

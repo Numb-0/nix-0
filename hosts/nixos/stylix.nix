@@ -1,7 +1,6 @@
 {
   pkgs,
   username,
-  lib,
   ...
 }:
 let
@@ -9,20 +8,24 @@ let
 in
 {
   # Applications to NOT style
-  home-manager.users.${username} = { stylix.targets = { 
-    hyprpaper.enable = lib.mkForce false;
-    hyprlock.enable = lib.mkForce false;
-    hyprland.enable = lib.mkForce false;
-    qt.enable = lib.mkForce false;
-    fish.enable = lib.mkForce false;
-    vscode.enable = lib.mkForce false;
+  home-manager.users.${username} = { 
+    stylix.targets = { 
+      hyprpaper.enable = false;
+      hyprlock.enable = false;
+      hyprland.enable = false;
+      # Since i'm not styling fish i have to style ranger separately
+      fish.enable = false;
+      vscode.enable = false;
+      #qt.enable = false;
     };
   };
   # Styling Options
   stylix = {
     enable = true;
+    
     # Default wallpaper &/or color scheme generator
     image = ../../config/wallpapers/abstractswirls.jpg;
+
     # Macchiato
     base16Scheme = {
       base00 = "24273a"; # base
@@ -44,23 +47,28 @@ in
     };
 
     polarity = "dark";
+
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
     cursor.size = 24;
 
     fonts = {
-      /* monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-        name = "JetBrainsMono Nerd Font Mono";
+      serif = {
+        package = pkgs.noto-fonts;
+        name = "Noto Serif";
       };
       sansSerif = {
         package = pkgs.roboto;
         name = "Roboto";
       };
-      serif = {
-        package = pkgs.noto-fonts;
-        name = "Noto";
-      }; */
+      monospace = {
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font Mono";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-emoji;
+        name = "Noto Color Emoji";
+      };
       sizes = {
         applications = fontsize;
         terminal = fontsize;

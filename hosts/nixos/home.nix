@@ -9,7 +9,7 @@ let
   inherit (import ./variables.nix) gitUsername gitEmail;
 in
 {
-  # This File is contained in home-manager.user.${username} = {<file>}  
+  # This Code is contained in home-manager.user.${username} = {<code>}  
   # Take a look at flake.nix
 
   programs.home-manager.enable = true;
@@ -20,7 +20,6 @@ in
     stateVersion = "24.05";
   };
 
-  # Import Programs Configurations
   imports = [ 
     ../../config/hypr
     ../../config/kitty
@@ -55,6 +54,7 @@ in
   };  
   
   gtk = {
+    enable = true;
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
@@ -69,9 +69,9 @@ in
 
   qt = {
     enable = true;
-    style.name = "adwaita-dark";
-    # Was gtk3
-    platformTheme.name = "gtk4";
+    # These have to be commented for stylix theming
+    # style.name = "adwaita-dark";
+    # platformTheme.name = "gtk4";
   };
 
   # Scripts
