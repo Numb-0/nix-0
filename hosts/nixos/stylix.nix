@@ -16,8 +16,8 @@ in
       # Since i'm not styling fish i have to style ranger separately
       fish.enable = false;
       vscode.enable = false;
-      #qt.enable = false;
       kitty.enable = false;
+      #qt.enable = false;
     };
   };
   # Styling Options
@@ -62,14 +62,14 @@ in
         package = pkgs.roboto;
         name = "Roboto";
       };
-      monospace = {
+      /* monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font Mono";
-      };
-      /* emoji = {
+      }; */
+      emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";
-      }; */
+      };
       sizes = {
         applications = fontsize;
         terminal = fontsize;

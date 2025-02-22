@@ -5,7 +5,6 @@
     themeFile = "Catppuccin-Macchiato";
     font = {
       name = "JetBrainsMono Nerd Font Mono";
-      size = 11;
     };
     settings = {
       background_opacity = 0.8;
