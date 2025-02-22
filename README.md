@@ -34,7 +34,7 @@ The file contains variables that are used to set options in different part of th
 # Keybinds
 
 | Keys | Action |
-| :--- | : ---  |
+| :--- | :---  |
 | <kbd>Super</kbd> + <kbd>Q</kbd> | Close focused window |
 | <kbd>Super</kbd> + <kbd>T</kbd> | Launch terminal |
 | <kbd>Shift</kbd> + <kbd>Enter</kbd> | Toggle window fullscreen|
@@ -42,4 +42,5 @@ The file contains variables that are used to set options in different part of th
 | <kbd>Super</kbd> + <kbd>D</kbd> | Bring up Dashboard |
 | <kbd>Super</kbd> + <kbd>P</kbd> | Bring up AudioPlayer |
 | <kbd>Super</kbd> + <kbd>C</kbd> | Remove Last Notification|
-| More to add | |
+| More to add |
+
