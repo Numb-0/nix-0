@@ -62,6 +62,7 @@ export default function Applauncher() {
                 onActivate={(self) => {
                     first_visible_child?.activate();
                     self.text = "";
+                    self.grab_focus();
                 }}/>
                 <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER}>
                     <FlowBox homogeneous minChildrenPerLine={4} selectionMode={Gtk.SelectionMode.SINGLE} >
