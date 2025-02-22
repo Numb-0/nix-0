@@ -20,7 +20,8 @@ export default function Applauncher() {
                     onActivate={(self) => {
                         app.launch();
                         App.toggle_window("Applauncher");
-                        self.set_state_flags(Gtk.StateFlags.NORMAL, false)
+                        self.set_state_flags(Gtk.StateFlags.NORMAL, false);
+                        entry.grab_focus();
                     }}>
                     <image iconName={app.get_icon_name() || ""}/>
         </FlowBoxChild>
@@ -37,6 +38,22 @@ export default function Applauncher() {
             appButton.set_state_flags(Gtk.StateFlags.NORMAL, true)
         });
     }
+
+    const entry = <entry
+                    placeholderText={"ctrl+tab to select"}
+                    onChanged={(self) => {
+                        let app_name = self.get_text()
+                        filterList(app_name)
+                        if (!app_name) return;
+                        // Select the first visible child
+                        first_visible_child = appButtons.find((appButton) => appButton.visible)
+                        first_visible_child?.set_state_flags(Gtk.StateFlags.SELECTED, true);
+                    }}
+                    onActivate={(self) => {
+                        first_visible_child?.activate();
+                        self.text = "";
+                    }}
+    />
     
     return <window 
         anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.BOTTOM}
@@ -47,23 +64,10 @@ export default function Applauncher() {
         cssClasses={["Applauncher"]} 
         monitor={bind(hyprland, "focused_monitor").as((monitor) => monitor.id)}
         onKeyPressed={(self, keyval) => keyval === Gdk.KEY_Escape && self.hide()}
+        setup={(self) => hook(self, entry, "notify::visible", () => entry.grab_focus())}
         >
         <box halign={Gtk.Align.CENTER} valign={Gtk.Align.CENTER} vertical={true}>
-                <entry
-                placeholderText={"ctrl+tab to select"}
-                onChanged={(self) => {
-                    let app_name = self.get_text()
-                    filterList(app_name)
-                    if (!app_name) return;
-                    // Select the first visible child
-                    first_visible_child = appButtons.find((appButton) => appButton.visible)
-                    first_visible_child?.set_state_flags(Gtk.StateFlags.SELECTED, true);
-                }}
-                onActivate={(self) => {
-                    first_visible_child?.activate();
-                    self.text = "";
-                    self.grab_focus();
-                }}/>
+                {entry}
                 <ScrolledWindow hscrollbarPolicy={Gtk.PolicyType.NEVER}>
                     <FlowBox homogeneous minChildrenPerLine={4} selectionMode={Gtk.SelectionMode.SINGLE} >
                         {appButtons}
