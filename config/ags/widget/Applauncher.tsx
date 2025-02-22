@@ -20,7 +20,7 @@ export default function Applauncher() {
                     onActivate={(self) => {
                         app.launch();
                         App.toggle_window("Applauncher");
-                        self.set_state_flags(Gtk.StateFlags.NORMAL, false);
+                        self.set_state_flags(Gtk.StateFlags.NORMAL, true);
                         entry.grab_focus();
                     }}>
                     <image iconName={app.get_icon_name() || ""}/>
@@ -64,7 +64,7 @@ export default function Applauncher() {
         cssClasses={["Applauncher"]} 
         monitor={bind(hyprland, "focused_monitor").as((monitor) => monitor.id)}
         onKeyPressed={(self, keyval) => keyval === Gdk.KEY_Escape && self.hide()}
-        setup={(self) => hook(self, entry, "notify::visible", () => entry.grab_focus())}
+        setup={(self) => hook(entry, self, "notify::visible", () =>  entry.grab_focus())}
         >
         <box halign={Gtk.Align.CENTER} valign={Gtk.Align.CENTER} vertical={true}>
                 {entry}
