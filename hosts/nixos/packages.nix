@@ -83,6 +83,7 @@
       roboto
     ];
     fontconfig = {
+      useEmbeddedBitmaps = true;
       defaultFonts = {
         serif = [ "Noto Serif" ];
         sansSerif = [ "Roboto" ];
