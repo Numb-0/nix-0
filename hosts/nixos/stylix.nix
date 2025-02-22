@@ -62,10 +62,10 @@ in
         package = pkgs.roboto;
         name = "Roboto";
       };
-      monospace = {
+      /* monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font Mono";
-      };
+      }; */
       emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";
