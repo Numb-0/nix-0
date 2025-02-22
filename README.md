@@ -4,6 +4,8 @@
 # nix-0
 A simple ***❄ NixOs configuration ❄*** using [**Hyrpland**](https://github.com/hyprwm/Hyprland) and [**Ags**](https://github.com/Aylur/ags) themed using [**Stylix**](https://github.com/danth/stylix) and [**Catppuccin Macchiato**](https://catppuccin.com/palette) colors.
 
+<div align="center"><img src="./docs/assets/screenshot1.png"></div>
+
 # Installation
 1. **Clone the repository** in the home directory or where you want:
 ```bash
