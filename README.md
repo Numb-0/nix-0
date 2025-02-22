@@ -20,7 +20,8 @@ cd ~/nix-0
 sudo nixos-rebuild switch --flake .#nixos
 ```
 > [!TIP]
-> Make sure you have NixOS installed and flakes enabled before proceeding. If you encounter any > > issues, refer to the NixOS documentation. 📚
+> Make sure you have NixOS installed and flakes enabled before proceeding. If you encounter any issues, refer to the NixOS documentation. 📚
+
 # Ags
 The **Ags** application is tightly integrated with **Hyprland** using it's module. If you're using another window manager (WM), most of its features **won't work**.
 
@@ -31,14 +32,20 @@ For example:
 > [!IMPORTANT]
 > I've recently migrated from **GTK3** to the **GTK4** version of **Ags**. As a result, there might be some **unintended behavior** that I haven't discovered yet.  
 >  
-> 🚨 **Proceed with caution** and feel free to report any quirks you encounter! 🛠️
+> 🚨 **Proceed with caution** and feel free to report any quirks you encounter!
 
 # Personalization
-Some of the configuration values are in the [variables.nix](hosts/nixos/variables.nix) file.
-The file contains variables that are used to set options in different part of the configuration like hyprland, git and others.
 
-> [!WARNING] 
-> Not all the settings are covered by variables, some options have been manually written in [config.nix](hosts/nixos/config.nix)!
+To customize the configuration, you can modify the values in the **[variables.nix](hosts/nixos/variables.nix)** file.  
+This file contains variables that are used to set options across different parts of the configuration, such as:
+
+- **Hyprland**
+- **Git**
+- And more...
+
+> [!WARNING]
+> **Not all settings are controlled by variables!**  
+> Most options are manually defined in the **[config.nix](hosts/nixos/config.nix)** file, so make sure to check there as well. 🛠️
 
 # Docs
 > [!NOTE]
