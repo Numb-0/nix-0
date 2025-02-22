@@ -54,7 +54,7 @@ in
     cursor.size = 24;
 
     fonts = {
-      /* serif = {
+      serif = {
         package = pkgs.noto-fonts;
         name = "Noto Serif";
       };
@@ -66,7 +66,7 @@ in
         package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font Mono";
       };
-      emoji = {
+      /* emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";
       }; */
