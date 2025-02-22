@@ -3,6 +3,7 @@
   pkgs,
   username,
   config,
+  lib,
   ...
 }:
 let
@@ -11,7 +12,6 @@ in
 {
   # This Code is contained in home-manager.user.${username} = {<code>}  
   # Take a look at flake.nix
-
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
   home = { 
