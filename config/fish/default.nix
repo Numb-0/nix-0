@@ -37,7 +37,7 @@ in
         set -g __fish_git_prompt_showcolorhints true
         set -g __fish_git_prompt_char_stateseparator |
         set -g __fish_git_prompt_color_branch ${colors.base0D}
-        set -g __fish_git_prompt_char_cleanstate ⭕
+        # set -g __fish_git_prompt_char_cleanstate ℬ 
 
         set -g fish_color_param ${colors.base05}
         set -g fish_color_autosuggestion ${colors.base0A}
