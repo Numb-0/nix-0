@@ -19,9 +19,14 @@ cd ~/nix-0
 ```bash
 sudo nixos-rebuild switch --flake .#nixos
 ```
+> [!TIP]
+> Make sure you have NixOS installed and flakes enabled before proceeding. If you encounter any > > issues, refer to the NixOS documentation. 📚
 # Ags
-The ags application is quite bounded with Hyprland so if you are using another WM most of the features won't work.\
-For example there are Hyprland keybinds to hide/show different windows of the ags application.
+The **Ags** application is tightly integrated with **Hyprland** using it's module. If you're using another window manager (WM), most of its features **won't work**.
+
+For example:
+- **Hyprland keybinds** are used to hide/show different windows of the Ags application.  
+  If you're not using Hyprland, this functionality will **not be available**.
 
 > [!IMPORTANT]
 > I've recently migrated from **GTK3** to the **GTK4** version of **Ags**. As a result, there might be some **unintended behavior** that I haven't discovered yet.  
@@ -37,7 +42,10 @@ The file contains variables that are used to set options in different part of th
 
 # Docs
 > [!NOTE]
->The docs folder contains information about commands and nix not the configuration. **It's still a work in progress**.
+> The **`docs` folder** currently contains information about **commands** and **Nix**, but **not** the configuration.  
+>  
+> 🚧 **This is still a work in progress**
+
 # Keybinds
 
 | Keys | Action |
