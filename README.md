@@ -21,7 +21,12 @@ sudo nixos-rebuild switch --flake .#nixos
 ```
 # Ags
 The ags application is quite bounded with Hyprland so if you are using another WM most of the features won't work.\
-For example i'm using the Hyprland keybinds to hide/show different windows of the ags application.
+For example there are Hyprland keybinds to hide/show different windows of the ags application.
+
+> [!IMPORTANT]
+> I've recently migrated from **GTK3** to the **GTK4** version of **Ags**. As a result, there might be some **unintended behavior** that I haven't discovered yet.  
+>  
+> 🚨 **Proceed with caution** and feel free to report any quirks you encounter! 🛠️
 
 # Personalization
 Some of the configuration values are in the [variables.nix](hosts/nixos/variables.nix) file.
@@ -32,7 +37,7 @@ The file contains variables that are used to set options in different part of th
 
 # Docs
 > [!NOTE]
->The docs folder contains information about commands and nix not the configuration. It's still a work in progress.
+>The docs folder contains information about commands and nix not the configuration. **It's still a work in progress**.
 # Keybinds
 
 | Keys | Action |
