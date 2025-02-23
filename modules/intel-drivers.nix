@@ -5,15 +5,12 @@
   ...
 }:
 with lib;
-let
-  cfg = config.drivers.intel;
-in
 {
   options.drivers.intel = {
     enable = mkEnableOption "Enable Intel Graphics Drivers";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf config.drivers.intel.enable {
     nixpkgs.config.packageOverrides = pkgs: {
       vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
     };

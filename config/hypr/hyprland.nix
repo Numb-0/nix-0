@@ -1,20 +1,13 @@
 {
-  lib,
   username,
   host,
-  config,
   pkgs,
+  osConfig,
   ...
 }:
 let
-  inherit (import ../../hosts/${host}/variables.nix)
-    browser
-    terminal
-    keyboardLayout
-    editor;
-  colors = config.stylix.base16Scheme;
+  inherit (import ../../hosts/${host}/variables.nix) browser terminal keyboardLayout editor;
 in
-with lib;
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -22,7 +15,6 @@ with lib;
     systemd.enable = true;
     systemd.variables = ["--all"];
     extraConfig =
-      concatStrings [
         ''
         # Installed sdks path
         env = ANDROID_HOME,/home/${username}/Android
@@ -33,6 +25,10 @@ with lib;
         # Needed by steam
         env = SDL_DYNAMIC_API, ${pkgs.SDL2}/lib/libSDL2-2.0.so.0v
         env = EDITOR, ${editor}
+
+        # Cursor
+        env = HYPRCURSOR_THEME,Bibata-Modern-Ice
+        env = HYPRCURSOR_SIZE,24
         
         env = LIBVA_DRIVER_NAME, i965
         env = GBM_BACKEND, nvidia-drm
@@ -69,7 +65,7 @@ with lib;
           gaps_in = 5
           gaps_out = 5
           border_size = 0
-          # col.active_border = rgba(${colors.base07}ee)
+          # col.active_border = rgba(${osConfig.style.colors.base07}ee)
           layout = dwindle
           resize_on_border = true
           allow_tearing = true
@@ -133,7 +129,7 @@ with lib;
               enabled = true
               range = 6
               render_power = 6
-              color = rgba(${colors.base01}ee)
+              color = rgba(${osConfig.style.colors.base01}ee)
           }
           blur {
               enabled = true
@@ -213,7 +209,6 @@ with lib;
         # Move/resize windows with mainMod + LMB/RMB and dragging
         bindm = $mainMod, mouse:272, movewindow
         bindm = $mainMod, mouse:273, resizewindow
-        ''
-      ];
+        '';
   };
 }

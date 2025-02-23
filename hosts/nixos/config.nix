@@ -15,25 +15,41 @@ in
   imports = [
     ./hardware.nix
     ./users.nix
-    ./stylix.nix
     ./packages.nix
+    ../../modules/style.nix
     ../../modules/amd-drivers.nix
     ../../modules/nvidia-drivers.nix
     ../../modules/nvidia-prime-drivers.nix
     ../../modules/intel-drivers.nix
   ];
 
+  # Custom Modules 
+  style = {
+    enable = true;
+    scheme = "catppuccin";
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+      size = 24;
+    };
+  };
+  drivers = {
+    amdgpu.enable = false;
+    nvidia.enable = true;
+    nvidia-prime = {
+      enable = true;
+      intelBusID = "PCI:00:02:0";
+      nvidiaBusID = "PCI:58:00:0";
+    };
+    intel.enable = true;
+  };
+
+
   nixpkgs.config = {
     allowUnfree = true;
     nvidia.acceptLicense = true;
   };
-  
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
 
-  # Bootloader
   boot = {
     # This is for OBS Virtual Cam Support
     kernelModules = [ "v4l2loopback" "acpi_call" ];
@@ -52,30 +68,27 @@ in
     '';
   };
 
-  # Extra Module Options based on machine structure
-  drivers = {
-    amdgpu.enable = false;
-    nvidia.enable = true;
-    nvidia-prime = {
+
+  hardware = {
+    graphics = {
       enable = true;
-      intelBusID = "PCI:00:02:0";
-      nvidiaBusID = "PCI:58:00:0";
+      enable32Bit = true;
     };
-    intel.enable = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = false;
+      settings = { General = { Enable = "Source,Sink,Media,Socket"; }; };
+    };
   };
 
-
-  # Enable networking
   networking = {
     networkmanager.enable = true;
     hostName = host;
     timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
   };
 
-  # Set your time zone.
   time.timeZone = timeZone;
 
-  # Select internationalisation properties.
   i18n = {
     defaultLocale = defaultLocale;
     extraLocaleSettings = {
@@ -91,17 +104,6 @@ in
     };
   };
 
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      # Add any missing dynamic libraries for unpackaged programs
-      # here, NOT in environment.systemPackages
-
-      # Needed for android godot build
-      aapt
-    ];
-  };
-
   programs = {
     adb.enable = true;
     firefox.enable = true;
@@ -111,6 +113,16 @@ in
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
+    };
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        # Add any missing dynamic libraries for unpackaged programs
+        # here, NOT in environment.systemPackages
+
+        # Needed for android godot build
+        aapt
+      ];
     };
     gamemode = {
       enable = true;
@@ -137,7 +149,6 @@ in
     };
   };
 
-  # Extra Portal Configuration
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -159,7 +170,6 @@ in
     pam.services.wayland.enableGnomeKeyring = true;
   };
 
-  # Services to start
   services = {
     gnome.gnome-keyring.enable = true;
     mysql = {
@@ -220,14 +230,6 @@ in
     fstrim.enable = true;
   };
 
-  # Bluetooth Support
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = false;
-    settings = { General = { Enable = "Source,Sink,Media,Socket"; }; };
-  };
-
-  # Optimization settings and garbage collection automation
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     settings = {

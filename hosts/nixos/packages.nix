@@ -28,7 +28,7 @@
     dotnetCorePackages.dotnet_8.sdk
     icu
 
-    vesktop
+    (pkgs.discord.override { withVencord = true; })
     spotify
     obs-studio
     prismlauncher

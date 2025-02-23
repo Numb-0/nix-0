@@ -2,8 +2,7 @@
   self,
   pkgs,
   username,
-  config,
-  lib,
+  osConfig,
   ...
 }:
 let
@@ -18,9 +17,20 @@ in
     username = "${username}";
     homeDirectory = "/home/${username}";
     stateVersion = "24.05";
+    pointerCursor = {
+      package = osConfig.style.cursor.package;
+      name = osConfig.style.cursor.name;
+      size = osConfig.style.cursor.size;
+      gtk.enable = true;
+      x11.enable = true;
+      hyprcursor = {
+        enable = true;
+        size = osConfig.style.cursor.size;
+      };
+    };
   };
 
-  imports = [ 
+  imports = [
     ../../config/hypr
     ../../config/kitty
     ../../config/fish 
@@ -37,7 +47,6 @@ in
   programs.btop = {
     enable = true;
     settings = {
-      # color_theme is set by stylix
       theme_background = false;
       proc_gradient = false;
       rounded_corners = false;
@@ -69,13 +78,12 @@ in
 
   qt = {
     enable = true;
-    # These have to be commented for stylix theming
-    # style.name = "adwaita-dark";
-    # platformTheme.name = "gtk4";
+    style.name = "adwaita-dark";
+    platformTheme.name = "gtk4";
   };
 
   # Scripts
   home.packages = [
-    (import ../../scripts/setup_nvim.nix { inherit pkgs config self; })
+    (import ../../scripts/setup_nvim.nix { inherit pkgs self; })
   ];
 }

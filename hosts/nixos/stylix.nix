@@ -22,7 +22,7 @@ in
   };
   # Styling Options
   stylix = {
-    enable = true;
+    enable = false;
     
     # Default wallpaper &/or color scheme generator
     image = ../../config/wallpapers/abstractswirls.jpg;

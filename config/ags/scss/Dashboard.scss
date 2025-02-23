@@ -96,7 +96,6 @@ window.Dashboard {
                         transition: all .5s;
                         background-color: $base02;
                     }
-
                 }
                 // connected button text color
                 &.connected {
@@ -104,8 +103,8 @@ window.Dashboard {
                 }
             }
         }
-        &.wifiList { color: $base0C; }
-        &.bluetoothList { color: $base0D; }
+        &.wifiList { button { color: $base0C; } }
+        &.bluetoothList { button { color: $base0D; } }
     }
 
 

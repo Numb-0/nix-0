@@ -27,7 +27,8 @@ The **Ags** application is tightly integrated with **Hyprland** using it's modul
 
 For example:
 - **Hyprland keybinds** are used to hide/show different windows of the Ags application.  
-  If you're not using Hyprland, this functionality will **not be available**.
+If you're not using Hyprland, this functionality will **not be available**.
+The wifi module is **not** implemented yet!
 
 > [!IMPORTANT]
 > I've recently migrated from **GTK3** to the **GTK4** version of **Ags**. As a result, there might be some **unintended behavior** that I haven't discovered yet.  

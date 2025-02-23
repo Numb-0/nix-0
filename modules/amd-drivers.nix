@@ -5,15 +5,12 @@
   ...
 }:
 with lib;
-let
-  cfg = config.drivers.amdgpu;
-in
 {
   options.drivers.amdgpu = {
     enable = mkEnableOption "Enable AMD Drivers";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf config.drivers.amdgpu.enable {
     systemd.tmpfiles.rules = [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
     services.xserver.videoDrivers = [ "amdgpu" ];
   };

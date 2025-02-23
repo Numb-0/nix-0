@@ -56,17 +56,25 @@ window.Bar {
     }
 
     box.clock {
-        color: $base07;
-
-        calendar {
+        label {
             color: $base07;
-            button {
-                color: $base07;
-            }
-            label:selected {
-                background-color: $base0E;
-            }
         }
+        button {
+            color: $base05;
+        }
+        popover {
+            arrow {
+                background-color: $base01;
+            }
+            contents {
+                background-color: $base01;
+                calendar {
+                    label:selected {
+                        background-color: $base04;
+                    }
+                }
+            }
+        }   
     }
 
     box.network {
@@ -74,10 +82,13 @@ window.Bar {
     }
 
     box.notify {
-        color: $base0A;
+        image {
+            color: $base0A;
+        }
     }
+
     box.bell {
-        image{
+        image {
             animation: icon-wiggle-active 1s ease-in-out;
         }
     }

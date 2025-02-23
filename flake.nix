@@ -6,10 +6,6 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # not using this till it has the features kitty has
     # ghostty = {
     #   url = "github:ghostty-org/ghostty";
@@ -17,21 +13,18 @@
     nix-0-shell.url = "path:./config/ags";  #builtins.getFlake "ags";
   };
   outputs =
-    { self, nixpkgs, home-manager, stylix, nix-0-shell, ... }@inputs:
+    { self, nixpkgs, home-manager, nix-0-shell, ... }@inputs:
     let
       system = "x86_64-linux";
-      # Here choose the host configuration
       host = "nixos";
       username = "cosix";
     in
-    builtins.trace "Self inputs: ${builtins.toString ./.}"
     {
       nixosConfigurations = {
         "${host}" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit self system inputs username host; };
           modules = [
             ./hosts/${host}/config.nix
-            stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
             {
               environment.systemPackages = [
