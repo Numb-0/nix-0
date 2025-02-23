@@ -59,10 +59,12 @@ window.Bar {
         label {
             color: $base07;
         }
-        button {
-            color: $base05;
-        }
         popover {
+            label {
+                color: $base05;
+            }
+            outline: none;
+            box-shadow: none;
             arrow {
                 background-color: $base01;
             }
@@ -70,7 +72,7 @@ window.Bar {
                 background-color: $base01;
                 calendar {
                     label:selected {
-                        background-color: $base04;
+                        background-color: $base03;
                     }
                 }
             }

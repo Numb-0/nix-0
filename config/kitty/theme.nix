@@ -11,7 +11,7 @@ in
   foreground                #${colors.base05}
   background                #${colors.base00}
   selection_foreground      #${colors.base00}
-  selection_background      #${colors.base09}
+  selection_background      #${colors.base05}
 
   # Cursor colors
   cursor                    #${colors.base05}
