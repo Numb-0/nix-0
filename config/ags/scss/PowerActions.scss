@@ -2,8 +2,11 @@
 @use "presets" as *;
 
 .dialog {
-    .titlebar {
+    * {
         background-color: $base00;
+        color: $base05;
+    }
+    .titlebar {
         min-height: 0;
     }
     box {
@@ -14,10 +17,14 @@
     }
     border-radius: $radius;
     .dialog-action-area {
-        background-color: $base00;
         button {
+            border-radius: $radius;
             padding: 0.4rem;
+            margin: 0.2rem;
             &:hover, &:focus {
+                label {
+                    background-color: $base02;
+                }
                 background-color: $base02;
             }
         }
@@ -26,7 +33,7 @@
 
 .PowerActions {
     box {
-        background-color: $base01;
+        background-color: $base00;
         padding: .6rem;
         border-radius: $radius;
         button {
