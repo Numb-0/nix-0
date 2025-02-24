@@ -9,6 +9,13 @@
 }:
 let
   inherit (import ./variables.nix) keyboardLayout timeZone defaultLocale extraLocale keydExtra;
+  wallpaperDir = builtins.path {
+    path = ../../config/wallpapers;
+    name = "wallpapers";
+  };
+  wallpaperImgs = builtins.readDir wallpaperDir;
+  wallpaperPaths = builtins.map (file: "${toString wallpaperDir}/${file}") (builtins.attrNames wallpaperImgs);
+  wallpaperIndex = { "catppuccin" = 0; "gruvbox" = 1;}.${config.style.scheme} or 0;
 in
 {
   # This file contains all the nixos modules configutations of the modules not included using the flake {ags, stylix, ...}
@@ -16,6 +23,7 @@ in
     ./hardware.nix
     ./users.nix
     ./packages.nix
+    ./stylix.nix
     ../../modules/style.nix
     ../../modules/amd-drivers.nix
     ../../modules/nvidia-drivers.nix
@@ -32,6 +40,7 @@ in
       name = "Bibata-Modern-Ice";
       size = 24;
     };
+    wallpaper = builtins.elemAt wallpaperPaths wallpaperIndex;
   };
   drivers = {
     amdgpu.enable = false;

@@ -1,5 +1,12 @@
+{
+ osConfig,
+ ...
+}:
 let 
-  wallpaperDir = ./../wallpapers;
+  wallpaperDir = builtins.path {
+    path = ../wallpapers;
+    name = "wallpapers";
+  };
   wallpaperImgs = builtins.readDir wallpaperDir;
   wallpaperPaths = builtins.map (file: "${toString wallpaperDir}/${file}") (builtins.attrNames wallpaperImgs);
 in
@@ -10,7 +17,7 @@ in
       enable = true;
       settings = {
         preload = wallpaperPaths;
-        wallpaper = ",${builtins.elemAt wallpaperPaths 0}";
+        wallpaper = ",${osConfig.style.wallpaper}";
       };
     };
   };

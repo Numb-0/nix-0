@@ -10,10 +10,14 @@
     # ghostty = {
     #   url = "github:ghostty-org/ghostty";
     # };
+    stylix = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:danth/stylix";
+    };
     nix-0-shell.url = "path:./config/ags";  #builtins.getFlake "ags";
   };
   outputs =
-    { self, nixpkgs, home-manager, nix-0-shell, ... }@inputs:
+    { self, nixpkgs, home-manager, stylix, nix-0-shell, ... }@inputs:
     let
       system = "x86_64-linux";
       host = "nixos";
@@ -25,6 +29,7 @@
           specialArgs = { inherit self system inputs username host; };
           modules = [
             ./hosts/${host}/config.nix
+            stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
             {
               environment.systemPackages = [

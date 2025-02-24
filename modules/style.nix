@@ -76,9 +76,12 @@ in
         description = "The size of the cursor.";
       };
     };
+    wallpaper = mkOption {
+      type = types.path;
+      description = "The path to the current wallpaper";
+    };
   };
   config = mkIf config.style.enable {
-    # Set the selected colorscheme colors
     style.colors = colorSchemes.${config.style.scheme};
   };
 }

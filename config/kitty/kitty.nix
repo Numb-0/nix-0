@@ -2,7 +2,6 @@
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
-    #themeFile = "Catppuccin-Macchiato";
     font = {
       name = "JetBrainsMono Nerd Font Mono";
     };

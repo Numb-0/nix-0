@@ -3,11 +3,13 @@
   pkgs,
   username,
   osConfig,
+  lib,
   ...
 }:
 let
   inherit (import ./variables.nix) gitUsername gitEmail;
 in
+with lib;
 {
   # This Code is contained in home-manager.user.${username} = {<code>}  
   # Take a look at flake.nix
@@ -18,9 +20,9 @@ in
     homeDirectory = "/home/${username}";
     stateVersion = "24.05";
     pointerCursor = {
-      package = osConfig.style.cursor.package;
-      name = osConfig.style.cursor.name;
-      size = osConfig.style.cursor.size;
+      package = mkDefault osConfig.style.cursor.package;
+      name = mkDefault osConfig.style.cursor.name;
+      size = mkDefault osConfig.style.cursor.size;
       gtk.enable = true;
       x11.enable = true;
       hyprcursor = {
@@ -63,7 +65,6 @@ in
   };  
   
   gtk = {
-    enable = true;
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
@@ -78,8 +79,8 @@ in
 
   qt = {
     enable = true;
-    style.name = "adwaita-dark";
-    platformTheme.name = "gtk4";
+    # style.name = "adwaita-dark";
+    # platformTheme.name = "gtk4";
   };
 
   # Scripts

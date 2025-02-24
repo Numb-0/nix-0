@@ -1,5 +1,4 @@
 {
-  self,
   osConfig,
   ...
 }:
@@ -15,7 +14,7 @@
         };
         background = [
           {
-            path = "${self}/config/wallpapers/abstractswirls.jpg";      
+            path = osConfig.style.wallpaper;      
           }
         ];
         input-field = [
