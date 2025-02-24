@@ -23,7 +23,6 @@ in
   stylix = {
     enable = true;
     
-    # Default wallpaper &/or color scheme generator
     image = config.style.wallpaper.path;
     base16Scheme = config.style.colors;
 
@@ -44,10 +43,10 @@ in
         package = pkgs.roboto;
         name = "Roboto";
       };
-      #monospace = {
-      #  package = pkgs.nerd-fonts.jetbrains-mono;
-      #  name = "JetBrainsMono Nerd Font Mono";
-      #};
+      monospace = {
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font Mono";
+      };
       emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";
