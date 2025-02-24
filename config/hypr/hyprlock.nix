@@ -14,7 +14,7 @@
         };
         background = [
           {
-            path = osConfig.style.wallpaper;      
+            path = osConfig.style.wallpaper.path;      
           }
         ];
         input-field = [

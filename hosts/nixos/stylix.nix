@@ -24,7 +24,7 @@ in
     enable = true;
     
     # Default wallpaper &/or color scheme generator
-    image = config.style.wallpaper;
+    image = config.style.wallpaper.path;
     base16Scheme = config.style.colors;
 
     polarity = "dark";

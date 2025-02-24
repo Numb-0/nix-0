@@ -45,6 +45,13 @@ let
       base0F = "d65d0e"; # brown
     };
   };
+  wallpaperDir = builtins.path {
+    path = ../config/wallpapers;
+    name = "wallpapers";
+  };
+  wallpaperImgs = builtins.readDir wallpaperDir;
+  wallpaperPaths = builtins.map (file: "${toString wallpaperDir}/${file}") (builtins.attrNames wallpaperImgs);
+  wallpaperIndex = { "catppuccin" = 0; "gruvbox" = 1;}.${config.style.scheme} or 0;
 in
 {
   options.style = {
@@ -76,12 +83,20 @@ in
         description = "The size of the cursor.";
       };
     };
-    wallpaper = mkOption {
-      type = types.path;
-      description = "The path to the current wallpaper";
+    wallpaper = {
+      path = mkOption {
+        type = types.path;
+        description = "The path to the current wallpaper";
+      };
+      paths = mkOption {
+        type = types.listOf types.path;
+        description = "The list of the paths to the wallpapers";
+      };
     };
   };
   config = mkIf config.style.enable {
     style.colors = colorSchemes.${config.style.scheme};
+    style.wallpaper.paths = wallpaperPaths;
+    style.wallpaper.path = builtins.elemAt wallpaperPaths wallpaperIndex;
   };
 }
