@@ -3,7 +3,7 @@
 
 .dialog {
     * {
-        background-color: $base00;
+        /* background-color: $base00; */
         color: $base05;
     }
     .titlebar {
@@ -22,9 +22,9 @@
             padding: 0.4rem;
             margin: 0.2rem;
             &:hover, &:focus {
-                label {
+                /* label {
                     background-color: $base02;
-                }
+                } */
                 background-color: $base02;
             }
         }

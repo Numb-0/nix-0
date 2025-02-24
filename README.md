@@ -2,7 +2,10 @@
 
 
 # nix-0
-A simple ***❄ NixOs configuration ❄*** using [**Hyrpland**](https://github.com/hyprwm/Hyprland) and [**Ags**](https://github.com/Aylur/ags) themed in [**Catppuccin Macchiato**](https://catppuccin.com/palette) colors.
+A simple ***❄ NixOs configuration ❄*** using [**Hyrpland**](https://github.com/hyprwm/Hyprland) and [**Ags**](https://github.com/Aylur/ags) themed in [**Catppuccin Macchiato**](https://catppuccin.com/palette) base16 colors with [**Stylix**](https://github.com/danth/stylix).
+
+> [!WARNING]
+> The repo is still under heavy modifications as i'm trying to make the configuration theme swappable between **gruvbox** & **catppuccin**.
 
 <div align="center"><img src="./docs/assets/screenshot1.png"></div>
 
