@@ -56,7 +56,6 @@
 
     lxqt.lxqt-policykit
     patchelf
-    cups-brother-dcp1610wlpr
 
     unzip
     unrar

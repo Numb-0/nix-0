@@ -27,8 +27,8 @@ in
         env = EDITOR, ${editor}
 
         # Cursor
-        env = HYPRCURSOR_THEME,Bibata-Modern-Ice
-        env = HYPRCURSOR_SIZE,24
+        # env = HYPRCURSOR_THEME, ${osConfig.stylix.cursor.name}
+        # env = HYPRCURSOR_SIZE, ${toString osConfig.stylix.cursor.size}
         
         env = LIBVA_DRIVER_NAME, i965
         env = GBM_BACKEND, nvidia-drm

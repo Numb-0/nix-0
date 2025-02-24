@@ -28,12 +28,8 @@ in
   style = {
     enable = true;
     scheme = "catppuccin";
-    cursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
-      size = 24;
-    };
   };
+
   drivers = {
     amdgpu.enable = false;
     nvidia.enable = true;
@@ -44,7 +40,6 @@ in
     };
     intel.enable = true;
   };
-
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -218,6 +213,7 @@ in
       enable = true;
       drivers = [
         # pkgs.hplipWithPlugin
+        pkgs.cups-brother-dcp1610wlpr
       ];
     };
     pipewire = {

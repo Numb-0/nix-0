@@ -2,14 +2,11 @@
   self,
   pkgs,
   username,
-  osConfig,
-  lib,
   ...
 }:
 let
   inherit (import ./variables.nix) gitUsername gitEmail;
 in
-with lib;
 {
   # This Code is contained in home-manager.user.${username} = {<code>}  
   # Take a look at flake.nix
@@ -19,17 +16,6 @@ with lib;
     username = "${username}";
     homeDirectory = "/home/${username}";
     stateVersion = "24.05";
-    pointerCursor = {
-      package = mkDefault osConfig.style.cursor.package;
-      name = mkDefault osConfig.style.cursor.name;
-      size = mkDefault osConfig.style.cursor.size;
-      gtk.enable = true;
-      x11.enable = true;
-      hyprcursor = {
-        enable = true;
-        size = osConfig.style.cursor.size;
-      };
-    };
   };
 
   imports = [

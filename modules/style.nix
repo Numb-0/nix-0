@@ -2,7 +2,6 @@
 { 
   lib,
   config,
-  pkgs,
   ... 
 }:
 with lib;
@@ -59,29 +58,12 @@ in
     scheme = mkOption {
       type = types.enum (attrNames colorSchemes);
       default = "catppuccin";
-      description = "Select a base-16 color scheme.";
+      description = "The selected base-16 color scheme.";
     };
     colors = mkOption {
       type = types.attrs;
       default = colorSchemes.${config.style.scheme};
       description = "The selected color scheme colors.";
-    };
-    cursor = {
-      name = mkOption {
-        type = types.str;
-        default = "Adwaita";
-        description = "The name of the cursor theme.";
-      };
-      package = mkOption {
-        type = types.package;
-        default = pkgs.adwaita-icon-theme;
-        description = "The package providing the cursor theme.";
-      };
-      size = mkOption {
-        type = types.int;
-        default = 24;
-        description = "The size of the cursor.";
-      };
     };
     wallpaper = {
       path = mkOption {
