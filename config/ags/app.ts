@@ -5,7 +5,7 @@ import Applauncher from "./widget/Applauncher"
 import Dashboard from "./widget/Dashboard"
 import PlayerDashboard from "./widget/PlayerDashboard"
 import Corners from "./widget/Corners"
-import Notifications, {clearLastNotification}  from "./widget/Notifications"
+import Notifications, { clearLastNotification } from "./widget/Notifications"
 import PowerActions from "./widget/PowerActions"
 
 App.start({
@@ -21,8 +21,8 @@ App.start({
         PowerActions()
     },
     requestHandler(request: string, res: (response: any) => void) {
-        switch(request) {
-            case "applauncher": 
+        switch (request) {
+            case "applauncher":
                 App.toggle_window("Applauncher");
                 break
             case "dashboard":

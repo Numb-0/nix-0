@@ -22,7 +22,7 @@ class CornerLeftRight extends Gtk.Widget {
         backgroundColor.parse(color);
 
         const pathbuilder = new Gsk.PathBuilder;
-        
+
         pathbuilder.move_to(0, 0);
         pathbuilder.line_to(0, radius);
         pathbuilder.conic_to(0, 0, radius, 0, 1);
@@ -39,27 +39,27 @@ class CornerLeftRight extends Gtk.Widget {
 export default function Corners(gdkmonitor: Gdk.Monitor) {
     const corners = new CornerLeftRight(gdkmonitor);
     themeVar.subscribe(s => {
-        if(s == "catppuccin"){
+        if (s == "catppuccin") {
             color = "#1e2030"
         } else {
             color = "#3c3836"
-        } 
+        }
         corners.queue_draw()
     })
     return <window
-                visible
-                name={"Bar"}
-                cssClasses={["Bar"]}
-                gdkmonitor={gdkmonitor}
-                exclusivity={Astal.Exclusivity.NORMAL}
-                keymode={Astal.Keymode.NONE}
-                anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.RIGHT}
-                application={App}
-                layer={Astal.Layer.BACKGROUND}
-                defaultHeight={corners.radius}
-                defaultWidth={corners.radius}
-                setup={(self) => self.get_surface()?.set_input_region(new cairo.Region())}
-                >
-                {corners} 
+        visible
+        name={"Bar"}
+        cssClasses={["Bar"]}
+        gdkmonitor={gdkmonitor}
+        exclusivity={Astal.Exclusivity.NORMAL}
+        keymode={Astal.Keymode.NONE}
+        anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.RIGHT}
+        application={App}
+        layer={Astal.Layer.BACKGROUND}
+        defaultHeight={corners.radius}
+        defaultWidth={corners.radius}
+        setup={(self) => self.get_surface()?.set_input_region(new cairo.Region())}
+    >
+        {corners}
     </window>
 }
