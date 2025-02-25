@@ -6,14 +6,14 @@ window.PlayerDashboard {
     label.placeHolder {
         padding: .6rem;
         border-radius: $radius;
-        color: $base05;
-        background-color: $base01;
+        color: var(--base05);
+        background-color: var(--base01);
     }
 
     box.MediaPlayer {
         border-radius: $radius;
         padding: .6rem;
-        background-color: $base01;
+        background-color: var(--base01);
         
         // Removes outline for all the inner elements
         * {
@@ -22,7 +22,7 @@ window.PlayerDashboard {
 
         // Labels color
         label {
-            color: $base05;
+            color: var(--base05);
         }
 
         box.cover-art {
@@ -54,14 +54,14 @@ window.PlayerDashboard {
             }
 
             highlight {
-                background-color: $base05;
+                background-color: var(--base05);
             }
 
             slider {
                 all: unset;
             }
             &:hover, &:focus {
-                background-color: $base02;
+                background-color: var(--base02);
             }
         }
 
@@ -78,7 +78,7 @@ window.PlayerDashboard {
                 padding: .4rem;
                 margin: 0 .2rem;
                 &:hover, &:focus {
-                    background-color: $base02;
+                    background-color: var(--base02);
                 }
             }
         }

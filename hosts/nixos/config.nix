@@ -212,7 +212,6 @@ in
     printing = {
       enable = true;
       drivers = [
-        # pkgs.hplipWithPlugin
         pkgs.cups-brother-dcp1610wlpr
       ];
     };

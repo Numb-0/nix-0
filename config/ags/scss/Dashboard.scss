@@ -16,14 +16,14 @@ window.Dashboard {
     box.container {
         padding: .6rem;
         border-radius: $radius;
-        background-color: $base01;
+        background-color: var(--base01);
     }
 
     box.cava {
         padding: 1.2rem .6rem 1.2rem 1.2rem;
         border-radius: $radius;
         //min-width: 50px;
-        background-color: $base01;
+        background-color: var(--base01);
     }
 
 
@@ -31,7 +31,7 @@ window.Dashboard {
         &.toggle, &.notif, &.drop, &.wifiButton, &.bluetoothButton {
             min-width: 50px;
             border-radius: $radius;
-            background-color: $base01;
+            background-color: var(--base01);
             outline: none;
             image {
                 transition: all .5s;
@@ -39,13 +39,13 @@ window.Dashboard {
             }
             &:hover, &:focus {
                 transition: all .5s;
-                background-color: $base02;
+                background-color: var(--base02);
             }
         }
-        &.drop { color: $base09; }
-        &.wifiButton { color: $base0C; }
-        &.bluetoothButton { color: $base0D; }
-        &.notif { color: $base0A; }
+        &.drop { color: var(--base09); }
+        &.wifiButton { color: var(--base0C); }
+        &.bluetoothButton { color: var(--base0D); }
+        &.notif { color: var(--base0A); }
         &.bell {
             image{
                 animation: icon-wiggle-active 1s ease-in-out;
@@ -73,7 +73,7 @@ window.Dashboard {
             }
             padding: .6rem;
             border-radius: $radius;
-            background-color: $base01;
+            background-color: var(--base01);
             * {
                 border: none;
             }
@@ -94,17 +94,17 @@ window.Dashboard {
                     &:hover {
                         color: unset;
                         transition: all .5s;
-                        background-color: $base02;
+                        background-color: var(--base02);
                     }
                 }
                 // connected button text color
                 &.connected {
-                    color: $base0A;
+                    color: var(--base0A);
                 }
             }
         }
-        &.wifiList { button { color: $base0C; } }
-        &.bluetoothList { button { color: $base0D; } }
+        &.wifiList { button { color: var(--base0C); } }
+        &.bluetoothList { button { color: var(--base0D); } }
     }
 
 
@@ -127,17 +127,17 @@ window.Dashboard {
                 }
                 &:hover, &:focus {
                     transition: all .5s;
-                    background-color: $base02;
+                    background-color: var(--base02);
                 }
             }
         }
         &.brightness_slider { 
-            color: $base09;
-            highlight { background-color: $base09; }
+            color: var(--base09);
+            highlight { background-color: var(--base09); }
         }
         &.volume_slider { 
-            color: $base0B;
-            highlight { background-color: $base0B; }
+            color: var(--base0B);
+            highlight { background-color: var(--base0B); }
         }
     }
 }

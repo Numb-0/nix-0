@@ -21,26 +21,26 @@
 window.Bar {
     centerbox.container {
         padding: .2rem .6rem .2rem;
-        background-color: $base01;
+        background-color: var(--base01);
     }
 
     image.logo {
         //font-size: 1.4rem;
         padding-top: 1px;
         -gtk-icon-size: 1.3rem;
-        color: $base0D;
+        color: var(--base0D);
     }
 
     box.workspaces {
         button.workspace {
             transition: all 1s;
-            color: $base02;
+            color: var(--base02);
             -gtk-icon-size: 1rem;
             &.occupied {
                 image {
                     animation: icon-wiggle-occupied 1s ease-in-out;
                     transition: all 1s;
-                    color: $base07;
+                    color: var(--base07);
                     -gtk-icon-size: 1rem;
                 }
             }
@@ -48,7 +48,7 @@ window.Bar {
                 image {
                     animation: icon-wiggle-active 1s ease-in-out;
                     transition: all 1s;
-                    color: $base0A;
+                    color: var(--base0A);
                     -gtk-icon-size: 1.1rem;
                 }
             }
@@ -57,22 +57,22 @@ window.Bar {
 
     box.clock {
         label {
-            color: $base07;
+            color: var(--base07);
         }
         popover {
             label {
-                color: $base05;
+                color: var(--base05);
             }
             outline: none;
             box-shadow: none;
             arrow {
-                background-color: $base01;
+                background-color: var(--base01);
             }
             contents {
-                background-color: $base01;
+                background-color: var(--base01);
                 calendar {
                     label:selected {
-                        background-color: $base03;
+                        background-color: var(--base03);
                     }
                 }
             }
@@ -80,12 +80,12 @@ window.Bar {
     }
 
     box.network {
-        color: $base0C;
+        color: var(--base0C);
     }
 
     box.notify {
         image {
-            color: $base0A;
+            color: var(--base0A);
         }
     }
 
@@ -97,20 +97,20 @@ window.Bar {
 
     box.bluetooth {
         button {
-            color: $base0D;
+            color: var(--base0D);
         }
     }
 
     box.volume {
-        color: $base0B;
+        color: var(--base0B);
     }
 
     box.brightness {
-        color: $base09;
+        color: var(--base09);
     }
 
     box.battery {
-        color: $base0A;
+        color: var(--base0A);
     }
 
     box.systray {
@@ -120,13 +120,13 @@ window.Bar {
     }
 
     separator {
-        color: $base05;
+        color: var(--base05);
         border-radius: $radius;
         min-width: 2px;
     }
 
     .power {
-        color: $base07;
+        color: var(--base07);
         image {
             -gtk-icon-size: 1.2rem;
         }

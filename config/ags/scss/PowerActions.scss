@@ -3,8 +3,8 @@
 
 .dialog {
     * {
-        /* background-color: $base00; */
-        color: $base05;
+        /* background-color: var(--base00; */
+        color: var(--base05);
     }
     .titlebar {
         min-height: 0;
@@ -23,9 +23,9 @@
             margin: 0.2rem;
             &:hover, &:focus {
                 /* label {
-                    background-color: $base02;
+                    background-color: var(--base02;
                 } */
-                background-color: $base02;
+                background-color: var(--base02);
             }
         }
     }
@@ -33,7 +33,7 @@
 
 .PowerActions {
     box {
-        background-color: $base00;
+        background-color: var(--base00);
         padding: .6rem;
         border-radius: $radius;
         button {
@@ -43,16 +43,16 @@
                 -gtk-icon-size: 2rem;
             }
             &:hover, &:focus {
-                background-color: $base02;
+                background-color: var(--base02);
             }
             &.power{
-                color: $base08;
+                color: var(--base08);
             }
             &.reboot {
-                color: $base0C;
+                color: var(--base0C);
             }
             &.lock {
-              color: $base05;
+              color: var(--base05);
             }
         }
     }

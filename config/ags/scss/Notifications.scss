@@ -24,32 +24,31 @@
     .image {
         margin-right: .5rem;
         border-radius: 9px;
-        border: 1px solid $base0A;
+        border: 1px solid var(--base0A);
         min-width: 100px;
         min-height: 100px;
         background-size: cover;
         background-position: center;
     }
     .low {
-        border-bottom: 2px solid $base0D
+        border-bottom: 2px solid var(--base0D);
     }
     .normal {
-        border-bottom: 2px solid $base0A;
+        border-bottom: 2px solid var(--base0A);
     }
     .critical {
-        border-bottom: 2px solid $base08;
+        border-bottom: 2px solid var(--base08);
     }
 
     .header {
-        background-color: $base02;
+        background-color: var(--base02);
         padding: 0.5rem;
         margin: 0;
         border-radius: $radius $radius 0 0;
-        //border-bottom: 2px solid $base09;
 
         .close-button {
             border-radius: $radius;
-            background-color: $base01;
+            background-color: var(--base01);
             padding: .2rem;
             min-width: 0;
             min-height: 0;
@@ -64,11 +63,10 @@
 .notification .content {
     margin-top: 0;
     padding: 0.7rem;
-    background-color: $base01;
+    background-color: var(--base01);
     border-radius: 0 0 $radius $radius;
 }
 
 .notification .summary { font-size: 1.1rem; }
 .notification .actions { padding-top: 0.7rem; }
 .notification .app-icon { padding-right: 0.4rem; }
-//.notification .app-name, .notification .summary { font-family: 'Hammersmith One'; }

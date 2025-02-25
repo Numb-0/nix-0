@@ -3,17 +3,17 @@
 
 
 tooltip {
-    background-color: $base00;
+    background-color: var(--base00);
     label {
-        color: $base05;
+        color: var(--base05);
     }
-    border-color: $base07;
+    border-color: var(--base07);
     box-shadow: none;
 }
 
 window.Applauncher {
     box {
-        background-color: $base00;
+        background-color: var(--base00);
         border-radius: $radius;
         padding: .4rem;
     }
@@ -22,15 +22,15 @@ window.Applauncher {
         font-family: "JetBrainsMono Nerd Font Mono";
         font-size: 1rem;
         font-weight: bold;
-        color: $base05;
+        color: var(--base05);
 
-        background-color: $base01;
-        border: solid .1rem $base04;
+        background-color: var(--base01);
+        border: solid .1rem var(--base04);
         border-radius: $radius;
         
         margin-bottom: .4rem;
 
-        outline-color: $base07;
+        outline-color: var(--base07);
     }
 
     scrollbar {
@@ -58,7 +58,7 @@ window.Applauncher {
             -gtk-icon-size: 50px;
         }
         &:selected {
-            background-color: $base02;
+            background-color: var(--base02);
         }
     }
 }
