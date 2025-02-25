@@ -1,7 +1,7 @@
-{ 
+{
   lib,
   config,
-  ... 
+  ...
 }:
 with lib;
 let
@@ -48,8 +48,15 @@ let
     name = "wallpapers";
   };
   wallpaperImgs = builtins.readDir wallpaperDir;
-  wallpaperPaths = builtins.map (file: "${toString wallpaperDir}/${file}") (builtins.attrNames wallpaperImgs);
-  wallpaperIndex = { "catppuccin" = 0; "gruvbox" = 1;}.${config.style.scheme} or 0;
+  wallpaperPaths = builtins.map (file: "${toString wallpaperDir}/${file}") (
+    builtins.attrNames wallpaperImgs
+  );
+  wallpaperIndex =
+    {
+      "catppuccin" = 0;
+      "gruvbox" = 1;
+    }
+    .${config.style.scheme} or 0;
 in
 {
   options.style = {

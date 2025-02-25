@@ -16,8 +16,8 @@
 
   # Keyd Options
   keydExtra = ''
-  [main]
-  y = z
-  z = y
+    [main]
+    y = z
+    z = y
   '';
 }

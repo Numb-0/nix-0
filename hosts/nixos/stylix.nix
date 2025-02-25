@@ -9,8 +9,8 @@ let
 in
 {
   # Applications to NOT style
-  home-manager.users.${username} = { 
-    stylix.targets = { 
+  home-manager.users.${username} = {
+    stylix.targets = {
       hyprpaper.enable = false;
       hyprlock.enable = false;
       hyprland.enable = false;
@@ -22,7 +22,7 @@ in
 
   stylix = {
     enable = true;
-    
+
     image = config.style.wallpaper.path;
     base16Scheme = config.style.colors;
 
@@ -33,7 +33,7 @@ in
       name = "Bibata-Modern-Ice";
       size = 24;
     };
-    
+
     fonts = {
       serif = {
         package = pkgs.noto-fonts;

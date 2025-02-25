@@ -8,7 +8,13 @@
   ...
 }:
 let
-  inherit (import ./variables.nix) keyboardLayout timeZone defaultLocale extraLocale keydExtra;
+  inherit (import ./variables.nix)
+    keyboardLayout
+    timeZone
+    defaultLocale
+    extraLocale
+    keydExtra
+    ;
 in
 {
   # This file contains all the nixos modules configutations of the modules not included using the flake {ags, stylix, ...}
@@ -24,7 +30,7 @@ in
     ../../modules/intel-drivers.nix
   ];
 
-  # Custom Modules 
+  # Custom Modules
   style = {
     enable = true;
     scheme = "catppuccin";
@@ -48,10 +54,22 @@ in
 
   boot = {
     # This is for OBS Virtual Cam Support
-    kernelModules = [ "v4l2loopback" "acpi_call" ];
+    kernelModules = [
+      "v4l2loopback"
+      "acpi_call"
+    ];
     # Needed for Razer
-    kernelParams = [ "button.lid_init_state=open" "intremap=off" "quiet" "splash" "nvidia_drm.modeset=1" ];
-    extraModulePackages = [ config.boot.kernelPackages.v4l2loopback config.boot.kernelPackages.acpi_call ];
+    kernelParams = [
+      "button.lid_init_state=open"
+      "intremap=off"
+      "quiet"
+      "splash"
+      "nvidia_drm.modeset=1"
+    ];
+    extraModulePackages = [
+      config.boot.kernelPackages.v4l2loopback
+      config.boot.kernelPackages.acpi_call
+    ];
     # Needed For Some Steam Games
     kernel.sysctl = {
       "vm.max_map_count" = 2147483642;
@@ -64,7 +82,6 @@ in
     '';
   };
 
-
   hardware = {
     graphics = {
       enable = true;
@@ -73,7 +90,11 @@ in
     bluetooth = {
       enable = true;
       powerOnBoot = false;
-      settings = { General = { Enable = "Source,Sink,Media,Socket"; }; };
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
     };
   };
 
@@ -135,13 +156,15 @@ in
       gamescopeSession.enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
-      /* extraPackages = with pkgs; [
-        bumblebee
-        glxinfo
-        libglvnd
-        SDL2
-        glibc
-      ]; */
+      /*
+        extraPackages = with pkgs; [
+          bumblebee
+          glxinfo
+          libglvnd
+          SDL2
+          glibc
+        ];
+      */
     };
   };
 
@@ -169,8 +192,8 @@ in
   services = {
     gnome.gnome-keyring.enable = true;
     mysql = {
-        enable = true;
-        package = pkgs.mariadb;
+      enable = true;
+      package = pkgs.mariadb;
     };
     tlp = {
       enable = true;
@@ -186,9 +209,9 @@ in
         CPU_MIN_PERF_ON_BAT = 0;
         CPU_MAX_PERF_ON_BAT = 20;
 
-       #Optional helps save long term battery health
-       START_CHARGE_THRESH_BAT0 = 30; 
-       STOP_CHARGE_THRESH_BAT0 = 80;
+        #Optional helps save long term battery health
+        START_CHARGE_THRESH_BAT0 = 30;
+        STOP_CHARGE_THRESH_BAT0 = 80;
       };
     };
     upower = {
@@ -198,12 +221,12 @@ in
       enable = true;
       keyboards = {
         default = {
-          ids = [ "*" ]; 
+          ids = [ "*" ];
           settings = {
-            main = {  
-              capslock = "layer(control)"; 
+            main = {
+              capslock = "layer(control)";
             };
-            otherlayer = {};
+            otherlayer = { };
           };
           extraConfig = keydExtra;
         };
@@ -222,7 +245,7 @@ in
       pulse.enable = true;
     };
     getty.autologinUser = username;
-    gvfs.enable=true;
+    gvfs.enable = true;
     fstrim.enable = true;
   };
 

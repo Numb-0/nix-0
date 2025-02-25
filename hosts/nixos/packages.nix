@@ -35,12 +35,12 @@
     aseprite
 
     (lutris.override {
-      extraLibraries =  pkgs: [
+      extraLibraries = pkgs: [
         # List library dependencies here
       ];
       extraPkgs = pkgs: [
-         # List package dependencies here
-       ];
+        # List package dependencies here
+      ];
     })
 
     fastfetch

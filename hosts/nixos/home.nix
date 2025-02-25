@@ -8,11 +8,11 @@ let
   inherit (import ./variables.nix) gitUsername gitEmail;
 in
 {
-  # This Code is contained in home-manager.user.${username} = {<code>}  
+  # This Code is contained in home-manager.user.${username} = {<code>}
   # Take a look at flake.nix
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
-  home = { 
+  home = {
     username = "${username}";
     homeDirectory = "/home/${username}";
     stateVersion = "24.05";
@@ -21,7 +21,7 @@ in
   imports = [
     ../../config/hypr
     ../../config/kitty
-    ../../config/fish 
+    ../../config/fish
     ../../config/ranger
     ../../config/vscode
   ];
@@ -48,8 +48,8 @@ in
       enable = true;
       createDirectories = true;
     };
-  };  
-  
+  };
+
   gtk = {
     iconTheme = {
       name = "Papirus-Dark";

@@ -1,8 +1,8 @@
 {
- osConfig,
- ...
+  osConfig,
+  ...
 }:
-{ 
+{
   services = {
     hyprpaper = {
       enable = true;
