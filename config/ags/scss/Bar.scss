@@ -1,134 +1,143 @@
 @use "colors" as *;
 @use "presets" as *;
 
-
 @keyframes icon-wiggle-active {
-    0% {-gtk-icon-transform: rotate(15deg);}
-   25% {-gtk-icon-transform: rotate(-15deg);}
-   50% {-gtk-icon-transform: rotate(25deg);}
-   75% {-gtk-icon-transform: rotate(-10deg);}
-  100% {-gtk-icon-transform: rotate(0deg);}
+  0% {
+    -gtk-icon-transform: rotate(15deg);
+  }
+  25% {
+    -gtk-icon-transform: rotate(-15deg);
+  }
+  50% {
+    -gtk-icon-transform: rotate(25deg);
+  }
+  75% {
+    -gtk-icon-transform: rotate(-10deg);
+  }
+  100% {
+    -gtk-icon-transform: rotate(0deg);
+  }
 }
 
 @keyframes icon-wiggle-occupied {
-    0% {-gtk-icon-transform: rotate(15deg);}
-   25% {-gtk-icon-transform: rotate(-15deg);}
-   50% {-gtk-icon-transform: rotate(25deg);}
-   75% {-gtk-icon-transform: rotate(-10deg);}
-  100% {-gtk-icon-transform: rotate(0deg);}
+  0% {
+    -gtk-icon-transform: rotate(15deg);
+  }
+  25% {
+    -gtk-icon-transform: rotate(-15deg);
+  }
+  50% {
+    -gtk-icon-transform: rotate(25deg);
+  }
+  75% {
+    -gtk-icon-transform: rotate(-10deg);
+  }
+  100% {
+    -gtk-icon-transform: rotate(0deg);
+  }
 }
 
 window.Bar {
-    centerbox.container {
-        padding: .2rem .6rem .2rem;
-        background-color: var(--base01);
-    }
+  centerbox.container {
+    padding: 0.2rem 0.6rem 0.2rem;
+    background-color: var(--base01);
+  }
 
-    image.logo {
-        //font-size: 1.4rem;
-        padding-top: 1px;
-        -gtk-icon-size: 1.3rem;
-        color: var(--base0D);
-    }
+  image.logo {
+    //font-size: 1.4rem;
+    padding-top: 1px;
+    -gtk-icon-size: 1.3rem;
+    color: var(--base0D);
+  }
 
-    box.workspaces {
-        button.workspace {
-            transition: all 1s;
-            color: var(--base02);
-            -gtk-icon-size: 1rem;
-            &.occupied {
-                image {
-                    animation: icon-wiggle-occupied 1s ease-in-out;
-                    transition: all 1s;
-                    color: var(--base07);
-                    -gtk-icon-size: 1rem;
-                }
-            }
-            &.active {
-                image {
-                    animation: icon-wiggle-active 1s ease-in-out;
-                    transition: all 1s;
-                    color: var(--base0A);
-                    -gtk-icon-size: 1.1rem;
-                }
-            }
-        }
-    }
-
-    box.clock {
-        label {
-            color: var(--base07);
-        }
-        popover {
-            /* label {
-                color: var(--base05);
-            } */
-            /* outline: none;
-            box-shadow: none; */
-            /* arrow {
-                background-color: var(--base01);
-            } */
-            contents {
-                background-color: var(--base01);
-                calendar {
-                    label:selected {
-                        background-color: var(--base03);
-                    }
-                }
-            }
-        }   
-    }
-
-    box.network {
-        color: var(--base0C);
-    }
-
-    box.notify {
+  box.workspaces {
+    button.workspace {
+      transition: all 1s;
+      color: var(--base02);
+      -gtk-icon-size: 1rem;
+      &.occupied {
         image {
-            color: var(--base0A);
+          animation: icon-wiggle-occupied 1s ease-in-out;
+          transition: all 1s;
+          color: var(--base07);
+          -gtk-icon-size: 1rem;
         }
-    }
-
-    box.bell {
+      }
+      &.active {
         image {
-            animation: icon-wiggle-active 1s ease-in-out;
+          animation: icon-wiggle-active 1s ease-in-out;
+          transition: all 1s;
+          color: var(--base0A);
+          -gtk-icon-size: 1.1rem;
         }
+      }
     }
+  }
 
-    box.bluetooth {
-        button {
-            color: var(--base0D);
+  box.clock {
+    label {
+      color: var(--base07);
+    }
+    contents {
+      background-color: var(--base01);
+      calendar {
+        label:selected {
+          background-color: var(--base03);
         }
+      }
     }
+  }
 
-    box.volume {
-        color: var(--base0B);
-    }
+  box.network {
+    color: var(--base0C);
+  }
 
-    box.brightness {
-        color: var(--base09);
+  box.notify {
+    image {
+      color: var(--base0A);
     }
+  }
 
-    box.battery {
-        color: var(--base0A);
+  box.bell {
+    image {
+      animation: icon-wiggle-active 1s ease-in-out;
     }
+  }
 
-    box.systray {
-        * {
-            -gtk-icon-size: 1.2rem;
-        }
+  box.bluetooth {
+    button {
+      color: var(--base0D);
     }
+  }
 
-    separator {
-        color: var(--base05);
-        border-radius: $radius;
-        min-width: 2px;
-    }
+  box.volume {
+    color: var(--base0B);
+  }
 
-    .power {
-        color: var(--base07);
-        image {
-            -gtk-icon-size: 1.2rem;
-        }
+  box.brightness {
+    color: var(--base09);
+  }
+
+  box.battery {
+    color: var(--base0A);
+  }
+
+  box.systray {
+    * {
+      -gtk-icon-size: 1.2rem;
     }
+  }
+
+  separator {
+    color: var(--base05);
+    border-radius: $radius;
+    min-width: 2px;
+  }
+
+  .power {
+    color: var(--base07);
+    image {
+      -gtk-icon-size: 1.2rem;
+    }
+  }
 }

@@ -2,58 +2,60 @@
 @use "presets" as *;
 
 .dialog {
-    * {
-        /* background-color: var(--base00; */
-        color: var(--base05);
-    }
-    .titlebar {
-        min-height: 0;
-    }
-    box {
-        padding: .2rem;
-    }
-    > box {
-        padding: .6rem;
-    }
-    border-radius: $radius;
-    .dialog-action-area {
-        button {
-            border-radius: $radius;
-            padding: 0.4rem;
-            margin: 0.2rem;
-            &:hover, &:focus {
-                /* label {
+  * {
+    /* background-color: var(--base00; */
+    color: var(--base05);
+  }
+  .titlebar {
+    min-height: 0;
+  }
+  box {
+    padding: 0.2rem;
+  }
+  > box {
+    padding: 0.6rem;
+  }
+  border-radius: $radius;
+  .dialog-action-area {
+    button {
+      border-radius: $radius;
+      padding: 0.4rem;
+      margin: 0.2rem;
+      &:hover,
+      &:focus {
+        /* label {
                     background-color: var(--base02;
                 } */
-                background-color: var(--base02);
-            }
-        }
+        background-color: var(--base02);
+      }
     }
+  }
 }
 
 .PowerActions {
-    box {
-        background-color: var(--base00);
-        padding: .6rem;
-        border-radius: $radius;
-        button {
-            border-radius: $radius;
-            padding: .6rem;
-            image {
-                -gtk-icon-size: 2rem;
-            }
-            &:hover, &:focus {
-                background-color: var(--base02);
-            }
-            &.power{
-                color: var(--base08);
-            }
-            &.reboot {
-                color: var(--base0C);
-            }
-            &.lock {
-              color: var(--base05);
-            }
-        }
+  box {
+    background-color: var(--base00);
+    padding: 0.6rem;
+    border-radius: $radius;
+    button {
+      border-radius: $radius;
+      padding: 0.6rem;
+      image {
+        -gtk-icon-size: 2rem;
+      }
+      &:hover,
+      &:focus {
+        background-color: var(--base02);
+      }
+      &.power {
+        color: var(--base08);
+      }
+      &.reboot {
+        color: var(--base0C);
+      }
+      &.lock {
+        color: var(--base05);
+      }
     }
+  }
 }
