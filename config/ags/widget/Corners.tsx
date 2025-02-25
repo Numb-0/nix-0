@@ -2,8 +2,10 @@ import { App, Astal, Gtk, Gdk, } from "astal/gtk4"
 import cairo from "gi://cairo?version=1.0";
 import GObject from "gi://GObject";
 import Gsk from "gi://Gsk";
+import { themeVar } from "./PowerActions";
 
 const radius = 20;
+var color = "#1e2030";
 
 class CornerLeftRight extends Gtk.Widget {
     static { GObject.registerClass(this) }
@@ -17,7 +19,7 @@ class CornerLeftRight extends Gtk.Widget {
     vfunc_snapshot(snapshot: Gtk.Snapshot) {
         const width = this.gdkmonitor.get_geometry().width;
         const backgroundColor = new Gdk.RGBA();
-        backgroundColor.parse("#1e2030");
+        backgroundColor.parse(color);
 
         const pathbuilder = new Gsk.PathBuilder;
         
@@ -36,6 +38,14 @@ class CornerLeftRight extends Gtk.Widget {
 
 export default function Corners(gdkmonitor: Gdk.Monitor) {
     const corners = new CornerLeftRight(gdkmonitor);
+    themeVar.subscribe(s => {
+        if(s == "catppuccin"){
+            color = "#1e2030"
+        } else {
+            color = "#3c3836"
+        } 
+        corners.queue_draw()
+    })
     return <window
                 visible
                 name={"Bar"}
