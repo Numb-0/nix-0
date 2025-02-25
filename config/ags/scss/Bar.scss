@@ -60,14 +60,14 @@ window.Bar {
             color: var(--base07);
         }
         popover {
-            label {
+            /* label {
                 color: var(--base05);
-            }
-            outline: none;
-            box-shadow: none;
-            arrow {
+            } */
+            /* outline: none;
+            box-shadow: none; */
+            /* arrow {
                 background-color: var(--base01);
-            }
+            } */
             contents {
                 background-color: var(--base01);
                 calendar {

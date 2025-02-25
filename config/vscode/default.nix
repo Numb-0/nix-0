@@ -25,7 +25,6 @@ in
           pkief.material-icon-theme
           jdinhlife.gruvbox
           esbenp.prettier-vscode
-          # Add any packages you want here
         ];
         userSettings = {
           nix = {
