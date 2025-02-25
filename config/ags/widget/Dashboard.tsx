@@ -8,6 +8,7 @@ import VolumeSlider from "./components/dashboard/volumeSlider"
 import CavaStatus from "./components/dashboard/cavaStatus"
 import BluetoothList from "./components/dashboard/bluetoothList"
 import WifiList from "./components/dashboard/wifiList"
+import { themeVar } from "./PowerActions"
 
 export default function Dashboard() {
     const hyprland = Hyprland.get_default()
@@ -20,7 +21,7 @@ export default function Dashboard() {
             anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.BOTTOM}
             keymode={Astal.Keymode.EXCLUSIVE} 
             name={"Dashboard"} 
-            cssClasses={["Dashboard"]}
+            cssClasses={themeVar().as(s => s == "catppuccin" ? ["Dashboard", "catppuccin"] : ["Dashboard", "gruv"])} 
             application={App}
             monitor={bind(hyprland, "focusedMonitor").as((monitor) => monitor.id)}
             onKeyPressed={(self, keyval) => keyval === Gdk.KEY_Escape && self.hide()}

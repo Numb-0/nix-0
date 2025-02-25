@@ -1,20 +1,19 @@
-import { bind, execAsync } from "astal"
+import { bind, execAsync, Variable } from "astal"
 import { App, Astal, Gtk, Gdk } from "astal/gtk4"
 import Hyprland from "gi://AstalHyprland"
 
 
-
+export const themeVar = Variable<string>("catppuccin")
 export default function PowerActions() {
     const hyprland = Hyprland.get_default()
     const powerAlertDialog = new Gtk.AlertDialog({ defaultButton: 0, cancelButton: 0, message: "⏻ Power Off?", buttons: ["Cancel", "Power Off"] })
     const rebootAlertDialog = new Gtk.AlertDialog({ defaultButton: 0, cancelButton: 0, message: "↺ Reboot?", buttons: ["Cancel", "Reboot"] })
-    var themed = false;
     return <window 
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
             anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.BOTTOM}
             keymode={Astal.Keymode.EXCLUSIVE} 
             name={"PowerActions"} 
-            cssClasses={["PowerActions"]}
+            cssClasses={themeVar().as(s => s == "catppuccin" ? ["PowerActions", "catppuccin"] : ["PowerActions", "gruv"])} 
             application={App}
             monitor={bind(hyprland, "focusedMonitor").as((monitor) => monitor.id)}
             onKeyPressed={(self, keyval) => keyval === Gdk.KEY_Escape && self.hide()}
@@ -44,7 +43,7 @@ export default function PowerActions() {
                 <button cssClasses={["lock"]} onClicked={() => { execAsync("hyprlock"); App.get_window("PowerActions")?.hide() }}>
                     <image iconName="lock-symbolic"/>
                 </button>
-                <button cssClasses={["swap"]} onClicked={() => {if(!themed){ App.apply_css(`${SRC}/scss/gruv.css`);themed = true;}else{App.apply_css(`${SRC}/scss/catppuccin.css`);themed=false;}}}>
+                <button cssClasses={["swap"]} onClicked={() => themeVar.set(themeVar.get() == "catppuccin" ? "gruv" : "catppuccin")}>
                     <image iconName="arrow-symbolic"/>
                 </button>
             </box>

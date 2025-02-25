@@ -3,6 +3,7 @@ import { App, Astal, Gtk } from 'astal/gtk4';
 import { type Subscribable } from 'astal/binding';
 import Notifd from 'gi://AstalNotifd';
 import { notificationItem } from './components/notifications/notificationItem';
+import { themeVar } from './PowerActions';
 const { TOP, LEFT } = Astal.WindowAnchor;
 
 
@@ -58,7 +59,7 @@ export default function Notifications() {
             App.get_monitors().map((monitor) => Gtk.StyleContext.add_provider_for_display(monitor.display, cssProviderNotification, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION));
         }}
         margin={4}
-        cssClasses={["notificationwindow"]}
+        cssClasses={themeVar().as(s => s == "catppuccin" ? ["notificationwindow", "catppuccin"] : ["notificationwindow", "gruv"])} 
         defaultHeight={1}
         defaultWidth={1}
         overflow={Gtk.Overflow.VISIBLE}

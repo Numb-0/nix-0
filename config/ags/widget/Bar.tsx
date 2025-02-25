@@ -10,6 +10,7 @@ import WifiStatus from "./components/bar/wifiStatus";
 import BluetoothStatus from "./components/bar/bluetoothStatus";
 import NotifyStatus from "./components/bar/notifyStatus"
 import PowerStatus from "./components/bar/powerStatus"
+import { themeVar } from "./PowerActions"
 
 export const time = Variable<string>("").poll(1000, () => GLib.DateTime.new_now_local().format("%H:%M")!)
 
@@ -19,7 +20,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
     return <window
         visible
         cssName="window"
-        cssClasses={["Bar"]}
+        cssClasses={themeVar().as(s => s == "catppuccin" ? ["Bar", "catppuccin"] : ["Bar", "gruv"])} 
         gdkmonitor={gdkmonitor}
         exclusivity={Astal.Exclusivity.EXCLUSIVE}
         anchor={TOP | LEFT | RIGHT}

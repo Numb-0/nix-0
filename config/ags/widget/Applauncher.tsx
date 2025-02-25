@@ -5,6 +5,7 @@ import Hyprland from "gi://AstalHyprland";
 import ScrolledWindow from "./components/astalified/ScrolledWindow";
 import FlowBoxChild from "./components/astalified/FlowBoxChild";
 import FlowBox from "./components/astalified/FlowBox";
+import { themeVar } from "./PowerActions";
 
 export default function Applauncher() {
     const hyprland = Hyprland.get_default()
@@ -61,7 +62,7 @@ export default function Applauncher() {
         keymode={Astal.Keymode.EXCLUSIVE} 
         name={"Applauncher"} 
         application={App} 
-        cssClasses={["Applauncher"]} 
+        cssClasses={themeVar().as(s => s == "catppuccin" ? ["Applauncher", "catppuccin"] : ["Applauncher", "gruv"])} 
         monitor={bind(hyprland, "focused_monitor").as((monitor) => monitor.id)}
         onKeyPressed={(self, keyval) => keyval === Gdk.KEY_Escape && self.hide()}
         setup={(self) => hook(entry, self, "notify::visible", () =>  entry.grab_focus())}
