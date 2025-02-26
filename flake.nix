@@ -14,6 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:danth/stylix";
     };
+    # Using local flake
     nix-0-shell.url = "path:./config/ags";
   };
   outputs =
