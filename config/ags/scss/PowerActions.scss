@@ -2,10 +2,6 @@
 @use "presets" as *;
 
 .dialog {
-  * {
-    /* background-color: var(--base00; */
-    color: var(--base05);
-  }
   .titlebar {
     min-height: 0;
   }
@@ -21,13 +17,6 @@
       border-radius: $radius;
       padding: 0.4rem;
       margin: 0.2rem;
-      &:hover,
-      &:focus {
-        /* label {
-                    background-color: var(--base02;
-                } */
-        background-color: var(--base02);
-      }
     }
   }
 }
@@ -54,7 +43,20 @@
         color: var(--base0C);
       }
       &.lock {
-        color: var(--base05);
+        color: var(--base07);
+      }
+      &.swap {
+        color: var(--base0A);
+        image {
+          transition: all 1s;
+          -gtk-icon-transform: rotate(0deg);
+        }
+        &.active {
+          image {
+            transition: all 1s;
+            -gtk-icon-transform: rotate(180deg);
+          }
+        }
       }
     }
   }

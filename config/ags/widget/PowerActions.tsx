@@ -1,5 +1,5 @@
 import { bind, execAsync, Variable } from "astal";
-import { App, Astal, Gtk, Gdk } from "astal/gtk4";
+import { App, Astal, Gtk, Gdk, hook } from "astal/gtk4";
 import Hyprland from "gi://AstalHyprland";
 
 export const themeVar = Variable<string>("catppuccin");
@@ -87,7 +87,7 @@ export default function PowerActions() {
           <image iconName="lock-symbolic" />
         </button>
         <button
-          cssClasses={["swap"]}
+          cssClasses={themeVar().as(t => t == "catppuccin" ? ["swap"] : ["swap", "active"])}
           onClicked={() =>
             themeVar.set(themeVar.get() == "catppuccin" ? "gruv" : "catppuccin")
           }

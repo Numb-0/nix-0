@@ -33,7 +33,7 @@ in
   # Custom Modules
   style = {
     enable = true;
-    scheme = "catppuccin";
+    scheme = "gruvbox";
   };
 
   drivers = {

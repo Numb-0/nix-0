@@ -14,7 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:danth/stylix";
     };
-    nix-0-shell.url = "path:./config/ags";  #builtins.getFlake "ags";
+    nix-0-shell.url = "path:./config/ags";
   };
   outputs =
     { self, nixpkgs, home-manager, stylix, nix-0-shell, ... }@inputs:
