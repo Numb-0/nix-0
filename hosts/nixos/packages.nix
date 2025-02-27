@@ -59,7 +59,7 @@
 
     unzip
     unrar
-    staruml
+    plantuml
 
     libnotify
     ripgrep

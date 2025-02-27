@@ -15,8 +15,10 @@
       url = "github:danth/stylix";
     };
     # Using local flake
-    nix-0-shell.url = "path:./config/ags";
+    #nix-0-shell.url = "path:./config/ags";
+    nix-0-shell.url = "git+ssh://git@github.com/Numb-0/nix-0-shell.git?ref=main";
   };
+  
   outputs =
     { self, nixpkgs, home-manager, stylix, nix-0-shell, ... }@inputs:
     let

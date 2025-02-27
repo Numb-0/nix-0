@@ -122,15 +122,13 @@ in
   };
 
   programs = {
+    # for the other part of ssh config go to home
+    ssh.startAgent = true;
     adb.enable = true;
     firefox.enable = true;
     dconf.enable = true;
     fuse.userAllowOther = true;
     mtr.enable = true;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
@@ -186,11 +184,12 @@ in
 
   security = {
     rtkit.enable = true;
-    pam.services.wayland.enableGnomeKeyring = true;
+    /* sudo.extraConfig = ''
+      Defaults    env_keep+=SSH_AUTH_SOCK
+    ''; */
   };
 
   services = {
-    gnome.gnome-keyring.enable = true;
     mysql = {
       enable = true;
       package = pkgs.mariadb;

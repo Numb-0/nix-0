@@ -30,6 +30,9 @@ in
       env = SDL_DYNAMIC_API, ${pkgs.SDL2}/lib/libSDL2-2.0.so.0v
       env = EDITOR, ${editor}
 
+      # Needed by ssh-agent
+      env = SSH_AUTH_SOCK, /run/user/1000/ssh-agent
+
       # Cursor
       # env = HYPRCURSOR_THEME, ${osConfig.stylix.cursor.name}
       # env = HYPRCURSOR_SIZE, ${toString osConfig.stylix.cursor.size}
