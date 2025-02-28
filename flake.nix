@@ -11,11 +11,11 @@
       url = "github:danth/stylix";
     };
     # Have to specify ref cause default is master
-    nix-0-shell.url = "git+ssh://git@github.com/Numb-0/nix-0-shell?ref=main";
+    zero-shell.url = "git+ssh://git@github.com/Numb-0/zero-shell?ref=main";
   };
   
   outputs =
-    { self, nixpkgs, home-manager, stylix, nix-0-shell, ... }@inputs:
+    { self, nixpkgs, home-manager, stylix, zero-shell, ... }@inputs:
     let
       system = "x86_64-linux";
       host = "nixos";
@@ -31,8 +31,8 @@
             home-manager.nixosModules.home-manager
             {
               environment.systemPackages = [
-                nix-0-shell.packages.${system}.shell
-                nix-0-shell.packages.${system}.ags
+                zero-shell.packages.${system}.shell
+                zero-shell.packages.${system}.ags
               ];
               home-manager = { 
                 useUserPackages = true;

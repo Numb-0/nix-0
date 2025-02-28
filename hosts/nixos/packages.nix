@@ -33,6 +33,7 @@
     obs-studio
     prismlauncher
     aseprite
+    vscode
 
     (lutris.override {
       extraLibraries = pkgs: [
