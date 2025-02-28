@@ -5,7 +5,7 @@ return {
     local lualine = require("lualine")
     local lazy_status = require("lazy.status")
 
-    local colors = {
+    --[[ local colors = {
       overlay1 = "#8087a2",
       surface1 = "#494d64",
       crust = "#181926",
@@ -54,12 +54,12 @@ return {
         b = { bg = colors.crust, fg = colors.text },
         c = { bg = colors.crust, fg = colors.text },
       }
-    }
+    } ]]
 
     lualine.setup({
-      options = {
+      --[[ options = {
         theme = "catppuccin",
-      },
+      }, ]]
       sections = {
         lualine_x = {
           {
