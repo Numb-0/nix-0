@@ -122,7 +122,6 @@ in
   };
 
   programs = {
-    # for the other part of ssh config go to home
     ssh.startAgent = true;
     adb.enable = true;
     firefox.enable = true;
@@ -184,9 +183,6 @@ in
 
   security = {
     rtkit.enable = true;
-    /* sudo.extraConfig = ''
-      Defaults    env_keep+=SSH_AUTH_SOCK
-    ''; */
   };
 
   services = {

@@ -54,3 +54,4 @@ What you have to do is adding the flake in the inputs and add the entry in the m
   };
 }
 ```
+if you have an ssh flake input use `nixos-rebuild switch --flake .#nixos --show-trace --use-remote-sudo`
