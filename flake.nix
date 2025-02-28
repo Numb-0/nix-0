@@ -6,16 +6,11 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # not using this till it has the features kitty has
-    # ghostty = {
-    #   url = "github:ghostty-org/ghostty";
-    # };
     stylix = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:danth/stylix";
     };
-    # Using local flake
-    #nix-0-shell.url = "path:./config/ags";
+    # Have to specify ref cause default is master
     nix-0-shell.url = "git+ssh://git@github.com/Numb-0/nix-0-shell?ref=main";
   };
   
@@ -36,7 +31,6 @@
             home-manager.nixosModules.home-manager
             {
               environment.systemPackages = [
-                #ghostty.packages.x86_64-linux.default
                 nix-0-shell.packages.${system}.shell
                 nix-0-shell.packages.${system}.ags
               ];

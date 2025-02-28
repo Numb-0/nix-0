@@ -32,19 +32,24 @@ sudo nix-channel --list
 ```
 
 ### Installing flakes
-Here we take stylix as example
-What you have to do is adding the flake in the inputs and add the entry in the modules
-```
+
+What you have to do is adding the flake in the inputs and add the entry in the modules or where it needs to be used
+```nix
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    ***stylix.url = "github:danth/stylix";***
+    mock-local-flake.url = "path:./relative/path/from/flake"; # <-- Local flake reference
+    mock-ssh-flake.url = "git+ssh://git@github.com/Numb-0/nix-0-shell?ref=main"; # <-- SSH-based flake
   };
 
-  outputs = { nixpkgs, ***stylix***, ... }: {
-    nixosConfigurations."«hostname»" = nixpkgs.lib.nixosSystem {
+  outputs = { nixpkgs, stylix, ... }: {
+    nixosConfigurations."«hostname»" = nixpkgs.lib.nixosSystem { # <-- Replace «hostname» with your actual hostname
       system = "x86_64-linux";
-      modules = [ stylix.nixosModules.stylix ./configuration.nix ];
+      modules = [ 
+        ./configuration.nix
+        # Add modules here
+        # home-manager.nixosModules.home-manager
+      ];
     };
   };
 }
