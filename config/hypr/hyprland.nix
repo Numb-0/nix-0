@@ -62,7 +62,7 @@ in
       exec-once = zero-shell
 
       monitor = eDP-1,highres,auto,auto
-      monitor = DP-3,highres,auto,auto
+      monitor = , preferred, auto, 1
 
       xwayland {
         force_zero_scaling = true

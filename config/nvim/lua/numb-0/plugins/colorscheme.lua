@@ -1,5 +1,6 @@
 return {
-  { "rebelot/kanagawa.nvim" },
+  { "rebelot/kanagawa.nvim", priority = 1000 },
+  { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
   {
     "catppuccin/nvim",
     lazy = false,
@@ -7,17 +8,9 @@ return {
     name = "catppuccin",
     config = function()
       local cat = require("catppuccin")
-      cat.setup({
-        flavour = "macchiato",
-        integrations = {
-          indent_blankline = {
-            enabled = true,
-            scope_color = "yellow",
-          },
-        },
-      })
+      cat.setup({ flavour = "macchiato" })
 
-      vim.cmd.colorscheme "catppuccin"
+      vim.cmd.colorscheme "gruvbox"
     end
   }
 }

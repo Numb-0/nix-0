@@ -8,10 +8,12 @@
     cmake
     python3
     php
+    php83Packages.composer
     typescript
     nodejs
     nodePackages.npm
     gnumake
+    yarn
 
     nixfmt-rfc-style
     nil
