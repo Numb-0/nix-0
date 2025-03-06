@@ -29,7 +29,7 @@ sudo nixos-rebuild switch --flake .#nixos
 
 # Ags
 The **Ags** application is tightly integrated with **Hyprland** using it's module. If you're using another window manager (WM), most of its features **won't work**.
-The Project is in the **[nix-0-shell repo](https://github.com/Numb-0/zero-shell)**.
+The Project is in the **[zero-shell repo](https://github.com/Numb-0/zero-shell)**.
 
 For example:
 - **Hyprland keybinds** are used to hide/show different windows of the Ags application.  
