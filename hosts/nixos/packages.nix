@@ -36,6 +36,10 @@
     prismlauncher
     aseprite
     vscode
+    libreoffice-qt6-fresh
+    hunspell
+    hunspellDicts.it_IT
+    hunspellDicts.en_US
 
     (lutris.override {
       extraLibraries = pkgs: [

@@ -5,9 +5,11 @@
 A simple ***❄ NixOs configuration ❄*** using [**Hyrpland**](https://github.com/hyprwm/Hyprland) and [**Ags**](https://github.com/Aylur/ags) themed in [**Catppuccin Macchiato**](https://catppuccin.com/palette) base16 colors with [**Stylix**](https://github.com/danth/stylix).
 
 > [!WARNING]
-> This repository is currently undergoing significant changes as I work on implementing a swappable theme configuration, allowing users to choose between **Gruvbox** and **Catppuccin** themes.
+> if you want to change system color theme go [***here***](https://github.com/Numb-0/nix-0/blob/main/hosts/nixos/config.nix#L34) and change the ***scheme*** entry with `"catppuccin"` or `"gruvbox"`  
+> to change ags theme instead do `super+x` and toggle the arrow
 
 <div align="center"><img src="./docs/assets/screenshot1.png"></div>
+<div align="center"><img src="./docs/assets/screenshot2.png"></div>
 
 # Installation
 1. **Clone the repository** in the home directory or where you want:
