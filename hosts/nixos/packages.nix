@@ -25,6 +25,7 @@
     godot_4
     sdkmanager
     jdk17
+    jdk21
 
     unityhub
     dotnetCorePackages.dotnet_8.sdk
