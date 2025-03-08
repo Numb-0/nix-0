@@ -102,6 +102,15 @@ in
     networkmanager.enable = true;
     hostName = host;
     timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 80 443 3000];
+      allowedUDPPortRanges = [
+        { from = 3000; to = 3001; }
+        { from = 4000; to = 4007; }
+        { from = 8000; to = 8010; }
+      ];
+    };
   };
 
   time.timeZone = timeZone;
