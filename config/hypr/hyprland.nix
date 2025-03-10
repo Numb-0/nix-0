@@ -61,9 +61,9 @@ in
       exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
       exec-once = lxqt-policykit-agent
       exec-once = zero-shell
-
-      monitor = eDP-1,highres,auto,auto
-      monitor = , preferred, auto, 1
+    
+      monitor = eDP-1,highres,auto,1.5, 
+      monitor = ,highres,auto,1
 
       xwayland {
         force_zero_scaling = true

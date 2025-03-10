@@ -33,6 +33,7 @@
               environment.systemPackages = [
                 zero-shell.packages.${system}.shell
                 zero-shell.packages.${system}.ags
+                zero-shell.packages.${system}.astal
               ];
               home-manager = { 
                 useUserPackages = true;
