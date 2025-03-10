@@ -30,7 +30,8 @@
     unityhub
     dotnetCorePackages.dotnet_8.sdk
     icu
-
+    
+    thunderbird
     vesktop
     spotify
     obs-studio

@@ -29,7 +29,10 @@ in
 
       # Needed by steam
       env = SDL_DYNAMIC_API, ${pkgs.SDL2}/lib/libSDL2-2.0.so.0v
+
       env = EDITOR, ${editor}
+
+      env = AQ_NO_MODIFIERS,1
 
       # Needed by ssh-agent
       env = SSH_AUTH_SOCK, /run/user/1000/ssh-agent
@@ -62,8 +65,8 @@ in
       exec-once = lxqt-policykit-agent
       exec-once = zero-shell
     
-      monitor = eDP-1,highres,auto,1.5, 
-      monitor = ,highres,auto,1
+      monitor = eDP-1, highres, 0x0, 1.5
+      monitor = , preferred, auto, 1
 
       xwayland {
         force_zero_scaling = true
