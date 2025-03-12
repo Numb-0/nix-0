@@ -93,10 +93,13 @@ in
         sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
         accel_profile = flat
       }
-
+        
+      # Steam window rules  
       windowrule = center,^(steam)$
       windowrulev2 = stayfocused, title:^()$,class:^(steam)$
       windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
+      
+      # Do not idle with an active fullscreen window
       windowrulev2 = idleinhibit fullscreen, class:.*
 
       cursor {
@@ -121,7 +124,7 @@ in
 
         animation = windows, 1, 6, circ, popin
         animation = windowsIn, 1, 6, circ, popin
-        animation = windowsOut, 1, 5, circ, popin
+        animation = windowsOut, 1, 5, circ, slide
         animation = windowsMove, 1, 4, circ, slide
         animation = border, 0, 6, circ
         animation = fade, 1, 10, default
