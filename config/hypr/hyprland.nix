@@ -124,7 +124,7 @@ in
 
         animation = windows, 1, 6, circ, popin
         animation = windowsIn, 1, 6, circ, popin
-        animation = windowsOut, 1, 5, circ, slide
+        animation = windowsOut, 1, 5, circ, popin
         animation = windowsMove, 1, 4, circ, slide
         animation = border, 0, 6, circ
         animation = fade, 1, 10, default
