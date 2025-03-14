@@ -134,7 +134,6 @@ in
     ssh.startAgent = true;
     adb.enable = true;
     firefox.enable = true;
-    chromium.enable = true;
     dconf.enable = true;
     fuse.userAllowOther = true;
     mtr.enable = true;

@@ -31,6 +31,7 @@
     dotnetCorePackages.dotnet_8.sdk
     icu
     
+    chromium
     thunderbird
     vesktop
     spotify
