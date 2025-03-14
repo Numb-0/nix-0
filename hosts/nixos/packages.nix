@@ -30,7 +30,7 @@
     unityhub
     dotnetCorePackages.dotnet_8.sdk
     icu
-    google-chrome
+    chromium
     
     thunderbird
     vesktop
