@@ -177,13 +177,15 @@ in
   xdg.portal = {
     enable = true;
     wlr.enable = true;
+    xdgOpenUsePortal = true;
     extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
     ];
     configPackages = [
-      pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal
+      pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-hyprland
     ];
   };
