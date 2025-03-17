@@ -58,7 +58,7 @@ in
       "v4l2loopback"
       "acpi_call"
     ];
-    # Needed for Razer
+    # Razer
     kernelParams = [
       "button.lid_init_state=open"
       "intremap=off"
@@ -90,11 +90,11 @@ in
     bluetooth = {
       enable = true;
       powerOnBoot = false;
-      settings = {
-        General = {
-          Enable = "Source,Sink,Media,Socket";
-        };
-      };
+      # settings = {
+      #   General = {
+      #     Enable = "Source,Sink,Media,Socket";
+      #   };
+      # };
     };
   };
 
@@ -104,6 +104,7 @@ in
     timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
     firewall = {
       enable = true;
+      # Opened ports for Lynx
       allowedTCPPorts = [ 80 443 3000];
       allowedUDPPortRanges = [
         { from = 3000; to = 3001; }
@@ -134,6 +135,7 @@ in
     ssh.startAgent = true;
     adb.enable = true;
     firefox.enable = true;
+    # ladybird.enable = true;
     dconf.enable = true;
     fuse.userAllowOther = true;
     mtr.enable = true;
@@ -141,11 +143,23 @@ in
       enable = true;
       libraries = with pkgs; [
         # Add any missing dynamic libraries for unpackaged programs
-        # here, NOT in environment.systemPackages
 
         # Needed for android godot build
         aapt
       ];
+    };
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      # extraPackages = with pkgs; [
+      #   bumblebee
+      #   glxinfo
+      #   libglvnd
+      #   SDL2
+      #   glibc
+      # ];
     };
     gamemode = {
       enable = true;
@@ -156,21 +170,6 @@ in
           renice = 10;
         };
       };
-    };
-    steam = {
-      enable = true;
-      gamescopeSession.enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      /*
-        extraPackages = with pkgs; [
-          bumblebee
-          glxinfo
-          libglvnd
-          SDL2
-          glibc
-        ];
-      */
     };
   };
 
@@ -201,28 +200,30 @@ in
       enable = true;
       package = pkgs.mariadb;
     };
-    tlp = {
-      enable = true;
-      settings = {
-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-
-        CPU_MIN_PERF_ON_AC = 0;
-        CPU_MAX_PERF_ON_AC = 100;
-        CPU_MIN_PERF_ON_BAT = 0;
-        CPU_MAX_PERF_ON_BAT = 20;
-
-        #Optional helps save long term battery health
-        START_CHARGE_THRESH_BAT0 = 30;
-        STOP_CHARGE_THRESH_BAT0 = 80;
-      };
-    };
+    # Need to check if this is needed on framework
+    # tlp = {
+    #   enable = false;
+    #   settings = {
+    #     CPU_SCALING_GOVERNOR_ON_AC = "performance";
+    #     CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+    #
+    #     CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+    #     CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+    #
+    #     CPU_MIN_PERF_ON_AC = 1;
+    #     CPU_MAX_PERF_ON_AC = 101;
+    #     CPU_MIN_PERF_ON_BAT = 1;
+    #     CPU_MAX_PERF_ON_BAT = 21;
+    #
+    #     #Optional helps save long term battery health
+    #     START_CHARGE_THRESH_BAT1 = 30;
+    #     STOP_CHARGE_THRESH_BAT1 = 80;
+    #   };
+    # };
     upower = {
       enable = true;
     };
+    # Razer
     keyd = {
       enable = true;
       keyboards = {
@@ -253,6 +254,10 @@ in
     getty.autologinUser = username;
     gvfs.enable = true;
     fstrim.enable = true;
+    udisks2 = {
+      enable = true;
+      mountOnMedia = true;
+    };
   };
 
   nix = {

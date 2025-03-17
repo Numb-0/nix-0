@@ -7,8 +7,8 @@ local opt = vim.opt
 opt.number = true
 
 -- Tabs and Indentation
-opt.tabstop = 4 -- Tab = 2 spaces
-opt.shiftwidth =  4 -- 2 spaces indentation
+opt.tabstop = 2 -- Tab = 2 spaces
+opt.shiftwidth =  2 -- 2 spaces indentation
 opt.expandtab = true -- tabs are spaces
 opt.autoindent = true -- copy indentation when starting new line
 

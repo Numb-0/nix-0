@@ -4,6 +4,7 @@
 }:
 {
   environment.systemPackages = with pkgs; [
+    gnumake
     gcc
     cmake
     python3
@@ -12,7 +13,6 @@
     typescript
     nodejs
     nodePackages.npm
-    gnumake
     yarn
 
     nixfmt-rfc-style
@@ -31,14 +31,15 @@
     dotnetCorePackages.dotnet_8.sdk
     icu
     
-    chromium
+    ungoogled-chromium
     thunderbird
     vesktop
     spotify
     obs-studio
     prismlauncher
-    aseprite
+    # aseprite
     vscode
+
     libreoffice-qt6-fresh
     hunspell
     hunspellDicts.it_IT
@@ -65,11 +66,9 @@
     imv
 
     lxqt.lxqt-policykit
-    patchelf
 
     unzip
     unrar
-    plantuml
 
     libnotify
     ripgrep
