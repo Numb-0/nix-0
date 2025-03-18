@@ -39,6 +39,7 @@
     prismlauncher
     # aseprite
     vscode
+    obsidian
 
     libreoffice-qt6-fresh
     hunspell

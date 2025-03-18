@@ -22,6 +22,7 @@ in
           "scanner"
           "lp"
           "adbusers"
+          "docker"
         ];
         shell = pkgs.fish;
         ignoreShellProgramCheck = true;

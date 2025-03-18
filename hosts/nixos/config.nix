@@ -173,6 +173,12 @@ in
     };
   };
 
+  virtualisation.docker = {
+    enable = true;
+    #storageDriver = "btrfs";
+  };
+
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
