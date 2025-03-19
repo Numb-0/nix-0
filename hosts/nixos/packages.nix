@@ -33,7 +33,8 @@
     
     ungoogled-chromium
     thunderbird
-    vesktop
+    # vesktop
+    discord-canary
     spotify
     obs-studio
     prismlauncher
