@@ -105,8 +105,9 @@ in
     firewall = {
       enable = true;
       # Opened ports for Lynx
-      allowedTCPPorts = [ 80 443 3000];
+      allowedTCPPorts = [ 80 443 1025 3000];
       allowedUDPPortRanges = [
+        { from = 1025; to = 1025; }
         { from = 3000; to = 3001; }
         { from = 4000; to = 4007; }
         { from = 8000; to = 8010; }
@@ -217,9 +218,9 @@ in
     #     CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
     #
     #     CPU_MIN_PERF_ON_AC = 1;
-    #     CPU_MAX_PERF_ON_AC = 101;
+    #     CPU_MAX_PERF_ON_AC = 100;
     #     CPU_MIN_PERF_ON_BAT = 1;
-    #     CPU_MAX_PERF_ON_BAT = 21;
+    #     CPU_MAX_PERF_ON_BAT = 20;
     #
     #     #Optional helps save long term battery health
     #     START_CHARGE_THRESH_BAT1 = 30;
@@ -228,6 +229,19 @@ in
     # };
     upower = {
       enable = true;
+    };
+    auto-cpufreq = {
+      enable = true;
+        settings = {
+        battery = {
+           governor = "powersave";
+           turbo = "never";
+        };
+        charger = {
+           governor = "performance";
+           turbo = "auto";
+        };
+      };
     };
     # Razer
     keyd = {
