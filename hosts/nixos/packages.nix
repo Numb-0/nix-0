@@ -31,8 +31,8 @@
     dotnetCorePackages.dotnet_8.sdk
     icu
     
-    ungoogled-chromium
     thunderbird
+    chromium
     # vesktop
     discord-canary
     spotify

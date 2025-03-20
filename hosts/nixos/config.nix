@@ -136,7 +136,6 @@ in
     ssh.startAgent = true;
     adb.enable = true;
     firefox.enable = true;
-    # ladybird.enable = true;
     dconf.enable = true;
     fuse.userAllowOther = true;
     mtr.enable = true;
@@ -251,7 +250,8 @@ in
           ids = [ "*" ];
           settings = {
             main = {
-              capslock = "layer(control)";
+              capslock = "overload(control, esc)";
+              insert = "S-insert";
             };
             otherlayer = { };
           };

@@ -84,6 +84,7 @@ in
 
       input {
         kb_layout = ${keyboardLayout}
+        kb_variant = altgr-intl
         follow_mouse = 1
         touchpad {
           natural_scroll = false #maybe?
