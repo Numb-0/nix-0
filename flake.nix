@@ -22,6 +22,7 @@
       username = "cosix";
     in
     {
+      templates = import ./templates;
       nixosConfigurations = {
         "${host}" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit self system inputs username host; };
