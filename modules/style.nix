@@ -64,12 +64,12 @@ in
     scheme = mkOption {
       type = types.enum (attrNames colorSchemes);
       default = "catppuccin";
-      description = "The selected base-16 color scheme.";
+      description = "The selected base-16 colorscheme.";
     };
     colors = mkOption {
       type = types.attrs;
       default = colorSchemes.${config.style.scheme};
-      description = "The selected color scheme colors.";
+      description = "The colors of the selected colorscheme.";
     };
     wallpaper = {
       path = mkOption {
