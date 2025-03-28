@@ -96,9 +96,9 @@ in
       }
         
       # Steam window rules  
-      windowrule = center,^(steam)$
-      windowrulev2 = stayfocused, title:^()$,class:^(steam)$
-      windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
+      # windowrulev2 = center,^(steam)$
+      # windowrulev2 = stayfocused, title:^(steam)$,class:^(steam)$
+      # windowrulev2 = minsize 1 1, title:^(steam)$,class:^(steam)$
       
       # Do not idle with an active fullscreen window
       windowrulev2 = idleinhibit fullscreen, class:.*
