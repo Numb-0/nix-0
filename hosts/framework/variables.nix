@@ -5,7 +5,7 @@
 
   # Programs Options
   browser = "chromium"; # Set Default Browser
-  terminal = "ghostty"; # Set Default System Terminal
+  terminal = "kitty"; # Set Default System Terminal
   keyboardLayout = "us";
   editor = "code";
 
