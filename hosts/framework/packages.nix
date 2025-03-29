@@ -55,7 +55,8 @@
         # List package dependencies here
       ];
     })
-
+    
+    ghostty
     fastfetch
     krabby
     tree
