@@ -45,12 +45,12 @@ in
       };
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono Nerd Font Mono";
+        name = "JetBrains Mono";
       };
-      emoji = {
-        package = pkgs.noto-fonts-emoji;
-        name = "Noto Color Emoji";
-      };
+      # emoji = {
+        # package = pkgs.noto-fonts-emoji;
+        # name = "Noto Color Emoji";
+      # };
       sizes = {
         applications = fontsize;
         terminal = fontsize;

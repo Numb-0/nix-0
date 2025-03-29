@@ -24,7 +24,6 @@ in
     ./packages.nix
     ./stylix.nix
     ../../modules/style.nix
-    ../../modules/amd-drivers.nix
     ../../modules/nvidia-drivers.nix
     ../../modules/nvidia-prime-drivers.nix
     ../../modules/intel-drivers.nix
@@ -37,7 +36,6 @@ in
   };
 
   drivers = {
-    amdgpu.enable = false;
     nvidia.enable = true;
     nvidia-prime = {
       enable = true;
@@ -163,13 +161,11 @@ in
     };
     gamemode = {
       enable = true;
-      enableRenice = true;
-      settings = {
-        general = {
-          softrealtime = "auto";
-          renice = 10;
-        };
-      };
+      capSysNice = true;
+      args = [
+        "--rt"
+        "--expose-wayland"
+      ];
     };
   };
 

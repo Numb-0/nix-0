@@ -23,9 +23,6 @@ in
     ./stylix.nix
     ../../modules/style.nix
     ../../modules/amd-drivers.nix
-    ../../modules/nvidia-drivers.nix
-    ../../modules/nvidia-prime-drivers.nix
-    ../../modules/intel-drivers.nix
   ];
 
   # Custom Modules
@@ -35,17 +32,10 @@ in
   };
 
   drivers = {
-    amdgpu.enable = true;
-    nvidia.enable = false;
-    nvidia-prime = {
-      enable = false;
-      intelBusID = "PCI:00:02:0";
-      nvidiaBusID = "PCI:58:00:0";
-    };
-    intel.enable = false;
+    amdgpu.enable = false;
   };
 
-  #Add nixos-hardware config!!!
+  # Add nixos-hardware config!!!
 
   nixpkgs.config = {
     allowUnfree = true;
