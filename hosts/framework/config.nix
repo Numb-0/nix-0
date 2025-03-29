@@ -5,6 +5,7 @@
   username,
   options,
   config,
+  nixos-hardware,
   ...
 }:
 let
@@ -31,9 +32,11 @@ in
     scheme = "gruvbox";
   };
 
-  drivers = {
-    amdgpu.enable = false;
-  };
+  nixos-hardware.nixosModules.framework-13-7040-amd
+
+  # drivers = {
+    # amdgpu.enable = false;
+  # };
 
   # Add nixos-hardware config!!!
 

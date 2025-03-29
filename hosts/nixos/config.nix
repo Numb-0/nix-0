@@ -159,7 +159,7 @@ in
       #   glibc
       # ];
     };
-    gamemode = {
+    gamescope = {
       enable = true;
       capSysNice = true;
       args = [

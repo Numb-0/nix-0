@@ -29,7 +29,7 @@
       templates = import ./templates;
       nixosConfigurations = {
         "${host}" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit self system inputs username host; };
+          specialArgs = { inherit self system inputs username host nixos-hardware; };
           modules = [
             ./hosts/${host}/config.nix
             stylix.nixosModules.stylix
