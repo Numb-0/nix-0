@@ -21,11 +21,9 @@ in
     # Hardware Tweaks for amd and such
     nixos-hardware.nixosModules.framework-13-7040-amd
     ./hardware.nix
-    ./users.nix
-    ./packages.nix
     ./stylix.nix
+    ../../modules/core
     ../../modules/style.nix
-    ../../modules/amd-drivers.nix
   ];
 
   # Custom Modules
@@ -33,13 +31,6 @@ in
     enable = true;
     scheme = "gruvbox";
   };
-
-
-  # drivers = {
-    # amdgpu.enable = false;
-  # };
-
-  # Add nixos-hardware config!!!
 
   nixpkgs.config = {
     allowUnfree = true;

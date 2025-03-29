@@ -2,9 +2,6 @@
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
-    font = {
-      name = "JetBrainsMono Nerd Font Mono";
-    };
     settings = {
       include = "./theme.conf";
       background_opacity = 0.8;
