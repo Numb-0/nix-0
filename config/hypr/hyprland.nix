@@ -65,7 +65,7 @@ in
       exec-once = lxqt-policykit-agent
       exec-once = zero-shell
       exec-once = udiskie
-    
+
       monitor = eDP-1, highres, 0x0, 1.5
       monitor = , preferred, auto, 1
 
