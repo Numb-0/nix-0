@@ -12,17 +12,16 @@
     };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     # Have to specify ref cause default is master
     zero-shell.url = "git+ssh://git@github.com/Numb-0/zero-shell?ref=main";
   };
   
   outputs =
-    { self, nixpkgs, home-manager, nixos-hardware, stylix, zero-shell, ... }@inputs:
+    { self, nixpkgs, home-manager, nixos-hardware, zero-shell, stylix, ... }@inputs:
     let
       system = "x86_64-linux";
-      host = "nixos";
+      host = "framework";
       username = "cosix";
     in
     {
@@ -36,9 +35,9 @@
             home-manager.nixosModules.home-manager
             {
               environment.systemPackages = [
-                zero-shell.packages.${system}.shell
-                zero-shell.packages.${system}.ags
-                zero-shell.packages.${system}.astal
+               zero-shell.packages.${system}.shell
+               zero-shell.packages.${system}.ags
+               zero-shell.packages.${system}.astal
               ];
               home-manager = { 
                 useUserPackages = true;

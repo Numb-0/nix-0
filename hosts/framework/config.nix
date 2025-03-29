@@ -18,6 +18,8 @@ in
 {
   # This file contains all the nixos modules configutations of the modules not included using the flake {ags, stylix, ...}
   imports = [
+    # Hardware Tweaks for amd and such
+    nixos-hardware.nixosModules.framework-13-7040-amd
     ./hardware.nix
     ./users.nix
     ./packages.nix
@@ -32,7 +34,6 @@ in
     scheme = "gruvbox";
   };
 
-  nixos-hardware.nixosModules.framework-13-7040-amd
 
   # drivers = {
     # amdgpu.enable = false;

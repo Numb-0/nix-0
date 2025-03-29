@@ -28,7 +28,7 @@ in
       env = JAVA_21_HOME, ${pkgs.jdk21}
 
       # Needed by steam
-      env = SDL_DYNAMIC_API, ${pkgs.SDL2}/lib/libSDL2-2.0.so.0v
+      # env = SDL_DYNAMIC_API, ${pkgs.SDL2}/lib/libSDL2-2.0.so.0v
 
       env = EDITOR, ${editor}
 
