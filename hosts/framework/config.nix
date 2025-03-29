@@ -22,6 +22,7 @@ in
     nixos-hardware.nixosModules.framework-13-7040-amd
     ./hardware.nix
     ./stylix.nix
+    ./users.nix
     ../../modules/core
     ../../modules/style.nix
   ];
