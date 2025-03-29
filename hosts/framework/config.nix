@@ -12,9 +12,7 @@ let
     keyboardLayout
     timeZone
     defaultLocale
-    extraLocale
-    keydExtra
-    ;
+    extraLocale;
 in
 {
   # This file contains all the nixos modules configutations of the modules not included using the flake {ags, stylix, ...}
@@ -37,15 +35,17 @@ in
   };
 
   drivers = {
-    amdgpu.enable = false;
-    nvidia.enable = true;
+    amdgpu.enable = true;
+    nvidia.enable = false;
     nvidia-prime = {
-      enable = true;
+      enable = false;
       intelBusID = "PCI:00:02:0";
       nvidiaBusID = "PCI:58:00:0";
     };
-    intel.enable = true;
+    intel.enable = false;
   };
+
+  #Add nixos-hardware config!!!
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -57,14 +57,6 @@ in
     kernelModules = [
       "v4l2loopback"
       "acpi_call"
-    ];
-    # Razer
-    kernelParams = [
-      "button.lid_init_state=open"
-      "intremap=off"
-      "quiet"
-      "splash"
-      "nvidia_drm.modeset=1"
     ];
     extraModulePackages = [
       config.boot.kernelPackages.v4l2loopback
@@ -202,30 +194,11 @@ in
   };
 
   services = {
+    fwupd.enable = true;
     mysql = {
       enable = true;
       package = pkgs.mariadb;
     };
-    # Need to check if this is needed on framework
-    # tlp = {
-    #   enable = false;
-    #   settings = {
-    #     CPU_SCALING_GOVERNOR_ON_AC = "performance";
-    #     CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-    #
-    #     CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-    #     CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-    #
-    #     CPU_MIN_PERF_ON_AC = 1;
-    #     CPU_MAX_PERF_ON_AC = 100;
-    #     CPU_MIN_PERF_ON_BAT = 1;
-    #     CPU_MAX_PERF_ON_BAT = 20;
-    #
-    #     #Optional helps save long term battery health
-    #     START_CHARGE_THRESH_BAT1 = 30;
-    #     STOP_CHARGE_THRESH_BAT1 = 80;
-    #   };
-    # };
     upower = {
       enable = true;
     };
@@ -239,23 +212,6 @@ in
         charger = {
            governor = "performance";
            turbo = "auto";
-        };
-      };
-    };
-    # Razer
-    keyd = {
-      enable = true;
-      keyboards = {
-        default = {
-          ids = [ "*" ];
-          settings = {
-            main = {
-              capslock = "overload(control, esc)";
-              insert = "S-insert";
-            };
-            otherlayer = { };
-          };
-          extraConfig = keydExtra;
         };
       };
     };
@@ -273,9 +229,11 @@ in
     };
     getty.autologinUser = username;
     gvfs.enable = true;
-    devmon.enable = true;
-    udisks2.enable = true;
     fstrim.enable = true;
+    udisks2 = {
+      enable = true;
+      mountOnMedia = true;
+    };
   };
 
   nix = {

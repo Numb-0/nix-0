@@ -20,7 +20,11 @@ git clone https://github.com/Numb-0/nix-0.git ~/nix-0
 ```bash
 cd ~/nix-0
 ```
-3. **Apply flake configuration**
+3. **Generate Hardware Config and replace it**
+```bash
+nixos-generate-config --show-hardware-config > hosts/<hostname>/hardware.nix
+```
+4. **Apply flake configuration**
 ```bash
 sudo nixos-rebuild switch --flake .#nixos
 ```
@@ -38,8 +42,6 @@ The wifi module is **not** implemented yet!
 
 > [!IMPORTANT]
 > I've recently migrated from **GTK3** to the **GTK4** version of **Ags**. As a result, there might be some **unintended behavior** that I haven't discovered yet.  
->  
-> 🚨 **Proceed with caution** and feel free to report any quirks you encounter!
 
 # Personalization
 

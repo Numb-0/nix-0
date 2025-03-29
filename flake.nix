@@ -7,15 +7,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # Have to specify ref cause default is master
     zero-shell.url = "git+ssh://git@github.com/Numb-0/zero-shell?ref=main";
   };
   
   outputs =
-    { self, nixpkgs, home-manager, stylix, zero-shell, ... }@inputs:
+    { self, nixpkgs, home-manager, nixos-hardware, stylix, zero-shell, ... }@inputs:
     let
       system = "x86_64-linux";
       host = "nixos";
