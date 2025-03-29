@@ -64,6 +64,7 @@ in
       exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
       exec-once = lxqt-policykit-agent
       exec-once = zero-shell
+      exec-once = udiskie
     
       monitor = eDP-1, highres, 0x0, 1.5
       monitor = , preferred, auto, 1
