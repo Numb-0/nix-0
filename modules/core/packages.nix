@@ -67,6 +67,7 @@
     htop
     lm_sensors
     imv
+    udiskie
 
     lxqt.lxqt-policykit
 

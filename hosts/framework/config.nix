@@ -68,11 +68,6 @@ in
     bluetooth = {
       enable = true;
       powerOnBoot = false;
-      # settings = {
-      #   General = {
-      #     Enable = "Source,Sink,Media,Socket";
-      #   };
-      # };
     };
   };
 
@@ -82,7 +77,7 @@ in
     timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
     firewall = {
       enable = true;
-      # Opened ports for Lynx
+      # Opened ports for Lynx & other applications
       allowedTCPPorts = [ 80 443 1025 3000];
       allowedUDPPortRanges = [
         { from = 1025; to = 1025; }
