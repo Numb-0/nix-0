@@ -7,7 +7,6 @@
       background_opacity = 0.8;
       confirm_os_window_close = 0;
       cursor_trail = 3;
-      force_ltr = "yes";
     };
     keybindings = {
       "ctrl+c" = "copy_to_clipboard";
