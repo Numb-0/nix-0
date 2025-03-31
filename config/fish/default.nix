@@ -37,7 +37,7 @@
 
           set -g fish_color_param ${osConfig.style.colors.base05}
           set -g fish_color_autosuggestion ${osConfig.style.colors.base0A}
-          set -g fish_emoji_width 8
+          set -g fish_emoji_width 2
 
           set -l last_status $status
           set -l arrow ' ⮞ '
