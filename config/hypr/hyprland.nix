@@ -67,7 +67,8 @@ in
       exec-once = udiskie
 
       monitor = eDP-1, highres, 0x0, 1.5
-      monitor = , preferred, auto, 1
+      monitor = DP-10, preferred, 1920x0, 1
+      monitor = DP-9, preferred, 4480x0, 1
 
       xwayland {
         force_zero_scaling = true
