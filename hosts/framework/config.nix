@@ -180,12 +180,27 @@ in
       enable = true;
       package = pkgs.mariadb;
     };
+    # Set_up webgirs test database and user
     postgresql = {
       enable = true;
-      ensureDatabases = [ "mydatabase" ];
+      ensureDatabases = [ "mydatabase" "webgirs"];
+      enableTCPIP = true;  # Allow connections via localhost
+      ensureUsers =  [
+        {
+          name = "webgirs";
+          ensureDBOwnership = true;
+        }
+      ];
       authentication = pkgs.lib.mkOverride 10 ''
         #type database  DBuser  auth-method
         local all       all     trust
+        # ipv4
+        host  all      all     127.0.0.1/32   trust
+        # ipv6
+        host all       all     ::1/128        trust
+      '';
+      initialScript = pkgs.writeText "postgres-init" ''
+        ALTER ROLE webgirs WITH PASSWORD 'webgir';
       '';
     };
     power-profiles-daemon.enable = true;
