@@ -175,6 +175,8 @@ in
   };
 
   services = {
+    fprintd.enable = true;
+    fstrim.enable = true;
     fwupd.enable = true;
     mysql = {
       enable = true;
@@ -204,22 +206,7 @@ in
       '';
     };
     power-profiles-daemon.enable = true;
-    upower = {
-      enable = true;
-    };
-    auto-cpufreq = {
-      enable = false;
-        settings = {
-        battery = {
-           governor = "powersave";
-           turbo = "never";
-        };
-        charger = {
-           governor = "performance";
-           turbo = "auto";
-        };
-      };
-    };
+    upower.enable = true;
     printing = {
       enable = true;
       drivers = [
@@ -234,7 +221,6 @@ in
     };
     getty.autologinUser = username;
     gvfs.enable = true;
-    fstrim.enable = true;
     udisks2 = {
       enable = true;
       mountOnMedia = true;

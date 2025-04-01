@@ -74,11 +74,9 @@
     unzip
     unrar
 
-    libnotify
+    # libnotify
     ripgrep
     brightnessctl
-    upower
-    bluez
 
     hyprpicker
     hyprshot
