@@ -85,7 +85,7 @@
 
   fonts = {
     packages = with pkgs; [
-      #noto-fonts-emoji
+      noto-fonts-emoji
       noto-fonts-cjk-sans
       symbola
       monocraft
@@ -93,14 +93,14 @@
       nerd-fonts.jetbrains-mono
       roboto
     ];
-    fontconfig = {
-      useEmbeddedBitmaps = true;
-      defaultFonts = {
-        serif = [ "Noto Serif" ];
-        sansSerif = [ "Roboto" ];
-        monospace = [ "JetBrainsMono Nerd Font Mono" ];
-        emoji = [ "Noto Color Emoji" ];
-      };
-    };
+    # fontconfig = {
+    #   useEmbeddedBitmaps = true;
+    #   defaultFonts = {
+    #     serif = [ "Noto Serif" ];
+    #     sansSerif = [ "Roboto" ];
+    #     monospace = [ "JetBrainsMono Nerd Font Mono" ];
+    #     emoji = [ "Noto Color Emoji" ];
+    #   };
+    # };
   };
 }

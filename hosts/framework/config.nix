@@ -148,7 +148,6 @@ in
 
   virtualisation.docker = {
     enable = true;
-    #storageDriver = "btrfs";
   };
 
 
@@ -162,7 +161,7 @@ in
       pkgs.xdg-desktop-portal-hyprland
     ];
     configPackages = [
-      pkgs.xdg-desktop-portal
+      pkgs.xdg-desktop-portal 
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-hyprland
     ];
@@ -175,18 +174,16 @@ in
   };
 
   services = {
-    fprintd.enable = true;
+    # fprintd.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
     mysql = {
       enable = true;
       package = pkgs.mariadb;
     };
-    # Set_up webgirs test database and user
     postgresql = {
       enable = true;
       ensureDatabases = [ "mydatabase" "webgirs"];
-      enableTCPIP = true;  # Allow connections via localhost
       ensureUsers =  [
         {
           name = "webgirs";
@@ -196,10 +193,6 @@ in
       authentication = pkgs.lib.mkOverride 10 ''
         #type database  DBuser  auth-method
         local all       all     trust
-        # ipv4
-        host  all      all     127.0.0.1/32   trust
-        # ipv6
-        host all       all     ::1/128        trust
       '';
       initialScript = pkgs.writeText "postgres-init" ''
         ALTER ROLE webgirs WITH PASSWORD 'webgir';
