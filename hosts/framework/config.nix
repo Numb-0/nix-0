@@ -197,6 +197,7 @@ in
       initialScript = pkgs.writeText "postgres-init" ''
         ALTER ROLE webgirs WITH PASSWORD 'webgir';
       '';
+      extensions = ps : with ps; [ postgis ];
     };
     power-profiles-daemon.enable = true;
     upower.enable = true;
