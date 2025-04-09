@@ -24,7 +24,6 @@ sudo /run/current-system/bin/switch-to-configuration boot
 2. nix flake update (probs the same as under here?)
 3. sudo nixos-rebuild switch --flake .#nixos --update
 ```
-
 ### Channels
 ```
 sudo nix-channel --list 
@@ -55,3 +54,20 @@ What you have to do is adding the flake in the inputs and add the entry in the m
 }
 ```
 if you have an ssh flake input use `nixos-rebuild switch --flake .#nixos --show-trace --use-remote-sudo`
+
+## Nix Flakes Cheatsheet
+
+### Show flakes in repo or local directory
+```bash
+nix flake show github:Numb-0/nix-0    
+```
+### Create a directory using the given template
+```bash
+nix flake new -t github:Numb-0/nix-0#pythonVenv webgirs
+```
+
+### Initialize the Current Directory with Your Template or creates a new flake.nix if used without -t
+```bash
+nix flake init -t github:Numb-0/nix-0#pythonVenv
+```
+### After the flake is copied use `nix develop` to access the development shell 
