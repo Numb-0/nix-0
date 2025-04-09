@@ -9,7 +9,7 @@
   ...
 }:
 let
-  inherit (import ./variables.nix)
+  inherit (import ../../modules/core/variables.nix)
     keyboardLayout
     timeZone
     defaultLocale
@@ -22,7 +22,6 @@ in
     nixos-hardware.nixosModules.framework-13-7040-amd
     ./hardware.nix
     ./stylix.nix
-    ./users.nix
     ../../modules/core
     ../../modules/style.nix
   ];

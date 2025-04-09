@@ -56,7 +56,6 @@
       ];
     })
     
-    ghostty
     fastfetch
     krabby
     tree

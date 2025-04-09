@@ -1,7 +1,7 @@
 {
   imports = [
     ./packages.nix
-    ./variables.nix
+    ./users.nix
   ];
 }
 

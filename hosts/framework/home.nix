@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (import ./variables.nix) gitUsername gitEmail;
+  inherit (import ../../modules/core/variables.nix) gitUsername gitEmail;
 in
 {
   # This Code is contained in home-manager.user.${username} = {<code>}
@@ -23,12 +23,13 @@ in
     ../../config/kitty
     ../../config/fish
     ../../config/ranger
+    ../../config/ghostty
   ];
 
- /*  programs.ssh = {
-    enable = true;
-    addKeysToAgent = "yes";
-  }; */
+  # programs.ssh = {
+  #   enable = true;
+  #   addKeysToAgent = "yes";
+  # };
 
   programs.git = {
     enable = true;

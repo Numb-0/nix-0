@@ -1,17 +1,17 @@
 {
   username,
-  host,
   pkgs,
   osConfig,
   ...
 }:
 let
-  inherit (import ../../hosts/${host}/variables.nix)
+  inherit (import ../../modules/core/variables.nix)
     browser
     terminal
     keyboardLayout
     editor
     ;
+    resolvedTerminal = if terminal == "ghostty" then "ghostty --gtk-single-instance=true" else terminal;
 in
 {
   wayland.windowManager.hyprland = {
@@ -65,6 +65,7 @@ in
       exec-once = lxqt-policykit-agent
       exec-once = zero-shell
       exec-once = udiskie
+      exec-once = ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false
 
       monitor = eDP-1, highres, 0x0, 1.5
       monitor = DP-10, preferred, 1920x0, 1
@@ -171,7 +172,7 @@ in
 
       # General keybindings
       bind = SHIFT, Return, fullscreen
-      bind = $mainMod, T, exec, ${terminal}
+      bind = $mainMod, T, exec, ${resolvedTerminal}
       bind = $mainMod, Q, killactive,
       bind = $mainMod, M, exit,
       bind = $mainMod, E, exec, ${browser}
