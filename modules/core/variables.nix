@@ -4,8 +4,8 @@
   gitEmail = "cosimofalla@gmail.com";
 
   # Programs Options
-  browser = "chromium"; # Set Default Browser
-  terminal = "kitty"; # Set Default System Terminal
+  browser = "chromium";
+  terminal = "kitty";
   keyboardLayout = "us";
   editor = "code";
 

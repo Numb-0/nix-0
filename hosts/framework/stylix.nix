@@ -17,7 +17,7 @@ in
       fish.enable = false;
       vscode.enable = false;
       kitty.enable = false;
-      ghostty.enable = false;
+      # ghostty.enable = false;
     };
   };
 

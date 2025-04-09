@@ -68,6 +68,7 @@ This file contains variables that are used to set options across different parts
 | :--- | :---  |
 | <kbd>Super</kbd> + <kbd>Q</kbd> | Close focused window |
 | <kbd>Super</kbd> + <kbd>T</kbd> | Launch terminal |
+| <kbd>Super</kbd> + <kbd>E</kbd> | Launch browser |
 | <kbd>Shift</kbd> + <kbd>Enter</kbd> | Toggle window fullscreen|
 | <kbd>Super</kbd> + <kbd>A</kbd> | Bring up Applauncher|
 | <kbd>Super</kbd> + <kbd>D</kbd> | Bring up Dashboard |
