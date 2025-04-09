@@ -84,7 +84,7 @@
 
   fonts = {
     packages = with pkgs; [
-      noto-fonts-emoji
+      # noto-fonts-emoji
       noto-fonts-cjk-sans
       symbola
       monocraft
