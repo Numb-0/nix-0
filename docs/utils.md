@@ -3,6 +3,7 @@
 
 ### Font Family check
 `fc-list : family | grep -i "<name>"`
+`fc-cache -f or r`
 
 ### Udiskie Mount and Umount
 after running `udiskie` in hyprland startup you can remove mounted usbs using `udiskie-umount /dev/sda1` (example) then unplug the device 
