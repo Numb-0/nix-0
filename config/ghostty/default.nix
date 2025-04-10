@@ -8,6 +8,7 @@
         "performable:ctrl+c=copy_to_clipboard"
         "performable:ctrl+v=paste_from_clipboard"
       ];
+      font-family = "";
     };
   };
 }
