@@ -1,5 +1,6 @@
 {
   osConfig,
+  config,
   ...
 }:
 {
@@ -23,7 +24,7 @@
             position = "0, -120";
             monitor = "";
             font_color = "rgb(${osConfig.style.colors.base01}})";
-            font_family = "JetBrainsMono Nerd Font Mono";
+            font_family = "${config.stylix.fonts.monospace.name}";
             inner_color = "rgb(${osConfig.style.colors.base0E})";
             outer_color = "rgb(${osConfig.style.colors.base0A})";
             outline_thickness = 0;
@@ -38,7 +39,7 @@
             text = "cmd[update:1000] echo -e \"\$(date +\"%H:%M\")\"";
             color = "rgb(${osConfig.style.colors.base07})";
             font_size = 120;
-            font_family = "JetBrains Mono Nerd Font Mono ExtraBold";
+            font_family = "${config.stylix.fonts.monospace.name}";
             position = "200, -200";
             halign = "left";
             valign = "top";

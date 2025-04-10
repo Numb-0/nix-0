@@ -89,7 +89,6 @@
       symbola
       monocraft
       noto-fonts
-      nerd-fonts.jetbrains-mono
       jetbrains-mono
       roboto
     ];
