@@ -90,6 +90,7 @@
       monocraft
       noto-fonts
       nerd-fonts.jetbrains-mono
+      jetbrains-mono
       roboto
     ];
     fontconfig = {
@@ -97,7 +98,7 @@
       defaultFonts = {
         serif = [ "Noto Serif" ];
         sansSerif = [ "Roboto" ];
-        monospace = [ "JetBrainsMono Nerd Font" ];
+        monospace = [ "JetBrains Mono" ];
         emoji = [ "Noto Color Emoji" ];
       };
     };
