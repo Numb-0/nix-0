@@ -1,7 +1,7 @@
 {
   programs.kitty = {
     enable = true;
-    shellIntegration.enableFishIntegration = true;
+    # shellIntegration.enableFishIntegration = true;
     settings = {
       include = "./theme.conf";
       background_opacity = 0.8;
