@@ -9,7 +9,7 @@ return {
     config = function()
       local cat = require("catppuccin")
       cat.setup({ flavour = "macchiato" })
-
+      -- Here define the default colorscheme
       vim.cmd.colorscheme "gruvbox"
     end
   }

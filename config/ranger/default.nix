@@ -11,7 +11,7 @@
     settings = {
       colorscheme = "theme";
       preview_images = true;
-      # preview_images_method = "kitty";
+      preview_images_method = "kitty";
     };
   };
 }
