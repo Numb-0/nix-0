@@ -17,6 +17,7 @@
         devShells.default = pkgs.mkShell {
           packages = [
             pythonPackages.python
+            pythonPackages.pip
             pythonPackages.venvShellHook
             # Add any pkgs you need in your shell
           ];

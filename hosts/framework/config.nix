@@ -105,6 +105,12 @@ in
   };
 
   programs = {
+    thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+      ]; 
+    };
     ssh.startAgent = true;
     adb.enable = true;
     firefox.enable = true;
@@ -169,10 +175,41 @@ in
   console.keyMap = keyboardLayout;
 
   security = {
+    pki.certificates = 
+    [''
+      -----BEGIN CERTIFICATE-----
+      MIIEIjCCAoqgAwIBAgIRAINhJ4MMD0N6r6p2vNfcqhIwDQYJKoZIhvcNAQELBQAw
+      bTEeMBwGA1UEChMVbWtjZXJ0IGRldmVsb3BtZW50IENBMSEwHwYDVQQLDBhjb3Np
+      eEBmcmFtZXdvcmsgKE51bWItMCkxKDAmBgNVBAMMH21rY2VydCBjb3NpeEBmcmFt
+      ZXdvcmsgKE51bWItMCkwHhcNMjUwNDE4MTExMjI4WhcNMjcwNzE4MTExMjI4WjBM
+      MScwJQYDVQQKEx5ta2NlcnQgZGV2ZWxvcG1lbnQgY2VydGlmaWNhdGUxITAfBgNV
+      BAsMGGNvc2l4QGZyYW1ld29yayAoTnVtYi0wKTCCASIwDQYJKoZIhvcNAQEBBQAD
+      ggEPADCCAQoCggEBAMJDbUshoUlISkhneR6DVdKBnID8FgiB70OGrIb0OBh+h62T
+      e+S9hFxGeXf4xyujNBvJbDdAU+6VrB9gh+qj7qkeiFSe8A3S/d77FBWsc8gSz4yw
+      OiM6hnGTv5lTIHo+gkdDPXjt1ehaQpoe/URFolhviMPLBP0sX1HfJdWQuBmH02Te
+      0RC2PTiPb7pY7GzouHcarWudM8d8veeG1VhptxEiZYziT6L7pqcXCxLG3Y19ijiG
+      xKlRFCkNuY+LJGCzh3SetJ98IyFmuJuKj16HM2xgwddmvCCRxOsQ/4abBDNYFjm9
+      P5wTW7qLl+NLpCk8x8Xezd3tngMQ9H7tGqehtJUCAwEAAaNeMFwwDgYDVR0PAQH/
+      BAQDAgWgMBMGA1UdJQQMMAoGCCsGAQUFBwMBMB8GA1UdIwQYMBaAFHP+qAWT7Afi
+      HGslGX4FT3X+mqBYMBQGA1UdEQQNMAuCCWxvY2FsaG9zdDANBgkqhkiG9w0BAQsF
+      AAOCAYEAX6JkOxTjDDdsPE3uVB0Y2YsYepSqOiI41L/fr7QD8U6UCYQclzMA5b5S
+      mRyKDuPL8NjtVaEC5WbunYmpwFh/hQMZLDDzqfTDTfiFzIH9+Fxf4NIvAQZTKjDa
+      u3/NYCg78tcyQ6NheaXPYEjpCPBp2uRoUXXDKT+d4aqQY25GDIlkHt/QORos4F6T
+      XHQC5h37MxuCaEU0Aqibb/7t9BAxiJjJMFmgT5/w3YhfAvX+uN9CzJXadHbM9gNP
+      eZKEAbLnIyfuPlj6RkQ35UFV8b2iISVOiAkE3knWJAVZuUQMJKeXEJumb/Pkv9d7
+      7DTqzpxK3FBf4OGNEDsJQVAacWBB5m0oNk0fjAdZJpn0e4dmp9N1RPq2an395rKl
+      Hym0TqsRwYwPNZyZS2n+HPT5kIlV/MRvtJ0V/4IC2woVNzJ+xRiNJVIl99QQT5kC
+      pX5eLF436/y7yUfmY39XI5qYKV2XySAABoAMzQdkzyPVnbcLsoCIlxSFs4NHxs5a
+      BQu87lb8
+      -----END CERTIFICATE-----
+    ''];
     rtkit.enable = true;
   };
 
   services = {
+    samba = {
+      enable = true;
+    };
     # fprintd.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
@@ -192,6 +229,8 @@ in
       authentication = pkgs.lib.mkOverride 10 ''
         #type database  DBuser  auth-method
         local all       all     trust
+        host    all       all       127.0.0.1/32 md5
+        host    all       all       ::1/128      md5
       '';
       initialScript = pkgs.writeText "postgres-init" ''
         ALTER ROLE webgirs WITH PASSWORD 'webgir';

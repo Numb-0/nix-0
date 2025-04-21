@@ -23,6 +23,7 @@ in
           "lp"
           "adbusers"
           "docker"
+          "dialout"
         ];
         shell = pkgs.fish;
         ignoreShellProgramCheck = true;

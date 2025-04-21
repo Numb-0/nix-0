@@ -8,8 +8,11 @@
     gcc
     cmake
     python3
+    
     php
     php83Packages.composer
+    ghostscript
+
     typescript
     nodejs
     nodePackages.npm
@@ -31,6 +34,7 @@
     dotnetCorePackages.dotnet_8.sdk
     icu
     
+    dbeaver-bin
     thunderbird
     chromium
     # vesktop
