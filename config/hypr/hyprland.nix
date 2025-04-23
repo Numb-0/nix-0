@@ -224,9 +224,13 @@ in
       bind = $mainMod, mouse_down, workspace, e+1
       bind = $mainMod, mouse_up, workspace, e-1
 
-      # Move/resize windows with mainMod + LMB/RMB and dragging
+      # Move/resize windows with mainMod + LMB/RMB and dragging ee
       bindm = $mainMod, mouse:272, movewindow
       bindm = $mainMod, mouse:273, resizewindow
+
+      # Disable/Enable primary monitor on lid open/closed
+      # bindl =,switch:off:Lid Switch,exec, toggle_monitor open
+      # bindl =,switch:on:Lid Switch,exec, toggle_monitor close
     '';
   };
 }

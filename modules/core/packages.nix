@@ -25,7 +25,7 @@
     fzf
     fd
 
-    godot_4
+    #godot_4
     sdkmanager
     jdk17
     jdk21

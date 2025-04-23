@@ -77,5 +77,6 @@ in
   # Scripts
   home.packages = [
     (import ../../scripts/setup_nvim.nix { inherit pkgs self; })
+    (import ../../scripts/toggle_monitor.nix { inherit pkgs; })
   ];
 }

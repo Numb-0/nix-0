@@ -109,6 +109,7 @@ in
       enable = true;
       plugins = with pkgs.xfce; [
         thunar-archive-plugin
+        thunar-volman
       ]; 
     };
     ssh.startAgent = true;
