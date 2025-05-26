@@ -24,8 +24,9 @@
     neovim
     fzf
     fd
-
-    #godot_4
+    
+    blender
+    godot_4
     sdkmanager
     jdk17
     jdk21
@@ -42,8 +43,9 @@
     spotify
     obs-studio
     prismlauncher
-    # aseprite
+    aseprite
     vscode
+    code-cursor
     obsidian
 
     libreoffice-qt6-fresh
@@ -77,9 +79,9 @@
     unzip
     unrar
 
-    # libnotify
     ripgrep
     brightnessctl
+    libnotify
 
     hyprpicker
     hyprshot

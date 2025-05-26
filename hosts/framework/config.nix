@@ -75,7 +75,7 @@ in
     hostName = host;
     timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
     firewall = {
-      enable = true;
+      enable = false;
       # Opened ports for Lynx & other applications
       allowedTCPPorts = [ 80 443 1025 3000];
       allowedUDPPortRanges = [

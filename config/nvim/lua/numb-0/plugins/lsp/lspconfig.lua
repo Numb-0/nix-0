@@ -68,11 +68,31 @@ return {
       end
     })
 
-    -- Change the Diagnostic symbols in the sign column
-    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
+    -- -- Change the Diagnostic symbols in the sign column
+    -- local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+    -- for type, icon in pairs(signs) do
+    --   local hl = "DiagnosticSign" .. type
+    --   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+    -- end
+    -- Configure diagnostic signs
+    vim.diagnostic.config({
+      signs = {
+        Error = { text = " " },
+        Warn  = { text = " " },
+        Hint  = { text = "󰠠 " },
+        Info  = { text = " " }
+      },
+      virtual_text = true,
+      update_in_insert = false,
+      underline = true,
+      severity_sort = true,
+      float = {
+        focusable = false,
+        style = "minimal",
+        border = "rounded",
+        header = "",
+        prefix = "",
+      },
+    })
   end
 }

@@ -2,6 +2,7 @@
   self,
   pkgs,
   username,
+  lib,
   ...
 }:
 let
@@ -53,6 +54,26 @@ in
       enable = true;
       createDirectories = true;
     };
+    configFile = {
+
+    qt5ct = {
+      target = "qt5ct/qt5ct.conf";
+      text = lib.generators.toINI { } {
+        Appearance = {
+          icon_theme = "Papirus-Dark";
+        };
+      };
+    };
+
+    qt6ct = {
+      target = "qt6ct/qt6ct.conf";
+      text = lib.generators.toINI { } {
+        Appearance = {
+          icon_theme = "Papirus-Dark";
+        };
+      };
+    };
+    };
   };
 
   gtk = {
@@ -70,8 +91,7 @@ in
 
   qt = {
     enable = true;
-    # style.name = "adwaita-dark";
-    # platformTheme.name = "gtk4";
+    # platformTheme.name = "qtct";
   };
 
   # Scripts

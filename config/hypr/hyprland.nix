@@ -135,7 +135,7 @@ in
         animation = workspaces, 1, 5, circ
 
         animation = layersIn, 1, 3, circ, slide
-        animation = layersOut, 1, 2, circ, slide
+        animation = layersOut, 1, 3, circ, slide
       }
 
       decoration {
@@ -185,6 +185,8 @@ in
       bind = $mainMod, C, exec, ags request clearnotification 
       bind = $mainMod, X, exec, ags request poweractions
       bind = $mainMod, H, exec, hyprshot -m region
+
+      bind = $mainMod, G, global, quickshell:applauncher
 
       # Move focus with mainMod + arrow keys
       bind = $mainMod, left, movefocus, l

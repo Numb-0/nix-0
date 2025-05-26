@@ -18,6 +18,7 @@ in
       vscode.enable = false;
       kitty.enable = false;
       # ghostty.enable = false;
+      qt.enable = false;
     };
   };
 

@@ -26,8 +26,9 @@ nixos-generate-config --show-hardware-config > hosts/<hostname>/hardware.nix
 ```
 4. **Apply flake configuration**
 ```bash
-sudo nixos-rebuild switch --flake .#<hostname>
+nixos-rebuild switch --flake .#<hostname> (if using the ssh flake add --remote-sudo )
 ```
+
 > [!TIP]
 > Make sure you have NixOS installed and flakes enabled before proceeding. If you encounter any issues, refer to the NixOS documentation. 📚
 

@@ -1,10 +1,15 @@
 {
+  # In the inputs url you can also specify rev and ref 
+  # Example: n.url = "github:nixos/nixpkgs?ref=nix-21.11"
+
+  # To reduce dowloads you can use 
+  # n.inputs.<name_of_the_pkg_you_are_already_using>.follow = "<package_used>"
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
   };
-
-  outputs = { nixpkgs, flake-utils, ... }:
+  # Using inputs like this let you access the non declared inputs as inputs.<input_name>
+  outputs = { nixpkgs, ... } @ inputs:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
