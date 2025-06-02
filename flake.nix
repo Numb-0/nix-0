@@ -13,8 +13,6 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
-    # Have to specify ref cause default is master
-    zero-shell.url = "git+ssh://git@github.com/Numb-0/zero-shell?ref=main";
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +20,7 @@
   };
   
   outputs =
-    { self, nixpkgs, home-manager, nixos-hardware, zero-shell, stylix, quickshell, ... }@inputs:
+    { self, nixpkgs, home-manager, nixos-hardware, stylix, quickshell, ... }@inputs:
     let
       system = "x86_64-linux";
       host = "framework";
@@ -39,10 +37,7 @@
             home-manager.nixosModules.home-manager
             {
               environment.systemPackages = [
-               quickshell.packages.${system}.default
-               zero-shell.packages.${system}.shell
-               zero-shell.packages.${system}.ags
-               zero-shell.packages.${system}.astal
+              # Add input packages here
               ];
               home-manager = { 
                 useUserPackages = true;

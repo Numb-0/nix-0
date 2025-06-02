@@ -18,9 +18,9 @@ return {
     telescope.setup({
       pickers = {
         find_files = {
-                    file_ignore_patterns = { 'node_modules', '.git', '.venv' },
-                    hidden = true
-                },
+          file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+            hidden = true
+          },
       },
     })
   end

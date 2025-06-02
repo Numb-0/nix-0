@@ -86,6 +86,9 @@
     hyprpicker
     hyprshot
     wl-clipboard
+
+    # quickshell
+    jq
   ];
 
   fonts = {

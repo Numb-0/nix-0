@@ -63,7 +63,7 @@ in
       exec-once = hyprlock --immediate || hyprctl dispatch exit
       exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
       exec-once = lxqt-policykit-agent
-      exec-once = zero-shell
+      # exec-once = zero-shell
       exec-once = udiskie
       exec-once = ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false
 
@@ -79,7 +79,7 @@ in
         gaps_in = 5
         gaps_out = 5
         border_size = 0
-        # col.active_border = rgba(${osConfig.style.colors.base07}ee)
+        col.active_border = rgba(${osConfig.style.colors.base03}ee)
         layout = dwindle
         resize_on_border = true
         allow_tearing = true
@@ -130,7 +130,7 @@ in
         animation = windowsIn, 1, 6, circ, popin
         animation = windowsOut, 1, 5, circ, popin
         animation = windowsMove, 1, 4, circ, slide
-        animation = border, 0, 6, circ
+        animation = border, 1, 6, circ
         animation = fade, 1, 10, default
         animation = workspaces, 1, 5, circ
 
@@ -139,7 +139,7 @@ in
       }
 
       decoration {
-        rounding = 10
+        rounding = 0
         active_opacity = 0.95
         inactive_opacity = 0.95
 
@@ -179,15 +179,18 @@ in
       bind = $mainMod, W, togglefloating,
       bind = $mainMod, F, pseudo, # dwindle
       bind = $mainMod, J, togglesplit, # dwindle
-      bind = $mainMod, A, exec, ags request applauncher
-      bind = $mainMod, D, exec, ags request dashboard
-      bind = $mainMod, P, exec, ags request pldashboard
-      bind = $mainMod, C, exec, ags request clearnotification 
-      bind = $mainMod, X, exec, ags request poweractions
+      # bind = $mainMod, A, exec, ags request applauncher
+      # bind = $mainMod, D, exec, ags request dashboard
+      # bind = $mainMod, P, exec, ags request pldashboard
+      # bind = $mainMod, C, exec, ags request clearnotification 
+      # bind = $mainMod, X, exec, ags request poweractions
       bind = $mainMod, H, exec, hyprshot -m region
 
-      bind = $mainMod, G, global, quickshell:applauncher
 
+      bind = $mainMod, A, global, quickshell:applauncher
+      bind = $mainMod, A, global, quickshell:poweractions
+      bind = $mainMod, A, global, quickshell:dashboard
+      
       # Move focus with mainMod + arrow keys
       bind = $mainMod, left, movefocus, l
       bind = $mainMod, right, movefocus, r
