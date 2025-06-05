@@ -63,7 +63,7 @@ in
       exec-once = hyprlock --immediate || hyprctl dispatch exit
       exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
       exec-once = lxqt-policykit-agent
-      # exec-once = zero-shell
+      exec-once = quickshell
       exec-once = udiskie
       exec-once = ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false
 
@@ -188,8 +188,8 @@ in
 
 
       bind = $mainMod, A, global, quickshell:applauncher
-      bind = $mainMod, A, global, quickshell:poweractions
-      bind = $mainMod, A, global, quickshell:dashboard
+      bind = $mainMod, X, global, quickshell:poweractions
+      bind = $mainMod, D, global, quickshell:dashboard
       
       # Move focus with mainMod + arrow keys
       bind = $mainMod, left, movefocus, l

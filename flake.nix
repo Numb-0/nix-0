@@ -37,7 +37,7 @@
             home-manager.nixosModules.home-manager
             {
               environment.systemPackages = [
-              # Add input packages here
+                quickshell.packages.${system}.default
               ];
               home-manager = { 
                 useUserPackages = true;
