@@ -236,6 +236,9 @@ in
       # Disable/Enable primary monitor on lid open/closed
       # bindl =,switch:off:Lid Switch,exec, toggle_monitor open
       # bindl =,switch:on:Lid Switch,exec, toggle_monitor close
+
+      # Lock on lid closed
+      # bindl=,switch:off:Lid Switch, exec, hyprlock --immediate
     '';
   };
 }

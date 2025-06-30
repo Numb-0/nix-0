@@ -31,7 +31,7 @@
     jdk17
     jdk21
 
-    unityhub
+    # unityhub
     dotnetCorePackages.dotnet_8.sdk
     icu
     
@@ -45,7 +45,7 @@
     prismlauncher
     aseprite
     vscode
-    code-cursor
+    # code-cursor
     obsidian
 
     libreoffice-qt6-fresh
