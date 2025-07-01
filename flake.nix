@@ -2,6 +2,7 @@
   description = "nix-0 Flake";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-dbeaver.url = "github:NixOS/nixpkgs/1cb1c02a6b1b7cf67e3d7731cbbf327a53da9679#";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,7 +21,7 @@
   };
   
   outputs =
-    { self, nixpkgs, home-manager, nixos-hardware, stylix, quickshell, ... }@inputs:
+    { self, nixpkgs, nixpkgs-dbeaver, home-manager, nixos-hardware, stylix, quickshell, ... }@inputs:
     let
       system = "x86_64-linux";
       host = "framework";
@@ -30,7 +31,13 @@
       templates = import ./templates;
       nixosConfigurations = {
         "${host}" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit self system inputs username host nixos-hardware; };
+          specialArgs = { 
+            inherit self system inputs username host nixos-hardware nixpkgs-dbeaver;
+            pkgs-dbeaver = import nixpkgs-dbeaver {
+              inherit system;
+              config.allowUnFree = true;
+            };
+          };
           modules = [
             ./hosts/${host}/config.nix
             stylix.nixosModules.stylix

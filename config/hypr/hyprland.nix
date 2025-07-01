@@ -24,8 +24,10 @@ in
       env = ANDROID_HOME,/home/${username}/Android
 
       # Java path for android build graydle
-      env = JAVA_17_HOME, ${pkgs.jdk17}
-      env = JAVA_21_HOME, ${pkgs.jdk21}
+      env = JAVA_17_HOME, ${pkgs.jdk17.home}
+      env = JAVA_21_HOME, ${pkgs.jdk21.home}
+      # env = JAVA_HOME, ${pkgs.jdk21}
+
 
       # Needed by steam
       # env = SDL_DYNAMIC_API, ${pkgs.SDL2}/lib/libSDL2-2.0.so.0v

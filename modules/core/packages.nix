@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-dbeaver,
   ...
 }:
 {
@@ -28,14 +29,14 @@
     blender
     godot_4
     sdkmanager
-    jdk17
     jdk21
+    jdk17
 
     # unityhub
     dotnetCorePackages.dotnet_8.sdk
     icu
     
-    dbeaver-bin
+    pkgs-dbeaver.dbeaver-bin
     thunderbird
     chromium
     # vesktop

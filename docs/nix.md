@@ -1,4 +1,4 @@
-## Nix Cheatsheet
+## Nix & Nix Flakes Cheatsheet
 ### Removing unused pkgs
 ```
 nix-collect-garbage 
@@ -55,8 +55,6 @@ What you have to do is adding the flake in the inputs and add the entry in the m
 ```
 if you have an ssh flake input use `nixos-rebuild switch --flake .#nixos --show-trace --use-remote-sudo`
 
-## Nix Flakes Cheatsheet
-
 ### Show flakes in repo or local directory
 ```bash
 nix flake show github:Numb-0/nix-0    
@@ -71,3 +69,36 @@ nix flake new -t github:Numb-0/nix-0#pythonVenv webgirs
 nix flake init -t github:Numb-0/nix-0#pythonVenv
 ```
 ### After the flake is copied use `nix develop` to access the development shell 
+
+### Pinning a pkg version to using nixpkgs flake revision
+1. Specify a new input nixpkgs with the correct version pkg revision
+2. Add the input in the specialArgs (maybe it can be done differently)
+3. Add the pkg specifying where to get it from
+
+```nix
+inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-dbeaver.url = "github:NixOS/nixpkgs/1cb1c02a6b1b7cf67e3d7731cbbf327a53da9679#";
+}
+# --- Code... ---
+specialArgs = { 
+    inherit self system inputs username host nixos-hardware nixpkgs-dbeaver;
+    pkgs-dbeaver = import nixpkgs-dbeaver {
+        inherit system;
+        config.allowUnFree = true;
+    };
+};
+# --- Packages ---
+{
+    pkgs,
+    pkgs-dbeaver,
+    ...
+}:
+{
+    environment.systemPackages = with pkgs; [
+        neovim
+        # ...
+        pkgs-dbeaver.dbeaver-bin
+    ]
+}
+```
