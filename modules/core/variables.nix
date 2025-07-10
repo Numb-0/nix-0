@@ -5,7 +5,7 @@
 
   # Programs Options
   browser = "chromium";
-  terminal = "ghostty";
+  terminal = "kitty";
   keyboardLayout = "us";
   editor = "code";
 

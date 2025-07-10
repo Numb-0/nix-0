@@ -36,7 +36,7 @@
     dotnetCorePackages.dotnet_8.sdk
     icu
     
-    pkgs-dbeaver.dbeaver-bin
+    dbeaver-bin
     thunderbird
     chromium
     # vesktop
@@ -88,7 +88,6 @@
     hyprshot
     wl-clipboard
 
-    # quickshell
     jq
   ];
 

@@ -11,7 +11,7 @@ let
     keyboardLayout
     editor
     ;
-    resolvedTerminal = if terminal == "ghostty" then "ghostty --gtk-single-instance=true" else terminal;
+    # resolvedTerminal = if terminal == "ghostty" then "ghostty --gtk-single-instance=true" else terminal;
 in
 {
   wayland.windowManager.hyprland = {
@@ -174,7 +174,7 @@ in
 
       # General keybindings
       bind = SHIFT, Return, fullscreen
-      bind = $mainMod, T, exec, ${resolvedTerminal}
+      bind = $mainMod, T, exec, ${terminal}
       bind = $mainMod, Q, killactive,
       bind = $mainMod, M, exit,
       bind = $mainMod, E, exec, ${browser}
