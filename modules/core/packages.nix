@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-dbeaver,
   ...
 }:
 {
@@ -32,7 +31,7 @@
     jdk21
     jdk17
 
-    # unityhub
+    unityhub
     dotnetCorePackages.dotnet_8.sdk
     icu
     
@@ -43,8 +42,11 @@
     discord-canary
     spotify
     obs-studio
-    prismlauncher
-    aseprite
+    # prismlauncher
+    (prismlauncher.override {
+        jdks = [ jdk17 ]; # or jdk21
+    })
+    # aseprite
     vscode
     # code-cursor
     obsidian
@@ -54,15 +56,6 @@
     hunspellDicts.it_IT
     hunspellDicts.en_US
 
-    (lutris.override {
-      extraLibraries = pkgs: [
-        # List library dependencies here
-      ];
-      extraPkgs = pkgs: [
-        # List package dependencies here
-      ];
-    })
-    
     fastfetch
     krabby
     tree
@@ -93,11 +86,8 @@
 
   fonts = {
     packages = with pkgs; [
-      noto-fonts-emoji
-      noto-fonts-cjk-sans
-      symbola
-      monocraft
       noto-fonts
+      noto-fonts-emoji
       jetbrains-mono
       roboto
     ];

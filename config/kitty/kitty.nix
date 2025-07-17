@@ -7,7 +7,7 @@
       background_opacity = 0.8;
       confirm_os_window_close = 0;
       cursor_trail = 3;
-      font_family = "family='JetBrains Mono' postscript_name=JetBrainsMono-Regular";
+      font_family = "JetBrains Mono";
       bold_font = "auto";
       italic_font = "auto";
       bold_italic_font = "auto";

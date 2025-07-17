@@ -136,8 +136,9 @@ in
         animation = fade, 1, 10, default
         animation = workspaces, 1, 5, circ
 
-        animation = layersIn, 1, 3, circ, slide
-        animation = layersOut, 1, 3, circ, slide
+        animation = layers, 1, 4, circ, slide
+        animation = fadeLayersIn, 1, 4, circ
+        animation = fadeLayersOut, 1, 10, circ
       }
 
       decoration {
