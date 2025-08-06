@@ -28,13 +28,12 @@ in
       env = JAVA_21_HOME, ${pkgs.jdk21.home}
       # env = JAVA_HOME, ${pkgs.jdk21}
 
-
       # Needed by steam
       # env = SDL_DYNAMIC_API, ${pkgs.SDL2}/lib/libSDL2-2.0.so.0v
 
       env = EDITOR, ${editor}
 
-      env = AQ_NO_MODIFIERS,1
+      # env = AQ_NO_MODIFIERS,1
 
       # Needed by ssh-agent
       env = SSH_AUTH_SOCK, /run/user/1000/ssh-agent
@@ -42,11 +41,12 @@ in
       # Cursor
       # env = HYPRCURSOR_THEME, ${osConfig.stylix.cursor.name}
       # env = HYPRCURSOR_SIZE, ${toString osConfig.stylix.cursor.size}
-
-      env = LIBVA_DRIVER_NAME, i965
-      env = GBM_BACKEND, nvidia-drm
-      env = __GLX_VENDOR_LIBRARY_NAME, nvidia
-      env = NVD_BACKEND, direct
+      
+      # Nvidia + Intel
+      # env = LIBVA_DRIVER_NAME, i965
+      # env = GBM_BACKEND, nvidia-drm
+      # env = __GLX_VENDOR_LIBRARY_NAME, nvidia
+      # env = NVD_BACKEND, direct
 
       env = NIXOS_OZONE_WL, 1
       env = NIXPKGS_ALLOW_UNFREE, 1
@@ -63,15 +63,16 @@ in
       env = MOZ_ENABLE_WAYLAND, 1
 
       exec-once = hyprlock --immediate || hyprctl dispatch exit
-      exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+      # exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
       exec-once = lxqt-policykit-agent
       exec-once = quickshell
       exec-once = udiskie
-      exec-once = ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false
-
-      monitor = eDP-1, highres, 0x0, 1.5
-      monitor = DP-10, preferred, 1920x0, 1
-      monitor = DP-9, preferred, 4480x0, 1
+      # exec-once = ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false
+      
+      monitor = , preferred, auto, 1
+      monitor = eDP-1, preferred, 0x0, 1.5
+      # monitor = DP-10, preferred, 1920x0, 1
+      # monitor = DP-9, preferred, 4480x0, 1
 
       xwayland {
         force_zero_scaling = true
@@ -92,11 +93,12 @@ in
         kb_variant = altgr-intl
         follow_mouse = 1
         touchpad {
-          natural_scroll = false #maybe?
+          natural_scroll = 1
           disable_while_typing = true
           scroll_factor = 0.8
         }
-        sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+        force_no_accel = 1 
+        sensitivity = 0
         accel_profile = flat
       }
         
