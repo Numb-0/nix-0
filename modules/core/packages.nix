@@ -31,7 +31,7 @@
     jdk21
     jdk17
 
-    unityhub
+    # unityhub
     dotnetCorePackages.dotnet_8.sdk
     icu
     

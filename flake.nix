@@ -38,9 +38,9 @@
             stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
             {
-              nixpkgs.config.permittedInsecurePackages = [
-                "libxml2-2.13.8"
-              ];
+              # nixpkgs.config.permittedInsecurePackages = [
+              #   "libxml2-2.13.8"
+              # ];
               environment.systemPackages = [
                 quickshell.packages.${system}.default
               ];
