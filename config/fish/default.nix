@@ -19,7 +19,6 @@
         abbr --add mkdir mkdir -p
         abbr --add clear "clear && printf '\e[3J'"
         abbr --add clr "clear && krabby random --no-title"
-        #abbr --add ssh "kitten ssh"
         abbr --add tr "tree -a -f -I ".git""
         abbr --add trd "tree -a -d"
         abbr --add l "eza -lh"
@@ -34,7 +33,6 @@
           set -g __fish_git_prompt_showcolorhints true
           set -g __fish_git_prompt_char_stateseparator |
           set -g __fish_git_prompt_color_branch ${osConfig.style.colors.base0D}
-          # set -g __fish_git_prompt_char_cleanstate ✓
 
           set -g fish_color_param ${osConfig.style.colors.base05}
           set -g fish_color_autosuggestion ${osConfig.style.colors.base0A}

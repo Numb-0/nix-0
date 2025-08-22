@@ -7,3 +7,6 @@
 
 ### Udiskie Mount and Umount
 after running `udiskie` in hyprland startup you can remove mounted usbs using `udiskie-umount /dev/sda1` (example) then unplug the device 
+
+### List folder and sizes 
+du -h --max-depth=1 | sort -h

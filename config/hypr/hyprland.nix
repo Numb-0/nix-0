@@ -67,10 +67,9 @@ in
       exec-once = lxqt-policykit-agent
       exec-once = quickshell
       exec-once = udiskie
-      # exec-once = ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false
       
-      monitor = , preferred, auto, 1
       monitor = eDP-1, preferred, 0x0, 1.5
+      monitor = , preferred, auto, 1
       # monitor = DP-10, preferred, 1920x0, 1
       # monitor = DP-9, preferred, 4480x0, 1
 

@@ -1,4 +1,6 @@
 ## Nix & Nix Flakes Cheatsheet
+### Checking dependencies of a build
+```nix why-depends /run/current-system /nix/store/path_to_source/pkgs/development/libraries/libxml2```
 ### Removing unused pkgs
 ```
 nix-collect-garbage 

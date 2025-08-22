@@ -71,6 +71,7 @@
     lxqt.lxqt-policykit
 
     unzip
+    zip
     unrar
 
     ripgrep
