@@ -35,6 +35,7 @@
     dotnetCorePackages.dotnet_8.sdk
     icu
     
+    gimp
     dbeaver-bin
     thunderbird
     chromium

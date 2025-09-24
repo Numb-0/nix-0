@@ -26,7 +26,7 @@ in
       # Java path for android build graydle
       env = JAVA_17_HOME, ${pkgs.jdk17.home}
       env = JAVA_21_HOME, ${pkgs.jdk21.home}
-      # env = JAVA_HOME, ${pkgs.jdk21}
+      env = JAVA_HOME, ${pkgs.jdk21}
 
       # Needed by steam
       # env = SDL_DYNAMIC_API, ${pkgs.SDL2}/lib/libSDL2-2.0.so.0v
@@ -113,10 +113,10 @@ in
         no_hardware_cursors = true
       }
 
-      gestures {
-        workspace_swipe = true
-        workspace_swipe_fingers = 3
-      }
+      # gestures {
+        # workspace_swipe = true
+        # workspace_swipe_fingers = 3
+      # }
 
       misc {
         initial_workspace_tracking = 0

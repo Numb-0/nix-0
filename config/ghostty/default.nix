@@ -1,6 +1,6 @@
 {
   programs.ghostty = {
-    enable = true;
+    enable = false;
     enableFishIntegration = true;
     settings = {
       # adjust-cursor-thickness = 1;
@@ -9,7 +9,7 @@
         "performable:ctrl+v=paste_from_clipboard"
       ];
       # Resetting fonts and setting it again cause stylix adds the emoji fonts that mess up appearence
-      font-family = ["" "JetBrains Mono"];
+      # font-family = ["" "JetBrains Mono"];
     };
   };
 }
