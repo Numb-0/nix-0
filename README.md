@@ -2,14 +2,10 @@
 
 
 # nix-0
-A simple ***❄ NixOs configuration ❄*** using [**Hyrpland**](https://github.com/hyprwm/Hyprland) and [**Ags**](https://github.com/Aylur/ags) themed in [**Catppuccin Macchiato**](https://catppuccin.com/palette) base16 colors with [**Stylix**](https://github.com/danth/stylix).
+A simple ***❄ NixOs configuration ❄*** using [**Hyrpland**](https://github.com/hyprwm/Hyprland), [**Quickshell**](https://quickshell.org) and [**Stylix**](https://github.com/danth/stylix).
 
-> [!WARNING]
-> if you want to change system color theme go [***here***](https://github.com/Numb-0/nix-0/blob/main/hosts/nixos/config.nix#L34) and change the ***scheme*** entry with `"catppuccin"` or `"gruvbox"`  
-> to change ags theme instead do `super+x` and toggle the arrow
-
-<div align="center"><img src="./docs/assets/screenshot1.png"></div>
-<div align="center"><img src="./docs/assets/screenshot2.png"></div>
+<div align="center"><img src="./docs/assets/screenshotQs1.png"></div>
+<div align="center"><img src="./docs/assets/screenshotQs2.png"></div>
 
 # Installation
 1. **Clone the repository** in the home directory or where you want:
@@ -31,18 +27,6 @@ nixos-rebuild switch --flake .#<hostname> (if using the ssh flake add --remote-s
 
 > [!TIP]
 > Make sure you have NixOS installed and flakes enabled before proceeding. If you encounter any issues, refer to the NixOS documentation. 📚
-
-# Ags
-The **Ags** application is tightly integrated with **Hyprland** using it's module. If you're using another window manager (WM), most of its features **won't work**.
-The Project is in the **[zero-shell repo](https://github.com/Numb-0/zero-shell)**.
-
-For example:
-- **Hyprland keybinds** are used to hide/show different windows of the Ags application.  
-If you're not using Hyprland, this functionality will **not be available**.
-The wifi module is **not** implemented yet!
-
-> [!IMPORTANT]
-> I've recently migrated from **GTK3** to the **GTK4** version of **Ags**. As a result, there might be some **unintended behavior** that I haven't discovered yet.  
 
 # Personalization
 
