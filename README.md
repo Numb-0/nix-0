@@ -30,7 +30,7 @@ nixos-rebuild switch --flake .#<hostname> (if using the ssh flake add --remote-s
 
 # Personalization
 
-To customize the configuration, you can modify the values in the **[variables.nix](hosts/nixos/variables.nix)** file.  
+To customize the configuration, you can modify the values in the **[variables.nix](modules/core/variables.nix)** file.  
 This file contains variables that are used to set options across different parts of the configuration, such as:
 
 - **Hyprland**
@@ -39,13 +39,7 @@ This file contains variables that are used to set options across different parts
 
 > [!WARNING]
 > **Not all settings are controlled by variables!**  
-> Most options are manually defined in the **[config.nix](hosts/nixos/config.nix)** file, so make sure to check there as well. 🛠️
-
-# Docs
-> [!NOTE]
-> The **`docs` folder** currently contains information about **commands** and **Nix**, but **not** the configuration.  
->  
-> 🚧 **This is still a work in progress**
+> Most options are manually defined in the **[config.nix](hosts/framework/config.nix)** file, so make sure to check there as well. 🛠️
 
 # Keybinds
 
@@ -55,9 +49,9 @@ This file contains variables that are used to set options across different parts
 | <kbd>Super</kbd> + <kbd>T</kbd> | Launch terminal |
 | <kbd>Super</kbd> + <kbd>E</kbd> | Launch browser |
 | <kbd>Shift</kbd> + <kbd>Enter</kbd> | Toggle window fullscreen|
-| <kbd>Super</kbd> + <kbd>A</kbd> | Bring up Applauncher|
-| <kbd>Super</kbd> + <kbd>D</kbd> | Bring up Dashboard |
-| <kbd>Super</kbd> + <kbd>P</kbd> | Bring up AudioPlayer |
-| <kbd>Super</kbd> + <kbd>C</kbd> | Remove Last Notification|
+| <kbd>Super</kbd> + <kbd>A</kbd> | Toggle Applauncher|
+| <kbd>Super</kbd> + <kbd>D</kbd> | Toggle Dashboard |
+<!-- | <kbd>Super</kbd> + <kbd>P</kbd> | Toggle AudioPlayer | -->
+<!-- | <kbd>Super</kbd> + <kbd>C</kbd> | Remove Last Notification| -->
 | More to add |
 
