@@ -92,6 +92,7 @@
       noto-fonts-emoji
       jetbrains-mono
       roboto
+      material-symbols
     ];
     fontconfig = {
       useEmbeddedBitmaps = true;
