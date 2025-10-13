@@ -8,13 +8,13 @@ return {
   },
   config = function()
     -- import lspconfig plugin
-    local lspconfig = require("lspconfig")
+    -- vim.lsp.config(
 
-    lspconfig.phpactor.setup({
-      root_dir = function(fname)
-        return require('lspconfig').util.root_pattern('composer.json', '.git')(fname) or vim.loop.cwd()
-      end
-    })
+    -- .phpactor.setup({
+      -- root_dir = function(fname)
+        -- return require('lspconfig').util.root_pattern('composer.json', '.git')(fname) or vim.loop.cwd()
+      -- end
+    -- })
 
 
     -- Create Commands
