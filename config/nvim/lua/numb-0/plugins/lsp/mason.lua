@@ -60,13 +60,13 @@ return {
     })
 
     -- Here we do specific Server Configurations if neeeded    
-    local lspconfig = require("lspconfig")
+    -- local lspconfig = require("lspconfig")
 
-    lspconfig.phpactor.setup({
-      root_dir = function(fname)
-        return require('lspconfig').util.root_pattern('composer.json', '.git')(fname) or vim.loop.cwd()
-      end
-    })
+    -- lspconfig.phpactor.setup({
+      -- root_dir = function(fname)
+        -- return require('lspconfig').util.root_pattern('composer.json', '.git')(fname) or vim.loop.cwd()
+      -- end
+    -- })
 
     end
 }

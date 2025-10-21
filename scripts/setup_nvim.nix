@@ -7,6 +7,7 @@
   #!/usr/bin/env bash
 
   mkdir -p ~/.config/nvim
+  rm -rf ~/.config/nvim/*
   cp -r ${self}/config/nvim/* ~/.config/nvim
 
   echo "Nvim setup complete!"

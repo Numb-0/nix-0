@@ -143,7 +143,8 @@ in
       }
 
       decoration {
-        rounding = 0
+        # rounding = 0
+        rounding = 8
         active_opacity = 0.95
         inactive_opacity = 0.95
 

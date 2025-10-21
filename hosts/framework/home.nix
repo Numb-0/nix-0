@@ -34,8 +34,13 @@ in
 
   programs.git = {
     enable = true;
-    userName = "${gitUsername}";
-    userEmail = "${gitEmail}";
+    settings = {
+      user = {
+        name = "${gitUsername}";
+        email = "${gitEmail}";
+      };
+      push = { autoSetupRemote = true; };
+    };
   };
 
   programs.btop = {

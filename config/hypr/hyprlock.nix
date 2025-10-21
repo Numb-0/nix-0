@@ -23,6 +23,7 @@
             size = "200, 60";
             position = "0, -120";
             monitor = "";
+            # rounding = "0";
             font_color = "rgb(${osConfig.style.colors.base01}})";
             font_family = "${config.stylix.fonts.monospace.name}";
             inner_color = "rgb(${osConfig.style.colors.base0E})";

@@ -93,6 +93,7 @@
       jetbrains-mono
       roboto
       material-symbols
+      nerd-fonts.jetbrains-mono
     ];
     fontconfig = {
       useEmbeddedBitmaps = true;
