@@ -32,6 +32,25 @@ sudo nix-channel --list
 
 ```
 
+### NixPkgs Overlay
+```nix
+nixpkgs.overlays = [
+  (final: prev: {
+    lxqt = prev.lxqt.overrideScope (lfinal: lprev: {
+      libqtxdg = lprev.libqtxdg.overrideAttrs (oldAttrs: {
+        patches = (oldAttrs.patches or []) ++ [
+          (prev.fetchpatch {
+            name = "cmake-fix-build-with-Qt-6.10.patch";
+            url = "https://github.com/lxqt/libqtxdg/commit/b01a024921acdfd5b0e97d5fda2933c726826e99.patch";
+            hash = "sha256-njpn6pU9BHlfYfkw/jEwh8w3Wo1F8MlRU8iQB+Tz2zU=";
+          })
+        ];
+      });
+    });
+  })
+];
+```
+
 ### Installing flakes
 
 What you have to do is adding the flake in the inputs and add the entry in the modules or where it needs to be used

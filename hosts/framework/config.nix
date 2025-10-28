@@ -105,6 +105,7 @@ in
   };
 
   programs = {
+    fish.enable = true;
     thunar = {
       enable = true;
       plugins = with pkgs.xfce; [

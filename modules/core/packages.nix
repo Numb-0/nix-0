@@ -35,6 +35,7 @@
     dotnetCorePackages.dotnet_8.sdk
     icu
     
+    vlc
     gimp
     dbeaver-bin
     thunderbird
@@ -70,7 +71,6 @@
     udiskie
 
     lxqt.lxqt-policykit
-
     unzip
     zip
     unrar

@@ -7,7 +7,7 @@
     source = "${self}/config/ranger/theme.py";
   };
   programs.ranger = {
-    enable = true;
+    enable = false;
     settings = {
       colorscheme = "theme";
       preview_images = true;

@@ -9,6 +9,7 @@ in
 {
   users = {
     # Password can be changed
+    defaultUserShell = pkgs.fish;
     mutableUsers = true;
     users = {
       "${username}" = {

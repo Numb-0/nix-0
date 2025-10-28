@@ -26,6 +26,14 @@
         abbr --add ld "eza -lhD"
       '';
       functions = {
+        y = ''
+          set tmp (mktemp -t "yazi-cwd.XXXXXX")
+	        yazi $argv --cwd-file="$tmp"
+          if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+            builtin cd -- "$cwd"
+          end
+          rm -f -- "$tmp"
+        '';
         fish_greeting = ''krabby random --no-title'';
         multicd = ''echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)'';
         fish_prompt = ''
@@ -36,6 +44,7 @@
 
           set -g fish_color_param ${osConfig.style.colors.base05}
           set -g fish_color_autosuggestion ${osConfig.style.colors.base0A}
+          set -g fish_color_command ${osConfig.style.colors.base0A}
 
           set -l last_status $status
           set -l arrow ' ⮞ '

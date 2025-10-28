@@ -25,6 +25,7 @@ in
     ../../config/fish
     ../../config/ranger
     ../../config/ghostty
+    ../../config/yazi
   ];
 
   # programs.ssh = {
