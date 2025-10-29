@@ -31,7 +31,6 @@
     jdk21
     jdk17
 
-    # unityhub
     dotnetCorePackages.dotnet_8.sdk
     icu
     
@@ -44,13 +43,10 @@
     discord-canary
     spotify
     obs-studio
-    # prismlauncher
-    (prismlauncher.override {
-        jdks = [ jdk17 ]; # or jdk21
-    })
+    prismlauncher
     # aseprite
     vscode
-    # code-cursor
+    lxqt.lxqt-policykit
     obsidian
 
     libreoffice-qt6-fresh
@@ -70,7 +66,6 @@
     imv
     udiskie
 
-    lxqt.lxqt-policykit
     unzip
     zip
     unrar

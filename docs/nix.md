@@ -31,7 +31,6 @@ sudo /run/current-system/bin/switch-to-configuration boot
 sudo nix-channel --list 
 
 ```
-
 ### NixPkgs Overlay
 ```nix
 nixpkgs.overlays = [
@@ -50,9 +49,14 @@ nixpkgs.overlays = [
   })
 ];
 ```
-
+### NixPkgs Override
+You can add a package with an override like this
+```nix
+(prismlauncher.override {
+    jdks = [ jdk17 ]; # or jdk21
+})
+```
 ### Installing flakes
-
 What you have to do is adding the flake in the inputs and add the entry in the modules or where it needs to be used
 ```nix
 {
