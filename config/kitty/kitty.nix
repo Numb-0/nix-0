@@ -12,9 +12,9 @@
       italic_font = "auto";
       bold_italic_font = "auto";
     };
-    keybindings = {
-      "ctrl+c" = "copy_to_clipboard";
-      "ctrl+v" = "paste_from_clipboard";
-    };
+    # keybindings = {
+      # "ctrl+c" = "copy_to_clipboard";
+      # "ctrl+v" = "paste_from_clipboard";
+    # };
   };
 }

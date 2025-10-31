@@ -21,6 +21,7 @@
     nixfmt-rfc-style
     nil
 
+    nautilus
     neovim
     fzf
     fd
@@ -46,7 +47,7 @@
     prismlauncher
     # aseprite
     vscode
-    lxqt.lxqt-policykit
+    # lxqt.lxqt-policykit
     obsidian
 
     libreoffice-qt6-fresh
@@ -84,7 +85,7 @@
   fonts = {
     packages = with pkgs; [
       noto-fonts
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       jetbrains-mono
       roboto
       material-symbols

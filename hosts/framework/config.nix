@@ -106,13 +106,13 @@ in
 
   programs = {
     fish.enable = true;
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-      ]; 
-    };
+    # thunar = {
+    #   enable = true;
+    #   plugins = with pkgs.xfce; [
+    #     thunar-archive-plugin
+    #     thunar-volman
+    #   ]; 
+    # };
     ssh.startAgent = true;
     adb.enable = true;
     firefox.enable = true;

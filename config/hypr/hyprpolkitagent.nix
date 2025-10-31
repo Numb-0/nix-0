@@ -1,5 +1,5 @@
 {
   services = {
-    hyprpolkitagent.enable = false;
+    hyprpolkitagent.enable = true;
   };
 }

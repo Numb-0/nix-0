@@ -64,7 +64,7 @@ in
 
       exec-once = hyprlock --immediate || hyprctl dispatch exit
       # exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-      exec-once = lxqt-policykit-agent
+      # exec-once = lxqt-policykit-agent
       exec-once = quickshell
       exec-once = udiskie
       
