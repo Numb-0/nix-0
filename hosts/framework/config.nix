@@ -21,7 +21,7 @@ in
     # Hardware Tweaks for amd and such
     nixos-hardware.nixosModules.framework-13-7040-amd
     ./hardware.nix
-    ./stylix.nix
+    ../default/stylix.nix
     ../../modules/core
     ../../modules/style.nix
   ];
@@ -66,7 +66,7 @@ in
     };
     bluetooth = {
       enable = true;
-      powerOnBoot = true;
+      powerOnBoot = false;
     };
   };
 
