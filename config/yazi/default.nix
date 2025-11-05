@@ -7,6 +7,15 @@
     enable = true;
     # enableFishShellIntegration = true;
     settings = {
+      opener = {
+        edit = [
+          {
+            # run ="nvim '$@'";
+            run = "nvim \"$@\"";
+            block = true;
+          }
+        ];
+      };
       mng = {
         ratio = [
           1
