@@ -6,4 +6,20 @@ There you can check if you are using ssh or https
 
 ### Git stash
 This restore the last stashed commit
-`git stash pop stash@\{0\}`
+`git stash pop`
+Or the n most recent stashed commit
+`git stash pop stash@{n}`
+
+### Git prune
+Remove local list of remote branches that are not in the remote
+`git remote prune origin`
+
+### Git branch
+List all local branches
+`git branch -vv`
+
+Delete local branches that are not in the remote (--prune prunes the list of local remotes)
+```
+git fetch --prune
+git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d
+```
