@@ -27,7 +27,7 @@ in
           "dialout"
         ];
         shell = pkgs.fish;
-        ignoreShellProgramCheck = true;
+        # ignoreShellProgramCheck = true;
       };
     };
   };

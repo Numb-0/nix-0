@@ -40,7 +40,6 @@
     dbeaver-bin
     thunderbird
     chromium
-    # vesktop
     discord-canary
     spotify
     obs-studio

@@ -5,12 +5,10 @@
 {
   programs.yazi = {
     enable = true;
-    # enableFishShellIntegration = true;
     settings = {
       opener = {
         edit = [
           {
-            # run ="nvim '$@'";
             run = "nvim \"$@\"";
             block = true;
           }
