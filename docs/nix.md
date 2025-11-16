@@ -99,7 +99,6 @@ nix flake init -t github:Numb-0/nix-0#pythonVenv
 1. Specify a new input nixpkgs with the correct version pkg revision
 2. Add the input in the specialArgs (maybe it can be done differently)
 3. Add the pkg specifying where to get it from
-
 ```nix
 inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -126,4 +125,14 @@ specialArgs = {
         pkgs-dbeaver.dbeaver-bin
     ]
 }
+```
+
+### Pinning a version using pkgs tag 
+1. Specify tag version in the pkg url
+2. Also you need to pin the nixpkgs version so that the pinned pkg use the correct dependencies
+```nix
+quickshell = {
+    url = "git+https://git.outfoxxed.me/outfoxxed/quickshell?ref=refs/tags/v0.2.1";
+    inputs.nixpkgs.follows = "nixpkgs";
+};
 ```

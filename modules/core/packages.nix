@@ -48,7 +48,8 @@
     vscode
     # lxqt.lxqt-policykit
     obsidian
-
+    
+    gimp3
     libreoffice-qt6-fresh
     hunspell
     hunspellDicts.it_IT
