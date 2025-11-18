@@ -2,10 +2,10 @@
 
 
 # nix-0
-A simple ***❄ NixOs configuration ❄*** using [**Hyrpland**](https://github.com/hyprwm/Hyprland), [**Quickshell**](https://quickshell.org) and [**Stylix**](https://github.com/danth/stylix).
+A minimal ***❄ NixOs configuration ❄*** using [**Hyrpland**](https://github.com/hyprwm/Hyprland) and [**Quickshell**](https://quickshell.org), with application styled by [**Stylix**](https://github.com/danth/stylix).
 
-<div align="center"><img src="./docs/assets/screenshotQs1.png"></div>
-<div align="center"><img src="./docs/assets/screenshotQs2.png"></div>
+<div align="center"><img src="./docs/assets/screenshotQs1.png" ></div>
+<div align="center"><img src="https://raw.githubusercontent.com/Numb-0/frame-shell/assets/qs_1.png"></div>
 
 # Installation
 1. **Clone the repository** in the home directory or where you want:
@@ -39,7 +39,7 @@ This file contains variables that are used to set options across different parts
 
 > [!WARNING]
 > **Not all settings are controlled by variables!**  
-> Most options are manually defined in the **[config.nix](hosts/framework/config.nix)** file, so make sure to check there as well. 🛠️
+> Most options are defined in the **[config.nix](hosts/framework/config.nix)** file, so make sure to check there as well. 🛠️
 
 # Keybinds
 
