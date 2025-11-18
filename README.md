@@ -4,8 +4,7 @@
 # nix-0
 A minimal ***❄ NixOs configuration ❄*** using [**Hyrpland**](https://github.com/hyprwm/Hyprland) and [**Quickshell**](https://quickshell.org), with application styled by [**Stylix**](https://github.com/danth/stylix).
 
-<div align="center"><img src="./docs/assets/screenshotQs1.png" ></div>
-<div align="center"><img src="https://raw.githubusercontent.com/Numb-0/frame-shell/assets/qs_1.png"></div>
+<div align="center"><img src="https://raw.githubusercontent.com/Numb-0/frame-shell/main/assets/qs_1.png"></div>
 
 # Installation
 1. **Clone the repository** in the home directory or where you want:
