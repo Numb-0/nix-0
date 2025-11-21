@@ -11,7 +11,7 @@ return {
     })
 
     local keymap = vim.keymap
-    keymap.set("n", "<leader>wr", "<cmd>AutoSessionRestore<CR>", { desc = "Restore Session" })
-    keymap.set("n", "<leader>ws", "<cmd>AutoSessionSave<CR>", { desc = "Save Session" })
+    keymap.set("n", "<leader>wr", "<cmd>AutoSession restore<CR>", { desc = "Restore Session" })
+    keymap.set("n", "<leader>ws", "<cmd>AutoSession save<CR>", { desc = "Save Session" })
   end,
 }

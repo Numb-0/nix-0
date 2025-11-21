@@ -1,0 +1,16 @@
+{
+  // A list of global variables that the language server should recognize.
+  // Including "vim" tells lua_ls that "vim" is a valid global object.
+  "globals": [
+    "vim" 
+  ],
+  "workspace": {
+    // Tells the language server to use the Neovim runtime files for standard library definitions.
+    // This allows it to understand what functions like vim.api.nvim_set_hl() and vim.diagnostic.config() exist.
+    "library": [
+      "${3rd}/luv/library",
+      "${3rd}/luassert/library",
+      "${VIMRUNTIME}/lua" // Essential for recognizing 'vim' globals
+    ]
+  }
+}
