@@ -58,7 +58,10 @@ in
       env = QT_QPA_PLATFORMTHEME,qt6ct
       env = QT_QPA_PLATFORM, wayland
       env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
-      env = QT_AUTO_SCREEN_SCALE_FACTOR, 1
+      # env = QT_AUTO_SCREEN_SCALE_FACTOR, 1
+      # env = QT_SCALE_FACTOR, 1.5
+      # env = QT_ENABLE_HIGHDPI_SCALING, 1
+      # env = QT_SCALE_FACTOR_ROUNDING_POLICY, PassThrough
       env = SDL_VIDEODRIVER, wayland,x11
       env = MOZ_ENABLE_WAYLAND, 1
 

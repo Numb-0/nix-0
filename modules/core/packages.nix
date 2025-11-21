@@ -47,7 +47,7 @@
     # aseprite
     vscode
     # lxqt.lxqt-policykit
-    obsidian
+    # obsidian
     
     gimp3
     libreoffice-qt6-fresh
@@ -92,12 +92,20 @@
       nerd-fonts.jetbrains-mono
     ];
     fontconfig = {
-      useEmbeddedBitmaps = true;
+      # useEmbeddedBitmaps = true;
       defaultFonts = {
         serif = [ "Noto Serif" ];
         sansSerif = [ "Roboto" ];
         monospace = [ "JetBrains Mono" ];
         emoji = [ "Noto Color Emoji" ];
+      };
+      hinting = {
+        enable = true;
+        style = "full";
+      };
+      antialias = true;
+      subpixel = {
+        rgba = "rgb";
       };
     };
   };
