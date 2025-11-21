@@ -23,6 +23,7 @@
   rm -rf "$NVIM_DIR"/*
 
   echo "Copying new config..."
+  cp -r ${self}/config/nvim/.[!.]* "$NVIM_DIR" 2>/dev/null || true # Copies hidden files (e.g., .config, but not . or ..)
   cp -r ${self}/config/nvim/* "$NVIM_DIR"
 
   echo "Nvim setup complete!"
