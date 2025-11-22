@@ -7,16 +7,6 @@ return {
     { "folke/neodev.nvim", opts = {} },
   },
   config = function()
-    -- import lspconfig plugin
-    -- vim.lsp.config(
-
-    -- .phpactor.setup({
-      -- root_dir = function(fname)
-        -- return require('lspconfig').util.root_pattern('composer.json', '.git')(fname) or vim.loop.cwd()
-      -- end
-    -- })
-
-
     -- Create Commands
     local keymap = vim.keymap
     vim.api.nvim_create_autocmd("LspAttach", {
