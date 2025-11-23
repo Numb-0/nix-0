@@ -97,7 +97,8 @@ in
 
   qt = {
     enable = true;
-    # platformTheme.name = "qtct";
+    platformTheme.name = "qtct";
+    style.name = "adwaita-dark";
   };
 
   # Scripts
