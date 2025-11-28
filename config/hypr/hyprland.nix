@@ -144,7 +144,8 @@ in
         animation = fadeLayersIn, 1, 4, circ
         animation = fadeLayersOut, 1, 10, circ
       }
-
+      
+      decoration {
         # rounding = 0
         rounding = 8
         active_opacity = 0.95
