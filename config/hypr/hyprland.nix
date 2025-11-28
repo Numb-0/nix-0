@@ -145,7 +145,6 @@ in
         animation = fadeLayersOut, 1, 10, circ
       }
 
-      decoration {
         # rounding = 0
         rounding = 8
         active_opacity = 0.95
@@ -180,7 +179,7 @@ in
       
       # Brightness
       bind = , XF86MonBrightnessUp, exec, brightnessctl set +10% 
-      bind = , XF86MonBrightnessDown, exec, brightnessctl set -10%
+      bind = , XF86MonBrightnessDown, exec, brightnessctl set 10%-
       
       # Audio Player
       bind = , XF86AudioPlay, exec, playerctl play-pause
