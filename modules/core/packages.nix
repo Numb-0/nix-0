@@ -36,6 +36,7 @@
     icu
     
     vlc
+    lutris
     gimp
     dbeaver-bin
     thunderbird
@@ -74,6 +75,7 @@
     ripgrep
     brightnessctl
     libnotify
+    playerctl
 
     hyprpicker
     hyprshot
@@ -85,6 +87,8 @@
   fonts = {
     packages = with pkgs; [
       noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
       noto-fonts-color-emoji
       jetbrains-mono
       roboto
@@ -94,9 +98,9 @@
     fontconfig = {
       # useEmbeddedBitmaps = true;
       defaultFonts = {
-        serif = [ "Noto Serif" ];
-        sansSerif = [ "Roboto" ];
-        monospace = [ "JetBrains Mono" ];
+        serif = [ "Noto Serif" "Noto Serif CFK JP" ];
+        sansSerif = [ "Roboto" "Noto Sans CJK JP" ];
+        monospace = [ "JetBrains Mono" "Noto Sans Mono CJK JP" ];
         emoji = [ "Noto Color Emoji" ];
       };
       hinting = {

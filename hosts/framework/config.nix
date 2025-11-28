@@ -90,6 +90,12 @@ in
   time.timeZone = timeZone;
 
   i18n = {
+    # inputMethod = {
+    #   enable = true;
+    #   fcitx5 = {
+    #     addons = [ pkgs.fcitx5-mozc ];
+    #   };
+    # };
     defaultLocale = defaultLocale;
     extraLocaleSettings = {
       LC_ADDRESS = extraLocale;
