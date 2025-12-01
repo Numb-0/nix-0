@@ -8,9 +8,9 @@
   ...
 }:
 {
-  # This file contains all the nixos modules configutations of the modules not included using the flake {ags, stylix, ...}
+  # This file contains all the nixos modules configurations of the modules not included using the flake {stylix, ...}
   imports = [
-    # Hardware Tweaks for amd and such
+    # Hardware Tweaks for amd
     nixos-hardware.nixosModules.framework-13-7040-amd
     ./hardware.nix
     ../default/config.nix
@@ -76,13 +76,6 @@
 
   programs = {
     fish.enable = true;
-    # thunar = {
-    #   enable = true;
-    #   plugins = with pkgs.xfce; [
-    #     thunar-archive-plugin
-    #     thunar-volman
-    #   ]; 
-    # };
     ssh.startAgent = true;
     adb.enable = true;
     firefox.enable = true;
@@ -93,7 +86,6 @@
       enable = true;
       libraries = with pkgs; [
         # Add any missing dynamic libraries for unpackaged programs
-
         # Needed for android godot build
         aapt
       ];

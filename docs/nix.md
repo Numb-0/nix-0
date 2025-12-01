@@ -1,37 +1,53 @@
 ## Nix & Nix Flakes Cheatsheet
+
 ### Checking dependencies of a build
+
 ```nix why-depends /run/current-system /nix/store/path_to_source/pkgs/development/libraries/libxml2```
+
 ### Removing unused pkgs
-```
+
+```bash
 nix-collect-garbage 
 ```
+
 ### Searching for libs in nix-store
-```
+
+```bash
 find /nix/store -name "libSDL2-2.0.so*" 
 ```
+
 ### Cleaning generations
-```
+
+```bash
 sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
 nix-collect-garbage  --delete-old
 nix-collect-garbage  --delete-generations 1 2 3
 sudo nix-collect-garbage -d
 ```
+
 ### Cleaning boot
-```
+
+```bash
 sudo /run/current-system/bin/switch-to-configuration boot
 ```
+
 ### Updating system
+
+```bash
+sudo nix-channel --update # This is needed if not using flakes
+nix flake update # Probs the same as under here?
+sudo nixos-rebuild switch --flake .#nixos --update 
 ```
-1. sudo nix-channel --update
-2. nix flake update (probs the same as under here?)
-3. sudo nixos-rebuild switch --flake .#nixos --update
-```
+
 ### Channels
-```
+
+```bash
 sudo nix-channel --list 
 
 ```
+
 ### NixPkgs Overlay
+
 ```nix
 nixpkgs.overlays = [
   (final: prev: {
@@ -49,15 +65,21 @@ nixpkgs.overlays = [
   })
 ];
 ```
+
 ### NixPkgs Override
+
 You can add a package with an override like this
+
 ```nix
 (prismlauncher.override {
     jdks = [ jdk17 ]; # or jdk21
 })
 ```
+
 ### Installing flakes
+
 What you have to do is adding the flake in the inputs and add the entry in the modules or where it needs to be used
+
 ```nix
 {
   inputs = {
@@ -78,27 +100,35 @@ What you have to do is adding the flake in the inputs and add the entry in the m
   };
 }
 ```
+
 if you have an ssh flake input use `nixos-rebuild switch --flake .#nixos --show-trace --use-remote-sudo`
 
 ### Show flakes in repo or local directory
+
 ```bash
 nix flake show github:Numb-0/nix-0    
 ```
+
 ### Create a directory using the given template
+
 ```bash
 nix flake new -t github:Numb-0/nix-0#pythonVenv webgirs
 ```
 
 ### Initialize the Current Directory with Your Template or creates a new flake.nix if used without -t
+
 ```bash
 nix flake init -t github:Numb-0/nix-0#pythonVenv
 ```
-### After the flake is copied use `nix develop` to access the development shell 
+
+### After the flake is copied use `nix develop` to access the development shell
 
 ### Pinning a pkg version to using nixpkgs flake revision
+
 1. Specify a new input nixpkgs with the correct version pkg revision
 2. Add the input in the specialArgs (maybe it can be done differently)
 3. Add the pkg specifying where to get it from
+
 ```nix
 inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -127,9 +157,11 @@ specialArgs = {
 }
 ```
 
-### Pinning a version using pkgs tag 
+### Pinning a version using pkgs tag
+
 1. Specify tag version in the pkg url
 2. Also you need to pin the nixpkgs version so that the pinned pkg use the correct dependencies
+
 ```nix
 quickshell = {
     url = "git+https://git.outfoxxed.me/outfoxxed/quickshell?ref=refs/tags/v0.2.1";
