@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   host,
   username,
@@ -8,19 +7,13 @@
   nixos-hardware,
   ...
 }:
-let
-  inherit (import ../../modules/core/variables.nix)
-    keyboardLayout
-    timeZone
-    defaultLocale
-    extraLocale;
-in
 {
   # This file contains all the nixos modules configutations of the modules not included using the flake {ags, stylix, ...}
   imports = [
     # Hardware Tweaks for amd and such
     nixos-hardware.nixosModules.framework-13-7040-amd
     ./hardware.nix
+    ../default/config.nix
     ../../modules/core
     ../../modules/rice
   ];
@@ -29,11 +22,6 @@ in
   style = {
     enable = true;
     scheme = "gruvbox";
-  };
-
-  nixpkgs.config = {
-    allowUnfree = true;
-    nvidia.acceptLicense = true;
   };
 
   boot = {
@@ -83,29 +71,6 @@ in
         { from = 4000; to = 4007; }
         { from = 8000; to = 8010; }
       ];
-    };
-  };
-
-  time.timeZone = timeZone;
-
-  i18n = {
-    # inputMethod = {
-    #   enable = true;
-    #   fcitx5 = {
-    #     addons = [ pkgs.fcitx5-mozc ];
-    #   };
-    # };
-    defaultLocale = defaultLocale;
-    extraLocaleSettings = {
-      LC_ADDRESS = extraLocale;
-      LC_IDENTIFICATION = extraLocale;
-      LC_MEASUREMENT = extraLocale;
-      LC_MONETARY = extraLocale;
-      LC_NAME = extraLocale;
-      LC_NUMERIC = extraLocale;
-      LC_PAPER = extraLocale;
-      LC_TELEPHONE = extraLocale;
-      LC_TIME = extraLocale;
     };
   };
 
@@ -179,8 +144,6 @@ in
     ];
   };
 
-  console.keyMap = keyboardLayout;
-
   security = {
     pki.certificates = 
     [''
@@ -226,10 +189,10 @@ in
     };
     postgresql = {
       enable = true;
-      ensureDatabases = [ "mydatabase" "webgirs"];
+      ensureDatabases = [ "mydatabase" "webgis"];
       ensureUsers =  [
         {
-          name = "webgirs";
+          name = "webgis";
           ensureDBOwnership = true;
         }
       ];
@@ -240,7 +203,7 @@ in
         host    all       all       ::1/128      md5
       '';
       initialScript = pkgs.writeText "postgres-init" ''
-        ALTER ROLE webgirs WITH PASSWORD 'webgir';
+        ALTER ROLE webgis WITH PASSWORD 'webgis';
       '';
       extensions = ps : with ps; [ postgis ];
     };
@@ -268,24 +231,6 @@ in
     udisks2 = {
       enable = true;
       mountOnMedia = true;
-    };
-  };
-
-  nix = {
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-    settings = {
-      auto-optimise-store = true;
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
     };
   };
 
