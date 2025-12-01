@@ -21,9 +21,8 @@ in
     # Hardware Tweaks for amd and such
     nixos-hardware.nixosModules.framework-13-7040-amd
     ./hardware.nix
-    ../default/stylix.nix
     ../../modules/core
-    ../../modules/style.nix
+    ../../modules/rice
   ];
 
   # Custom Modules

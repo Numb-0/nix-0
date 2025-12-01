@@ -44,7 +44,7 @@ let
     };
   };
   wallpaperDir = builtins.path {
-    path = ../config/wallpapers;
+    path = ../../config/wallpapers;
     name = "wallpapers";
   };
   wallpaperImgs = builtins.readDir wallpaperDir;
