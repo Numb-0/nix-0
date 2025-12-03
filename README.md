@@ -8,26 +8,27 @@ A minimal ***❄ NixOs configuration ❄*** using [**Hyrpland**](https://github.
 
 ## Installation
 
-1.**Clone the repository** in the home directory or where you want:
+### 1. Clone the repository
+
+Clone in the home directory or where you want:
 
 ```bash
 git clone https://github.com/Numb-0/nix-0.git ~/nix-0
 ```
 
-2.**Navigate to directory**
-
+### 2. Navigate to directory
 
 ```bash
 cd ~/nix-0
 ```
 
-3.**Generate Hardware Config and replace it**
+### 3. Generate Hardware Config and replace it
 
 ```bash
 nixos-generate-config --show-hardware-config > hosts/<hostname>/hardware.nix
 ```
 
-4.**Apply flake configuration**
+### 4. Apply flake configuration
 
 ```bash
 nixos-rebuild switch --flake .#<hostname> (if using the ssh flake add --remote-sudo )
@@ -47,7 +48,9 @@ This file contains variables that are used to set options across different parts
 
 > [!WARNING]
 > **Not all settings are controlled by variables!**  
-> Most options are defined in the **[config.nix](hosts/framework/config.nix)** file, so make sure to check there as well. 🛠️
+> Most options are defined in the **[default config.nix](hosts/default/config.nix)** file, so make sure to check there as well. 🛠️
+> Since NixOs configurations specify also Hardware setting its better to create a new Host and use it as your selected Host in the main **[flake.nix](flake.nix)**
+> To create your personal Hardware nix file refer to [step 3](#3-generate-hardware-config-and-replace-it)
 
 ## Keybinds
 
@@ -59,7 +62,9 @@ This file contains variables that are used to set options across different parts
 | <kbd>Shift</kbd> + <kbd>Enter</kbd> | Toggle window fullscreen|
 | <kbd>Super</kbd> + <kbd>A</kbd> | Toggle Applauncher|
 | <kbd>Super</kbd> + <kbd>D</kbd> | Toggle Dashboard |
+| <kbd>Super</kbd> + <kbd>X</kbd> | Toggle PowerActions |
+
 <!-- | <kbd>Super</kbd> + <kbd>P</kbd> | Toggle AudioPlayer | -->
 <!-- | <kbd>Super</kbd> + <kbd>C</kbd> | Remove Last Notification| -->
-| More to add |
+More to add...
 
