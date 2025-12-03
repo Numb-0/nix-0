@@ -112,7 +112,7 @@ nix flake show github:Numb-0/nix-0
 ### Create a directory using the given template
 
 ```bash
-nix flake new -t github:Numb-0/nix-0#pythonVenv webgirs
+nix flake new -t github:Numb-0/nix-0#pythonVenv directory_name
 ```
 
 ### Initialize the Current Directory with Your Template or creates a new flake.nix if used without -t
