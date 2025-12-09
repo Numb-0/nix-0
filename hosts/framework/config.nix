@@ -86,7 +86,7 @@
       enable = true;
       libraries = with pkgs; [
         # Add any missing dynamic libraries for unpackaged programs
-        # Needed for android godot build
+        # Needed for android godot build\
         aapt
       ];
     };

@@ -27,3 +27,4 @@ you can also save your authentication key generate by `ssh-keygen` to remember y
 ```
 ssh-copy-id username@192.168.1.45
 ```
+fn + esc on ansi us 60% does backtick

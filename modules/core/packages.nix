@@ -36,6 +36,7 @@
     icu
     
     vlc
+    pavucontrol
     lutris
     gimp
     dbeaver-bin
@@ -47,6 +48,7 @@
     prismlauncher
     # aseprite
     vscode
+    orca-slicer
     # lxqt.lxqt-policykit
     # obsidian
     
