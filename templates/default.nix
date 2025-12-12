@@ -5,5 +5,5 @@
   };
   rust = {
     path = ./rust;
-  }
+  };
 }
