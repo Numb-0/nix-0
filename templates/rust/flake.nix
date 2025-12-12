@@ -1,6 +1,4 @@
 {
-  description = "A rust development flake";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
   };

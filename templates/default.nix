@@ -5,5 +5,6 @@
   };
   rust = {
     path = ./rust;
+    description = "Rust development flake";
   };
 }
