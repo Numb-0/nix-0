@@ -5,6 +5,6 @@
   };
   rust = {
     path = ./rust;
-    # description = "Rust development flake";
+    description = "Rust development flake";
   };
 }
