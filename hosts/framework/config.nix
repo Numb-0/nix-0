@@ -77,7 +77,7 @@
   programs = {
     fish.enable = true;
     ssh.startAgent = true;
-    adb.enable = true;
+    # adb.enable = true;
     firefox.enable = true;
     dconf.enable = true;
     fuse.userAllowOther = true;
@@ -181,11 +181,13 @@
     };
     postgresql = {
       enable = true;
-      ensureDatabases = [ "mydatabase" "webgis"];
+      ensureDatabases = [ "mydatabase"];
+      enableTCPIP = true;
       ensureUsers =  [
         {
-          name = "webgis";
-          ensureDBOwnership = true;
+          name = "cosix";
+          # this is useful if using a custom account per application
+          # ensureDBOwnership = true;
         }
       ];
       authentication = pkgs.lib.mkOverride 10 ''
@@ -195,7 +197,7 @@
         host    all       all       ::1/128      md5
       '';
       initialScript = pkgs.writeText "postgres-init" ''
-        ALTER ROLE webgis WITH PASSWORD 'webgis';
+        ALTER ROLE cosix WITH PASSWORD 'cosix';
       '';
       extensions = ps : with ps; [ postgis ];
     };

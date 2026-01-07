@@ -84,6 +84,8 @@
     wl-clipboard
 
     jq
+
+    android-tools
   ];
 
   fonts = {

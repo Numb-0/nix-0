@@ -12,7 +12,7 @@
 
         # Lauches Hyprland on startup
         if test (tty) = "/dev/tty1"
-            exec Hyprland
+            exec start-hyprland
         end
 
         abbr --add dotdot --regex '^\.\.+$' --function multicd

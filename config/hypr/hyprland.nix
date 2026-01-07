@@ -16,7 +16,7 @@ in
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    xwayland.enable = true;
+    # xwayland.enable = true;
     systemd.enable = true;
     systemd.variables = [ "--all" ];
     extraConfig = ''
@@ -203,6 +203,7 @@ in
       bind = $mainMod, A, global, quickshell:applauncher
       bind = $mainMod, X, global, quickshell:poweractions
       bind = $mainMod, D, global, quickshell:dashboard
+      bind = $mainMod, C, global, quickshell:mixer
       
       # Move focus with mainMod + arrow keys
       bind = $mainMod, left, movefocus, l
