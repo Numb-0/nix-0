@@ -86,6 +86,8 @@
     jq
 
     android-tools
+
+    # xwayland
   ];
 
   fonts = {

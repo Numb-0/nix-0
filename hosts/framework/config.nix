@@ -75,6 +75,7 @@
   };
 
   programs = {
+    # xwayland.enable = true;
     fish.enable = true;
     ssh.startAgent = true;
     # adb.enable = true;
@@ -226,6 +227,7 @@
       enable = true;
       mountOnMedia = true;
     };
+    # xserver.enable = true;
   };
 
   system.stateVersion = "24.05";

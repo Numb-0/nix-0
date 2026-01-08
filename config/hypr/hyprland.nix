@@ -16,9 +16,9 @@ in
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    # xwayland.enable = true;
     systemd.enable = true;
     systemd.variables = [ "--all" ];
+    xwayland.enable = true;
     extraConfig = ''
       # Installed sdks path
       env = ANDROID_HOME,/home/${username}/Android
@@ -77,6 +77,7 @@ in
       # monitor = DP-9, preferred, 4480x0, 1
 
       xwayland {
+        enabled = true
         force_zero_scaling = true
       }
 
