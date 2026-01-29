@@ -113,9 +113,9 @@ in
       # Do not idle with an active fullscreen window
       windowrulev2 = idleinhibit fullscreen, class:.*
 
-      cursor {
-        no_hardware_cursors = true
-      }
+      # cursor {
+        # no_hardware_cursors = false
+      # }
 
       # gestures {
         # workspace_swipe = true
@@ -126,6 +126,7 @@ in
         initial_workspace_tracking = 0
         mouse_move_enables_dpms = true
         key_press_enables_dpms = false
+        disable_splash_rendering = 1
       }
 
       animations {

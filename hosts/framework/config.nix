@@ -75,7 +75,6 @@
   };
 
   programs = {
-    # xwayland.enable = true;
     fish.enable = true;
     ssh.startAgent = true;
     # adb.enable = true;

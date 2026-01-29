@@ -4,12 +4,6 @@
 
 ```nix why-depends /run/current-system /nix/store/path_to_source/pkgs/development/libraries/libxml2```
 
-### Removing unused pkgs
-
-```bash
-nix-collect-garbage 
-```
-
 ### Searching for libs in nix-store
 
 ```bash

@@ -8,6 +8,7 @@
       enable = true;
       settings = {
         # preload = osConfig.style.wallpaper.paths;
+        splash = false;
         wallpaper = [
           {
             monitor = " ";

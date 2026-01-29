@@ -18,7 +18,7 @@
     nodePackages.npm
     yarn
 
-    nixfmt-rfc-style
+    nixfmt
     nil
 
     nautilus
@@ -86,8 +86,6 @@
     jq
 
     android-tools
-
-    # xwayland
   ];
 
   fonts = {
