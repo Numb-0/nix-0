@@ -111,7 +111,7 @@ in
       # windowrulev2 = minsize 1 1, title:^(steam)$,class:^(steam)$
       
       # Do not idle with an active fullscreen window
-      windowrulev2 = idleinhibit fullscreen, class:.*
+      windowrule = match:class .*, idle_inhibit fullscreen
 
       # cursor {
         # no_hardware_cursors = false

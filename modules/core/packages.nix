@@ -46,8 +46,9 @@
     spotify
     obs-studio
     prismlauncher
-    # aseprite
+    aseprite
     vscode
+    vscodium
     orca-slicer
     # lxqt.lxqt-policykit
     # obsidian
