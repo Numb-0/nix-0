@@ -1,25 +1,69 @@
-This first commnand checks for the local repo git settings
-There you can check if you are using ssh or https
-1. git config -l  
-2. git config remote.origin.url git@github.com:the_repository_username/your_project.git
-3. Remember to create and add key to github!!!
+# Git Commands
 
-### Git stash
-This restore the last stashed commit
-`git stash pop`
-Or the n most recent stashed commit
-`git stash pop stash@{n}`
+## Configuration
 
-### Git prune
-Remove local list of remote branches that are not in the remote
-`git remote prune origin`
+Check local repo git settings (SSH vs HTTPS):
 
-### Git branch
-List all local branches
-`git branch -vv`
-
-Delete local branches that are not in the remote (--prune prunes the list of local remotes)
+```bash
+git config -l
 ```
+
+Change remote URL to SSH:
+
+```bash
+git config remote.origin.url git@github.com:the_repository_username/your_project.git
+```
+
+**Note:** Remember to create and add SSH key to GitHub!
+
+## Git Stash
+
+Restore the last stashed commit:
+
+```bash
+git stash pop
+```
+
+Restore the n-th most recent stashed commit:
+
+```bash
+git stash pop stash@{n}
+```
+
+## Git Prune
+
+Remove local list of remote branches that are not in the remote:
+
+```bash
+git remote prune origin
+```
+
+## Git Branch
+
+List all local branches:
+
+```bash
+git branch -vv
+```
+
+Delete local branches that are not in the remote (--prune prunes the list of local remotes):
+
+```bash
 git fetch --prune
 git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d
+```
+
+## Amending Commits
+
+### Change commit message (not yet pushed)
+
+```bash
+git commit --amend -m "Your new and improved commit message"
+```
+
+### Change commit message (already pushed)
+
+```bash
+git commit --amend -m "Your new commit message"
+git push origin main --force-with-lease
 ```

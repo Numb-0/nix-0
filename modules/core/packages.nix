@@ -42,6 +42,7 @@
     dbeaver-bin
     thunderbird
     chromium
+    google-chrome
     discord-canary
     spotify
     obs-studio

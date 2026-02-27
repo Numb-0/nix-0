@@ -38,6 +38,18 @@
             stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
             {
+              # Temporary workaround for picosvg tests failing
+              nixpkgs.overlays = [
+                (final: prev: {
+                  pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+                    (python-final: python-prev: {
+                      picosvg = python-prev.picosvg.overridePythonAttrs (oldAttrs: {
+                        doCheck = false;
+                      });
+                    })
+                  ];
+                })
+              ];
               environment.systemPackages = [
                 quickshell.packages.${system}.default
               ];

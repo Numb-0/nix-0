@@ -1,78 +1,117 @@
-## Nix & Nix Flakes Cheatsheet
+# Nix & NixOS Cheatsheet
 
-### Checking dependencies of a build
+## System Management
 
-```nix why-depends /run/current-system /nix/store/path_to_source/pkgs/development/libraries/libxml2```
+### Updating System
 
-### Searching for libs in nix-store
+Update channels (if not using flakes):
 
 ```bash
-find /nix/store -name "libSDL2-2.0.so*" 
+sudo nix-channel --update
 ```
 
-### Cleaning generations
+Update flakes and rebuild:
+
+```bash
+nix flake update
+sudo nixos-rebuild switch --flake .#nixos --update
+```
+
+For SSH flake inputs:
+
+```bash
+nixos-rebuild switch --flake .#nixos --show-trace --use-remote-sudo
+```
+
+### Channels
+
+List available channels:
+
+```bash
+sudo nix-channel --list
+```
+
+### Cleaning Generations
+
+List system generations:
 
 ```bash
 sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
-nix-collect-garbage  --delete-old
-nix-collect-garbage  --delete-generations 1 2 3
+```
+
+Garbage collection:
+
+```bash
+nix-collect-garbage --delete-old
+nix-collect-garbage --delete-generations 1 2 3
 sudo nix-collect-garbage -d
 ```
 
-### Cleaning boot
+### Cleaning Boot
 
 ```bash
 sudo /run/current-system/bin/switch-to-configuration boot
 ```
 
-### Updating system
+## Package Management
+
+### Checking Dependencies
+
+Check why a system depends on a specific package:
 
 ```bash
-sudo nix-channel --update # This is needed if not using flakes
-nix flake update # Probs the same as under here?
-sudo nixos-rebuild switch --flake .#nixos --update 
+nix why-depends /run/current-system /nix/store/path_to_source/pkgs/development/libraries/libxml2
 ```
 
-### Channels
+### Searching for Libraries
+
+Search in nix-store:
 
 ```bash
-sudo nix-channel --list 
-
+find /nix/store -name "libSDL2-2.0.so*"
 ```
 
-### NixPkgs Overlay
+## Flakes
 
-```nix
-nixpkgs.overlays = [
-  (final: prev: {
-    lxqt = prev.lxqt.overrideScope (lfinal: lprev: {
-      libqtxdg = lprev.libqtxdg.overrideAttrs (oldAttrs: {
-        patches = (oldAttrs.patches or []) ++ [
-          (prev.fetchpatch {
-            name = "cmake-fix-build-with-Qt-6.10.patch";
-            url = "https://github.com/lxqt/libqtxdg/commit/b01a024921acdfd5b0e97d5fda2933c726826e99.patch";
-            hash = "sha256-njpn6pU9BHlfYfkw/jEwh8w3Wo1F8MlRU8iQB+Tz2zU=";
-          })
-        ];
-      });
-    });
-  })
-];
+### Basic Flake Commands
+
+Show flakes in repo or local directory:
+
+```bash
+nix flake show github:Numb-0/nix-0
 ```
 
-### NixPkgs Override
+Update flakes:
 
-You can add a package with an override like this
-
-```nix
-(prismlauncher.override {
-    jdks = [ jdk17 ]; # or jdk21
-})
+```bash
+nix flake update
 ```
 
-### Installing flakes
+### Flake Templates
 
-What you have to do is adding the flake in the inputs and add the entry in the modules or where it needs to be used
+Create a new directory using a template:
+
+```bash
+nix flake new -t github:Numb-0/nix-0#pythonVenv directory_name
+```
+
+Initialize current directory with a template (or create new flake.nix without `-t`):
+
+```bash
+nix flake init -t github:Numb-0/nix-0#pythonVenv
+```
+
+### Development Shells
+
+After initializing a flake, access the development shell:
+
+```bash
+nix develop
+```
+
+### Installing Flakes
+
+Add the flake to inputs and reference in modules:
 
 ```nix
 {
@@ -95,40 +134,55 @@ What you have to do is adding the flake in the inputs and add the entry in the m
 }
 ```
 
-if you have an ssh flake input use `nixos-rebuild switch --flake .#nixos --show-trace --use-remote-sudo`
+## Advanced Configuration
 
-### Show flakes in repo or local directory
+### NixPkgs Overlays
 
-```bash
-nix flake show github:Numb-0/nix-0    
+Apply patches or modifications to packages:
+
+```nix
+nixpkgs.overlays = [
+  (final: prev: {
+    lxqt = prev.lxqt.overrideScope (lfinal: lprev: {
+      libqtxdg = lprev.libqtxdg.overrideAttrs (oldAttrs: {
+        patches = (oldAttrs.patches or []) ++ [
+          (prev.fetchpatch {
+            name = "cmake-fix-build-with-Qt-6.10.patch";
+            url = "https://github.com/lxqt/libqtxdg/commit/b01a024921acdfd5b0e97d5fda2933c726826e99.patch";
+            hash = "sha256-njpn6pU9BHlfYfkw/jEwh8w3Wo1F8MlRU8iQB+Tz2zU=";
+          })
+        ];
+      });
+    });
+  })
+];
 ```
 
-### Create a directory using the given template
+### Package Overrides
 
-```bash
-nix flake new -t github:Numb-0/nix-0#pythonVenv directory_name
+Override package options:
+
+```nix
+(prismlauncher.override {
+    jdks = [ jdk17 ]; # or jdk21
+})
 ```
 
-### Initialize the Current Directory with Your Template or creates a new flake.nix if used without -t
+### Version Pinning
 
-```bash
-nix flake init -t github:Numb-0/nix-0#pythonVenv
-```
+#### Method 1: Using nixpkgs Flake Revision
 
-### After the flake is copied use `nix develop` to access the development shell
-
-### Pinning a pkg version to using nixpkgs flake revision
-
-1. Specify a new input nixpkgs with the correct version pkg revision
-2. Add the input in the specialArgs (maybe it can be done differently)
-3. Add the pkg specifying where to get it from
+1. Specify a new input nixpkgs with the correct version package revision
+2. Add the input in the specialArgs
+3. Add the package specifying where to get it from
 
 ```nix
 inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-dbeaver.url = "github:NixOS/nixpkgs/1cb1c02a6b1b7cf67e3d7731cbbf327a53da9679#";
 }
-# --- Code... ---
+
+# --- In specialArgs ---
 specialArgs = { 
     inherit self system inputs username host nixos-hardware nixpkgs-dbeaver;
     pkgs-dbeaver = import nixpkgs-dbeaver {
@@ -136,7 +190,8 @@ specialArgs = {
         config.allowUnFree = true;
     };
 };
-# --- Packages ---
+
+# --- In packages ---
 {
     pkgs,
     pkgs-dbeaver,
@@ -151,10 +206,10 @@ specialArgs = {
 }
 ```
 
-### Pinning a version using pkgs tag
+#### Method 2: Using Package Tags
 
-1. Specify tag version in the pkg url
-2. Also you need to pin the nixpkgs version so that the pinned pkg use the correct dependencies
+1. Specify tag version in the package URL
+2. Pin the nixpkgs version so that the pinned package uses the correct dependencies
 
 ```nix
 quickshell = {

@@ -1,30 +1,94 @@
-### Check how much Mem is ags or any program taking
-`ps aux | grep -i ags | awk '{sum+=$6} END {print sum/1024 " MB"}'`
+# System Utilities
 
-### Font Family check
-`fc-list : family | grep -i "<name>"`
-`fc-cache -f or r`
+## Process Management
+
+### Check Memory Usage
+
+Check how much memory a program is using (e.g., ags):
+
+```bash
+ps aux | grep -i ags | awk '{sum+=$6} END {print sum/1024 " MB"}'
+```
+
+## Font Management
+
+### Check Font Family
+
+List fonts by family name:
+
+```bash
+fc-list : family | grep -i "<name>"
+```
+
+Rebuild font cache:
+
+```bash
+fc-cache -f  # or -r
+```
+
+## Storage & Mounting
 
 ### Udiskie Mount and Umount
-after running `udiskie` in hyprland startup you can remove mounted usbs using `udiskie-umount /dev/sda1` (example) then unplug the device 
 
-### List folder and sizes 
+After running `udiskie` in Hyprland startup, you can safely unmount USB devices:
+
+```bash
+udiskie-umount /dev/sda1
+```
+
+Then unplug the device.
+
+### List Folder Sizes
+
+Display folder sizes sorted by size:
+
+```bash
 du -h --max-depth=1 | sort -h
+```
 
-### scp and remote ssh connection
-if the target server/computer has ssh server running you can connect
-```
+## SSH & Remote Access
+
+### SSH Connection
+
+Connect to a remote server via SSH:
+
+```bash
 ssh <hostname>@<ip_address>
-es: ssh username@192.168.1.45
+# Example:
+ssh username@192.168.1.45
 ```
-to get the ip you can run `hostname -I` or `ip a`
-if you want to copy a file via ssh
+
+Get your IP address:
+
+```bash
+hostname -I
+# or
+ip a
 ```
+
+### SCP (Secure Copy)
+
+Copy files via SSH:
+
+```bash
 scp <file_to_copy> <hostname>@<ip_address>:/<path_to_folder>
 ```
-you can use the `-r` recursive flag if you have more folders to copy
-you can also save your authentication key generate by `ssh-keygen` to remember your authentication
+
+Copy directories recursively:
+
+```bash
+scp -r <directory> <hostname>@<ip_address>:/<path_to_folder>
 ```
+
+### SSH Key Authentication
+
+Generate and save authentication key for passwordless login:
+
+```bash
+ssh-keygen
 ssh-copy-id username@192.168.1.45
 ```
-fn + esc on ansi us 60% does backtick
+
+## Keyboard Tips
+
+- **Backtick on 60% ANSI keyboard:** `Fn + Esc`
