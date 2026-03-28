@@ -4,7 +4,7 @@
   gitEmail = "cosimofalla@gmail.com";
 
   # Programs Configuration
-  browser = "chromium";
+  browser = "firefox";
   terminal = "kitty";
   keyboardLayout = "us";
   editor = "code";

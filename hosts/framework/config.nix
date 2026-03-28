@@ -181,12 +181,14 @@
     };
     postgresql = {
       enable = true;
-      ensureDatabases = [ "mydatabase"];
+      # This creates a database named if it is not already created
+      # ensureDatabases = [ "mydatabase"];
       enableTCPIP = true;
       ensureUsers =  [
         {
           name = "cosix";
-          # this is useful if using a custom account per application
+          # This is useful if using a custom account per application
+          # So you would to create an entry like --> { name = "mydatabase"; ensureDBOwnership = true; }
           # ensureDBOwnership = true;
         }
       ];
@@ -207,6 +209,12 @@
       enable = true;
       nssmdns4 = true;
       openFirewall = true;
+      nssmdns6 = true; 
+      publish = {
+        enable = true;
+        addresses = true;
+        workstation = true;
+      };
     };
     printing = {
       enable = true;

@@ -3,6 +3,7 @@
   pkgs,
   username,
   lib,
+  config,
   ...
 }:
 let
@@ -35,6 +36,11 @@ in
 
   programs.git = {
     enable = true;
+    signing = {
+      key = "~/.ssh/id_ed25519.pub";
+      signByDefault = true;
+      format = "ssh";
+    };
     settings = {
       user = {
         name = "${gitUsername}";
@@ -59,6 +65,7 @@ in
     userDirs = {
       enable = true;
       createDirectories = true;
+      setSessionVariables = true;
     };
     configFile = {
 
@@ -90,8 +97,11 @@ in
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
     };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
+    gtk4 = {
+      theme = config.gtk.theme; 
+      extraConfig = {
+        gtk-application-prefer-dark-theme = 1;
+      };
     };
   };
 

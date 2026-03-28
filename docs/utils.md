@@ -89,6 +89,14 @@ ssh-keygen
 ssh-copy-id username@192.168.1.45
 ```
 
+## Wifi
+
+Shows the connected wifi password and generates a qr
+
+```
+nmcli device wifi show-password
+```
+
 ## Keyboard Tips
 
 - **Backtick on 60% ANSI keyboard:** `Fn + Esc`
