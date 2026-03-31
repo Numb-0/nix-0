@@ -122,8 +122,6 @@
 
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
-    xdgOpenUsePortal = true;
     extraPortals = [
       pkgs.xdg-desktop-portal
       pkgs.xdg-desktop-portal-gtk
@@ -134,8 +132,15 @@
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-hyprland
     ];
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+      hyprland = {
+        default = [ "hyprland" "gtk" ];
+      };
+    };
   };
-
   security = {
     pki.certificates = 
     [''
@@ -234,7 +239,6 @@
       enable = true;
       mountOnMedia = true;
     };
-    # xserver.enable = true;
   };
 
   system.stateVersion = "24.05";

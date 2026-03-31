@@ -53,7 +53,10 @@
     orca-slicer
     # lxqt.lxqt-policykit
     # obsidian
-    
+    # LycheeSlicer
+    lycheeslicer
+    # xdg-utils
+
     gimp3
     libreoffice-qt6-fresh
     hunspell

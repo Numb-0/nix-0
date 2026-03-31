@@ -7,13 +7,14 @@ return {
     bufferline.setup({
       options = {
         mode = "tabs",
-        separator_style = "slant",
+        separator_style = "thin",
         offsets = {
           {
             filetype = "NvimTree",
             text = "Tree",
-            highlight = "Directory",
+            -- highlight = "Directory",
             text_align = "left",
+            separator = true
           },
         },
        },

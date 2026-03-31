@@ -19,6 +19,11 @@ in
       kitty.enable = false;
       # ghostty.enable = false;
       qt.enable = false;
+      neovim.transparentBackground = {
+        main = false;
+        signColumn = false;
+        numberLine = false;
+      };
     };
   };
 

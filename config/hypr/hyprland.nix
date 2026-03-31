@@ -112,6 +112,7 @@ in
       
       # Do not idle with an active fullscreen window
       windowrule = match:class .*, idle_inhibit fullscreen
+      windowrule = match:title ^.*nvim.*$, no_blur 1, opaque 1
 
       # cursor {
         # no_hardware_cursors = false
