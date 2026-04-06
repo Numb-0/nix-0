@@ -11,6 +11,7 @@ return {
       cat.setup({ flavour = "macchiato" })
       -- Here define the default colorscheme
       vim.cmd.colorscheme "gruvbox"
+      vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
     end
   }
 }

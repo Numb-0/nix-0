@@ -5,10 +5,11 @@ return {
         local nvimtree = require("nvim-tree")
 
         nvimtree.setup({
-          update_cwd = true,
+          sync_root_with_cwd = true,
           view = {
             width = 35,
-            number = true,
+            -- number = true,
+            -- padding = 0
           },
         })
 

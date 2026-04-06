@@ -14,6 +14,8 @@ return {
     keymap.set("n", "<leader>fg", builtin.live_grep, {desc = "Telescope grep working directory"})
     keymap.set("n", "<leader>fb", builtin.current_buffer_fuzzy_find, {desc = "Telescope grep current buffer"})
     keymap.set("n", "<leader>fh", builtin.help_tags, {desc = "Telescope help files"})
+    keymap.set("n", "<leader>fb", builtin.buffers, {desc = "Telescope buffers"})
+
 
     telescope.setup({
       pickers = {
