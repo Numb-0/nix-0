@@ -93,7 +93,7 @@ ssh-copy-id username@192.168.1.45
 
 Shows the connected wifi password and generates a qr
 
-```
+```bash
 nmcli device wifi show-password
 ```
 

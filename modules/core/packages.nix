@@ -15,7 +15,7 @@
 
     typescript
     nodejs
-    nodePackages.npm
+    # npm
     yarn
 
     nixfmt
