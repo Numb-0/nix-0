@@ -11,7 +11,6 @@ let
     keyboardLayout
     editor
     ;
-    # resolvedTerminal = if terminal == "ghostty" then "ghostty --gtk-single-instance=true" else terminal;
 in
 {
   wayland.windowManager.hyprland = {
@@ -65,16 +64,12 @@ in
       env = SDL_VIDEODRIVER, wayland,x11
       env = MOZ_ENABLE_WAYLAND, 1
 
-      exec-once = hyprlock --immediate || hyprctl dispatch exit
-      # exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-      # exec-once = lxqt-policykit-agent
+      exec-once = hyprlock
       exec-once = quickshell -d 
       exec-once = udiskie
       
       monitor = eDP-1, preferred, 0x0, 1.5
       monitor = , preferred, auto, 1
-      # monitor = DP-10, preferred, 1920x0, 1
-      # monitor = DP-9, preferred, 4480x0, 1
 
       xwayland {
         enabled = true
@@ -118,10 +113,10 @@ in
         # no_hardware_cursors = false
       # }
 
-      # gestures {
-        # workspace_swipe = true
-        # workspace_swipe_fingers = 3
-      # }
+      gestures {
+        workspace_swipe = true
+        workspace_swipe_fingers = 3
+      }
 
       misc {
         initial_workspace_tracking = 0
@@ -142,10 +137,12 @@ in
         animation = border, 1, 6, circ
         animation = fade, 1, 10, default
         animation = workspaces, 1, 5, circ
-
-        animation = layers, 1, 4, circ, slide
-        animation = fadeLayersIn, 1, 4, circ
-        animation = fadeLayersOut, 1, 10, circ
+        
+        animation = layersIn, 1, 6, circ, slide left
+        animation = layersOut, 1, 6, circ, slide right
+        #  animation = layers, 1, 4, circ, slide right
+        animation = fadeLayersIn, 1, 6, circ
+        animation = fadeLayersOut, 1, 6, circ
       }
       
       decoration {
@@ -192,7 +189,7 @@ in
       bind = , XF86AudioPrev, exec, playerctl previous
 
       # General keybindings
-      bind = SHIFT, Return, fullscreen
+      bind = $mainMod, Return, fullscreen
       bind = $mainMod, T, exec, ${terminal}
       bind = $mainMod, Q, killactive,
       bind = $mainMod, M, exit,

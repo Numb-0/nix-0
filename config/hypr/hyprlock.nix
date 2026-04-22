@@ -1,6 +1,5 @@
 {
   osConfig,
-  config,
   ...
 }:
 {
