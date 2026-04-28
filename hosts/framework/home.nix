@@ -24,7 +24,6 @@ in
     ../../config/hypr
     ../../config/kitty
     ../../config/fish
-    ../../config/ranger
     ../../config/ghostty
     ../../config/yazi
   ];

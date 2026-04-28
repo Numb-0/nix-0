@@ -7,12 +7,23 @@ return {
   config = function()
     -- import comment plugin safely
     local comment = require("Comment")
+    local comment_api = require("Comment.api")
 
+    require("ts_context_commentstring").setup({
+      enable_autocmd = false,
+    })
     local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
     local keymap = vim.keymap
 
-    keymap.set("n", "<leader>/", "gcc", { desc = "Comment toggle", remap = true })
-    keymap.set("v", "<leader>/", "gc", { desc = "Comment toggle", remap = true })
+    keymap.set("n", "<leader>/", function()
+      comment_api.toggle.linewise.current()
+    end, { desc = "Comment toggle" })
+
+    keymap.set("v", "<leader>/", function()
+      local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
+      vim.api.nvim_feedkeys(esc, "nx", false)
+      comment_api.toggle.linewise(vim.fn.visualmode())
+    end, { desc = "Comment toggle" })
 
     -- enable comment
     comment.setup({

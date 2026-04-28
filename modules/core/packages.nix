@@ -37,7 +37,7 @@
     
     vlc
     pavucontrol
-    lutris
+    # lutris
     gimp
     dbeaver-bin
     thunderbird

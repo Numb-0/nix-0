@@ -113,11 +113,6 @@ in
         # no_hardware_cursors = false
       # }
 
-      gestures {
-        workspace_swipe = true
-        workspace_swipe_fingers = 3
-      }
-
       misc {
         initial_workspace_tracking = 0
         mouse_move_enables_dpms = true
@@ -138,8 +133,8 @@ in
         animation = fade, 1, 10, default
         animation = workspaces, 1, 5, circ
         
-        animation = layersIn, 1, 6, circ, slide left
-        animation = layersOut, 1, 6, circ, slide right
+        animation = layersIn, 1, 6, circ, popin
+        animation = layersOut, 1, 6, circ, popin
         #  animation = layers, 1, 4, circ, slide right
         animation = fadeLayersIn, 1, 6, circ
         animation = fadeLayersOut, 1, 6, circ
