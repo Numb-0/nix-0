@@ -43,7 +43,7 @@
     thunderbird
     chromium
     # google-chrome
-    discord-canary
+    # discord-canary
     spotify
     obs-studio
     prismlauncher
