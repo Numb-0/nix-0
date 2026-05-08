@@ -45,6 +45,9 @@ in
         name = "${gitUsername}";
         email = "${gitEmail}";
       };
+      commit = {
+        gpgSign = true;
+      };
       push = { autoSetupRemote = true; };
     };
   };

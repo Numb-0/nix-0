@@ -78,7 +78,7 @@ in
 
       general {
         gaps_in = 5
-        gaps_out = 5
+        gaps_out = 8
         border_size = 0
         col.active_border = rgba(${osConfig.style.colors.base03}ee)
         layout = dwindle
@@ -238,16 +238,13 @@ in
       bind = $mainMod, mouse_down, workspace, e+1
       bind = $mainMod, mouse_up, workspace, e-1
 
-      # Move/resize windows with mainMod + LMB/RMB and dragging ee
+      # Move/resize windows with mainMod + LMB/RMB and dragging
       bindm = $mainMod, mouse:272, movewindow
       bindm = $mainMod, mouse:273, resizewindow
 
       # Disable/Enable primary monitor on lid open/closed
-      # bindl =,switch:off:Lid Switch,exec, toggle_monitor open
-      # bindl =,switch:on:Lid Switch,exec, toggle_monitor close
-
-      # Lock on lid closed
-      # bindl=,switch:off:Lid Switch, exec, hyprlock --immediate
+      bindl = , switch:on:Lid Switch, exec, hyprctl keyword monitor "eDP-1, disable"
+      bindl = , switch:off:Lid Switch, exec, hyprctl keyword monitor "eDP-1, preferred, 0x0, 1.5"
     '';
   };
 }

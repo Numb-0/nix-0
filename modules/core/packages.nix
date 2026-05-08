@@ -69,7 +69,7 @@
     wget
     killall
     eza
-    git
+    # git
     htop
     lm_sensors
     imv
