@@ -14,6 +14,7 @@ in
   # Take a look at flake.nix
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
+  
   home = {
     username = "${username}";
     homeDirectory = "/home/${username}";

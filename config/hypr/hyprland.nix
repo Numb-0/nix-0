@@ -1,6 +1,7 @@
 {
   username,
   pkgs,
+  lib,
   osConfig,
   ...
 }:
@@ -11,240 +12,232 @@ let
     keyboardLayout
     editor
     ;
+
+  lua = lib.generators.mkLuaInline;
+
+  dsp = {
+    exec = cmd: lua ''hl.dsp.exec_cmd("${cmd}")'';
+    close = lua "hl.dsp.window.close()";
+    exit = lua "hl.dsp.exit()";
+    float = lua ''hl.dsp.window.float({ action = "toggle" })'';
+    fullscreen = lua "hl.dsp.window.fullscreen()";
+    pseudo = lua "hl.dsp.window.pseudo()";
+    layout = msg: lua ''hl.dsp.layout("${msg}")'';
+    focus = dir: lua ''hl.dsp.focus({ direction = "${dir}" })'';
+    swap = dir: lua ''hl.dsp.window.swap({ direction = "${dir}" })'';
+    toggleSpecial = name: lua ''hl.dsp.workspace.toggle_special("${name}")'';
+    moveToSpecial = name: lua ''hl.dsp.window.move({ workspace = "special:${name}" })'';
+    focusWorkspace = ws: lua ''hl.dsp.focus({ workspace = "${toString ws}" })'';
+    moveToWorkspace = ws: lua ''hl.dsp.window.move({ workspace = "${toString ws}" })'';
+    drag = lua "hl.dsp.window.drag()";
+    resize = lua "hl.dsp.window.resize()";
+    sendshortcut = mod: key: lua ''hl.dsp.send_shortcut({ mods = "${mod}", key = "${key}" })'';
+  };
+
+  bind = keys: dispatcher: { _args = [ keys dispatcher ]; };
+  bindOpts = keys: dispatcher: opts: { _args = [ keys dispatcher opts ]; };
+
+  workspaceBinds = lib.concatMap (i:
+    let key = toString (lib.mod i 10);
+    in [
+      (bind "SUPER + ${key}" (dsp.focusWorkspace i))
+      (bind "SUPER + SHIFT + ${key}" (dsp.moveToWorkspace i))
+    ]
+  ) (lib.range 1 10);
 in
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "lua";
     systemd.enable = true;
     systemd.variables = [ "--all" ];
     xwayland.enable = true;
-    extraConfig = ''
-      # Installed sdks path
-      env = ANDROID_HOME,/home/${username}/Android
 
-      # Java path for android build graydle
-      env = JAVA_17_HOME, ${pkgs.jdk17.home}
-      env = JAVA_21_HOME, ${pkgs.jdk21.home}
-      env = JAVA_HOME, ${pkgs.jdk21}
+    settings = {
+      env = [
+        { _args = [ "ANDROID_HOME" "/home/${username}/Android" ]; }
+        { _args = [ "JAVA_17_HOME" "${pkgs.jdk17.home}" ]; }
+        { _args = [ "JAVA_21_HOME" "${pkgs.jdk21.home}" ]; }
+        { _args = [ "JAVA_HOME" "${pkgs.jdk21.home}" ]; }
+        { _args = [ "EDITOR" editor ]; }
+        { _args = [ "SSH_AUTH_SOCK" "/run/user/1000/ssh-agent" ]; }
+        { _args = [ "NIXOS_OZONE_WL" "1" ]; }
+        { _args = [ "NIXPKGS_ALLOW_UNFREE" "1" ]; }
+        { _args = [ "XDG_CURRENT_DESKTOP" "Hyprland" ]; }
+        { _args = [ "XDG_SESSION_TYPE" "wayland" ]; }
+        { _args = [ "XDG_SESSION_DESKTOP" "Hyprland" ]; }
+        { _args = [ "GDK_BACKEND" "wayland,x11" ]; }
+        { _args = [ "CLUTTER_BACKEND" "wayland" ]; }
+        { _args = [ "QT_QPA_PLATFORMTHEME" "qt6ct" ]; }
+        { _args = [ "QT_QPA_PLATFORM" "wayland" ]; }
+        { _args = [ "QT_WAYLAND_DISABLE_WINDOWDECORATION" "1" ]; }
+        { _args = [ "SDL_VIDEODRIVER" "wayland,x11" ]; }
+        { _args = [ "MOZ_ENABLE_WAYLAND" "1" ]; }
+      ];
 
-      # Needed by steam
-      # env = SDL_DYNAMIC_API, ${pkgs.SDL2}/lib/libSDL2-2.0.so.0v
+      monitor = [
+        { output = "eDP-1"; mode = "preferred"; position = "0x0"; scale = "1.5"; }
+        { output = ","; mode = "preferred"; position = "auto"; scale = "1"; }
+      ];
 
-      env = EDITOR, ${editor}
+      config = {
+        general = {
+          gaps_in = 5;
+          gaps_out = 8;
+          border_size = 0;
+          col = {
+            active_border = "rgba(${osConfig.style.colors.base03}ee)";
+          };
+          resize_on_border = true;
+          allow_tearing = true;
+        };
 
-      # env = AQ_NO_MODIFIERS,1
+        decoration = {
+          rounding = 8;
+          active_opacity = 0.95;
+          inactive_opacity = 0.95;
+          shadow = {
+            enabled = true;
+            range = 6;
+            render_power = 6;
+            color = "rgba(${osConfig.style.colors.base01}ee)";
+          };
+          blur = {
+            enabled = true;
+            size = 4;
+            passes = 2;
+            new_optimizations = true;
+            ignore_opacity = true;
+          };
+        };
 
-      # Needed by ssh-agent
-      env = SSH_AUTH_SOCK, /run/user/1000/ssh-agent
+        animations.enabled = true;
 
-      # Cursor
-      # env = HYPRCURSOR_THEME, ${osConfig.stylix.cursor.name}
-      # env = HYPRCURSOR_SIZE, ${toString osConfig.stylix.cursor.size}
-      
-      # Nvidia + Intel
-      # env = LIBVA_DRIVER_NAME, i965
-      # env = GBM_BACKEND, nvidia-drm
-      # env = __GLX_VENDOR_LIBRARY_NAME, nvidia
-      # env = NVD_BACKEND, direct
+        dwindle = {
+          force_split = 2;
+          preserve_split = true;
+        };
 
-      env = NIXOS_OZONE_WL, 1
-      env = NIXPKGS_ALLOW_UNFREE, 1
-      env = XDG_CURRENT_DESKTOP, Hyprland
-      env = XDG_SESSION_TYPE, wayland
-      env = XDG_SESSION_DESKTOP, Hyprland
-      env = GDK_BACKEND, wayland,x11
-      env = CLUTTER_BACKEND, wayland
-      env = QT_QPA_PLATFORMTHEME,qt6ct
-      env = QT_QPA_PLATFORM, wayland
-      env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
-      # env = QT_AUTO_SCREEN_SCALE_FACTOR, 1
-      # env = QT_SCALE_FACTOR, 1.5
-      # env = QT_ENABLE_HIGHDPI_SCALING, 1
-      # env = QT_SCALE_FACTOR_ROUNDING_POLICY, PassThrough
-      env = SDL_VIDEODRIVER, wayland,x11
-      env = MOZ_ENABLE_WAYLAND, 1
+        misc = {
+          initial_workspace_tracking = 0;
+          mouse_move_enables_dpms = true;
+          key_press_enables_dpms = false;
+          disable_splash_rendering = true;
+        };
 
-      exec-once = hyprlock
-      exec-once = quickshell -d 
-      exec-once = udiskie
-      
-      monitor = eDP-1, preferred, 0x0, 1.5
-      monitor = , preferred, auto, 1
+        input = {
+          kb_layout = keyboardLayout;
+          kb_variant = "altgr-intl";
+          follow_mouse = 1;
+          touchpad = {
+            natural_scroll = true;
+            disable_while_typing = true;
+            scroll_factor = 0.8;
+          };
+          force_no_accel = true;
+          sensitivity = 0;
+          accel_profile = "flat";
+        };
 
-      xwayland {
-        enabled = true
-        force_zero_scaling = true
-      }
+        xwayland = {
+          enabled = true;
+          force_zero_scaling = true;
+        };
+      };
 
-      general {
-        gaps_in = 5
-        gaps_out = 8
-        border_size = 0
-        col.active_border = rgba(${osConfig.style.colors.base03}ee)
-        layout = dwindle
-        resize_on_border = true
-        allow_tearing = true
-      }
+      curve = [
+        { _args = [ "liner" { type = "bezier"; points = lua "{ {1, 1}, {1, 1} }"; } ]; }
+        { _args = [ "circ" { type = "bezier"; points = lua "{ {0.85, 0}, {0.15, 1} }"; } ]; }
+      ];
 
-      input {
-        kb_layout = ${keyboardLayout}
-        kb_variant = altgr-intl
-        follow_mouse = 1
-        touchpad {
-          natural_scroll = 1
-          disable_while_typing = true
-          scroll_factor = 0.8
+      animation = [
+        { leaf = "windows"; enabled = true; speed = 6; bezier = "circ"; style = "popin"; }
+        { leaf = "windowsIn"; enabled = true; speed = 6; bezier = "circ"; style = "popin"; }
+        { leaf = "windowsOut"; enabled = true; speed = 5; bezier = "circ"; style = "popin"; }
+        { leaf = "windowsMove"; enabled = true; speed = 4; bezier = "circ"; style = "slide"; }
+        { leaf = "border"; enabled = true; speed = 6; bezier = "circ"; }
+        { leaf = "fade"; enabled = true; speed = 10; bezier = "default"; }
+        { leaf = "workspaces"; enabled = true; speed = 5; bezier = "circ"; }
+        { leaf = "layersIn"; enabled = true; speed = 6; bezier = "circ"; style = "popin"; }
+        { leaf = "layersOut"; enabled = true; speed = 6; bezier = "circ"; style = "popin"; }
+        { leaf = "fadeLayersIn"; enabled = true; speed = 6; bezier = "circ"; }
+        { leaf = "fadeLayersOut"; enabled = true; speed = 6; bezier = "circ"; }
+      ];
+
+      window_rule = [
+        {
+          match = { class = ".*"; };
+          idle_inhibit = "fullscreen";
         }
-        force_no_accel = 1 
-        sensitivity = 0
-        accel_profile = flat
-      }
-        
-      # Steam window rules  
-      # windowrulev2 = center,^(steam)$
-      # windowrulev2 = stayfocused, title:^(steam)$,class:^(steam)$
-      # windowrulev2 = minsize 1 1, title:^(steam)$,class:^(steam)$
-      
-      # Do not idle with an active fullscreen window
-      windowrule = match:class .*, idle_inhibit fullscreen
-      # windowrule = match:title ^.*nvim.*$, no_blur 1, opaque 1
+      ];
 
-      # cursor {
-        # no_hardware_cursors = false
-      # }
+      on = {
+        _args = [
+          "hyprland.start"
+          (lua ''
+            function()
+              hl.exec_cmd("hyprlock")
+              hl.exec_cmd("quickshell -d")
+              hl.exec_cmd("udiskie")
+            end'')
+        ];
+      };
 
-      misc {
-        initial_workspace_tracking = 0
-        mouse_move_enables_dpms = true
-        key_press_enables_dpms = false
-        disable_splash_rendering = 1
-      }
+      bind = [
+        # Volume
+        (bindOpts "XF86AudioRaiseVolume" (dsp.exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+") { locked = true; repeating = true; })
+        (bindOpts "XF86AudioLowerVolume" (dsp.exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") { locked = true; repeating = true; })
+        (bindOpts "XF86AudioMute" (dsp.exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") { locked = true; })
 
-      animations {
-        enabled = yes
-        bezier = liner, 1, 1, 1, 1 
-        bezier = circ, 0.85, 0, 0.15, 1
+        # Brightness
+        (bindOpts "XF86MonBrightnessUp" (dsp.exec "brightnessctl set +10%") { locked = true; repeating = true; })
+        (bindOpts "XF86MonBrightnessDown" (dsp.exec "brightnessctl set 10%-") { locked = true; repeating = true; })
 
-        animation = windows, 1, 6, circ, popin
-        animation = windowsIn, 1, 6, circ, popin
-        animation = windowsOut, 1, 5, circ, popin
-        animation = windowsMove, 1, 4, circ, slide
-        animation = border, 1, 6, circ
-        animation = fade, 1, 10, default
-        animation = workspaces, 1, 5, circ
-        
-        animation = layersIn, 1, 6, circ, popin
-        animation = layersOut, 1, 6, circ, popin
-        #  animation = layers, 1, 4, circ, slide right
-        animation = fadeLayersIn, 1, 6, circ
-        animation = fadeLayersOut, 1, 6, circ
-      }
-      
-      decoration {
-        # rounding = 0
-        rounding = 8
-        active_opacity = 0.95
-        inactive_opacity = 0.95
+        # Media
+        (bind "XF86AudioPlay" (dsp.exec "playerctl play-pause"))
+        (bind "XF86AudioPause" (dsp.exec "playerctl play-pause"))
+        (bind "XF86AudioNext" (dsp.exec "playerctl next"))
+        (bind "XF86AudioPrev" (dsp.exec "playerctl previous"))
 
-        shadow {
-            enabled = true
-            range = 6
-            render_power = 6
-            color = rgba(${osConfig.style.colors.base01}ee)
-        }
-        blur {
-            enabled = true
-            size = 4
-            passes = 2
-            new_optimizations = on
-            ignore_opacity = true
-        }
-      }
+        # App / window
+        (bind "SUPER + Return" dsp.fullscreen)
+        (bind "SUPER + T" (dsp.exec terminal))
+        (bind "SUPER + Q" dsp.close)
+        (bind "SUPER + M" dsp.exit)
+        (bind "SUPER + E" (dsp.exec browser))
+        (bind "SUPER + W" dsp.float)
+        (bind "SUPER + F" dsp.pseudo)
+        (bind "SUPER + J" (dsp.layout "togglesplit"))
+        (bind "SUPER + H" (dsp.exec "hyprshot -m region --raw | satty --filename -"))
 
-      dwindle {
-        pseudotile = true
-        preserve_split = true
-      }
+        # Quickshell global shortcuts
+        (bind "SUPER + A" (dsp.exec "hyprctl dispatch global quickshell:applauncher"))
+        (bind "SUPER + X" (dsp.exec "hyprctl dispatch global quickshell:poweractions"))
+        (bind "SUPER + D" (dsp.exec "hyprctl dispatch global quickshell:dashboard"))
+        (bind "SUPER + C" (dsp.exec "hyprctl dispatch global quickshell:mixer"))
 
-      $mainMod = SUPER # Sets "Windows" key as main modifier
+        # Focus
+        (bind "SUPER + left" (dsp.focus "l"))
+        (bind "SUPER + right" (dsp.focus "r"))
+        (bind "SUPER + up" (dsp.focus "u"))
+        (bind "SUPER + down" (dsp.focus "d"))
 
-      # Volume Knob 
-      bind = , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-      bind = , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-      bind = , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-      
-      # Brightness
-      bind = , XF86MonBrightnessUp, exec, brightnessctl set +10% 
-      bind = , XF86MonBrightnessDown, exec, brightnessctl set 10%-
-      
-      # Audio Player
-      bind = , XF86AudioPlay, exec, playerctl play-pause
-      bind = , XF86AudioPause, exec, playerctl play-pause
-      bind = , XF86AudioNext, exec, playerctl next
-      bind = , XF86AudioPrev, exec, playerctl previous
+        # Special workspace
+        (bind "SUPER + S" (dsp.toggleSpecial "magic"))
+        (bind "SUPER + SHIFT + S" (dsp.moveToSpecial "magic"))
 
-      # General keybindings
-      bind = $mainMod, Return, fullscreen
-      bind = $mainMod, T, exec, ${terminal}
-      bind = $mainMod, Q, killactive,
-      bind = $mainMod, M, exit,
-      bind = $mainMod, E, exec, ${browser}
-      bind = $mainMod, W, togglefloating,
-      bind = $mainMod, F, pseudo, # dwindle
-      bind = $mainMod, J, togglesplit, # dwindle
-      bind = $mainMod, H, exec, hyprshot -m region
+        # Scroll through workspaces
+        (bind "SUPER + mouse_down" (dsp.focusWorkspace "e+1"))
+        (bind "SUPER + mouse_up" (dsp.focusWorkspace "e-1"))
 
+        # Mouse drag/resize
+        (bindOpts "SUPER + mouse:272" dsp.drag { mouse = true; })
+        (bindOpts "SUPER + mouse:273" dsp.resize { mouse = true; })
 
-      bind = $mainMod, A, global, quickshell:applauncher
-      bind = $mainMod, X, global, quickshell:poweractions
-      bind = $mainMod, D, global, quickshell:dashboard
-      bind = $mainMod, C, global, quickshell:mixer
-      
-      # Move focus with mainMod + arrow keys
-      bind = $mainMod, left, movefocus, l
-      bind = $mainMod, right, movefocus, r
-      bind = $mainMod, up, movefocus, u
-      bind = $mainMod, down, movefocus, d
-
-      # Switch workspaces with mainMod + [0-9]
-      bind = $mainMod, 1, workspace, 1
-      bind = $mainMod, 2, workspace, 2
-      bind = $mainMod, 3, workspace, 3
-      bind = $mainMod, 4, workspace, 4
-      bind = $mainMod, 5, workspace, 5
-      bind = $mainMod, 6, workspace, 6
-      bind = $mainMod, 7, workspace, 7
-      bind = $mainMod, 8, workspace, 8
-      bind = $mainMod, 9, workspace, 9
-      bind = $mainMod, 0, workspace, 10
-
-      # Move active window to a workspace with mainMod + SHIFT + [0-9]
-      bind = $mainMod SHIFT, 1, movetoworkspace, 1
-      bind = $mainMod SHIFT, 2, movetoworkspace, 2
-      bind = $mainMod SHIFT, 3, movetoworkspace, 3
-      bind = $mainMod SHIFT, 4, movetoworkspace, 4
-      bind = $mainMod SHIFT, 5, movetoworkspace, 5
-      bind = $mainMod SHIFT, 6, movetoworkspace, 6
-      bind = $mainMod SHIFT, 7, movetoworkspace, 7
-      bind = $mainMod SHIFT, 8, movetoworkspace, 8
-      bind = $mainMod SHIFT, 9, movetoworkspace, 9
-      bind = $mainMod SHIFT, 0, movetoworkspace, 10
-
-      # Special workspace
-      bind = $mainMod, S, togglespecialworkspace, magic
-      bind = $mainMod SHIFT, S, movetoworkspace, special:magic
-
-      # Scroll through existing workspaces with mainMod + scroll
-      bind = $mainMod, mouse_down, workspace, e+1
-      bind = $mainMod, mouse_up, workspace, e-1
-
-      # Move/resize windows with mainMod + LMB/RMB and dragging
-      bindm = $mainMod, mouse:272, movewindow
-      bindm = $mainMod, mouse:273, resizewindow
-
-      # Disable/Enable primary monitor on lid open/closed
-      bindl = , switch:on:Lid Switch, exec, hyprctl keyword monitor "eDP-1, disable"
-      bindl = , switch:off:Lid Switch, exec, hyprctl keyword monitor "eDP-1, preferred, 0x0, 1.5"
-    '';
+        # Lid switch
+        (bindOpts "switch:on:Lid Switch" (dsp.exec ''hyprctl keyword monitor \"eDP-1, disable\"'') { locked = true; })
+        (bindOpts "switch:off:Lid Switch" (dsp.exec ''hyprctl keyword monitor \"eDP-1, preferred, 0x0, 1.5\"'') { locked = true; })
+      ] ++ workspaceBinds;
+    };
   };
 }
