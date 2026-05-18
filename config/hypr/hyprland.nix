@@ -17,6 +17,7 @@ let
 
   dsp = {
     exec = cmd: lua ''hl.dsp.exec_cmd("${cmd}")'';
+    global = cmd: lua ''hl.dsp.global("${cmd}")'';
     close = lua "hl.dsp.window.close()";
     exit = lua "hl.dsp.exit()";
     float = lua ''hl.dsp.window.float({ action = "toggle" })'';
@@ -32,7 +33,15 @@ let
     drag = lua "hl.dsp.window.drag()";
     resize = lua "hl.dsp.window.resize()";
     sendshortcut = mod: key: lua ''hl.dsp.send_shortcut({ mods = "${mod}", key = "${key}" })'';
+    dpms = action: monitor: lua ''hl.dsp.dpms("${action}", "${monitor}")'';
+    toggleMonitor = monitor: disabled: lua ''
+      function()
+        hl.monitor({ output = "${monitor}", disabled = ${lib.boolToString disabled} })
+      end'';
   };
+
+  disableMonitor = monitor: dsp.toggleMonitor monitor true;
+  enableMonitor = monitor: dsp.toggleMonitor monitor false;
 
   bind = keys: dispatcher: { _args = [ keys dispatcher ]; };
   bindOpts = keys: dispatcher: opts: { _args = [ keys dispatcher opts ]; };
@@ -211,10 +220,10 @@ in
         (bind "SUPER + H" (dsp.exec "hyprshot -m region --raw | satty --filename -"))
 
         # Quickshell global shortcuts
-        (bind "SUPER + A" (dsp.exec "hyprctl dispatch global quickshell:applauncher"))
-        (bind "SUPER + X" (dsp.exec "hyprctl dispatch global quickshell:poweractions"))
-        (bind "SUPER + D" (dsp.exec "hyprctl dispatch global quickshell:dashboard"))
-        (bind "SUPER + C" (dsp.exec "hyprctl dispatch global quickshell:mixer"))
+        (bind "SUPER + A" (dsp.global "quickshell:applauncher"))
+        (bind "SUPER + X" (dsp.global "quickshell:poweractions"))
+        (bind "SUPER + D" (dsp.global "quickshell:dashboard"))
+        (bind "SUPER + C" (dsp.global "quickshell:mixer"))
 
         # Focus
         (bind "SUPER + left" (dsp.focus "l"))
@@ -234,9 +243,9 @@ in
         (bindOpts "SUPER + mouse:272" dsp.drag { mouse = true; })
         (bindOpts "SUPER + mouse:273" dsp.resize { mouse = true; })
 
-        # Lid switch
-        (bindOpts "switch:on:Lid Switch" (dsp.exec ''hyprctl keyword monitor \"eDP-1, disable\"'') { locked = true; })
-        (bindOpts "switch:off:Lid Switch" (dsp.exec ''hyprctl keyword monitor \"eDP-1, preferred, 0x0, 1.5\"'') { locked = true; })
+        # Lid switch 
+        (bindOpts "switch:on:Lid Switch" (disableMonitor "eDP-1") { locked = true; })
+        (bindOpts "switch:off:Lid Switch" (enableMonitor "eDP-1") { locked = true; })
       ] ++ workspaceBinds;
     };
   };
