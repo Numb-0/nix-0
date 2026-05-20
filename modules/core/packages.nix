@@ -56,6 +56,7 @@
     # LycheeSlicer
     lycheeslicer
     # xdg-utils
+    claude-code
 
     gimp3
     libreoffice-qt6-fresh
@@ -78,6 +79,7 @@
     unzip
     zip
     unrar
+    usbutils
 
     ripgrep
     brightnessctl

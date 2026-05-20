@@ -33,15 +33,15 @@ let
     drag = lua "hl.dsp.window.drag()";
     resize = lua "hl.dsp.window.resize()";
     sendshortcut = mod: key: lua ''hl.dsp.send_shortcut({ mods = "${mod}", key = "${key}" })'';
-    dpms = action: monitor: lua ''hl.dsp.dpms("${action}", "${monitor}")'';
+    dpms = action: monitor: lua ''hl.dsp.dpms({ action = "${action}", monitor = "${monitor}" })'';
     toggleMonitor = monitor: disabled: lua ''
-      function()
-        hl.monitor({ output = "${monitor}", disabled = ${lib.boolToString disabled} })
-      end'';
+    function()
+      hl.monitor({ output = "${monitor}", disabled = ${disabled}})
+    end'';
   };
 
-  disableMonitor = monitor: dsp.toggleMonitor monitor true;
-  enableMonitor = monitor: dsp.toggleMonitor monitor false;
+  disableMonitor = monitor: dsp.toggleMonitor monitor "true";
+  enableMonitor = monitor: dsp.toggleMonitor monitor "false";
 
   bind = keys: dispatcher: { _args = [ keys dispatcher ]; };
   bindOpts = keys: dispatcher: opts: { _args = [ keys dispatcher opts ]; };
@@ -64,6 +64,7 @@ in
 
     settings = {
       env = [
+        { _args = [ "BROWSER" "${browser}"]; }
         { _args = [ "ANDROID_HOME" "/home/${username}/Android" ]; }
         { _args = [ "JAVA_17_HOME" "${pkgs.jdk17.home}" ]; }
         { _args = [ "JAVA_21_HOME" "${pkgs.jdk21.home}" ]; }
@@ -244,6 +245,8 @@ in
         (bindOpts "SUPER + mouse:273" dsp.resize { mouse = true; })
 
         # Lid switch 
+        # (bindOpts "switch:on:Lid Switch" (dsp.dpms "off" "eDP-1") { locked = true; })
+        # (bindOpts "switch:off:Lid Switch" (dsp.dpms "on" "eDP-1") { locked = true; })
         (bindOpts "switch:on:Lid Switch" (disableMonitor "eDP-1") { locked = true; })
         (bindOpts "switch:off:Lid Switch" (enableMonitor "eDP-1") { locked = true; })
       ] ++ workspaceBinds;
