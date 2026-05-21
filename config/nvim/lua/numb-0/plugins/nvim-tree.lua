@@ -15,8 +15,7 @@ return {
 
         -- Tree Keymaps
         local keymap = vim.keymap
-        keymap.set("n", "<leader>et", "<cmd>NvimTreeToggle<CR>", {desc = "Toggle nvim-tree"})
-        keymap.set("n", "<leader>ee", "<cmd>NvimTreeFocus<CR>", {desc = "Focus nvim-tree"})
-        keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", {desc = "Toggle nvim-tree at current buffer"})
+        keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "NvimTree toggle" })
+        keymap.set("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "NvimTree focus" })
     end
 }

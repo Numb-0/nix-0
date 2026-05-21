@@ -34,14 +34,10 @@ let
     resize = lua "hl.dsp.window.resize()";
     sendshortcut = mod: key: lua ''hl.dsp.send_shortcut({ mods = "${mod}", key = "${key}" })'';
     dpms = action: monitor: lua ''hl.dsp.dpms({ action = "${action}", monitor = "${monitor}" })'';
-    toggleMonitor = monitor: disabled: lua ''
-    function()
-      hl.monitor({ output = "${monitor}", disabled = ${disabled}})
-    end'';
   };
 
-  disableMonitor = monitor: dsp.toggleMonitor monitor "true";
-  enableMonitor = monitor: dsp.toggleMonitor monitor "false";
+  disableMonitor = dsp.exec "hyprctl keyword monitor eDP-1,disable";
+  enableMonitor  = dsp.exec "hyprctl keyword monitor eDP-1";
 
   bind = keys: dispatcher: { _args = [ keys dispatcher ]; };
   bindOpts = keys: dispatcher: opts: { _args = [ keys dispatcher opts ]; };
@@ -247,8 +243,8 @@ in
         # Lid switch 
         # (bindOpts "switch:on:Lid Switch" (dsp.dpms "off" "eDP-1") { locked = true; })
         # (bindOpts "switch:off:Lid Switch" (dsp.dpms "on" "eDP-1") { locked = true; })
-        (bindOpts "switch:on:Lid Switch" (disableMonitor "eDP-1") { locked = true; })
-        (bindOpts "switch:off:Lid Switch" (enableMonitor "eDP-1") { locked = true; })
+        (bindOpts "switch:on:Lid Switch" (disableMonitor) { locked = true; })
+        (bindOpts "switch:off:Lid Switch" (enableMonitor) { locked = true; })
       ] ++ workspaceBinds;
     };
   };

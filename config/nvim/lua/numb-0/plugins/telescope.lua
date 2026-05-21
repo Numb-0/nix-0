@@ -10,11 +10,16 @@ return {
     local builtin = require("telescope.builtin")
     local keymap = vim.keymap
 
-    keymap.set("n", "<leader>ff", builtin.find_files, {desc = "Telescope find files"})
-    keymap.set("n", "<leader>fg", builtin.live_grep, {desc = "Telescope grep working directory"})
-    keymap.set("n", "<leader>fb", builtin.current_buffer_fuzzy_find, {desc = "Telescope grep current buffer"})
-    keymap.set("n", "<leader>fh", builtin.help_tags, {desc = "Telescope help files"})
-    keymap.set("n", "<leader>fb", builtin.buffers, {desc = "Telescope buffers"})
+    keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+    keymap.set("n", "<leader>fa", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", { desc = "Telescope find all files" })
+    keymap.set("n", "<leader>fw", builtin.live_grep, { desc = "Telescope live grep" })
+    keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope find buffers" })
+    keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help page" })
+    keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "Telescope find oldfiles" })
+    keymap.set("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Telescope find in current buffer" })
+    keymap.set("n", "<leader>cm", builtin.git_commits, { desc = "Telescope git commits" })
+    keymap.set("n", "<leader>gt", builtin.git_status, { desc = "Telescope git status" })
+    keymap.set("n", "<leader>ma", builtin.marks, { desc = "Telescope find marks" })
 
 
     telescope.setup({

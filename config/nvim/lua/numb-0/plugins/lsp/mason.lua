@@ -19,24 +19,7 @@ return {
       },
     })
 
-    vim.lsp.config('lua_ls', {
-      settings = {
-        Lua = {
-          runtime = {
-            version = 'LuaJIT',
-          },
-          diagnostics = {
-            globals = {
-              'vim',
-              'require',
-            },
-          },
-        },
-      },
-    })
-
     mason_lspconfig.setup({
-      -- list of servers for mason to install
       ensure_installed = {
         "ts_ls",
         "html",
@@ -49,6 +32,21 @@ return {
         "prismals",
         "pyright",
         "phpactor",
+      },
+      handlers = {
+        function(server_name)
+          require("lspconfig")[server_name].setup({})
+        end,
+        ["lua_ls"] = function()
+          require("lspconfig").lua_ls.setup({
+            settings = {
+              Lua = {
+                runtime = { version = "LuaJIT" },
+                diagnostics = { globals = { "vim", "require" } },
+              },
+            },
+          })
+        end,
       },
     })
     end
