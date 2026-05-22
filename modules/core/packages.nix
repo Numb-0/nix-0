@@ -23,6 +23,7 @@
 
     nautilus
     neovim
+    tree-sitter
     fzf
     fd
     

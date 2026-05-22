@@ -6,7 +6,7 @@ local keymap = vim.keymap
 keymap.set("n", "<Esc>", "<cmd>nohl<CR>", { desc = "Clear highlights" })
 
 -- Save file
-keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
+-- keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
 
 -- Window navigation
 keymap.set("n", "<C-h>", "<C-w>h", { desc = "Switch window left" })
@@ -23,12 +23,12 @@ keymap.set("i", "<C-j>", "<Down>", { desc = "Move down" })
 keymap.set("i", "<C-k>", "<Up>", { desc = "Move up" })
 
 -- Number increment/decrement
-keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
-keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
+-- keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
+-- keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
 -- Line number toggles
-keymap.set("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "Toggle line number" })
-keymap.set("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle relative number" })
+-- keymap.set("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "Toggle line number" })
+-- keymap.set("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle relative number" })
 
 -- Buffer management
 keymap.set("n", "<leader>b", "<cmd>enew<CR>", { desc = "New buffer" })
@@ -40,14 +40,14 @@ keymap.set("n", "<S-Tab>", "<cmd>tabp<CR>", { desc = "Previous tab" })
 keymap.set("i", "jk", "<Esc>", { desc = "Escape insert mode" })
 
 -- System clipboard
-keymap.set({ "n", "v", "x" }, "<C-x>", '"+y', { desc = "Copy to system clipboard" })
+-- keymap.set({ "n", "v", "x" }, "<C-x>", '"+y', { desc = "Copy to system clipboard" })
 
 -- Comment toggle (native gc operator via ts-context-commentstring)
-keymap.set("n", "<leader>/", "gcc", { desc = "Toggle comment line", remap = true })
-keymap.set("v", "<leader>/", "gc", { desc = "Toggle comment selection", remap = true })
+-- keymap.set("n", "<leader>/", "gcc", { desc = "Toggle comment line", remap = true })
+-- keymap.set("v", "<leader>/", "gc", { desc = "Toggle comment selection", remap = true })
 
 -- WhichKey
-keymap.set("n", "<leader>wK", "<cmd>WhichKey<CR>", { desc = "WhichKey all keymaps" })
-keymap.set("n", "<leader>wk", function()
-  vim.cmd("WhichKey " .. vim.fn.input("WhichKey: "))
-end, { desc = "WhichKey query lookup" })
+-- keymap.set("n", "<leader>wK", "<cmd>WhichKey<CR>", { desc = "WhichKey all keymaps" })
+-- keymap.set("n", "<leader>wk", function()
+--   vim.cmd("WhichKey " .. vim.fn.input("WhichKey: "))
+-- end, { desc = "WhichKey query lookup" })
