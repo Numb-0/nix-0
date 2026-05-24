@@ -20,6 +20,7 @@
 
     nixfmt
     nil
+    lua-language-server
 
     nautilus
     neovim
