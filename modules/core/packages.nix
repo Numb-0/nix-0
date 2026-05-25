@@ -4,99 +4,108 @@
 }:
 {
   environment.systemPackages = with pkgs; [
+    # ── Build tools ───────────────────────────────────────────────────────────
     gnumake
     gcc
     cmake
+
+    # ── Languages & runtimes ──────────────────────────────────────────────────
     python3
-    
+    nodejs
+    # npm
+    yarn
+    typescript
     php
     php83Packages.composer
     ghostscript
 
-    typescript
-    nodejs
-    # npm
-    yarn
+    # ── JVM / Android ─────────────────────────────────────────────────────────
+    jdk17
+    jdk21
+    sdkmanager
+    android-tools
 
-    nixfmt
+    # ── .NET ──────────────────────────────────────────────────────────────────
+    dotnetCorePackages.dotnet_8.sdk
+    icu
+
+    # ── Language servers & formatters ─────────────────────────────────────────
     nil
+    nixfmt
     lua-language-server
 
-    nautilus
+    # ── Editor & terminal tools ───────────────────────────────────────────────
     vim
     neovim
     tree-sitter
     fzf
     fd
-    
+    ripgrep
+
+    # ── Creative / 3D ─────────────────────────────────────────────────────────
     blender
     godot_4
-    sdkmanager
-    jdk21
-    jdk17
+    gimp
+    gimp3
+    obs-studio
+    orca-slicer
+    lycheeslicer
+    # aseprite
 
-    dotnetCorePackages.dotnet_8.sdk
-    icu
-    
+    # ── Applications ──────────────────────────────────────────────────────────
     vlc
     pavucontrol
-    # lutris
-    gimp
-    dbeaver-bin
     thunderbird
     chromium
     # google-chrome
     discord-canary
     spotify
-    obs-studio
     prismlauncher
-    # aseprite
+    # lutris
+    dbeaver-bin
     vscode
     # vscodium
-    orca-slicer
-    # lxqt.lxqt-policykit
     # obsidian
-    # LycheeSlicer
-    lycheeslicer
-    # xdg-utils
     claude-code
 
-    gimp3
+    # ── Office & documents ────────────────────────────────────────────────────
     libreoffice-qt6-fresh
     hunspell
     hunspellDicts.it_IT
     hunspellDicts.en_US
 
+    # ── File management ───────────────────────────────────────────────────────
+    nautilus
+    imv
+    udiskie
+
+    # ── CLI utilities ─────────────────────────────────────────────────────────
     fastfetch
     krabby
     tree
     wget
-    killall
     eza
-    # git
     htop
     lm_sensors
-    imv
-    udiskie
+    jq
 
+    # ── Archives & USB ────────────────────────────────────────────────────────
     unzip
     zip
     unrar
     usbutils
 
-    ripgrep
+    # ── System utilities ──────────────────────────────────────────────────────
+    killall
     brightnessctl
     libnotify
     playerctl
 
+    # ── Wayland / Hyprland ────────────────────────────────────────────────────
     hyprpicker
     hyprshot
-    satty
     wl-clipboard
-
-    jq
-
-    android-tools
+    satty
   ];
 
   fonts = {

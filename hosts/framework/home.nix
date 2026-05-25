@@ -114,9 +114,13 @@ in
     style.name = "adwaita-dark";
   };
 
+  # Hot-reload nvim config: symlink ~/.config/nvim → ~/nix-0/config/nvim
+  # After one rebuild, any edit to the source is immediately live in Neovim.
+  home.file.".config/nvim".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-0/config/nvim";
+
   # Scripts
   home.packages = [
-    (import ../../scripts/setup_nvim.nix { inherit pkgs self; })
     (import ../../scripts/toggle_monitor.nix { inherit pkgs; })
   ];
 }
