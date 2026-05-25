@@ -23,6 +23,7 @@
     lua-language-server
 
     nautilus
+    vim
     neovim
     tree-sitter
     fzf

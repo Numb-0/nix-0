@@ -36,8 +36,17 @@ let
     dpms = action: monitor: lua ''hl.dsp.dpms({ action = "${action}", monitor = "${monitor}" })'';
   };
 
-  disableMonitor = dsp.exec "hyprctl keyword monitor eDP-1,disable";
-  enableMonitor  = dsp.exec "hyprctl keyword monitor eDP-1";
+  disableMonitor = lua ''
+    function() 
+      hl.monitor({ output = "eDP-1", disabled = true }) 
+    end
+  '';
+
+  enableMonitor = lua ''
+    function() 
+      hl.monitor({ output = "eDP-1", disabled = false }) 
+    end
+  '';
 
   bind = keys: dispatcher: { _args = [ keys dispatcher ]; };
   bindOpts = keys: dispatcher: opts: { _args = [ keys dispatcher opts ]; };
