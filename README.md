@@ -70,18 +70,33 @@ nixos-rebuild switch --flake .#<hostname> (if using the ssh flake add --remote-s
 
 | Keys | Action |
 | :--- | :--- |
-| <kbd>Super</kbd> + <kbd>Q</kbd> | Close focused window |
+| <kbd>Super</kbd> + <kbd>Return</kbd> | Toggle fullscreen |
 | <kbd>Super</kbd> + <kbd>T</kbd> | Launch terminal |
 | <kbd>Super</kbd> + <kbd>E</kbd> | Launch browser |
+| <kbd>Super</kbd> + <kbd>Q</kbd> | Close focused window |
+| <kbd>Super</kbd> + <kbd>M</kbd> | Exit Hyprland |
 | <kbd>Super</kbd> + <kbd>W</kbd> | Toggle floating |
-| <kbd>Shift</kbd> + <kbd>Enter</kbd> | Toggle fullscreen |
+| <kbd>Super</kbd> + <kbd>F</kbd> | Toggle pseudo tiling |
+| <kbd>Super</kbd> + <kbd>J</kbd> | Toggle split layout |
 | <kbd>Super</kbd> + <kbd>H</kbd> | Screenshot region |
+
+### Focus & Mouse
+
+| Keys | Action |
+| :--- | :--- |
+| <kbd>Super</kbd> + <kbd>←</kbd> | Focus window left |
+| <kbd>Super</kbd> + <kbd>→</kbd> | Focus window right |
+| <kbd>Super</kbd> + <kbd>↑</kbd> | Focus window up |
+| <kbd>Super</kbd> + <kbd>↓</kbd> | Focus window down |
+| <kbd>Super</kbd> + <kbd>LMB</kbd> | Move window (drag) |
+| <kbd>Super</kbd> + <kbd>RMB</kbd> | Resize window (drag) |
 
 ### Quickshell
 
 | Keys | Action |
 | :--- | :--- |
 | <kbd>Super</kbd> + <kbd>A</kbd> | Toggle App Launcher |
+| <kbd>Super</kbd> + <kbd>C</kbd> | Toggle Mixer |
 | <kbd>Super</kbd> + <kbd>D</kbd> | Toggle Dashboard |
 | <kbd>Super</kbd> + <kbd>X</kbd> | Toggle Power Actions |
 
@@ -89,9 +104,12 @@ nixos-rebuild switch --flake .#<hostname> (if using the ssh flake add --remote-s
 
 | Keys | Action |
 | :--- | :--- |
-| <kbd>Super</kbd> + <kbd>1-9</kbd> | Switch to workspace |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>1-9</kbd> | Move window to workspace |
+| <kbd>Super</kbd> + <kbd>1–9</kbd> | Switch to workspace |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>1–9</kbd> | Move window to workspace |
+| <kbd>Super</kbd> + <kbd>Scroll Up</kbd> | Switch to next workspace |
+| <kbd>Super</kbd> + <kbd>Scroll Down</kbd> | Switch to previous workspace |
 | <kbd>Super</kbd> + <kbd>S</kbd> | Toggle special workspace |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Move window to special workspace |
 
 ### Media & Hardware
 
@@ -102,9 +120,11 @@ nixos-rebuild switch --flake .#<hostname> (if using the ssh flake add --remote-s
 | <kbd>XF86AudioMute</kbd> | Toggle mute |
 | <kbd>XF86MonBrightnessUp</kbd> | Brightness up |
 | <kbd>XF86MonBrightnessDown</kbd> | Brightness down |
-| <kbd>XF86AudioPlay</kbd> | Play/Pause media |
+| <kbd>XF86AudioPlay</kbd> / <kbd>XF86AudioPause</kbd> | Play/Pause media |
 | <kbd>XF86AudioNext</kbd> | Next track |
 | <kbd>XF86AudioPrev</kbd> | Previous track |
+| Lid close | Disable internal display |
+| Lid open | Enable internal display |
 
 ## Credits
 

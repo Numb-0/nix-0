@@ -38,22 +38,34 @@ let
 
   disableMonitor = lua ''
     function()
-      for _, mon in ipairs(hl.monitors()) do
+      local has_external = false
+      for _, mon in ipairs(hl.get_monitors()) do
         if mon.name ~= "eDP-1" then
-          hl.monitor({ output = "eDP-1", disabled = true })
-          return
+          has_external = true
+          break
         end
+      end
+      if has_external then
+        hl.monitor({ output = "eDP-1", disabled = true })
+      else
+        hl.dsp.dpms({ action = "off", monitor = "eDP-1" })
       end
     end
   '';
 
   enableMonitor = lua ''
     function()
-      for _, mon in ipairs(hl.monitors()) do
+      local has_external = false
+      for _, mon in ipairs(hl.get_monitors()) do
         if mon.name ~= "eDP-1" then
-          hl.monitor({ output = "eDP-1", disabled = false })
-          return
+          has_external = true
+          break
         end
+      end
+      if has_external then
+        hl.monitor({ output = "eDP-1", disabled = false })
+      else
+        hl.dsp.dpms({ action = "on", monitor = "eDP-1" })
       end
     end
   '';
