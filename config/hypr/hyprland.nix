@@ -37,14 +37,24 @@ let
   };
 
   disableMonitor = lua ''
-    function() 
-      hl.monitor({ output = "eDP-1", disabled = true }) 
+    function()
+      for _, mon in ipairs(hl.monitors()) do
+        if mon.name ~= "eDP-1" then
+          hl.monitor({ output = "eDP-1", disabled = true })
+          return
+        end
+      end
     end
   '';
 
   enableMonitor = lua ''
-    function() 
-      hl.monitor({ output = "eDP-1", disabled = false }) 
+    function()
+      for _, mon in ipairs(hl.monitors()) do
+        if mon.name ~= "eDP-1" then
+          hl.monitor({ output = "eDP-1", disabled = false })
+          return
+        end
+      end
     end
   '';
 
