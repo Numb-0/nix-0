@@ -208,17 +208,38 @@ in
         }
       ];
 
-      on = {
-        _args = [
-          "hyprland.start"
-          (lua ''
-            function()
-              hl.exec_cmd("hyprlock")
-              hl.exec_cmd("quickshell -d")
-              hl.exec_cmd("udiskie")
-            end'')
-        ];
-      };
+      on = [
+        {
+          _args = [
+            "hyprland.start"
+            (lua ''
+              function()
+                hl.exec_cmd("hyprlock")
+                hl.exec_cmd("quickshell -d")
+                hl.exec_cmd("udiskie")
+              end'')
+          ];
+        }
+        {
+          _args = [
+            "monitor.layout_changed"
+            (lua ''
+              function()
+                local has_external = false
+                for _, mon in ipairs(hl.get_monitors()) do
+                  if mon.name ~= "eDP-1" then
+                    has_external = true
+                    break
+                  end
+                end
+                if not has_external then
+                  hl.monitor({ output = "eDP-1", disabled = false })
+                  hl.dsp.dpms({ action = "on", monitor = "eDP-1" })
+                end
+              end'')
+          ];
+        }
+      ]
 
       bind = [
         # Volume

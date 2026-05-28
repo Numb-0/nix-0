@@ -20,6 +20,10 @@
       "rev": "fc87ba6554f182161d9a4bab5017c575571f000f",
       "src": "https://github.com/nvim-mini/mini.comment"
     },
+    "mini.completion": {
+      "rev": "04abe6fc7860858785ba63c435d76bf5b8b64b5f",
+      "src": "https://github.com/nvim-mini/mini.completion"
+    },
     "mini.diff": {
       "rev": "5af2b6be4a4beb673f3196a414f6fd932bbedd48",
       "src": "https://github.com/nvim-mini/mini.diff"

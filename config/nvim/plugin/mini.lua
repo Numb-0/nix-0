@@ -7,6 +7,7 @@ vim.pack.add({ "https://github.com/nvim-mini/mini.diff" })
 vim.pack.add({ 'https://github.com/nvim-mini/mini.cmdline' })
 vim.pack.add({ 'https://github.com/nvim-mini/mini.tabline' })
 vim.pack.add({ 'https://github.com/nvim-mini/mini.statusline' })
+vim.pack.add({ 'https://github.com/nvim-mini/mini.completion' })
 
 -- Icons
 local mini_icons = require('mini.icons')
@@ -62,3 +63,7 @@ mini_tabline.setup()
 -- Statusline
 local mini_statusline = require('mini.statusline')
 mini_statusline.setup()
+
+-- Completion
+local mini_completion = require('mini.completion')
+mini_completion.setup()

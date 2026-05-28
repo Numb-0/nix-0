@@ -25,7 +25,7 @@
   };
 
   boot = {
-    # kernelPackages = pkgs.linuxPackages_6_6;
+    kernelPackages = pkgs.linuxPackages_latest;
     # This is for OBS Virtual Cam Support
     kernelModules = [
       "v4l2loopback"
