@@ -19,10 +19,8 @@ keymap.set("i", "<C-l>", "<Right>", { desc = "Move right" })
 keymap.set("i", "<C-j>", "<Down>", { desc = "Move down" })
 keymap.set("i", "<C-k>", "<Up>", { desc = "Move up" })
 
--- Buffer management
-keymap.set("n", "<leader>b", "<cmd>enew<CR>", { desc = "New buffer" })
-keymap.set("n", "<leader>x", "<cmd>bdelete<CR>", { desc = "Close buffer" })
-keymap.set("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Next buffer" })
+-- Buffer navigation
+keymap.set("n", "<Tab>",   "<cmd>bnext<CR>",     { desc = "Next buffer" })
 keymap.set("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
 
 -- Escape insert mode

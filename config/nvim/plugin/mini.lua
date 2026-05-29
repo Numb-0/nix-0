@@ -8,6 +8,9 @@ vim.pack.add({ 'https://github.com/nvim-mini/mini.cmdline' })
 vim.pack.add({ 'https://github.com/nvim-mini/mini.tabline' })
 vim.pack.add({ 'https://github.com/nvim-mini/mini.statusline' })
 vim.pack.add({ 'https://github.com/nvim-mini/mini.completion' })
+vim.pack.add({ 'https://github.com/nvim-mini/mini.pairs' })
+vim.pack.add({ 'https://github.com/nvim-mini/mini.ai' })
+vim.pack.add({ 'https://github.com/nvim-mini/mini.notify' })
 
 -- Icons
 local mini_icons = require('mini.icons')
@@ -67,3 +70,16 @@ mini_statusline.setup()
 -- Completion
 local mini_completion = require('mini.completion')
 mini_completion.setup()
+
+-- Pairs
+local mini_pairs = require('mini.pairs')
+mini_pairs.setup()
+
+-- Extended text objects
+local mini_ai = require('mini.ai')
+mini_ai.setup()
+
+-- Notifications
+local mini_notify = require('mini.notify')
+mini_notify.setup()
+vim.notify = mini_notify.make_notify()

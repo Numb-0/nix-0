@@ -33,6 +33,8 @@
     nil
     nixfmt
     lua-language-server
+    typescript-language-server
+    pyright
 
     # ── Editor & terminal tools ───────────────────────────────────────────────
     vim
