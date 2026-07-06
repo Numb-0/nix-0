@@ -96,13 +96,11 @@
       gamescopeSession.enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
-      # extraPackages = with pkgs; [
-      #   bumblebee
-      #   glxinfo
-      #   libglvnd
-      #   SDL2
-      #   glibc
-      # ];
+      extraPackages = with pkgs; [
+        # libGLU.so.1 — required by The Binding of Isaac (isaac.x64); not in the
+        # default Steam runtime, so the game crashes on launch without it.
+        libGLU
+      ];
     };
     gamemode = {
       enable = true;

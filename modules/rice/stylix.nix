@@ -29,6 +29,7 @@ in
 
   stylix = {
     enable = true;
+    # targets.kmscon.enable = false;
 
     image = config.style.wallpaper.path;
     base16Scheme = config.style.colors;

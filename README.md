@@ -37,7 +37,7 @@ nix-0/
 
 ### 1. Clone the repository
 
-Clone in the home directory or where you want:
+Clone in the Home directory or else nvim configuration symlink will not work:
 
 ```bash
 git clone https://github.com/Numb-0/nix-0.git ~/nix-0
