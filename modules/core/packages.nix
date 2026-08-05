@@ -105,7 +105,8 @@
 
     # ── Wayland / Hyprland ────────────────────────────────────────────────────
     hyprpicker
-    hyprshot
+    grim
+    slurp
     wl-clipboard
     satty
   ];

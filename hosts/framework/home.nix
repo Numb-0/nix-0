@@ -33,6 +33,7 @@ in
   #   enable = true;
   #   addKeysToAgent = "yes";
   # };
+  home.pointerCursor.enable = true;
 
   programs.git = {
     enable = true;
