@@ -244,6 +244,7 @@ in
         (bind "SUPER + X" (dsp.global "quickshell:poweractions"))
         (bind "SUPER + D" (dsp.global "quickshell:dashboard"))
         (bind "SUPER + C" (dsp.global "quickshell:mixer"))
+        (bind "SUPER + N"(dsp.global "quickshell:network"))
 
         # Focus
         (bind "SUPER + left" (dsp.focus "l"))

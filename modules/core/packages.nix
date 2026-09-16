@@ -62,6 +62,7 @@
     # google-chrome
     discord-canary
     spotify
+    desmume
     prismlauncher
     # lutris
     dbeaver-bin
@@ -69,9 +70,10 @@
     # vscodium
     # obsidian
     claude-code
+    filezilla
 
     # ── Office & documents ────────────────────────────────────────────────────
-    libreoffice-qt6-fresh
+    libreoffice-qt-stable
     hunspell
     hunspellDicts.it_IT
     hunspellDicts.en_US
