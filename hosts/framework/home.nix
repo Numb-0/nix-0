@@ -51,6 +51,7 @@ in
         gpgSign = true;
       };
       push = { autoSetupRemote = true; };
+      init = { defaultBranch = "main"; };
     };
   };
 
