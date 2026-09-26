@@ -17,6 +17,12 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Local checkout until the Nix modules are pushed; then switch to
+    # "github:Numb-0/morph-shell".
+    morph-shell = {
+      url = "git+file:///home/cosix/morph-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   
   outputs =
@@ -37,7 +43,12 @@
             ./hosts/${host}/config.nix
             stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
+            inputs.morph-shell.nixosModules.default
             {
+              # Package, fonts, UPower and PipeWire; autostart is left to
+              # the Home Manager module below.
+              programs.morph-shell.enable = true;
+
               # Temporary workaround for picosvg tests failing
               # nixpkgs.overlays = [
               #   (final: prev: {
@@ -57,6 +68,7 @@
                 useUserPackages = true;
                 backupFileExtension = "backup";
                 extraSpecialArgs = { inherit self username inputs host; };
+                sharedModules = [ inputs.morph-shell.homeManagerModules.default ];
                 users.${username} = import ./hosts/${host}/home.nix;
               };
             }

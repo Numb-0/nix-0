@@ -185,10 +185,12 @@ in
         { leaf = "border"; enabled = true; speed = 6; bezier = "circ"; }
         { leaf = "fade"; enabled = true; speed = 10; bezier = "default"; }
         { leaf = "workspaces"; enabled = true; speed = 5; bezier = "circ"; }
-        { leaf = "layersIn"; enabled = true; speed = 6; bezier = "circ"; style = "popin"; }
-        { leaf = "layersOut"; enabled = true; speed = 6; bezier = "circ"; style = "popin"; }
-        { leaf = "fadeLayersIn"; enabled = true; speed = 6; bezier = "circ"; }
-        { leaf = "fadeLayersOut"; enabled = true; speed = 6; bezier = "circ"; }
+        # { leaf = "layersIn"; enabled = true; speed = 6; bezier = "circ"; style = "popin"; }
+        # { leaf = "layersOut"; enabled = true; speed = 6; bezier = "circ"; style = "popin"; }
+        # { leaf = "fadeLayersIn"; enabled = true; speed = 6; bezier = "circ"; }
+        # { leaf = "fadeLayersOut"; enabled = true; speed = 6; bezier = "circ"; }
+        { leaf = "layers"; enabled = false; }
+        { leaf = "fadeLayers"; enabled = false; }
       ];
 
       window_rule = [
@@ -205,7 +207,6 @@ in
             (lua ''
               function()
                 hl.exec_cmd("hyprlock")
-                hl.exec_cmd("quickshell -d")
                 hl.exec_cmd("udiskie")
               end'')
           ];
@@ -240,11 +241,9 @@ in
         (bind "SUPER + H" (dsp.exec ''grim -g \"$(slurp)\" - | satty -f - --copy-command wl-copy -o \"~/Pictures/Screenshots/%Y%m%d_%H%M%S.png\"''))
 
         # Quickshell global shortcuts
-        (bind "SUPER + A" (dsp.global "quickshell:applauncher"))
-        (bind "SUPER + X" (dsp.global "quickshell:poweractions"))
-        (bind "SUPER + D" (dsp.global "quickshell:dashboard"))
-        (bind "SUPER + C" (dsp.global "quickshell:mixer"))
-        (bind "SUPER + N"(dsp.global "quickshell:network"))
+
+        # Morph shell
+        (bind "SUPER + A" (dsp.exec "morph-shell ipc call launcher toggle"))
 
         # Focus
         (bind "SUPER + left" (dsp.focus "l"))

@@ -35,6 +35,9 @@ in
   # };
   home.pointerCursor.enable = true;
 
+  # Starts with graphical-session.target (see morph-shell's README)
+  programs.morph-shell.enable = true;
+
   programs.git = {
     enable = true;
     signing = {
