@@ -168,17 +168,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1790461710,
-        "narHash": "sha256-rpYGm8SJ+uAotr5OQGPpbJklmbkKhWusSswIACci5CU=",
-        "ref": "refs/heads/main",
-        "rev": "f99613a367212e245a0d4030616e624acf1c7122",
-        "revCount": 13,
-        "type": "git",
-        "url": "file:///home/cosix/morph-shell"
+        "lastModified": 1790522754,
+        "narHash": "sha256-J3oz1QhYMfTzkkcN0xDp2+4DhcGtIQP25rV/HvM+Q+Y=",
+        "owner": "Numb-0",
+        "repo": "morph-shell",
+        "rev": "7da7ffd369bfe188c647869e1d8f2ca7140c493c",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/cosix/morph-shell"
+        "owner": "Numb-0",
+        "repo": "morph-shell",
+        "type": "github"
       }
     },
     "nixos-hardware": {
@@ -254,33 +254,12 @@
         "type": "github"
       }
     },
-    "quickshell": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1790343625,
-        "narHash": "sha256-dLtjYGr1sTihGhsISR71LB17E6m0r18JhF+6BNAHy0M=",
-        "ref": "refs/heads/master",
-        "rev": "41651d7dcd62a9400eb6f4f8a8580efe00901efb",
-        "revCount": 864,
-        "type": "git",
-        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
-      }
-    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "morph-shell": "morph-shell",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
-        "quickshell": "quickshell",
         "stylix": "stylix"
       }
     },

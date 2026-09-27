@@ -240,8 +240,6 @@ in
         (bind "SUPER + J" (dsp.layout "togglesplit"))
         (bind "SUPER + H" (dsp.exec ''grim -g \"$(slurp)\" - | satty -f - --copy-command wl-copy -o \"~/Pictures/Screenshots/%Y%m%d_%H%M%S.png\"''))
 
-        # Quickshell global shortcuts
-
         # Morph shell
         (bind "SUPER + A" (dsp.exec "morph-shell ipc call launcher toggle"))
 

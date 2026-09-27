@@ -6,9 +6,7 @@
 [![Hyprland](https://img.shields.io/badge/WM-Hyprland-cyan?logo=hyprland)](https://hyprland.org)
 [![License](https://img.shields.io/github/license/Numb-0/nix-0)](LICENSE)
 
-A minimal ***❄ NixOS configuration ❄*** using [**Hyprland**](https://github.com/hyprwm/Hyprland) and [**Quickshell**](https://quickshell.org), with applications styled by [**Stylix**](https://github.com/danth/stylix).
-
-<!-- ![quickshell screenshot](https://raw.githubusercontent.com/Numb-0/frame-shell/main/assets/qs_1.png) -->
+A minimal ***❄ NixOS configuration ❄*** using [**Hyprland**](https://github.com/hyprwm/Hyprland) and [**Morph Shell**](https://github.com/Numb-0/morph-shell) (a Quickshell-based desktop shell), with applications styled by [**Stylix**](https://github.com/danth/stylix).
 
 ## 📁 Project Structure
 
@@ -64,6 +62,15 @@ nixos-rebuild switch --flake .#<hostname> (if using the ssh flake add --remote-s
 > [!TIP]
 > Make sure you have NixOS installed and flakes enabled before proceeding. If you encounter any issues, refer to the NixOS documentation. 📚
 
+## 🐚 Shell
+
+The desktop shell is [Morph Shell](https://github.com/Numb-0/morph-shell), imported as a flake input and wired in through its two modules:
+
+- **NixOS module** (`morph-shell.nixosModules.default` in `flake.nix`, enabled with `programs.morph-shell.enable` in `hosts/<hostname>/config.nix`) — installs the package, fonts, UPower and PipeWire.
+- **Home Manager module** (`homeManagerModules.default`, added via `home-manager.sharedModules`, enabled in `hosts/<hostname>/home.nix`) — autostarts the shell with `graphical-session.target`.
+
+Shell panels are driven over IPC, e.g. `morph-shell ipc call launcher toggle`.
+
 ## ⌨️ Keybinds
 
 ### General
@@ -78,7 +85,7 @@ nixos-rebuild switch --flake .#<hostname> (if using the ssh flake add --remote-s
 | <kbd>Super</kbd> + <kbd>W</kbd> | Toggle floating |
 | <kbd>Super</kbd> + <kbd>F</kbd> | Toggle pseudo tiling |
 | <kbd>Super</kbd> + <kbd>J</kbd> | Toggle split layout |
-| <kbd>Super</kbd> + <kbd>H</kbd> | Screenshot region |
+| <kbd>Super</kbd> + <kbd>H</kbd> | Screenshot region (grim + slurp, annotate in satty) |
 
 ### Focus & Mouse
 
@@ -91,14 +98,11 @@ nixos-rebuild switch --flake .#<hostname> (if using the ssh flake add --remote-s
 | <kbd>Super</kbd> + <kbd>LMB</kbd> | Move window (drag) |
 | <kbd>Super</kbd> + <kbd>RMB</kbd> | Resize window (drag) |
 
-### Quickshell
+### Morph Shell
 
 | Keys | Action |
 | :--- | :--- |
 | <kbd>Super</kbd> + <kbd>A</kbd> | Toggle App Launcher |
-| <kbd>Super</kbd> + <kbd>C</kbd> | Toggle Mixer |
-| <kbd>Super</kbd> + <kbd>D</kbd> | Toggle Dashboard |
-| <kbd>Super</kbd> + <kbd>X</kbd> | Toggle Power Actions |
 
 ### Workspaces
 
@@ -132,5 +136,5 @@ nixos-rebuild switch --flake .#<hostname> (if using the ssh flake add --remote-s
 - [Hyprland](https://hyprland.org) - Dynamic tiling Wayland compositor
 - [Stylix](https://github.com/danth/stylix) - System-wide theming for NixOS
 - [Home Manager](https://github.com/nix-community/home-manager) - User environment management
-- [Quickshell](https://quickshell.org) - Shell widget framework
+- [Morph Shell](https://github.com/Numb-0/morph-shell) - Desktop shell, built on [Quickshell](https://quickshell.org)
 - [Catppuccin](https://github.com/catppuccin) & [Gruvbox](https://github.com/morhetz/gruvbox) - Colorschemes

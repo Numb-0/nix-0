@@ -13,20 +13,14 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # Local checkout until the Nix modules are pushed; then switch to
-    # "github:Numb-0/morph-shell".
     morph-shell = {
-      url = "git+file:///home/cosix/morph-shell";
+      url = "github:Numb-0/morph-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   
   outputs =
-    { self, nixpkgs, home-manager, nixos-hardware, stylix, quickshell, ... }@inputs:
+    { self, nixpkgs, home-manager, nixos-hardware, stylix, morph-shell, ... }@inputs:
     let
       system = "x86_64-linux";
       host = "framework";
@@ -43,12 +37,8 @@
             ./hosts/${host}/config.nix
             stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
-            inputs.morph-shell.nixosModules.default
+            morph-shell.nixosModules.default
             {
-              # Package, fonts, UPower and PipeWire; autostart is left to
-              # the Home Manager module below.
-              programs.morph-shell.enable = true;
-
               # Temporary workaround for picosvg tests failing
               # nixpkgs.overlays = [
               #   (final: prev: {
@@ -61,9 +51,6 @@
               #     ];
               #   })
               # ];
-              environment.systemPackages = [
-                quickshell.packages.${system}.default
-              ];
               home-manager = { 
                 useUserPackages = true;
                 backupFileExtension = "backup";

@@ -118,21 +118,36 @@ Add the flake to inputs and reference in modules:
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     mock-local-flake.url = "path:./relative/path/from/flake"; # <-- Local flake reference
+    mock-git-file-flake.url = "git+file:///home/user/some-repo"; # <-- Local git checkout
     mock-ssh-flake.url = "git+ssh://git@github.com/Numb-0/nix-0-shell?ref=main"; # <-- SSH-based flake
   };
 
-  outputs = { nixpkgs, stylix, ... }: {
+  outputs = { self, nixpkgs, home-manager, mock-local-flake, ... }@inputs: {
     nixosConfigurations."«hostname»" = nixpkgs.lib.nixosSystem { # <-- Replace «hostname» with your actual hostname
       system = "x86_64-linux";
-      modules = [ 
+      modules = [
         ./configuration.nix
-        # Add modules here
-        # home-manager.nixosModules.home-manager
+        # NixOS modules exported by the flake
+        home-manager.nixosModules.home-manager
+        mock-local-flake.nixosModules.default
+        {
+          home-manager = {
+            useUserPackages = true;
+            backupFileExtension = "backup";
+            extraSpecialArgs = { inherit self username inputs host; };
+            # Home Manager modules exported by the flake, applied to every user
+            sharedModules = [ inputs.mock-local-flake.homeManagerModules.default ];
+            users.${username} = import ./hosts/${host}/home.nix;
+          };
+          # Here add the overlays
+        }
       ];
     };
   };
 }
 ```
+
+Then enable the options the modules provide, e.g. `programs.morph-shell.enable = true;` in both the NixOS config and `home.nix` (this repo does exactly this with `morph-shell`).
 
 ## Advanced Configuration
 

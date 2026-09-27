@@ -83,6 +83,8 @@
     dconf.enable = true;
     fuse.userAllowOther = true;
     mtr.enable = true;
+    # Package, fonts, UPower and PipeWire; autostart is handled in home.nix
+    morph-shell.enable = true;
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
