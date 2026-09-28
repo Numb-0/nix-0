@@ -19,7 +19,7 @@ in
     ) (builtins.readDir wallpapers);
 
     default = {
-      theme = "gruvbox";
+      theme = "gruv";
       mode = "dark";
     };
 

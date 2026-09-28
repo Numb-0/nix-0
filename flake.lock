@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790584944,
-        "narHash": "sha256-1k5rI4RgQqIeLAAKf1u2LSRsyN4zYhJgmcPIHRcRpf8=",
+        "lastModified": 1790589537,
+        "narHash": "sha256-6zoGZGfuH1SIqHMeZ2x7QB4pQtY/1u+IhhZbClW/HUE=",
         "ref": "refs/heads/main",
-        "rev": "ff6ca849d3ae810bd20cb03139063adc7be7cce8",
-        "revCount": 3,
+        "rev": "0798fe955f27824df41845e95148ffd1dc9f8088",
+        "revCount": 4,
         "type": "git",
         "url": "ssh://git@github.com/Numb-0/chromix"
       },
@@ -48,11 +48,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790583027,
-        "narHash": "sha256-2LtvQG6PGB3QzsqlRsG7SMUn8D31i2+1lK2Zyfwzxsc=",
+        "lastModified": 1790592819,
+        "narHash": "sha256-B0Si8vmX7eXk8m9ul6m0Al7Xk+T/ojpE5wH23SSsAwI=",
         "ref": "refs/heads/main",
-        "rev": "befb55a55898d5ad7cddc39f1e2df585a3ef9dd7",
-        "revCount": 23,
+        "rev": "2f3803f051c84dd435785e46a9899988cf5c6a6c",
+        "revCount": 25,
         "type": "git",
         "url": "ssh://git@github.com/Numb-0/morph-shell"
       },
