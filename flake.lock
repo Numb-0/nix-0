@@ -2,25 +2,22 @@
   "nodes": {
     "chromix": {
       "inputs": {
-        "home-manager": [
-          "home-manager"
-        ],
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1790556657,
-        "narHash": "sha256-wh0xKBJDaUIFlV5+2bR2NcbhoVVf/Ijtrw9TNM3+9lk=",
-        "owner": "Numb-0",
-        "repo": "chromix",
-        "rev": "f599bed41e4fe799d8877b2175b756319bbe3d9e",
-        "type": "github"
+        "lastModified": 1790584944,
+        "narHash": "sha256-1k5rI4RgQqIeLAAKf1u2LSRsyN4zYhJgmcPIHRcRpf8=",
+        "ref": "refs/heads/main",
+        "rev": "ff6ca849d3ae810bd20cb03139063adc7be7cce8",
+        "revCount": 3,
+        "type": "git",
+        "url": "ssh://git@github.com/Numb-0/chromix"
       },
       "original": {
-        "owner": "Numb-0",
-        "repo": "chromix",
-        "type": "github"
+        "type": "git",
+        "url": "ssh://git@github.com/Numb-0/chromix"
       }
     },
     "home-manager": {
@@ -51,17 +48,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1790553092,
-        "narHash": "sha256-QIGiU3F2V7JIfR8qRWsY0AJoy9O0JPM0w8q87fPaJPk=",
-        "owner": "Numb-0",
-        "repo": "morph-shell",
-        "rev": "469a18fd832b3fb9d1ab2afb16239995330ad16a",
-        "type": "github"
+        "lastModified": 1790583027,
+        "narHash": "sha256-2LtvQG6PGB3QzsqlRsG7SMUn8D31i2+1lK2Zyfwzxsc=",
+        "ref": "refs/heads/main",
+        "rev": "befb55a55898d5ad7cddc39f1e2df585a3ef9dd7",
+        "revCount": 23,
+        "type": "git",
+        "url": "ssh://git@github.com/Numb-0/morph-shell"
       },
       "original": {
-        "owner": "Numb-0",
-        "repo": "morph-shell",
-        "type": "github"
+        "type": "git",
+        "url": "ssh://git@github.com/Numb-0/morph-shell"
       }
     },
     "nixos-hardware": {

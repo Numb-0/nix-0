@@ -7,15 +7,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     chromix = {
-      url = "github:Numb-0/chromix";
+      url = "git+ssh://git@github.com/Numb-0/chromix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
     };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
     morph-shell = {
-      url = "github:Numb-0/morph-shell";
+      url = "git+ssh://git@github.com/Numb-0/morph-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
