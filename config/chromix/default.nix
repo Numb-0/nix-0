@@ -1,27 +1,25 @@
 {
-  osConfig,
   lib,
   ...
 }:
 let
-  # Every wallpaper is a theme, named after its file; the one set as
-  # the wallpaper is where chromix starts.
-  name =
-    path:
-    lib.removeSuffix ".jpg" (
-      lib.removeSuffix ".png" (builtins.unsafeDiscardStringContext (baseNameOf path))
-    );
+  wallpapers = builtins.path {
+    path = ../wallpapers;
+    name = "wallpapers";
+  };
+  # Every wallpaper is a theme, named after its file.
+  name = file: lib.removeSuffix ".jpg" (lib.removeSuffix ".png" file);
 in
 {
   programs.chromix = {
     enable = true;
 
-    themes = lib.listToAttrs (
-      map (path: lib.nameValuePair (name path) { image = path; }) osConfig.style.wallpaper.paths
-    );
+    themes = lib.mapAttrs' (
+      file: _: lib.nameValuePair (name file) { image = "${wallpapers}/${file}"; }
+    ) (builtins.readDir wallpapers);
 
     default = {
-      theme = name osConfig.style.wallpaper.path;
+      theme = "gruvbox";
       mode = "dark";
     };
 
@@ -41,6 +39,14 @@ in
       enable = true;
       template = ./templates/hyprlock.conf;
       output = "hyprlock/colors.conf";
+    };
+
+    # The whole hyprpaper config, so the wallpaper is the theme's image.
+    targets.hyprpaper = {
+      enable = true;
+      template = ./templates/hyprpaper.conf;
+      output = "hyprpaper/hyprpaper.conf";
+      reload = "systemctl --user try-restart hyprpaper.service";
     };
   };
 }

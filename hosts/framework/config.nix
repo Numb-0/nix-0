@@ -18,12 +18,6 @@
     ../../modules/rice
   ];
 
-  # Custom Modules
-  style = {
-    enable = true;
-    scheme = "gruvbox";
-  };
-
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     # This is for OBS Virtual Cam Support
