@@ -27,13 +27,21 @@ in
     ../../config/fish
     ../../config/ghostty
     ../../config/yazi
+    ../../config/chromix
   ];
 
   # programs.ssh = {
   #   enable = true;
   #   addKeysToAgent = "yes";
   # };
-  home.pointerCursor.enable = true;
+  home.pointerCursor = {
+    enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 24;
+    gtk.enable = true;
+    hyprcursor.enable = true;
+  };
 
   # Starts with graphical-session.target (see morph-shell's README)
   programs.morph-shell.enable = true;
@@ -97,7 +105,20 @@ in
     };
   };
 
+  # adw-gtk3 draws GTK 3 apps from libadwaita's named colours, which is
+  # what chromix's gtk.css redefines.
   gtk = {
+    enable = true;
+    theme = {
+      name = "adw-gtk3";
+      package = pkgs.adw-gtk3;
+    };
+    font = {
+      name = "Roboto";
+      size = 11;
+    };
+    # GTK 4 apps are libadwaita, which reads chromix's colours directly.
+    gtk4.theme = null;
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;

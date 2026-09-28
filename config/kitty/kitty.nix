@@ -3,7 +3,6 @@
     enable = true;
     shellIntegration.enableFishIntegration = true;
     settings = {
-      include = "./theme.conf";
       confirm_os_window_close = 0;
       remember_window_size = "no";
       cursor_trail = 3;

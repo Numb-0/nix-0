@@ -111,10 +111,8 @@ in
         general = {
           gaps_in = 5;
           gaps_out = 8;
+          # Border and shadow colours come from chromix.
           border_size = 0;
-          col = {
-            active_border = "rgba(${osConfig.style.colors.base03}ee)";
-          };
           resize_on_border = true;
           allow_tearing = true;
         };
@@ -127,7 +125,6 @@ in
             enabled = true;
             range = 6;
             render_power = 6;
-            color = "rgba(${osConfig.style.colors.base01}ee)";
           };
           blur = {
             enabled = true;

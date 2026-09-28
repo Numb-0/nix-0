@@ -16,6 +16,10 @@
       "rev": "4ce4c35e411ea329a15d4b15e9c89c2a3089e437",
       "src": "https://github.com/nvim-mini/mini.ai"
     },
+    "mini.base16": {
+      "rev": "419207d1fb57ef79356c8f478f5f9cda9483fe73",
+      "src": "https://github.com/nvim-mini/mini.base16"
+    },
     "mini.cmdline": {
       "rev": "0afaf26d4d12030b0f75c7c4584dae883a195ef3",
       "src": "https://github.com/nvim-mini/mini.cmdline"

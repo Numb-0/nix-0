@@ -6,9 +6,10 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix = {
-      url = "github:danth/stylix";
+    chromix = {
+      url = "github:Numb-0/chromix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
@@ -20,7 +21,7 @@
   };
   
   outputs =
-    { self, nixpkgs, home-manager, nixos-hardware, stylix, morph-shell, ... }@inputs:
+    { self, nixpkgs, home-manager, nixos-hardware, morph-shell, ... }@inputs:
     let
       system = "x86_64-linux";
       host = "framework";
@@ -35,7 +36,6 @@
           };
           modules = [
             ./hosts/${host}/config.nix
-            stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
             morph-shell.nixosModules.default
             {
@@ -55,7 +55,10 @@
                 useUserPackages = true;
                 backupFileExtension = "backup";
                 extraSpecialArgs = { inherit self username inputs host; };
-                sharedModules = [ inputs.morph-shell.homeManagerModules.default ];
+                sharedModules = [
+                  inputs.morph-shell.homeManagerModules.default
+                  inputs.chromix.homeManagerModules.default
+                ];
                 users.${username} = import ./hosts/${host}/home.nix;
               };
             }

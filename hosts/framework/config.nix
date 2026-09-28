@@ -8,7 +8,7 @@
   ...
 }:
 {
-  # This file contains all the nixos modules configurations of the modules not included using the flake {stylix, ...}
+  # This file contains all the nixos modules configurations of the modules not included using the flake
   imports = [
     # Hardware Tweaks for amd
     nixos-hardware.nixosModules.framework-13-7040-amd
