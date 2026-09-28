@@ -1,5 +1,5 @@
 {
-  osConfig,
+  config,
   ...
 }:
 {
@@ -32,26 +32,23 @@
           set -g __fish_git_prompt_show_informative_status true
           set -g __fish_git_prompt_showcolorhints true
           set -g __fish_git_prompt_char_stateseparator |
-          set -g __fish_git_prompt_color_branch ${osConfig.style.colors.base0D}
-
-          set -g fish_color_param ${osConfig.style.colors.base05}
-          set -g fish_color_autosuggestion ${osConfig.style.colors.base0A}
-          set -g fish_color_command ${osConfig.style.colors.base0A}
+          # Colours come from chromix, re-read so a theme switch shows up.
+          source ${config.xdg.stateHome}/chromix/current/fish/colors.fish 2>/dev/null
 
           set -l last_status $status
           set -l arrow ' ⮞ '
           set -l show_status 
 
           if test $last_status -ne 0
-              set arrow (set_color ${osConfig.style.colors.base08}) $arrow (set_color normal)
-              set show_status (set_color ${osConfig.style.colors.base08}) "[$last_status]" (set_color normal)
+              set arrow (set_color $chromix_red) $arrow (set_color normal)
+              set show_status (set_color $chromix_red) "[$last_status]" (set_color normal)
           end
 
-          string join "" -- (set_color ${osConfig.style.colors.base0A}) (prompt_pwd --full-length-dirs 2) (set_color normal) (fish_git_prompt) $show_status (set_color ${osConfig.style.colors.base0E}) $arrow (set_color normal)
+          string join "" -- (set_color $chromix_yellow) (prompt_pwd --full-length-dirs 2) (set_color normal) (fish_git_prompt) $show_status (set_color $chromix_magenta) $arrow (set_color normal)
         '';
         fish_right_prompt = ''
           set -l time_counter "$CMD_DURATION ms" 
-          string join "" -- (set_color ${osConfig.style.colors.base0A}) "[$time_counter]"
+          string join "" -- (set_color $chromix_yellow) "[$time_counter]"
         '';
       };
     };

@@ -8,7 +8,7 @@
         "performable:ctrl+c=copy_to_clipboard"
         "performable:ctrl+v=paste_from_clipboard"
       ];
-      # Resetting fonts and setting it again cause stylix adds the emoji fonts that mess up appearence
+      # Resetting fonts and setting it again, so the emoji fonts do not mess up the appearance
       # font-family = ["" "JetBrains Mono"];
     };
   };

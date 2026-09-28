@@ -1,4 +1,5 @@
 {
+  config,
   osConfig,
   ...
 }:
@@ -6,6 +7,8 @@
   programs.hyprlock = {
     enable = true;
     settings = {
+      source = "${config.xdg.stateHome}/chromix/current/hyprlock/colors.conf";
+
       general = {
         disable_loading_bar = true;
         hide_cursor = true;
@@ -19,22 +22,20 @@
         size = "200, 60";
         position = "0, -120";
         monitor = "";
-        # Fixed the extra '}' here
-        font_color = "rgb(${osConfig.style.colors.base01})"; 
-        # Correctly accessing the first font in the list
+        font_color = "rgb($surface_container)"; 
         font_family = "${builtins.head osConfig.fonts.fontconfig.defaultFonts.monospace}";
-        inner_color = "rgb(${osConfig.style.colors.base0E})";
-        outer_color = "rgb(${osConfig.style.colors.base0A})";
+        inner_color = "rgb($magenta)";
+        outer_color = "rgb($yellow)";
         outline_thickness = 0;
         placeholder_text = "";
-        fail_color = "rgb(${osConfig.style.colors.base08})";
-        check_color = "rgb(${osConfig.style.colors.base0B})";
+        fail_color = "rgb($red)";
+        check_color = "rgb($green)";
       }];
 
       label = [{
         monitor = "";
         text = "cmd[update:1000] echo -e \"\$(date +\"%H:%M\")\"";
-        color = "rgb(${osConfig.style.colors.base07})";
+        color = "rgb($on_primary_container)";
         font_size = 120;
         font_family = "${builtins.head osConfig.fonts.fontconfig.defaultFonts.monospace}";
         position = "200, -200";
