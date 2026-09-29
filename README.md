@@ -6,7 +6,7 @@
 [![Hyprland](https://img.shields.io/badge/WM-Hyprland-cyan?logo=hyprland)](https://hyprland.org)
 [![License](https://img.shields.io/github/license/Numb-0/nix-0)](LICENSE)
 
-A minimal ***❄ NixOS configuration ❄*** using [**Hyprland**](https://github.com/hyprwm/Hyprland) and [**Morph Shell**](https://github.com/Numb-0/morph-shell) (a Quickshell-based desktop shell), with applications styled by [**Stylix**](https://github.com/danth/stylix).
+A minimal ***❄ NixOS configuration ❄*** using [**Hyprland**](https://github.com/hyprwm/Hyprland) and [**Morph Shell**](https://github.com/Numb-0/morph-shell) (a Quickshell-based desktop shell), with colours generated from the wallpaper by [**Chromix**](https://github.com/Numb-0/chromix) (Material You themes via matugen).
 
 ## 📁 Project Structure
 
@@ -18,10 +18,12 @@ nix-0/
 │   └── framework/         # Host-specific config (Framework laptop)
 ├── modules/
 │   ├── core/              # Core system modules (packages, users)
-│   ├── rice/              # Theming (Stylix, colorschemes)
+│   ├── rice/              # Fonts and fontconfig defaults
 │   └── graphics/          # GPU drivers (AMD, Nvidia, Intel)
 ├── config/                # Application configs
-│   ├── hypr/              # Hyprland, hyprlock, hypridle
+│   ├── chromix/           # Chromix themes, targets and custom templates
+│   ├── wallpapers/        # Wallpapers (each one is a Chromix theme)
+│   ├── hypr/              # Hyprland, hyprlock, hyprpaper, hypridle
 │   ├── fish/              # Fish shell
 │   ├── kitty/             # Kitty terminal
 │   ├── nvim/              # Neovim configuration
@@ -70,6 +72,26 @@ The desktop shell is [Morph Shell](https://github.com/Numb-0/morph-shell), impor
 - **Home Manager module** (`homeManagerModules.default`, added via `home-manager.sharedModules`, enabled in `hosts/<hostname>/home.nix`) — autostarts the shell with `graphical-session.target`.
 
 Shell panels are driven over IPC, e.g. `morph-shell ipc call launcher toggle`.
+
+## 🎨 Theming
+
+Colours come from [Chromix](https://github.com/Numb-0/chromix), imported as a flake input and enabled through its Home Manager module (`chromix.homeManagerModules.default`, configured in `config/chromix/default.nix`).
+
+- **Every wallpaper is a theme**: each file in `config/wallpapers/` becomes a theme named after it (`gruv.png` → `gruv`). Drop in a new image and rebuild to get a new theme.
+- **Seed colours**: all themes use the M3 *tonal-spot* variant and are told apart by their seed colour. A wallpaper seeds from its most dominant colour unless overridden in the `tuning` set (pick an index with `matugen image <file> --show-source-colors`).
+- **Default**: `gruv` in dark mode.
+- **Targets**: Hyprland borders/shadows, hyprpaper, hyprlock, Neovim (via `mini.base16`), GTK (`adw-gtk3` for GTK 3, libadwaita for GTK 4) and Fish (custom template in `config/chromix/templates/fish.fish`, re-read on every prompt).
+
+Switch themes at runtime without rebuilding:
+
+```bash
+chromix list                 # declared themes, current one marked
+chromix set jap dark         # switch theme (and optionally mode)
+chromix mode toggle          # flip between dark and light
+chromix wall <image>         # generate a theme from any image and switch to it
+```
+
+Fonts are set in `modules/rice/fonts.nix` (Roboto, Noto Serif, JetBrains Mono, Noto Color Emoji).
 
 ## ⌨️ Keybinds
 
@@ -134,7 +156,6 @@ Shell panels are driven over IPC, e.g. `morph-shell ipc call launcher toggle`.
 
 - [NixOS](https://nixos.org) - The declarative Linux distribution
 - [Hyprland](https://hyprland.org) - Dynamic tiling Wayland compositor
-- [Stylix](https://github.com/danth/stylix) - System-wide theming for NixOS
+- [Chromix](https://github.com/Numb-0/chromix) - Wallpaper-driven theming, built on [matugen](https://github.com/InioX/matugen)
 - [Home Manager](https://github.com/nix-community/home-manager) - User environment management
 - [Morph Shell](https://github.com/Numb-0/morph-shell) - Desktop shell, built on [Quickshell](https://quickshell.org)
-- [Catppuccin](https://github.com/catppuccin) & [Gruvbox](https://github.com/morhetz/gruvbox) - Colorschemes
