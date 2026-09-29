@@ -30,7 +30,7 @@
     icu
 
     # ── Language servers & formatters ─────────────────────────────────────────
-    nil
+    nixd
     nixfmt
     lua-language-server
     typescript-language-server

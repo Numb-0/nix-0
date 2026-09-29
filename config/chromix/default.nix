@@ -10,23 +10,19 @@ let
   # Every wallpaper is a theme, named after its file.
   name = file: lib.removeSuffix ".jpg" (lib.removeSuffix ".png" file);
 
-  # Picked per wallpaper after comparing what matugen makes of each; a
-  # wallpaper not listed here gets the defaults.
+  # Every theme is tonal-spot, the variant M3 tunes its roles for: the
+  # others push chroma past the wallpaper (vibrant), put the container
+  # at the seed's own tone (content, fidelity), or make the primary and
+  # secondary containers one colour (fruit-salad). Themes are told apart
+  # by the seed instead, picked per wallpaper with
+  # `matugen image <file> --show-source-colors`; a wallpaper not listed
+  # here seeds from its most dominant colour.
   tuning = {
-    # Olive leaves: content stays on the seed, with a green tertiary.
-    forest.type = "scheme-content";
-    # The first colour is the red stripe; the yellow one is gruvbox, and
-    # rainbow keeps the surfaces neutral grey like the background.
-    gruv = {
-      colorIndex = 1;
-      type = "scheme-rainbow";
-    };
-    # The seed is the grey-blue triangle; vibrant makes it the lavender
-    # and blue of the other triangles over blue-tinted surfaces.
-    squares.type = "scheme-vibrant";
-    # Iridescent: fruit-salad turns the grey-lilac seed into cyan with a
-    # lavender tertiary, and keeps it apart from squares.
-    swirl.type = "scheme-fruit-salad";
+    # The first colour is the red stripe; the yellow one is gruvbox.
+    gruv.colorIndex = 1;
+    # The pale blue band rather than the grey-lilac, which would seed
+    # the same blue-lavender as squares.
+    swirl.colorIndex = 2;
   };
 in
 {
