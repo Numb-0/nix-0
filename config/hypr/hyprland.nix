@@ -235,12 +235,12 @@ in
         (bind "SUPER + W" dsp.float)
         (bind "SUPER + F" dsp.pseudo)
         (bind "SUPER + J" (dsp.layout "togglesplit"))
-        (bind "SUPER + H" (dsp.exec ''grim -g \"$(slurp)\" - | satty -f - --copy-command wl-copy -o \"~/Pictures/Screenshots/%Y%m%d_%H%M%S.png\"''))
 
         # Morph shell
         (bind "SUPER + A" (dsp.exec "morph-shell ipc call launcher toggle"))
         (bind "SUPER + Escape" (dsp.exec "morph-shell ipc call bar toggle session"))
         (bind "SUPER + N" (dsp.exec "morph-shell ipc call bar toggle notifications"))
+        (bind "SUPER + H" (dsp.exec "morph-shell ipc call screenshot region"))
 
         # Focus
         (bind "SUPER + left" (dsp.focus "l"))

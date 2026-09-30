@@ -108,7 +108,6 @@
     # ── Wayland / Hyprland ────────────────────────────────────────────────────
     hyprpicker
     grim
-    slurp
     wl-clipboard
     satty
   ];
