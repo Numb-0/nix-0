@@ -204,7 +204,7 @@ in
             (lua ''
               function()
                 hl.exec_cmd("hyprlock")
-                hl.exec_cmd("udiskie")
+                hl.exec_cmd("udiskie --smart-tray --appindicator")
               end'')
           ];
         }
