@@ -86,7 +86,7 @@ Switch themes at runtime without rebuilding:
 
 ```bash
 chromix list                 # declared themes, current one marked
-chromix set jap dark         # switch theme (and optionally mode)
+chromix set forest dark      # switch theme (and optionally mode)
 chromix mode toggle          # flip between dark and light
 chromix wall <image>         # generate a theme from any image and switch to it
 ```
