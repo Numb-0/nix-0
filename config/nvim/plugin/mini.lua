@@ -53,7 +53,13 @@ mini_surround.setup()
 
 -- Diff
 local mini_diff = require('mini.diff')
-mini_diff.setup()
+mini_diff.setup({
+  view = {
+    style = 'sign',
+    signs = { add = '▎', change = '▎', delete = '' },
+  },
+})
+vim.keymap.set('n', '<leader>go', mini_diff.toggle_overlay, { desc = 'Toggle diff overlay' })
 
 -- Cmdline
 local mini_cmdline = require('mini.cmdline')
