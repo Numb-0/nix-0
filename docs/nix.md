@@ -232,3 +232,61 @@ quickshell = {
     inputs.nixpkgs.follows = "nixpkgs";
 };
 ```
+
+### Packaging Prebuilt Binaries (buildFHSEnv)
+
+Some apps are only shipped as prebuilt Linux binaries, like a `.deb`, an AppImage or a tarball. Unity Hub is one example. These binaries expect a normal Linux folder layout, with libraries in `/usr/lib` and so on. NixOS doesn't have that layout, so they fail with missing `.so` errors. The fix is to unpack the upstream package without compiling anything, then run the binary inside a `buildFHSEnv`. That gives the program a sandbox that looks like a regular distro, with the libraries you list. Anything the program starts, such as the Unity Editors that Hub downloads, runs in the same sandbox, so their libraries go in the list too.
+
+How it fits together (shortened from `unhub.nix`):
+
+1. `fetchurl` downloads the `.deb` and `dpkg` (in `nativeBuildInputs`) unpacks it. Set `dontConfigure`/`dontBuild` because there's nothing to compile.
+2. `buildFHSEnv` builds the sandbox. `targetPkgs` holds the tools and data the app calls at runtime. `multiPkgs` holds the shared libraries, and it also gets 32-bit versions.
+3. `installPhase` copies the files to `$out` and replaces the upstream launcher with a `makeWrapper` that runs the real binary inside the sandbox. It also fixes the absolute `/opt/...` path in the `.desktop` file.
+
+```nix
+{ stdenv, fetchurl, dpkg, makeWrapper, buildFHSEnv, extraPkgs ? pkgs: [ ], extraLibs ? pkgs: [ ] }:
+
+stdenv.mkDerivation rec {
+  pname = "unityhub";
+  version = "3.13.0";
+  src = fetchurl { url = "https://hub-dist.unity3d.com/.../unityhub-amd64-${version}.deb"; sha256 = "..."; };
+
+  nativeBuildInputs = [ dpkg makeWrapper ];
+
+  fhsEnv = buildFHSEnv {
+    pname = "${pname}-fhs-env";
+    inherit version;
+    runScript = "";
+    targetPkgs = pkgs: with pkgs; [ xdg-utils gsettings-desktop-schemas ] ++ extraPkgs pkgs; # tools
+    multiPkgs = pkgs: with pkgs; [ gtk3 nss alsa-lib libglvnd vulkan-loader ] ++ extraLibs pkgs; # libraries
+  };
+
+  dontConfigure = true;
+  dontBuild = true;
+
+  installPhase = ''
+    mkdir -p $out
+    mv opt/ usr/share/ $out
+    # Replace upstream launcher: run the real binary inside the FHS env
+    makeWrapper ${fhsEnv}/bin/${pname}-fhs-env $out/opt/unityhub/unityhub \
+      --add-flags $out/opt/unityhub/unityhub-bin --argv0 unityhub
+    mkdir -p $out/bin
+    ln -s $out/opt/unityhub/unityhub $out/bin/unityhub
+    substituteInPlace $out/share/applications/unityhub.desktop \
+      --replace-fail /opt/unityhub/unityhub $out/opt/unityhub/unityhub
+  '';
+}
+```
+
+Use it, and add any missing libraries without editing the package:
+
+```nix
+environment.systemPackages = [
+  (pkgs.callPackage ./unhub.nix {
+    extraLibs = pkgs: [ pkgs.libxcrypt-legacy ]; # -> multiPkgs
+    extraPkgs = pkgs: [ pkgs.dotnet-sdk ];       # -> targetPkgs
+  })
+];
+```
+
+To find which package provides a missing library, see [Searching for Libraries](#searching-for-libraries). Unfree apps like this one also need `nixpkgs.config.allowUnfree = true;`.
