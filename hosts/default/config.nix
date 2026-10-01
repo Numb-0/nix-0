@@ -35,8 +35,8 @@ in
   console.keyMap = keyboardLayout;
 
   nix = {
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     settings = {
+      nix-path = [ "nixpkgs=${inputs.nixpkgs}" ];
       auto-optimise-store = true;
       experimental-features = [
         "nix-command"
