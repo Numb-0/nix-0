@@ -48,11 +48,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790846710,
-        "narHash": "sha256-e08GxNYDIzY+rSTpRtn+UdD8+C+fzsESKDKo5v8jdUA=",
+        "lastModified": 1790863554,
+        "narHash": "sha256-MkW+oaP+0srlzTodWTaXTZ90eWdq6bfHwlbLDL2EOhA=",
         "ref": "refs/heads/main",
-        "rev": "2f11ddb4133262539b23e8a1db70fba0197d9f6f",
-        "revCount": 58,
+        "rev": "93467c168e68a0c2d915953319a1046ad2d868dc",
+        "revCount": 59,
         "type": "git",
         "url": "ssh://git@github.com/Numb-0/morph-shell"
       },
