@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790784233,
-        "narHash": "sha256-Q/yFjInC3zuKwnoaKHVturv+V86RkQI4QVDfLxwB7bs=",
+        "lastModified": 1790800314,
+        "narHash": "sha256-FZz3fzUWiBdZZJxCUSJQ/0zWze4imxDkgQDQHMlJx+c=",
         "ref": "refs/heads/main",
-        "rev": "893c81b2c1c684e8dcf61bd7226e4b57d1ea009d",
-        "revCount": 11,
+        "rev": "c885799ca5e54188ce99d2ce54939b85f448a848",
+        "revCount": 12,
         "type": "git",
         "url": "ssh://git@github.com/Numb-0/chromix"
       },
@@ -27,11 +27,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790779675,
-        "narHash": "sha256-wswYlVaovcex/IMSqGrN/GLlvHN29bgoIXMBoMyLmTI=",
+        "lastModified": 1790819692,
+        "narHash": "sha256-rvubAPbh3QCliic3sAK+CXTrPCGgJstY52OTs/5H1J4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b75a0703c9ef757386ec3807a55106c2ca64f770",
+        "rev": "c8ecc29e5175452bee4a2aa1ba2383856d795338",
         "type": "github"
       },
       "original": {
