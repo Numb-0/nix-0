@@ -11,10 +11,6 @@
         hide_cursor = true;
       };
 
-      auth = {
-        "fingerprint:enabled" = true;
-      };
-
       background = [{
         path = "$wallpaper";
       }];
@@ -42,16 +38,6 @@
         position = "200, -200";
         halign = "left";
         valign = "top";
-      }
-      {
-        monitor = "";
-        text = "$FPRINTPROMPT";
-        color = "$m3primaryFixed";
-        font_size = 14;
-        font_family = "${builtins.head osConfig.fonts.fontconfig.defaultFonts.monospace}";
-        position = "0, -200";
-        halign = "center";
-        valign = "center";
       }];
     };
   };

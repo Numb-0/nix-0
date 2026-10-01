@@ -167,21 +167,15 @@
       -----END CERTIFICATE-----
     ''];
     rtkit.enable = true;
-    # nixos-hardware enables fprintd, which adds pam_fprintd to every PAM service;
-    # keep fingerprint for hyprlock only (it talks to fprintd natively, not via PAM)
-    pam.services = lib.genAttrs [
-      "hyprlock" "login" "sudo" "su" "polkit-1" "systemd-run0" "systemd-user"
-      "runuser" "runuser-l" "vlock" "samba" "cups" "passwd"
-      "chfn" "chsh" "chpasswd" "groupadd" "groupdel" "groupmems" "groupmod"
-      "useradd" "userdel" "usermod" "other"
-      "i3lock" "i3lock-color" "xlock" "xscreensaver"
-    ] (_: { fprintAuth = false; });
+    pam.services.hyprlock = { };
   };
 
   services = {
     samba = {
       enable = true;
     };
+    # nixos-hardware enables it; turning it off also drops pam_fprintd everywhere
+    fprintd.enable = lib.mkForce false;
     fstrim.enable = true;
     fwupd.enable = true;
     mysql = {
