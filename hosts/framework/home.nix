@@ -76,32 +76,28 @@ in
     };
   };
 
+  # Installed here rather than system-wide so chromix themes them. The
+  # shell integrations stay off: fish keeps its own abbreviations and
+  # key bindings.
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = false;
+  };
+  programs.eza = {
+    enable = true;
+    enableFishIntegration = false;
+  };
+  programs.fastfetch.enable = true;
+  programs.imv.enable = true;
+  programs.vim.enable = true;
+  programs.prismlauncher.enable = true;
+
   xdg = {
     enable = true;
     userDirs = {
       enable = true;
       createDirectories = true;
       setSessionVariables = true;
-    };
-    configFile = {
-
-    qt5ct = {
-      target = "qt5ct/qt5ct.conf";
-      text = lib.generators.toINI { } {
-        Appearance = {
-          icon_theme = "Papirus-Dark";
-        };
-      };
-    };
-
-    qt6ct = {
-      target = "qt6ct/qt6ct.conf";
-      text = lib.generators.toINI { } {
-        Appearance = {
-          icon_theme = "Papirus-Dark";
-        };
-      };
-    };
     };
   };
 
@@ -119,8 +115,9 @@ in
     };
     # GTK 4 apps are libadwaita, which reads chromix's colours directly.
     gtk4.theme = null;
+    # Papirus with its folders in the theme's colour, built by chromix.
     iconTheme = {
-      name = "Papirus-Dark";
+      name = "Papirus-Chromix";
       package = pkgs.papirus-icon-theme;
     };
     gtk3.extraConfig = {
@@ -133,10 +130,19 @@ in
     };
   };
 
+  # Fusion draws with the palette qtct hands it, which chromix sets; a
+  # style with its own colours, such as adwaita-dark, would ignore it.
   qt = {
     enable = true;
     platformTheme.name = "qtct";
-    style.name = "adwaita-dark";
+    qt5ctSettings.Appearance = {
+      style = "Fusion";
+      icon_theme = "Papirus-Chromix";
+    };
+    qt6ctSettings.Appearance = {
+      style = "Fusion";
+      icon_theme = "Papirus-Chromix";
+    };
   };
 
   # Hot-reload nvim config: symlink ~/.config/nvim → ~/nix-0/config/nvim

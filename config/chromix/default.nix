@@ -1,8 +1,12 @@
 {
+  config,
   lib,
   ...
 }:
 let
+  current =
+    file: config.lib.file.mkOutOfStoreSymlink "${config.xdg.stateHome}/chromix/current/${file}";
+
   wallpapers = builtins.path {
     path = ../wallpapers;
     name = "wallpapers";
@@ -51,5 +55,22 @@ in
       template = ./templates/fish.fish;
       output = "fish/colors.fish";
     };
+
+    # Installed system-wide, not through Home Manager. VS Code and
+    # Chromium are wired in by chromix anyway; the profiles of Firefox
+    # and Thunderbird are linked below.
+    targets.vscode.enable = true;
+    targets.chromium.enable = true;
+    targets.firefox.enable = true;
+    targets.thunderbird.enable = true;
+  };
+
+  # The existing profiles, which neither app is told about by Home
+  # Manager. The stylesheet pref is set in hosts/framework/config.nix.
+  home.file = {
+    ".mozilla/firefox/2z4xhdt8.default/chrome/userChrome.css".source =
+      current "firefox/userChrome.css";
+    ".thunderbird/4u5pubz3.default/chrome/userChrome.css".source =
+      current "thunderbird/userChrome.css";
   };
 }

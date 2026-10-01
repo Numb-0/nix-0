@@ -74,7 +74,15 @@
     fish.enable = true;
     ssh.startAgent = true;
     # adb.enable = true;
-    firefox.enable = true;
+    # Both read userChrome.css, which chromix writes, only with this pref.
+    firefox = {
+      enable = true;
+      preferences."toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+    };
+    thunderbird = {
+      enable = true;
+      preferences."toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+    };
     dconf.enable = true;
     fuse.userAllowOther = true;
     mtr.enable = true;

@@ -37,10 +37,10 @@
     pyright
 
     # ── Editor & terminal tools ───────────────────────────────────────────────
-    vim
+    # vim, fzf, eza, fastfetch, imv and prismlauncher come from home.nix,
+    # thunderbird from programs.thunderbird, so chromix can theme them.
     neovim
     tree-sitter
-    fzf
     fd
     ripgrep
 
@@ -57,13 +57,11 @@
     # ── Applications ──────────────────────────────────────────────────────────
     vlc
     pavucontrol
-    thunderbird
     chromium
     # google-chrome
     discord-canary
     spotify
     desmume
-    prismlauncher
     # lutris
     dbeaver-bin
     vscode
@@ -80,15 +78,12 @@
 
     # ── File management ───────────────────────────────────────────────────────
     nautilus
-    imv
     udiskie
 
     # ── CLI utilities ─────────────────────────────────────────────────────────
-    fastfetch
     krabby
     tree
     wget
-    eza
     htop
     lm_sensors
     jq
