@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   host,
   username,
   options,
@@ -166,8 +167,15 @@
       -----END CERTIFICATE-----
     ''];
     rtkit.enable = true;
-    # hyprlock needs its own PAM service; fingerprint is handled natively by hyprlock
-    pam.services.hyprlock.fprintAuth = false;
+    # nixos-hardware enables fprintd, which adds pam_fprintd to every PAM service;
+    # keep fingerprint for hyprlock only (it talks to fprintd natively, not via PAM)
+    pam.services = lib.genAttrs [
+      "hyprlock" "login" "sudo" "su" "polkit-1" "systemd-run0" "systemd-user"
+      "runuser" "runuser-l" "vlock" "samba" "cups" "passwd"
+      "chfn" "chsh" "chpasswd" "groupadd" "groupdel" "groupmems" "groupmod"
+      "useradd" "userdel" "usermod" "other"
+      "i3lock" "i3lock-color" "xlock" "xscreensaver"
+    ] (_: { fprintAuth = false; });
   };
 
   services = {
