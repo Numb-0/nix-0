@@ -166,13 +166,14 @@
       -----END CERTIFICATE-----
     ''];
     rtkit.enable = true;
+    # hyprlock needs its own PAM service; fingerprint is handled natively by hyprlock
+    pam.services.hyprlock.fprintAuth = false;
   };
 
   services = {
     samba = {
       enable = true;
     };
-    # fprintd.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
     mysql = {
