@@ -23,7 +23,7 @@ nix-0/
 ├── config/                # Application configs
 │   ├── chromix/           # Chromix themes, targets and custom templates
 │   ├── wallpapers/        # Wallpapers (each one is a Chromix theme)
-│   ├── hypr/              # Hyprland, hyprlock, hyprpaper, hypridle
+│   ├── hypr/              # Hyprland, hyprlock, hypridle
 │   ├── fish/              # Fish shell
 │   ├── kitty/             # Kitty terminal
 │   ├── nvim/              # Neovim configuration
@@ -80,7 +80,7 @@ Colours come from [Chromix](https://github.com/Numb-0/chromix), imported as a fl
 - **Every wallpaper is a theme**: each file in `config/wallpapers/` becomes a theme named after it (`gruv.png` → `gruv`). Drop in a new image and rebuild to get a new theme.
 - **Seed colours**: all themes use the M3 *tonal-spot* variant and are told apart by their seed colour. A wallpaper seeds from its most dominant colour unless overridden in the `tuning` set (pick an index with `matugen image <file> --show-source-colors`).
 - **Default**: `gruv` in dark mode.
-- **Targets**: Hyprland borders/shadows, hyprpaper, hyprlock, Neovim (via `mini.base16`), GTK (`adw-gtk3` for GTK 3, libadwaita for GTK 4) and Fish (custom template in `config/chromix/templates/fish.fish`, re-read on every prompt).
+- **Targets**: Morph Shell (colours, and the wallpaper it draws with a crossfade on every switch), Hyprland borders/shadows, hyprlock, Neovim (via `mini.base16`), GTK (`adw-gtk3` for GTK 3, libadwaita for GTK 4) and Fish (custom template in `config/chromix/templates/fish.fish`, re-read on every prompt).
 
 Switch themes at runtime without rebuilding:
 
