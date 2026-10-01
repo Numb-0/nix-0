@@ -64,7 +64,6 @@
     desmume
     # lutris
     dbeaver-bin
-    vscode
     # vscodium
     # obsidian
     claude-code

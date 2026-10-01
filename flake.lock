@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790869601,
-        "narHash": "sha256-Dsxhin4uPj1OjLP2ifN3D0og6PJMTuQAJHGl/JtXSmw=",
+        "lastModified": 1790871281,
+        "narHash": "sha256-VGpqfRP6KrJSAnBabMkAKQ5oWbcsUuumooXDULppTcs=",
         "ref": "refs/heads/main",
-        "rev": "fc3a8ae1866ae829dbf2e33024625436a80dc8c5",
-        "revCount": 15,
+        "rev": "ef315550754ea19be4e4d932ee1226eab0e05b43",
+        "revCount": 16,
         "type": "git",
         "url": "ssh://git@github.com/Numb-0/chromix"
       },

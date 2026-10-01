@@ -91,6 +91,7 @@ in
   programs.imv.enable = true;
   programs.vim.enable = true;
   programs.prismlauncher.enable = true;
+  programs.vscode.enable = true;
 
   xdg = {
     enable = true;
