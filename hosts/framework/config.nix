@@ -175,7 +175,6 @@
       -----END CERTIFICATE-----
     ''];
     rtkit.enable = true;
-    pam.services.hyprlock = { };
   };
 
   services = {
