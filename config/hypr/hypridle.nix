@@ -6,7 +6,7 @@
         general = {
           after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({action = \"on\"})'";
           ignore_dbus_inhibit = false;
-          lock_cmd = "pidof hyprlock || hyprlock";
+          lock_cmd = "morph-shell ipc call lock lock";
         };
         listener = [
           {

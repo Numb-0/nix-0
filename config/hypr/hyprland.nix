@@ -147,6 +147,8 @@ in
           mouse_move_enables_dpms = true;
           key_press_enables_dpms = false;
           disable_splash_rendering = true;
+          # Lets morph-shell lock again over the session if it restarts while locked
+          allow_session_lock_restore = true;
         };
 
         input = {
@@ -203,7 +205,8 @@ in
             "hyprland.start"
             (lua ''
               function()
-                hl.exec_cmd("hyprlock")
+                -- The shell may not be up yet at start, so keep trying until it locks
+                hl.exec_cmd("until morph-shell ipc call lock lock 2>/dev/null; do sleep 0.1; done")
                 hl.exec_cmd("udiskie --smart-tray --appindicator")
               end'')
           ];
