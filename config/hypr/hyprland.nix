@@ -241,6 +241,7 @@ in
 
         # Morph shell
         (bind "SUPER + A" (dsp.exec "morph-shell ipc call launcher toggle"))
+        (bind "SUPER + V" (dsp.exec "morph-shell ipc call clipboard toggle"))
         (bind "SUPER + Escape" (dsp.exec "morph-shell ipc call bar toggle session"))
         (bind "SUPER + N" (dsp.exec "morph-shell ipc call bar toggle notifications"))
         (bind "SUPER + H" (dsp.exec "morph-shell ipc call screenshot region"))

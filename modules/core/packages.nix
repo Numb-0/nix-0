@@ -103,6 +103,7 @@
     hyprpicker
     grim
     wl-clipboard
+    cliphist
     satty
   ];
 
