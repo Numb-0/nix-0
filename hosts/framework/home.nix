@@ -7,7 +7,7 @@
   ...
 }:
 let
-  inherit (import ../../modules/core/variables.nix) gitUsername gitEmail;
+  inherit (import ../../modules/core/variables.nix) gitUsername gitEmail browser;
 in
 {
   # This Code is contained in home-manager.user.${username} = {<code>}
@@ -99,6 +99,27 @@ in
       enable = true;
       createDirectories = true;
       setSessionVariables = true;
+    };
+    # Owning mimeapps.list keeps Chromium from making itself the default
+    # again; apps not listed here fall back to their own MimeType entries.
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "text/html" = "${browser}.desktop";
+        "x-scheme-handler/http" = "${browser}.desktop";
+        "x-scheme-handler/https" = "${browser}.desktop";
+        "x-scheme-handler/about" = "${browser}.desktop";
+        "x-scheme-handler/unknown" = "${browser}.desktop";
+        "x-scheme-handler/mailto" = "thunderbird.desktop";
+        "x-scheme-handler/mid" = "thunderbird.desktop";
+        "x-scheme-handler/net.thunderbird" = "thunderbird.desktop";
+        "message/rfc822" = "thunderbird.desktop";
+        "x-scheme-handler/lycheeslicer" = "Lychee Slicer.desktop";
+        "x-scheme-handler/claude-cli" = "claude-code-url-handler.desktop";
+        "application/octet-stream" = "code.desktop";
+        "image/png" = "imv.desktop";
+        "video/mp4" = "com.obsproject.Studio.desktop";
+      };
     };
   };
 
