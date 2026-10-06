@@ -37,6 +37,7 @@
             ./hosts/${host}/config.nix
             home-manager.nixosModules.home-manager
             morph-shell.nixosModules.default
+            inputs.chromix.nixosModules.default
             {
               # Temporary workaround for picosvg tests failing
               # nixpkgs.overlays = [

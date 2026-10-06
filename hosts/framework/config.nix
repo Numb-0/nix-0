@@ -83,6 +83,8 @@
       enable = true;
       preferences."toolkit.legacyUserProfileCustomizations.stylesheets" = true;
     };
+    # Chromium's whole UI from the seed of this user's chromix theme.
+    chromix.chromiumPolicy.user = username;
     dconf.enable = true;
     fuse.userAllowOther = true;
     mtr.enable = true;
