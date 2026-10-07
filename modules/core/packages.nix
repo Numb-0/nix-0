@@ -100,7 +100,6 @@
     playerctl
 
     # ── Wayland / Hyprland ────────────────────────────────────────────────────
-    hyprpicker
     grim
     wl-clipboard
     cliphist

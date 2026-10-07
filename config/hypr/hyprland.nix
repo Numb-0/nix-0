@@ -245,6 +245,8 @@ in
         (bind "SUPER + Escape" (dsp.exec "morph-shell ipc call bar toggle session"))
         (bind "SUPER + N" (dsp.exec "morph-shell ipc call bar toggle notifications"))
         (bind "SUPER + H" (dsp.exec "morph-shell ipc call screenshot region"))
+        (bind "SUPER + P" (dsp.exec "morph-shell ipc call colorpicker pick"))
+        (bind "SUPER + Tab" (dsp.exec "morph-shell ipc call overview toggle"))
 
         # Focus
         (bind "SUPER + left" (dsp.focus "l"))
