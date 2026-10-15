@@ -39,6 +39,16 @@
             morph-shell.nixosModules.default
             inputs.chromix.nixosModules.default
             {
+              # Temporary workaround: nixpkgs 7fd4004 ships a stale pnpmDeps hash
+              nixpkgs.overlays = [
+                (final: prev: {
+                  typescript-language-server = prev.typescript-language-server.overrideAttrs (old: {
+                    pnpmDeps = old.pnpmDeps.overrideAttrs {
+                      outputHash = "sha256-xR/EF60lVBsITKgH7wCM2wHM46PFQevD51KfCENSUH4=";
+                    };
+                  });
+                })
+              ];
               # Temporary workaround for picosvg tests failing
               # nixpkgs.overlays = [
               #   (final: prev: {

@@ -23,7 +23,7 @@ nix-0/
 ├── config/                # Application configs
 │   ├── chromix/           # Chromix themes, targets and custom templates
 │   ├── wallpapers/        # Wallpapers (each one is a Chromix theme)
-│   ├── hypr/              # Hyprland, hyprlock, hypridle
+│   ├── hypr/              # Hyprland (idle and lock are morph-shell's)
 │   ├── fish/              # Fish shell
 │   ├── kitty/             # Kitty terminal
 │   ├── nvim/              # Neovim configuration
