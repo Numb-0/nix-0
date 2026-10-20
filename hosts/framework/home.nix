@@ -118,7 +118,7 @@ in
         "x-scheme-handler/claude-cli" = "claude-code-url-handler.desktop";
         "application/octet-stream" = "code.desktop";
         "image/png" = "imv.desktop";
-        "video/mp4" = "com.obsproject.Studio.desktop";
+        "video/mp4" = "vlc.desktop";
       };
     };
   };

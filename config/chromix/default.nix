@@ -20,9 +20,6 @@ let
   tuning = {
     # The first colour is the red stripe; the yellow one is gruvbox.
     gruv.colorIndex = 1;
-    # The pale blue band rather than the grey-lilac, which would seed
-    # the same blue-lavender as squares.
-    swirl.colorIndex = 2;
   };
 in
 {
