@@ -247,6 +247,7 @@ in
         (bind "SUPER + H" (dsp.exec "morph-shell ipc call screenshot region"))
         (bind "SUPER + P" (dsp.exec "morph-shell ipc call colorpicker pick"))
         (bind "SUPER + Tab" (dsp.exec "morph-shell ipc call overview toggle"))
+        (bind "SUPER + C" (dsp.exec "morph-shell ipc call themes toggle"))
 
         # Focus
         (bind "SUPER + left" (dsp.focus "l"))
