@@ -78,9 +78,7 @@ in
           { proportion = 0.66667; }
         ];
         default-column-width.proportion = 0.5;
-        focus-ring = { 
-          width = 2; 
-        };
+        focus-ring.off = { };
         border.off = { };
         shadow.on = { };
       };
@@ -181,12 +179,6 @@ in
         "Mod+Shift+WheelScrollUp".focus-column-left = { };
       };
     };
-
-    # Focus ring colours from the current chromix theme, last so they win.
-    # Optional: the file only exists once chromix has rendered a theme.
-    extraConfig = lib.mkAfter ''
-      include optional=true "${config.xdg.stateHome}/chromix/current/${config.programs.chromix.targets.niri.output}"
-    '';
   };
 
   # Every user service sees these, morph-shell included, so apps opened

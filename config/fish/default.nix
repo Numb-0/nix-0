@@ -10,11 +10,9 @@
         #set -x PATH "$HOME/.local/bin:$PATH"
         #set -e ANDROID_SDK_ROOT
 
-        # Launches niri on a login at tty1, Hyprland (kept as a fallback) at tty2
+        # Launches niri on a login at tty1
         if test (tty) = "/dev/tty1"
             exec niri-session
-        else if test (tty) = "/dev/tty2"
-            exec start-hyprland
         end
 
         abbr --add dotdot --regex '^\.\.+$' --function multicd

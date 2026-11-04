@@ -22,7 +22,7 @@ in
   };
 
   imports = [
-    ../../config/hypr
+    # ../../config/hypr
     ../../config/niri
     ../../config/kitty
     ../../config/fish
