@@ -19,6 +19,23 @@ let
   morph = args: spawn ([ "morph-shell" "ipc" "call" ] ++ args);
   locked = action: action // { _props.allow-when-locked = true; };
 
+  # Window open/close animation, one of the folders in ./shaders:
+  #   morph   grows out of a blob of its own colour, like morph-shell's panels
+  #   liquid  spreads out from its centre with a wobbling, lensing rim
+  #   melt    pours down into place, drains out through its bottom edge
+  #   glass   scales into focus while its colour channels converge
+  animationStyle = "liquid";
+  styles = {
+    morph = { open = 500; close = 400; prelude = [ ./shaders/morph/common.glsl ]; };
+    liquid = { open = 550; close = 400; prelude = [ ./shaders/lib.glsl ./shaders/liquid/common.glsl ]; };
+    melt = { open = 600; close = 650; prelude = [ ./shaders/lib.glsl ./shaders/melt/common.glsl ]; };
+    glass = { open = 400; close = 300; prelude = [ ./shaders/lib.glsl ./shaders/glass/common.glsl ]; };
+  };
+  style = styles.${animationStyle};
+  shader = name: lib.concatMapStrings builtins.readFile (style.prelude ++ [ ./shaders/${animationStyle}/${name}.glsl ]);
+  # M3 emphasized decelerate: quick start, lands flat with no overshoot
+  spatialCurve = [ "cubic-bezier" 0.05 0.7 0.1 1.0 ];
+
   workspaceBinds = lib.mergeAttrsList (
     map (
       n:
@@ -80,7 +97,11 @@ in
         default-column-width.proportion = 0.5;
         focus-ring.off = { };
         border.off = { };
-        shadow.on = { };
+        shadow.off = { };
+      };
+
+      overview = {
+        workspace-shadow.off = {};
       };
 
       cursor = {
@@ -96,6 +117,30 @@ in
       # tty1 logs in on its own (getty autologin), so lock at once: retry until
       # morph-shell's IPC answers, for up to a minute
       spawn-sh-at-startup = "for i in $(seq 300); do morph-shell ipc call lock lock && break; sleep 0.2; done";
+
+      # The open/close shaders run on a linear clock and solve their own
+      # curves, so each part of a style can follow its own timing.
+      animations = {
+        window-open = {
+          duration-ms = style.open;
+          curve = "linear";
+          custom-shader = shader "open";
+        };
+        window-close = {
+          duration-ms = style.close;
+          curve = "linear";
+          custom-shader = shader "close";
+        };
+        window-resize = {
+          duration-ms = 500;
+          curve = spatialCurve;
+          custom-shader = builtins.readFile ./shaders/resize.glsl;
+        };
+        window-movement = {
+          duration-ms = 500;
+          curve = spatialCurve;
+        };
+      };
 
       window-rule = {
         geometry-corner-radius = 8;

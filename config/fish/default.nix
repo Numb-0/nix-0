@@ -10,9 +10,12 @@
         #set -x PATH "$HOME/.local/bin:$PATH"
         #set -e ANDROID_SDK_ROOT
 
-        # Launches niri on a login at tty1
+        # Launches niri on a login at tty1. niri-session runs a bare
+        # `systemctl --user import-environment`, which newer systemd flags
+        # as deprecated on the tty; drop just that line, keep other errors
         if test (tty) = "/dev/tty1"
-            exec niri-session
+            niri-session 2>| string match -v -- '*import-environment without a list*' >&2
+            exit
         end
 
         abbr --add dotdot --regex '^\.\.+$' --function multicd
