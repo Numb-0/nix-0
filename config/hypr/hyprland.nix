@@ -205,8 +205,6 @@ in
             "hyprland.start"
             (lua ''
               function()
-                -- The shell may not be up yet at start, so keep trying until it locks
-                hl.exec_cmd("until morph-shell ipc call lock lock 2>/dev/null; do sleep 0.1; done")
                 hl.exec_cmd("udiskie --smart-tray --appindicator")
               end'')
           ];

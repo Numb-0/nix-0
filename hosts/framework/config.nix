@@ -88,6 +88,8 @@
     dconf.enable = true;
     fuse.userAllowOther = true;
     mtr.enable = true;
+    # The niri session (niri-session, its portals); config in config/niri
+    niri.enable = true;
     # Package, fonts, UPower and PipeWire; autostart is handled in home.nix
     morph-shell.enable = true;
     nix-ld = {
@@ -186,6 +188,8 @@
     # nixos-hardware enables it; turning it off also drops pam_fprintd everywhere
     fprintd.enable = lib.mkForce false;
     fstrim.enable = true;
+    # programs.niri turns on GNOME Keyring; keep ssh.startAgent as the SSH agent
+    gnome.gcr-ssh-agent.enable = false;
     fwupd.enable = true;
     mysql = {
       enable = true;
@@ -221,11 +225,11 @@
       enable = true;
       nssmdns4 = true;
       openFirewall = true;
-      nssmdns6 = true; 
-      publish = {
-        enable = true;
-        addresses = true;
-        workstation = true;
+      nssmdns6 = true;
+      settings.publish = {
+        disable-publishing = false;
+        publish-addresses = true;
+        publish-workstation = true;
       };
     };
     printing = {
@@ -240,6 +244,8 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+    # Boots straight into niri (fish execs niri-session on tty1); the
+    # niri config locks the session with morph-shell right away
     getty.autologinUser = username;
     gvfs.enable = true;
     udisks2 = {

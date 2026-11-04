@@ -10,8 +10,10 @@
         #set -x PATH "$HOME/.local/bin:$PATH"
         #set -e ANDROID_SDK_ROOT
 
-        # Lauches Hyprland on startup
+        # Launches niri on a login at tty1, Hyprland (kept as a fallback) at tty2
         if test (tty) = "/dev/tty1"
+            exec niri-session
+        else if test (tty) = "/dev/tty2"
             exec start-hyprland
         end
 
@@ -24,6 +26,11 @@
         abbr --add l "eza -lh"
         abbr --add ls "eza -1 -a"
         abbr --add ld "eza -lhD"
+
+        # Remote hosts lack xterm-kitty terminfo; kitten ssh copies it over
+        if test "$TERM" = xterm-kitty
+            abbr --add ssh "kitten ssh"
+        end
       '';
       functions = {
         fish_greeting = ''krabby random --no-title'';

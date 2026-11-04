@@ -49,6 +49,19 @@ in
       output = "fish/colors.fish";
     };
 
+    # Focus ring colours, included by config/niri. niri does not notice
+    # current/ being repointed, so reload it by hand.
+    targets.niri = {
+      enable = true;
+      template = ./templates/niri.kdl;
+      output = "niri/colors.kdl";
+      reload = ''
+        if [ -n "''${NIRI_SOCKET:-}" ] && command -v niri >/dev/null; then
+          niri msg action load-config-file >/dev/null
+        fi
+      '';
+    };
+
     # Installed system-wide, not through Home Manager: chromix wires
     # them in anyway, Firefox and Thunderbird through whatever profiles
     # their profiles.ini lists. Their stylesheet pref is set in

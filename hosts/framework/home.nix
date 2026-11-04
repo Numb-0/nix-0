@@ -23,6 +23,7 @@ in
 
   imports = [
     ../../config/hypr
+    ../../config/niri
     ../../config/kitty
     ../../config/fish
     ../../config/ghostty
